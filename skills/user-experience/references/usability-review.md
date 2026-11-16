@@ -7,8 +7,10 @@ problem is, and what a review of the code alone can and can't judge.
 
 When a window or dialog appears, modality, focus and stacking are `windows-and-dialogs`.
 Defaults, presets, how many options and where each setting lives are `settings-and-options`.
-Automated GUI tests and tests with people are `gui-testing`. Accessibility is the
-`accessibility` module of the `visual-design` skill.
+Automated GUI tests and tests with people are `gui-testing`. Platform components, layout,
+forms and loading states are `interface-patterns`; command-line programs,
+`command-line-interfaces`; learning what's wrong after release, `feedback-loop`. Accessibility is the
+planned `accessibility` module of the `visual-design` skill.
 
 ## Rules
 

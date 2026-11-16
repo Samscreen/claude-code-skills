@@ -7,9 +7,9 @@ network response; scoring a tool that reports on its own output; and measuring a
 or a plugin against a run without it.
 
 Proving that a test, gate or grader can fail at all is `test-gates`; a test that passes and
-fails with no change is `flaky-tests`. Test strategy, doubles, fixtures, coverage, and named
-techniques such as differential and metamorphic testing belong to the
-`testing-patterns` module. The standard's dimension 5, Testing and
+fails with no change is `flaky-tests`. Test strategy, doubles, fixtures and coverage belong to the
+`testing-patterns` module; differential and metamorphic testing aren't covered yet (research
+R06c, waiting). The standard's dimension 5, Testing and
 verification, sets two rules this module builds on: whatever scores a run lives where the thing
 scored can't edit it, and code that parses input it doesn't control gets damaged-input tests.
 
@@ -48,7 +48,7 @@ scored can't edit it, and code that parses input it doesn't control gets damaged
 A saved output is a regression snapshot, not an oracle. Check each value in it once against one
 of the first three, and record which. Comparing implementations (differential testing) and
 checking relations between the outputs of related inputs (metamorphic testing) are named
-techniques for when no oracle exists; the `testing-patterns` module takes them up.
+techniques for when no oracle exists; no module covers them yet.
 
 ### When two sources only look independent
 

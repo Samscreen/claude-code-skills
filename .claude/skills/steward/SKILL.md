@@ -5,10 +5,11 @@ description: How sessions drive this repository's pull requests to green and mer
 
 # Steward
 
-Owner: rmccann-hub. Reviewed: 2026-11-03, against `git-workflows`' `pr-stewardship` module, and
-the repository's settings and ruleset read that day. It applies to every pull request into
-`main`. The base branch's copy of this file is in force, and only the owner merges a change to
-it. A cloud session driving a pull request was seen reading this path on 2026-11-03.
+Owner: rmccann-hub. Reviewed: 2026-11-16 for the merge exception below; 2026-11-03 against
+`git-workflows`' `pr-stewardship` module, and the repository's settings and ruleset read that
+day. It applies to every pull request into `main`. The base branch's copy of this file is in
+force, and only the owner merges a change to it. A cloud session driving a pull request was seen
+reading this path on 2026-11-03.
 
 This file says how a session acts on a pull request here. `AGENTS.md` holds the repository's
 conventions and commands, and `docs/decisions.md` the record of each choice. Where this file
@@ -34,9 +35,12 @@ and either disagree, stop and ask the owner, because one of them is wrong.
   yes.", in `docs/decisions.md`.
 - **Only the owner merges a pull request that changes** this file, `AGENTS.md`, `CLAUDE.md`,
   anything under `.claude/`, a workflow in `.github/workflows/`, or a ruleset (the owner's word
-  of 2026-11-03, in `docs/decisions.md`). The account is one person's, so GitHub can't enforce
-  this: a session's merge carries the owner's name. It holds by a session's conduct alone. Open
-  the pull request, say it's the owner's to merge, and stop.
+  of 2026-11-03, in `docs/decisions.md`). One exception, the owner's standing word of
+  2026-11-11: a session may merge, once CI is green, a pull request whose only change under
+  `.claude/` is `skillOverrides` lines turning off a new skill's installed copy. `AGENTS.md`'s
+  *Conventions* states the same rule; change both together. The account is one person's, so
+  GitHub can't enforce this: a session's merge carries the owner's name. It holds by a session's
+  conduct alone. Open the pull request, say it's the owner's to merge, and stop.
 - **Auto-merge** is allowed in the settings, and waits for required checks and nothing else. A
   session turns it on only for a pull request it may merge itself, and only once the ruleset
   requires `hold` and `subjects`.

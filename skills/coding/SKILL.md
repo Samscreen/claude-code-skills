@@ -1,6 +1,6 @@
 ---
 name: coding
-description: "Writes, reviews and fixes code: the contract every change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson. Use when writing, reviewing, debugging or modernizing code in these languages."
+description: "Writes, reviews and fixes code: the contract every change meets; Python, TypeScript, HTML and CSS, C#, PowerShell, Bash and C; and errors, logging, caching, performance and settings in any language. Use when writing, reviewing or debugging code."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
@@ -127,8 +127,7 @@ status words are the standard's:
   by the sections named above.
 - **Git, pull requests, workflows and releases:** git-workflows.
 - **Dependencies as a supply chain:** lockfiles, provenance, invented package names and install
-  scripts belong to a security skill's supply-chain-security module, planned in this
-  repository.
+  scripts belong to the `security` skill's planned `supply-chain-security` module.
 - **Designing tests:** the `testing` skill. Each module here names its language's test runner
   and leaves test design there.
 - **Prose and Markdown:** house-style.
@@ -138,9 +137,9 @@ status words are the standard's:
 - The owner's earlier language skills, as lists of topics, checks and lessons. Nothing was
   copied from them. What each kept, dropped and why is in this skill's repository, in the
   research results of 2026-10-26.
-- Research runs R07, R07b and R07c (errors, logging, performance and concurrency), R09
-  (Python), R10 (TypeScript and the web), R11 (.NET and PowerShell), R12 (C and Meson) and R15
-  (shell), filed in this skill's repository. They were leads until each
+- Research runs R03 (style and types), R04 (input and configuration), R07 to R07e (errors,
+  logging, performance, caching and benchmarks), R09 (Python), R10 (TypeScript and the web), R11
+  (.NET and PowerShell), R12 (C and Meson) and R15 (shell), filed in this skill's repository. They were leads until each
   claim was checked at its source.
 
 ## When something here is wrong

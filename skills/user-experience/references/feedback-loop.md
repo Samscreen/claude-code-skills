@@ -6,7 +6,8 @@ consent, severity against priority, one fix for every screen with the fault, scr
 that guard it, and whether it helped, internal tools included.
 
 Heuristic reviews and the severity scale are `usability-review`'s; driving a toolkit from tests,
-`gui-testing`'s. Redacting logs is the `coding` skill's `logging-and-observability`; personal
+`gui-testing`'s. Redacting logs is the `coding` skill's `logging-and-observability` and
+`logging-libraries`; personal
 data, project-bootstrap-and-audit's dimension 7, *Secrets, security and data classification*.
 
 ## Rules

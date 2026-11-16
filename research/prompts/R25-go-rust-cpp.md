@@ -11,7 +11,7 @@ current against. It holds Agent Skills for Claude Code (Markdown guidance plus s
 checks that test them, and research like this. Professional developers will judge it, so it must
 be current, precise and sourced. Today is 10 November 2026.
 
-This run informs these categories: go, rust, cpp, and legacy-languages (C++98).
+This run informs these categories: go-coding, rust-coding, cpp-coding, and legacy-languages (C++98).
 
 C, which an earlier version of run R12 covered alongside these, now has R12 to itself.
 
@@ -48,7 +48,7 @@ Write one Markdown report. Its first three lines must be exactly:
 ```text
 RESULT-FOR: rmccann-hub/claude-code-skills · RUN: R25 · FORM: research-result v1
 Save as: R25-RESULT.md
-Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the facts files of the categories it names, and list what changed. If you lack context, the owner will attach HANDOFF.md.
+Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the Facts section of each module it names, and list what changed. If you lack context, the owner will attach a file whose first line starts HANDOFF-FOR: rmccann-hub/claude-code-skills.
 ```
 
 Then these sections, in this order:
