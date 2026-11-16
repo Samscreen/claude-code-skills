@@ -92,6 +92,16 @@ def test_an_iso_time_with_an_offset_passes(repo, stamp):
     assert findings(repo) == []
 
 
+def test_a_file_with_a_byte_that_is_not_utf8_is_still_checked(repo):
+    # A stray byte once stopped skillcheck with a traceback here, before any finding.
+    target = repo.root / "docs" / "notes.md"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(b"Caf\xe9 opens at 09:30.\n")
+    assert [f[2] for f in findings(repo) if f[1] == "times"] == [
+        "line 1: 09:30 names no zone; write the stamp in UTC, such as 09:30 UTC"
+    ]
+
+
 def test_a_range_still_holds_its_second_time_to_the_rule(repo):
     written(repo, "docs/notes.md", "Open 12:00 UTC-13:00.\n")
     assert [f[2] for f in findings(repo)] == [

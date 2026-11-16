@@ -27,6 +27,8 @@ Notable changes to this repository. The format follows
   In a shallow clone it checks nothing and says so in the summary line.
 - `project-bootstrap-and-audit` checks which copy is running, against a hash of its files, and
   carries the run report's skeleton and schema, with a script that checks a report against it.
+- Before each release, a session runs mutation testing on `src/skillcheck/core/` and kills or
+  records each mutant that survives; the README's *Releasing* list says so.
 
 ### Changed
 
@@ -66,9 +68,13 @@ Notable changes to this repository. The format follows
   moved changes meaning.
 - The release's `KICKSTART.md` carries the skill's procedure and references before the standard
   file.
+- `skillcheck`'s tests hold each finding's file, rule and words, and plant the cases mutation
+  testing showed untested; 61 more tests, 799 in all.
 
 ### Fixed
 
+- `skillcheck`'s `times` check no longer stops with a traceback on a Markdown file holding a byte
+  that isn't UTF-8; it reads the rest of the file.
 - Fourteen modules no longer call shipped skills and modules planned, and modules that name a
   module still to come now say it's planned.
 - Skills and modules that named each other wrongly now agree: a tracked quarantine of a flaky
