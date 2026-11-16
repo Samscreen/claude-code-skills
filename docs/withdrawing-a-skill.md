@@ -19,8 +19,10 @@ If a skill in this repository gives wrong or harmful instructions, take it out o
    `skillcheck` fails the pull request if the catalog, the roadmap, the README and `skills/`
    disagree.
 2. **Merge it, then release it.** The merge is what reaches claude.ai, so a skill change is
-   ready for users before it merges. The release reaches plugin installs in Claude Code and
-   cloud sessions. Run the Release workflow from the Actions tab, with the new
+   ready for users before it merges. The merge that changes the catalog's `version` is what
+   reaches Claude Code plugin installs: an install takes `main` as it stands once the version
+   string changes, released or not. The release reaches cloud sessions with `cloud-setup.sh`'s
+   hook. Run the Release workflow from the Actions tab, with the new
    version and the merge commit's full SHA, not a branch, before a later commit changes a
    workflow. It checks the version, the changelog and CI, and makes the annotated tag. Then it
    signs the files with a build provenance attestation, checks that signature, and publishes the

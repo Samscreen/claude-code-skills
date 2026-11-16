@@ -37,6 +37,9 @@ Notable changes to this repository. The format follows
   `docs/decisions.md` ends with the standing decisions they hold.
 - The README's runbook for withdrawing a bad skill is now `docs/withdrawing-a-skill.md`, linked
   from the README's Operations section.
+- The README and the withdrawal runbook say what reaches Claude Code plugin installs: the merge
+  that changes the catalog's version, not the release.
+- A test runs ShellCheck on every tracked shell script.
 
 ### Fixed
 

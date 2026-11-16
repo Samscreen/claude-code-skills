@@ -6,6 +6,43 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — This repository re-checked against standard v0.49.1, for release 0.1.30
+
+- **Asked:** the owner's "do all" (2026-11-16), to a list that named the re-check the README's
+  release steps promise after each release. The last one recorded was of 2026-09-30, against
+  v0.40.0. A helper ran the standard's audit, read-only, to its first wait, on `main` at
+  `c8c3a07`, tier T3. Result: six dimensions `OK`, two `DRIFT`, two `GAP`.
+- **Fixed here, documentation and a test:**
+  - The README's release steps and `docs/withdrawing-a-skill.md` said the release reaches
+    Claude Code plugin installs. It's the merge that changes the catalog's `version`: an install
+    takes `main` as it stands once the version string changes, released or not. Claude Code's
+    documentation says so, read 2026-11-16 ([Release a new
+    version](https://code.claude.com/docs/en/plugins/host-marketplace#release-a-new-version):
+    "Bump `version` on each release: users stay on their cached copy until the string
+    changes."). That answers the question the entry of 2026-10-26 left "not yet checked". Cloud
+    sessions with the hook still take the release.
+  - Both tracked shell scripts, `src/skillcheck/cloud-setup.sh` and `house-style`'s
+    `wrap-check.sh`, are now linted by a test that runs ShellCheck on every tracked `*.sh`.
+    Neither is a Markdown example, so nothing read them before. Both pass.
+- **Recorded:**
+  - A19's trigger fired. The inception entry declined mutation testing while branch coverage
+    was 100%, until "a check is found letting through a defect its test says it catches". The
+    mutation run of 2026-11-03 found 7 of 112 mutants and 27 of 51 hand-made ones surviving,
+    which is that trigger, and the entry of that day didn't name A19. Whether mutation runs on
+    `core/` become a step of each release, or stay one-off with a new trigger, is the owner's.
+  - ShellCheck, which `shellcheck-py` (MIT) carries, is GPL-3.0, and `@anthropic-ai/claude-code`
+    is under Anthropic's own terms. Both are development tools, run in CI and by hand, and never
+    in a release asset or a skill. The allowlist takes GPL with a recorded internal-only
+    decision, which this is for ShellCheck. Claude Code's terms need the owner's explicit yes,
+    asked in the report.
+- **Waiting on the owner:** a `skillcheck` rule that every commit the records cite stays
+  reachable from `main` (all 17 do today, checked by hand); a pull request rule on `main`, asked
+  on 2026-10-05; whether the `copier` template's and reusable workflows' triggers have fired,
+  since the private companion runs `skillcheck` from here; and how often this re-check runs.
+  The standard proposal S1, fewest dependencies and newest versions from R21, is drafted for the
+  owner's approval. R01 and R04 don't support a rule on keeping one application's data from
+  another, so nothing is proposed for it.
+
 ## 2026-11-16 — Finished records move to the `archive` branch
 
 - **The owner's word:** "do all" (2026-11-16), given to a list that named moving `ROADMAP.md`'s
