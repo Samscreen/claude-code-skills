@@ -135,8 +135,9 @@ ones nothing checks.
    the version changes; the release that follows reaches cloud sessions with the hook.
 2. Once it merges and CI passes on `main`, run the Release workflow from the Actions tab, with
    the version and the merge commit's full SHA.
-3. Then a session re-checks this repository against the standard, with the new release's
-   kickstart file, and sends the owner its report. What it raises waits for the owner's
+3. After each release of the standard, and at least every three months, a session re-checks
+   this repository against the standard, with the newest release's kickstart file, and sends
+   the owner its report (the owner, 2026-11-16). What it raises waits for the owner's
    answers, as in any other run, and the release doesn't wait for it.
 
 ## Operations
