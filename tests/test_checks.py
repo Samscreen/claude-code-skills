@@ -27,7 +27,7 @@ def test_empty_repository_says_nothing_was_checked(repo):
     assert report.summary() == (
         "skillcheck: 0 skill(s), 0 module(s), 0 description characters, 0 fact(s), no catalog, "
         "no roadmap, "
-        "no standard, 0 finding(s)"
+        "no standard, cited commits unchecked (no git history), 0 finding(s)"
     )
 
 
@@ -39,7 +39,8 @@ def test_clean_repository_passes(repo):
     assert report.summary() == (
         "skillcheck: 1 skill(s), 0 module(s), "
         f"{len(DEFAULT_DESCRIPTION)} description characters, 0 fact(s), "
-        "1 catalog plugin(s), no roadmap, no standard, 0 finding(s)"
+        "1 catalog plugin(s), no roadmap, no standard, "
+        "cited commits unchecked (no git history), 0 finding(s)"
     )
 
 
