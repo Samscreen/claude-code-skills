@@ -166,7 +166,7 @@ again.
 | `architecture` | pnpm.io | 1 |
 | `coding` | learn.microsoft.com | 80 |
 | `coding` | docs.python.org | 34 |
-| `coding` | raw.githubusercontent.com | 25 |
+| `coding` | raw.githubusercontent.com | 26 |
 | `coding` | nodejs.org | 19 |
 | `coding` | cheatsheetseries.owasp.org | 18 |
 | `coding` | www.w3.org | 17 |
@@ -179,18 +179,19 @@ again.
 | `coding` | docs.astral.sh | 9 |
 | `coding` | gcc.gnu.org | 9 |
 | `coding` | github.com | 8 |
-| `coding` | pkg.go.dev | 7 |
+| `coding` | pkg.go.dev | 8 |
 | `coding` | www.rfc-editor.org | 7 |
 | `coding` | go.dev | 6 |
 | `coding` | aws.amazon.com | 5 |
 | `coding` | clang.llvm.org | 5 |
+| `coding` | crates.io | 5 |
 | `coding` | cwe.mitre.org | 5 |
 | `coding` | devblogs.microsoft.com | 5 |
+| `coding` | docs.rs | 5 |
 | `coding` | html.spec.whatwg.org | 5 |
 | `coding` | opentelemetry.io | 5 |
 | `coding` | repo1.maven.org | 5 |
 | `coding` | www.typescriptlang.org | 5 |
-| `coding` | crates.io | 4 |
 | `coding` | curl.se | 4 |
 | `coding` | dotnet.microsoft.com | 4 |
 | `coding` | google.github.io | 4 |
@@ -199,7 +200,6 @@ again.
 | `coding` | registry.npmjs.org | 4 |
 | `coding` | typescript-eslint.io | 4 |
 | `coding` | doc.rust-lang.org | 3 |
-| `coding` | docs.rs | 3 |
 | `coding` | git-scm.com | 3 |
 | `coding` | web.dev | 3 |
 | `coding` | www.nuget.org | 3 |
@@ -240,6 +240,8 @@ again.
 | `coding` | docs.ruby-lang.org | 1 |
 | `coding` | documentation.ubuntu.com | 1 |
 | `coding` | eur-lex.europa.eu | 1 |
+| `coding` | expressjs.com | 1 |
+| `coding` | fastapi.tiangolo.com | 1 |
 | `coding` | git.kernel.org | 1 |
 | `coding` | gmplib.org | 1 |
 | `coding` | grafana.com | 1 |
@@ -266,6 +268,7 @@ again.
 | `coding` | sourceware.org | 1 |
 | `coding` | specifications.freedesktop.org | 1 |
 | `coding` | src.fedoraproject.org | 1 |
+| `coding` | starlette.dev | 1 |
 | `coding` | support.apple.com | 1 |
 | `coding` | tc39.es | 1 |
 | `coding` | toml.io | 1 |
