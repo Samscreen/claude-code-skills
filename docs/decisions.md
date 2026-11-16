@@ -6,6 +6,23 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Standard v0.49.2: the toolchain rows past 2026-11-10
+
+- **Asked:** the owner's "do all recommended" (2026-11-16), approving it as F168, a patch
+  applied on its own.
+- **Why:** *Language toolchains* said PowerShell 7.4 and 7.5 and .NET 8 and 9 "end on
+  2026-11-10", a date that has passed, so a run read their end of support as still ahead.
+- **Changed:** each row was read again at its source on 2026-11-16 and now says so. PowerShell:
+  7.6.x is the LTS until 2028-11-14, 7.4 and 7.5 ended on 2026-11-10, and 7.7 is a preview
+  ([Microsoft's lifecycle page](https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle):
+  "PowerShell 7.6 (LTS) 18-Mar-2026 14-Nov-2028"). .NET: 10 is the LTS for new work until
+  2028-11-14, 11 is an STS released 2026-11-10 with the same end, and 8 and 9 ended on
+  2026-11-10. The [release index](https://builds.dotnet.microsoft.com/dotnet/release-metadata/releases-index.json)
+  gives 11.0 `sts`, eol `2028-11-14`, and 9.0 and 8.0 `eol` on `2026-11-10`; the
+  [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) agrees.
+- **Checked:** no other text in the standard states those versions as current; the 0.48.2
+  version-history entry keeps its words, as records do.
+
 ## 2026-11-16 — The owner's answers to 23 decisions
 
 - **The owner's word:** "do all recomended" (2026-11-16), to a list of 23 decisions, each with
