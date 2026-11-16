@@ -13,12 +13,19 @@ Notable changes to this repository. The format follows
   the fact was checked, so the weekly Freshness issue names a runtime or dependency nearing its
   end of life.
 - An issue form, *A problem with a skill*, whose fields match the report every skill drafts.
+- `house-style` gains `markdown-format`: headings, wrapping, lists, code blocks, tables, links,
+  file names and a README's sections, split from `writing-style`.
+- `writing-style` says how strong a claim's verb may be, what it names and what an absence
+  means, and how to write steps for a reader who isn't a programmer.
+- `c-build` probes argument shapes as an axis of their own.
 
 ### Changed
 
 - Dependencies brought up together, each past the three-day wait: uv 0.13.8 in every workflow,
   the `uv_build` floor 0.13.8, Vale 3.27.0 (with `house-style`'s shipped workflow and its
   facts), ruff 0.17.5, coverage 7.17.3 and Claude Code 2.1.325. This replaces #123 and #147.
+- `writing-style` now covers what prose says, and `prose-check` is shorter: its spelling
+  patterns are in `writing-style`, and the heading-colon fact in `markdown-format`.
 
 ### Fixed
 
