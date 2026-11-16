@@ -4,7 +4,8 @@ Read this for adding the house style's Vale check to a repository, running it lo
 for a repository's own names and records, or a rule that flags something it shouldn't.
 
 It covers the check, which finds breaks of rules 3, 8 and 12 in this skill's `SKILL.md`. What
-the rules mean, and the rest of them, is `writing-style`.
+the rules mean, and the rest of them, is `writing-style` for words and spelling, and
+`markdown-format` for headings and layout.
 
 ## Rules
 
@@ -25,12 +26,8 @@ published as `HouseStyle.zip` on each release. It checks three of the rules:
 | 8 | `HouseStyle.Headings` | A heading that isn't in sentence case, apart from listed proper nouns and the repository's own vocabulary. A capital may follow a colon (fact `heading-colon`), but not a dash, by this style's choice |
 | 12 | `HouseStyle.Spelling` | Common British spellings, with the American form to use |
 
-The spelling rule lists the words it changes, most by a pattern: -ise and -isation to -ize and
--ization (organize, organization, recognize); -our to -or (behavior, color, favor); -re to -er
-(center); -ogue to -og (catalog); -ence to -ense in some nouns (license, defense, offense); a
-doubled `l` to one before -ed and -ing (labeled, canceled, modeling); and -ement after -dg to
--ment (judgment, acknowledgment). So it leaves alone -ise words the same in both, such as
-advise, exercise, promise, otherwise and expertise.
+The spelling rule lists the words it changes, most by a pattern, and leaves alone words spelled
+the same in both, such as advise; `writing-style` lists the patterns.
 
 Rule 8's wrap has its own check, below. The rest are for review: Vale can't tell whether the
 answer comes first, or whether a fact was checked. Rule 11's commit subjects have their own
@@ -138,7 +135,7 @@ and the asset follows.
 ### Running it locally
 
 ```sh
-go install github.com/vale-cli/vale/v3/cmd/vale@v3.26.0
+go install github.com/vale-cli/vale/v3/cmd/vale@v3.27.0
 vale sync
 git ls-files -z '*.md' | xargs -0 vale
 ```
@@ -238,19 +235,18 @@ so one that wants its quotes checked asks here for a change.
 
 ## Facts
 
-Vale's version and behavior, and the guides the heading rule follows, each named by its ID.
+Vale's version and behavior, and how awk counts a line, each named by its ID.
 
 | ID | Fact | Source | Quote | Checked | Check by |
 |---|---|---|---|---|---|
-| `vale-current` | Vale's newest release is v3.26.0 | `git ls-remote --tags https://github.com/vale-cli/vale` | `refs/tags/v3.26.0` | 2026-11-03 | 2027-02-03 |
-| `vale-module` | Vale installs with `go install`, from the module `github.com/vale-cli/vale/v3` | [go.mod at v3.26.0](https://raw.githubusercontent.com/vale-cli/vale/v3.26.0/go.mod) | "module github.com/vale-cli/vale/v3" | 2026-11-03 | 2027-05-03 |
-| `vale-license` | Vale is under the MIT license | [LICENSE at v3.26.0](https://raw.githubusercontent.com/vale-cli/vale/v3.26.0/LICENSE) | "MIT License" | 2026-11-03 | 2027-05-03 |
+| `vale-current` | Vale's newest release is v3.27.0 | `git ls-remote --tags https://github.com/vale-cli/vale` | `refs/tags/v3.27.0` | 2026-11-16 | 2027-02-16 |
+| `vale-module` | Vale installs with `go install`, from the module `github.com/vale-cli/vale/v3` | [go.mod at v3.27.0](https://raw.githubusercontent.com/vale-cli/vale/v3.27.0/go.mod) | "module github.com/vale-cli/vale/v3" | 2026-11-16 | 2027-05-16 |
+| `vale-license` | Vale is under the MIT license | [LICENSE at v3.27.0](https://raw.githubusercontent.com/vale-cli/vale/v3.27.0/LICENSE) | "MIT License" | 2026-11-16 | 2027-05-16 |
 | `vale-packages` | A package is a ZIP holding one folder named for it. `.vale.ini` lists it by URL under `Packages`, and `vale sync` installs it | [Packages](https://vale.sh/docs/keys/packages) | "A URL to a .zip archive." and "the archive has to hold one folder with that name" and "Packages lists what vale sync installs into the StylesPath" | 2026-10-05 | 2027-04-05 |
 | `vale-layers` | A package's configuration is overridden by later packages, and by the project's own | [Packages](https://vale.sh/docs/keys/packages) | "the first package is overridden by the second, and local configuration overrides both" | 2026-10-05 | 2027-04-05 |
 | `vale-sections` | In `.vale.ini`, a later section matching the same files replaces the earlier list of styles | [.vale.ini](https://vale.sh/docs/vale-ini) | "A later matching section replaces the list rather than adding to it." | 2026-10-05 | 2027-04-05 |
 | `vale-tokenignores` | Vale skips a `TokenIgnores` match by wrapping it as inline code | [TokenIgnores](https://docs.vale.sh/keys/tokenignores) | "They work by wrapping each match in the format's inline code delimiter" | 2026-10-27 | 2027-04-27 |
 | `vale-list-keys` | A list key, such as `TokenIgnores`, gathers every configuration file's values, as `vale ls-config` showed on Vale 3.25.1 | [.vale.ini](https://docs.vale.sh/topics/.vale.ini) | "A list key gathers every value from every file" | 2026-10-27 | 2027-04-27 |
-| `heading-colon` | Google and Microsoft capitalize after a heading's colon. Google puts a colon, not a dash, after a label; Microsoft's em dash sets off a remark | [Google](https://developers.google.com/style/capitalization), [dashes](https://developers.google.com/style/dashes); [Microsoft](https://learn.microsoft.com/en-us/style-guide/capitalization), [dashes](https://learn.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/emes) | "the first word in a subheading after a colon" and "Appendix A: My first appendix" and "If a title or heading includes a colon, capitalize the first word after it." and "parenthetical remark that you want to add within a sentence" | 2026-10-27 | 2027-04-27 |
 | `awk-length` | awk's `length` counts characters, and in the POSIX locale each is one byte | [awk](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/awk.html), [locale](https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap06.html) | "return the length, in characters, of arg taken as a string" and "The POSIX locale shall contain 256 single-byte characters" | 2026-10-27 | 2027-10-27 |
 | `vale-exceptions` | Capitalization and substitution rules take a list of exceptions, and accept the project's vocabularies unless told not to | [capitalization](https://vale.sh/docs/checks/capitalization) | "An array of strings to be ignored." and "If false, disables all active vocabularies for this rule (default: true)." | 2026-10-05 | 2027-04-05 |
 
@@ -260,7 +256,6 @@ Vale's version and behavior, and the guides the heading rule follows, each named
 |---|---|---|
 | [Vale's documentation](https://docs.vale.sh) | How packages, configuration, rule exceptions and `TokenIgnores` work | No license stated: facts with short quotes |
 | [POSIX](https://pubs.opengroup.org/onlinepubs/9799919799/) | How awk counts a line's length | Facts with short quotes |
-| Google's and Microsoft's style guides | Colons and dashes in headings | As in `writing-style`: short quotes, attributed |
 | [Vale](https://github.com/vale-cli/vale) | The checker | MIT (fact `vale-license`): run as a tool, nothing copied from it |
 
 The HouseStyle package's rules are original to this skill.

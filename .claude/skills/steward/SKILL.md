@@ -32,7 +32,7 @@ and either disagree, stop and ask the owner, because one of them is wrong.
 - **A session may merge its own pull request** for work the owner asked for, once every check
   has passed on the head commit, no thread waits on it, there's no conflict, and no hold covers
   it. That's the owner's answer 4 of 2026-10-05, "Do the recommended. And do the recommended
-  yes.", in `docs/decisions.md`.
+  yes.", listed at the end of `docs/decisions.md`; its entry is on the `archive` branch.
 - **Only the owner merges a pull request that changes** this file, `AGENTS.md`, `CLAUDE.md`,
   anything under `.claude/`, a workflow in `.github/workflows/`, or a ruleset (the owner's word
   of 2026-11-03, in `docs/decisions.md`). One exception, the owner's standing word of

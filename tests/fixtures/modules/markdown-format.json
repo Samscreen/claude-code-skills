@@ -1,0 +1,37 @@
+[
+  {
+    "query": "Are headings in sentence case or title case here?",
+    "should_trigger": true
+  },
+  {
+    "query": "What sections should every README have, and in what order?",
+    "should_trigger": true
+  },
+  {
+    "query": "Should our Markdown wrap at 80 columns or 100, and do tables count?",
+    "should_trigger": true
+  },
+  {
+    "query": "Is it docs/Getting_Started.md or docs/getting-started.md?",
+    "should_trigger": true
+  },
+  {
+    "query": "How deep can bullet lists nest in our contributing guide, and when should I number them?",
+    "should_trigger": true
+  },
+  {
+    "query": "Rewrite this README so it reads plainly and drops the marketing fluff.",
+    "should_trigger": false,
+    "note": "writing-style"
+  },
+  {
+    "query": "Vale fails on a heading with our product name in it. How do I make it accept the name?",
+    "should_trigger": false,
+    "note": "prose-check"
+  },
+  {
+    "query": "Our docs folder is one 2,000-line guide nobody can find anything in. How should we break it up?",
+    "should_trigger": false,
+    "note": "documentation"
+  }
+]

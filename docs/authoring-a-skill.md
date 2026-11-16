@@ -35,12 +35,14 @@ and dependencies. A second version of a published rule drifts from the first.
    - other text names a fact by its ID, such as fact `node20`, rather than repeating it. An ID
      is defined once in the repository, and any file in any skill may name it, so a module
      that moves keeps every fact it names.
+   - an end of support is written as a word that ends it and an ISO date, such as "extended to
+     2027-01-12" or "ended 2026-11-10", so `skillcheck --due` warns six months before it.
 
    `skillcheck` checks every row's shape and every fact a skill names. `skillcheck --due` lists
    the facts due to be checked again, and `skillcheck --verify` fetches each source and looks
    for its quote. A quote whose only source is a PDF is checked by hand when it falls due,
-   since its text can't be searched. The freshness workflow runs both each week, and keeps one issue open while
-   anything is due. Research results are leads until each claim is checked against its source.
+   since its text can't be searched. The freshness workflow runs both each week, and keeps one
+   issue open while anything is due. Research results are leads until each claim is checked against its source.
 3. **Licenses.** Quote, paraphrase or adapt a source only as its license allows. The licenses of
    common sources are in `research/runs/2026-09-23-A-source-licences.md`. Broadly:
    - **Adaptable with a notice:** CC0, MIT, Apache-2.0, BSD, CC BY, OGL and PSF sources. Examples
@@ -53,7 +55,10 @@ and dependencies. A second version of a published rule drifts from the first.
    - Material under another license comes in with its notice: name the license in the `license`
      field and keep a `THIRD-PARTY-NOTICES.md` in the skill's directory.
    - Anthropic's Apache-2.0 skills may be adapted, keeping their notice and marking the changes.
-   - Nothing from Anthropic's source-available document skills (docx, pdf, pptx, xlsx).
+   - Anthropic's document skills (docx, pdf, pptx, xlsx) were source-available, and their
+     license files now say Apache-2.0 (read 2026-11-11). Adapt them like its other skills,
+     but only from a pinned commit whose license file you read at that commit, and name the
+     commit in the notice.
 4. **No secrets and no company detail.** Use placeholders:
    - `example.com` and its subdomains (RFC 2606) for hosts;
    - `192.0.2.0/24`, `198.51.100.0/24` and `203.0.113.0/24` (RFC 5737) for addresses;

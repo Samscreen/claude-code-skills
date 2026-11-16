@@ -26,7 +26,7 @@ freshness run and the release workflow both run it.
 | `engineering` | 0.1.30 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `security` | reviewed 2026-11-11 |
-| `engineering` | 0.1.30 | Apache-2.0 | `testing` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `testing` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
 
@@ -34,10 +34,10 @@ freshness run and the release workflow both run it.
 
 | Language | Tracked files |
 |---|---|
-| Markdown | 204 |
-| JSON | 86 |
+| Markdown | 207 |
+| JSON | 88 |
 | Python | 53 |
-| YAML | 23 |
+| YAML | 25 |
 | Shell | 4 |
 | TOML | 2 |
 
@@ -46,13 +46,13 @@ freshness run and the release workflow both run it.
 | Name | Version | Set in | Note |
 |---|---|---|---|
 | Python | 3.15 | `.python-version` | `pyproject.toml` requires >=3.14 |
-| uv_build | >=0.13.6,<0.14 | `pyproject.toml` | build backend |
+| uv_build | >=0.13.8,<0.14 | `pyproject.toml` | build backend |
 | GitHub-hosted runner | ubuntu-latest | `.github/workflows/ci.yml`, `.github/workflows/commit-subjects.yml`, `.github/workflows/freshness.yml`, `.github/workflows/hold.yml`, `.github/workflows/prose.yml`, `.github/workflows/release.yml` | — |
 | Go | 1.27 | `.github/workflows/ci.yml`, `.github/workflows/prose.yml` | — |
 | Node.js | 26 | `.github/workflows/ci.yml` | — |
 | gitleaks | v8.30.1 | `.github/workflows/ci.yml` | — |
-| uv | 0.13.5 | `.github/workflows/ci.yml`, `.github/workflows/freshness.yml`, `.github/workflows/release.yml` | — |
-| vale | v3.26.0 | `.github/workflows/prose.yml` | — |
+| uv | 0.13.8 | `.github/workflows/ci.yml`, `.github/workflows/freshness.yml`, `.github/workflows/release.yml` | — |
+| vale | v3.27.0 | `.github/workflows/prose.yml` | — |
 
 ## Python packages
 
@@ -68,11 +68,11 @@ skillcheck 0.0.0 (this repository's checks)
 │   ├── pluggy 1.7.0 (dev)
 │   └── pygments 2.21.0 (dev)
 ├── pytest-cov 7.1.0 (dev)
-│   ├── coverage 7.17.2 (dev)
+│   ├── coverage 7.17.3 (dev)
 │   ├── pluggy 1.7.0 (dev)
 │   └── pytest 9.2.0 (dev) (listed above)
 ├── pyyaml 6.0.3
-├── ruff 0.17.4 (dev)
+├── ruff 0.17.5 (dev)
 ├── shellcheck-py 0.11.0.1 (dev)
 └── zizmor 1.32.0 (dev)
 ```
@@ -84,15 +84,15 @@ plugins ship.
 
 ```text
 package.json
-└── @anthropic-ai/claude-code 2.1.319 (dev)
-    ├── @anthropic-ai/claude-code-darwin-arm64 2.1.319 (dev; optional)
-    ├── @anthropic-ai/claude-code-darwin-x64 2.1.319 (dev; optional)
-    ├── @anthropic-ai/claude-code-linux-arm64 2.1.319 (dev; optional)
-    ├── @anthropic-ai/claude-code-linux-arm64-musl 2.1.319 (dev; optional)
-    ├── @anthropic-ai/claude-code-linux-x64 2.1.319 (dev; optional)
-    ├── @anthropic-ai/claude-code-linux-x64-musl 2.1.319 (dev; optional)
-    ├── @anthropic-ai/claude-code-win32-arm64 2.1.319 (dev; optional)
-    └── @anthropic-ai/claude-code-win32-x64 2.1.319 (dev; optional)
+└── @anthropic-ai/claude-code 2.1.325 (dev)
+    ├── @anthropic-ai/claude-code-darwin-arm64 2.1.325 (dev; optional)
+    ├── @anthropic-ai/claude-code-darwin-x64 2.1.325 (dev; optional)
+    ├── @anthropic-ai/claude-code-linux-arm64 2.1.325 (dev; optional)
+    ├── @anthropic-ai/claude-code-linux-arm64-musl 2.1.325 (dev; optional)
+    ├── @anthropic-ai/claude-code-linux-x64 2.1.325 (dev; optional)
+    ├── @anthropic-ai/claude-code-linux-x64-musl 2.1.325 (dev; optional)
+    ├── @anthropic-ai/claude-code-win32-arm64 2.1.325 (dev; optional)
+    └── @anthropic-ai/claude-code-win32-x64 2.1.325 (dev; optional)
 ```
 
 ## GitHub Actions
@@ -320,7 +320,7 @@ again.
 | `git-workflows` | sre.google | 1 |
 | `git-workflows` | towncrier.readthedocs.io | 1 |
 | `git-workflows` | www.conventionalcommits.org | 1 |
-| `house-style` | developers.google.com | 5 |
+| `house-style` | developers.google.com | 6 |
 | `house-style` | raw.githubusercontent.com | 4 |
 | `house-style` | vale.sh | 4 |
 | `house-style` | www.sphinx-doc.org | 3 |
@@ -428,38 +428,47 @@ again.
 | `security` | go.dev | 1 |
 | `security` | pages.nist.gov | 1 |
 | `security` | www.threatmodelingmanifesto.org | 1 |
-| `testing` | arxiv.org | 9 |
+| `testing` | arxiv.org | 10 |
 | `testing` | code.claude.com | 8 |
 | `testing` | gitlab.com | 4 |
+| `testing` | pypi.org | 4 |
 | `testing` | testing.googleblog.com | 4 |
+| `testing` | abseil.io | 3 |
+| `testing` | docs.pytest.org | 3 |
 | `testing` | github.blog | 3 |
 | `testing` | raw.githubusercontent.com | 3 |
+| `testing` | registry.npmjs.org | 3 |
+| `testing` | api.nuget.org | 2 |
 | `testing` | docs.kernelci.org | 2 |
-| `testing` | docs.pytest.org | 2 |
-| `testing` | pypi.org | 2 |
-| `testing` | registry.npmjs.org | 2 |
+| `testing` | eprints.whiterose.ac.uk | 2 |
+| `testing` | martinfowler.com | 2 |
+| `testing` | repo1.maven.org | 2 |
 | `testing` | research.google.com | 2 |
 | `testing` | www.anthropic.com | 2 |
 | `testing` | www.microsoft.com | 2 |
-| `testing` | api.nuget.org | 1 |
 | `testing` | blitiri.com.ar | 1 |
 | `testing` | coverage.readthedocs.io | 1 |
 | `testing` | crates.io | 1 |
 | `testing` | developer.apple.com | 1 |
 | `testing` | docs.cypress.io | 1 |
 | `testing` | docs.pact.io | 1 |
+| `testing` | factoryboy.readthedocs.io | 1 |
+| `testing` | github.com | 1 |
 | `testing` | go.dev | 1 |
 | `testing` | growing-object-oriented-software.com | 1 |
 | `testing` | jestjs.io | 1 |
+| `testing` | kentcdodds.com | 1 |
 | `testing` | lava.readthedocs.io | 1 |
 | `testing` | learn.microsoft.com | 1 |
 | `testing` | man7.org | 1 |
 | `testing` | open.qa | 1 |
 | `testing` | pester.dev | 1 |
+| `testing` | pkg.go.dev | 1 |
+| `testing` | proxy.golang.org | 1 |
 | `testing` | repo.packagist.org | 1 |
-| `testing` | repo1.maven.org | 1 |
 | `testing` | rubygems.org | 1 |
 | `testing` | testcontainers.com | 1 |
+| `testing` | users.cs.utah.edu | 1 |
 | `testing` | www.pantsbuild.org | 1 |
 | `user-experience` | www.nngroup.com | 19 |
 | `user-experience` | developer.apple.com | 7 |

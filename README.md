@@ -61,7 +61,7 @@ To check another repository's prose against the house style, follow the house-st
 | `coding` | `engineering` | The contract every code change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson, plus errors, logging, caching, benchmarking, performance and settings in any language: rules, common mistakes, review checks and the reasons for each, with dated facts |
 | `git-workflows` | `engineering` | Commit messages, pull requests and the agents tending them, the merge strategy, conflicts, GitHub Actions CI and deploys, hooks, leaked secrets, `.gitignore`, release tags, versions, changelogs, backports and support windows, with the reasons for each and what other projects do |
 | `house-style` | `engineering` | One style for prose and Markdown in every repository, and how to write and keep a project's documentation, with the reasons for each rule, and the Vale style and CI job that check it |
-| `testing` | `engineering` | Tests and checks a pass can be trusted from: proving a test, gate or grader can fail, checking results against an independent reference, scoring by the worst case, flaky tests, coverage, doubles and test strategy, tests AI agents write, and unattended acceptance runs on hardware with fault injection, with the reasons for each |
+| `testing` | `engineering` | Tests and checks a pass can be trusted from: proving a test, gate or grader can fail, checking results against an independent reference, scoring by the worst case, flaky tests, coverage and doubles, test strategy and test data, metamorphic and differential testing, tests AI agents write, and unattended acceptance runs on hardware with fault injection, with the reasons for each |
 | `user-experience` | `engineering` | How a desktop, web or command-line program behaves for its user: each platform's current design language and toolkit, heuristic reviews with severity ratings, status that stays current, windows and dialogs that appear when they should, settings with good defaults and one place each, command-line conventions, GUI tests by machine and with people, and the loop from user reports to safe fixes |
 | `visual-design` | `engineering` | How an interface, a chart or a document looks: design tokens built for CSS, charts and documents, dark mode, contrast measured on the shipped color, never color alone, choosing a chart, and charting libraries with their versions and how active each is |
 | `architecture` | `engineering` | Where each file and folder goes: layouts by ecosystem, tests' places, feature or layer folders, naming, one repository or several, and moving files without losing history |
@@ -76,7 +76,7 @@ that is planned, with its status.
 
 ## Development
 
-You need [uv](https://docs.astral.sh/uv/) 0.13.5 or later, the version CI pins in
+You need [uv](https://docs.astral.sh/uv/) 0.13.8 or later, the version CI pins in
 `.github/workflows/ci.yml`. It installs the Python version named in `.python-version`. You also
 need Node.js, to run Claude Code's own catalog validator.
 
@@ -131,64 +131,18 @@ ones nothing checks.
 ## Releasing
 
 1. In the pull request, set the new version in every catalog entry, and add its section to
-   `CHANGELOG.md`.
+   `CHANGELOG.md`. Its merge is what reaches Claude Code plugin installs, which take `main` once
+   the version changes; the release that follows reaches cloud sessions with the hook.
 2. Once it merges and CI passes on `main`, run the Release workflow from the Actions tab, with
    the version and the merge commit's full SHA.
 3. Then a session re-checks this repository against the standard, with the new release's
    kickstart file, and sends the owner its report. What it raises waits for the owner's
    answers, as in any other run, and the release doesn't wait for it.
 
-## Operations: withdrawing a bad skill
+## Operations
 
-If a skill here gives wrong or harmful instructions, take it out of circulation in this order.
-
-1. **Stop new installs.** In one pull request, fix the skill or remove it.
-   - To remove it:
-     - delete `skills/<name>/`;
-     - remove its path from `.claude-plugin/marketplace.json`. If it was its plugin's only
-       skill, remove the whole plugin entry, because an entry whose paths all miss loads every
-       skill;
-     - remove its row from the skill table above;
-     - set its status in `ROADMAP.md` to `building`.
-   - Either way:
-     - bump `version` in every catalog entry, because installed copies update only when the
-       version changes. A fix is a patch release. A removal is a breaking change, and under
-       0.x a breaking change is a minor release;
-     - add a changelog entry under Fixed, Removed or Security.
-
-   `skillcheck` fails the pull request if the catalog, the roadmap, the README and `skills/`
-   disagree.
-2. **Merge it, then release it.** The merge is what reaches claude.ai, so a skill change is
-   ready for users before it merges. The release reaches plugin installs in Claude Code and
-   cloud sessions. Run the Release workflow from the Actions tab, with the new
-   version and the merge commit's full SHA, not a branch, before a later commit changes a
-   workflow. It checks the version, the changelog and CI, and makes the annotated tag. Then it
-   signs the files with a build provenance attestation, checks that signature, and publishes the
-   release page, with the kickstart file, each skill packaged for claude.ai, the ruleset files,
-   the dependency map and the attestation attached.
-3. **Reach the copies already installed.**
-   - **claude.ai:** a plugin installed from this marketplace with Sync automatically on takes
-     each change once it merges to `main`, released or not. Otherwise, delete or replace the
-     uploaded skill under Customize, then Skills. If an admin uploaded it for an organization,
-     an admin removes it.
-   - **Cloud sessions with `cloud-setup.sh`'s hook:** the next session to start installs the
-     newest release, and removes a skill it no longer ships. A session already running keeps
-     its copy.
-   - **Plugin installs:** a third-party marketplace updates automatically only if the user
-     turned that on. Ask users to run these in a terminal:
-
-     ```sh
-     claude plugin marketplace update claude-code-skills
-     claude plugin update <plugin>@claude-code-skills
-     ```
-
-     If the plugin itself was removed, ask them to run
-     `claude plugin uninstall <plugin>@claude-code-skills` instead.
-   - **Committed copies:** each repository with a copy in `.claude/skills/` removes or replaces
-     it.
-4. **If it was a security problem,** publish a security advisory from the Security tab, naming
-   the affected versions. Rotate anything the skill could have exposed.
-5. **Record what happened** in `docs/decisions.md`.
+To take a skill that gives wrong or harmful instructions out of circulation, follow
+[docs/withdrawing-a-skill.md](docs/withdrawing-a-skill.md).
 
 ## Security
 
