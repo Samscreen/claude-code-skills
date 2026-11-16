@@ -14,7 +14,8 @@ should and nowhere else, whether its settings are easy to find and mean one thin
 command-line program serves people and scripts, how to test all of that, and how to learn what's
 wrong once people use it. It serves power-user programs as well
 as simple ones: it never trades away a useful option to make a screen shorter. How the interface
-looks (themes, palettes, charts) and accessibility belong to `visual-design`, and what people do
+looks (themes, palettes, charts) belongs to `visual-design`, the accessibility basics to
+`coding`'s `html-coding` (a full module is planned in `visual-design`), and what people do
 at work around a program to `human-factors`; the code itself to `coding`, and general test
 design to `testing`.
 

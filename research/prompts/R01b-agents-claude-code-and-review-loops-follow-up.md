@@ -52,7 +52,7 @@ Write one Markdown report. Its first three lines must be exactly:
 ```text
 RESULT-FOR: rmccann-hub/claude-code-skills · RUN: R01b · FORM: research-result v1
 Save as: R01b-RESULT.md
-Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the facts files of the categories it names, and list what changed. If you lack context, the owner will attach HANDOFF.md.
+Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the Facts section of each module it names, and list what changed. If you lack context, the owner will attach a file whose first line starts HANDOFF-FOR: rmccann-hub/claude-code-skills.
 ```
 
 Then these sections, in this order:

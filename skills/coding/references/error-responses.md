@@ -7,7 +7,8 @@ a terminal: what it says, its tone, and what stays out of it.
 
 What to catch, causes, exit codes, retries and timeouts are `error-handling`'s; each language's
 syntax is its own module's. What goes into the log is logging-and-observability's. Where an
-error appears on screen and how to prevent it are the `user-experience` skill's usability-review.
+error appears on screen is the `user-experience` skill's interface-patterns, and preventing it
+its usability-review.
 API design beyond errors is the planned api-patterns module of the `architecture` skill.
 
 ## Rules

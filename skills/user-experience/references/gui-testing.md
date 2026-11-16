@@ -7,7 +7,7 @@ for testing with people: task-based sessions, think-aloud and the System Usabili
 
 A review against heuristics is `usability-review`. What a window or dialog should do is
 `windows-and-dialogs`, and settings are `settings-and-options`; this module tests that the program
-does it. General test design (doubles, flaky tests, gates) belongs to the testing skill,
+does it. A screenshot test that guards a fix is `feedback-loop`'s. General test design (doubles, flaky tests, gates) belongs to the testing skill,
 and accessibility itself to the planned accessibility module of the visual-design skill: here the
 accessibility interfaces are a way in.
 

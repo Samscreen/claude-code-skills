@@ -5,7 +5,8 @@ OR-Tools CP-SAT, HiGHS, SCIP, Timefold, Gurobi or CPLEX; business rules as const
 weights and strict priorities; CP-SAT settings; a commercial solver's license in a container;
 fatigue, learning and utilization in the plan; and lead times quoted from backlog and capacity.
 
-Checking a solver's answer and testing a planner are the plan-checking module's. Whether to
+Checking a solver's answer and testing a planner are the plan-checking module's; fairness
+across people, weights raised after a complaint and re-planning, rosters-and-replanning's. Whether to
 change what people do at all is the human-factors skill. Python idioms are the coding skill's
 python-coding module.
 

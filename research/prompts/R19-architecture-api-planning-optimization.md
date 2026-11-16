@@ -11,7 +11,7 @@ current against. It holds Agent Skills for Claude Code (Markdown guidance plus s
 checks that test them, and research like this. Professional developers will judge it, so it must
 be current, precise and sourced. Today is 10 November 2026.
 
-This run informs these categories: architecture-and-design, api-design. Optimization and
+This run informs these categories: architecture-and-design, api-patterns. Optimization and
 scheduling moved to run R28 on 11 November 2026, so it gets priority questions of its own.
 
 ## Rules
@@ -44,7 +44,7 @@ Write one Markdown report. Its first three lines must be exactly:
 ```text
 RESULT-FOR: rmccann-hub/claude-code-skills · RUN: R19 · FORM: research-result v1
 Save as: R19-RESULT.md
-Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the facts files of the categories it names, and list what changed. If you lack context, the owner will attach HANDOFF.md.
+Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the Facts section of each module it names, and list what changed. If you lack context, the owner will attach a file whose first line starts HANDOFF-FOR: rmccann-hub/claude-code-skills.
 ```
 
 Then these sections, in this order:

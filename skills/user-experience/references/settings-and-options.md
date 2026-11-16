@@ -5,8 +5,9 @@ a step away, each setting in one place under one name, the control for a choice,
 has too many options, and an inventory of every setting.
 
 A heuristic review of a whole interface is `usability-review`'s; a settings dialog's behavior as
-a window is `windows-and-dialogs`'; automated tests are `gui-testing`'s. Contrast, screen-reader
-labels and keyboard reach are the `accessibility` module of the `visual-design` skill; this
+a window is `windows-and-dialogs`'; automated tests are `gui-testing`'s;
+a flag's syntax on the command line is `command-line-interfaces`'. Contrast, screen-reader
+labels and keyboard reach are the planned `accessibility` module of the `visual-design` skill; this
 module asks only that a disabled control says why.
 
 ## Rules

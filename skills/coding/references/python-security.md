@@ -7,8 +7,8 @@ input, `assert` as a check, and tokens and secrets.
 `python-coding` covers the rest of Python: the project, uv, Ruff and its rule sets, types, idioms,
 encodings and time zones. Other injection, authentication and cryptography are `secure-coding`'s,
 and escaping for a web page is `web-security`'s. Where a project keeps its secrets, and how CI reads
-them, is the project-bootstrap-and-audit standard's. Which dependencies to trust is
-`supply-chain-security`.
+them, is the project-bootstrap-and-audit standard's. Which dependencies to trust is the
+planned `supply-chain-security`.
 
 ## Rules
 

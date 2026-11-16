@@ -5,7 +5,7 @@ async, disposal, `HttpClient`, JSON, NativeAOT, trimming and P/Invoke.
 
 Data from outside (deserialization, SQL, processes, paths) is `csharp-security`. Windows
 administration is windows-admin, PowerShell `powershell-scripts`, tests the testing
-skill, and packages supply-chain-security. Each C# example compiled on 2026-10-26 with
+skill, and packages the planned supply-chain-security. Each C# example compiled on 2026-10-26 with
 the .NET 10.0.403 SDK, nullable on, `latest-Recommended` analysis and warnings as errors.
 
 ## Rules

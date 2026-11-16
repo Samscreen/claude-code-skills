@@ -1,6 +1,6 @@
 ---
 name: operations
-description: "Runs, troubleshoots and hardens systems: Windows Server and Active Directory, Linux hosts, Docker images and Compose, and networks (firewalls, VLANs, VPN, Wi-Fi, DNS). Use when administering, fixing or securing servers, containers or networks."
+description: "Runs, troubleshoots and hardens systems: Windows Server and Active Directory, Linux hosts, Docker and Compose, networks, and reading logs and crash dumps. Use when administering, fixing or securing servers, containers or networks."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-11"

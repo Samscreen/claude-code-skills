@@ -6,7 +6,8 @@ you write yourself; bridging it to OpenTelemetry; and mapping its levels to Open
 severity numbers.
 
 What to log, the fields, choosing a level, what to keep out, retention and sampling are
-`logging-and-observability`'s. Each language's own style is in its language module.
+`logging-and-observability`'s. Each language's own style is in its language module, where one exists; Java, PHP, Ruby and
+Rust modules are planned.
 
 ## Rules
 

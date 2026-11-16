@@ -6,6 +6,18 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Fourteen modules no longer call shipped skills and modules planned, and modules that name a
+  module still to come now say it's planned.
+- Skills and modules that named each other wrongly now agree: a tracked quarantine of a flaky
+  test is `testing`'s `flaky-tests`, a configuration schema is `config-formats`', where an error
+  appears on screen is `interface-patterns`', and an agent's context file is
+  `agent-engineering`'s. The `coding`, `git-workflows`, `operations` and
+  `optimization-and-scheduling` descriptions name what their modules cover.
+- The README, CONTRIBUTING, AGENTS.md, ROADMAP.md, the research index and the unrun prompts
+  agree with the skills and records as they stand.
+
 ## [0.1.30] - 2026-11-16
 
 ### Added
@@ -147,10 +159,6 @@ Notable changes to this repository. The format follows
   left unresolved once in the dependency map, and no longer flags an ISO offset as a time.
 
 ### Changed
-
-- `git-workflows`' `pr-stewardship` records a lifted hold where the hold was, names who tends
-  bots' pull requests, and adds four mistakes; `releases-and-versions` checks what consumers
-  install and reads what a failed publish made before retrying.
 
 - `git-workflows`' `ci-speed` times a release's run as well as a pull request's, as standard
   v0.49.0's dimension 6 asks.

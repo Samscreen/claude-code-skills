@@ -6,7 +6,8 @@ stopped at its time limit, CP-SAT tests that give the same answer twice, and ben
 instances with published bounds as the expected answer.
 
 Choosing the solver, the rules as data, CP-SAT settings in production, the people in the plan
-and lead-time quotes are the optimization-and-scheduling module's. Independent references in
+and lead-time quotes are the optimization-and-scheduling module's; rosters and re-planning,
+rosters-and-replanning's. Independent references in
 general are the testing skill's test-oracles module, and flaky tests in general its
 flaky-tests module.
 

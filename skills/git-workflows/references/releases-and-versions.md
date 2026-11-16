@@ -5,7 +5,8 @@ workflow, writing a changelog entry, choosing a version number, or keeping and b
 release line.
 
 The commits it releases are `commits-and-pull-requests`; the checks that must pass first are
-`ci-workflows`.
+`ci-workflows`; deploys, `ci-cd`; support windows, advisories and deprecation timelines,
+`versioning-and-releases`.
 
 ## Rules
 

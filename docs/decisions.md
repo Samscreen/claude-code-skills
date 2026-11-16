@@ -2,6 +2,48 @@
 
 Append-only. Supersede by adding a new entry that points at the old one; never edit history.
 
+## 2026-11-16 — Documentation audit: what agreed, what was fixed, what was combined
+
+- **The owner's word:** "review all open tasks, questions, open items, unresolved issues, and
+  triage them. audit and review all documentation and make sure all is consistent and on the
+  same page. do not release or do anything aside from document though", then "is all
+  documentation needed? or can we combine to make easier to research and audit?" (2026-11-16).
+  Nothing is released, and this pull request is the owner's to merge, since it changes
+  `AGENTS.md` and `.claude/`.
+- **Read:** three helpers, each checked here: every skill's router and the opening of every
+  module; every file at the root; `docs/`, the research index and prompts, `.claude/` and
+  `.github/`, with GitHub's rulesets, branches and pull requests as they stood on 2026-11-16.
+  They found 66 inconsistencies and 42 open items.
+- **Fixed, documentation only:**
+  - Skills and modules that named each other wrongly: `git-workflows` forbade the tracked
+    quarantine `testing`'s `flaky-tests` allows; modules called planned ones shipped, or shipped
+    ones planned; a schema, an error's place on screen and an agent's context file pointed at
+    the wrong module. Four descriptions now name what their modules cover.
+  - Root files: CONTRIBUTING's count of shipped skills, the README's skill rows and uv version,
+    `AGENTS.md`'s fixtures line and its old `references/why.md` branch, the duplicated 0.1.25
+    changelog line, and an `[Unreleased]` entry for f902d4c and this change.
+  - The merge exception of 2026-11-11 (the entry of that date, *Merging, a standing word*) is
+    now in `AGENTS.md` and the steward, which each name the other's copy.
+  - `ROADMAP.md`: the Research column now holds follow-up prompts still to run as well; the
+    skill table's "Loads when" marks planned scope; lessons L23, L25 and L27 point at shipped
+    modules; the waves table has a status; and five stale lines (cloud upload, the standard
+    skill's description length, the `skillOverrides` test, the archive rule, the end-of-life
+    trigger) say what happened. A planned `test-strategy` row holds R06c's material that
+    `testing-patterns` has no room for.
+  - The research index gains a Result column, linking each of the 32 filed runs and marking 24
+    prompts not run. Five unrun prompts name modules by their 2026-10-15 names, and all 24 now
+    point at module Facts sections and a `HANDOFF-FOR:` file.
+- **Combined:** CONTRIBUTING points at the README's skill table and commands and at
+  `AGENTS.md`'s conventions, rather than copying them, since its copies had drifted furthest.
+  The research index points at `research/README.md` for filing a result, rather than repeating
+  it.
+- **Not done, waiting on the owner:** whether a release follows each finished change by standing
+  word, as the last three release entries say, or by the owner's word each time, as the
+  steward's hold says; and the document-skills wording, which #143 carries. Moving ROADMAP.md's
+  finished findings and lessons, and decisions before 2026-10-16, to the `archive` branch is
+  proposed, not done: the second changes `docs/archive.md`'s recorded answer that this file
+  stays on `main`.
+
 ## 2026-11-16 — Release 0.1.30, `visual-design` and twelve modules
 
 - **The owner's word:** after "is anything in here looking ui and ux, consistency, ... If not we

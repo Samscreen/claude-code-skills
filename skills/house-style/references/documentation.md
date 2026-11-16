@@ -7,7 +7,8 @@ pull request.
 
 It covers the documents as a set. How the prose reads, a README's sections, records and
 generated sections are `writing-style`; the Vale check is `prose-check`. A pull request's
-description is git-workflows'; a context file's content and budget, project-bootstrap-and-audit's.
+description is git-workflows'; a context file's content, agent-engineering's agent-context-files, and its budget,
+project-bootstrap-and-audit's.
 
 ## Rules
 
