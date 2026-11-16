@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:d35a87d4-7bc6-5552-9cae-50d74880b7ab",
+  "serialNumber": "urn:uuid:1ce3d288-ae7e-5373-8c04-bd86a8933c7f",
   "version": 1,
   "metadata": {
     "tools": {
@@ -45,7 +45,7 @@
         },
         {
           "name": "claude-code-skills:language",
-          "value": "YAML: 23 file(s)"
+          "value": "YAML: 25 file(s)"
         },
         {
           "name": "claude-code-skills:language",

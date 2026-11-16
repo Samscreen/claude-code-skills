@@ -12,6 +12,7 @@ Notable changes to this repository. The format follows
   "ended on 2026-11-10" or "LTS to 2028-11-14", that falls within six months or has passed since
   the fact was checked, so the weekly Freshness issue names a runtime or dependency nearing its
   end of life.
+- An issue form, *A problem with a skill*, whose fields match the report every skill drafts.
 
 ### Changed
 
