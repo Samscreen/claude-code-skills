@@ -18,9 +18,9 @@ This run informs these categories: feedback-loop, logging-and-observability, gui
 A follow-up. R30 (feedback in the product, crash reports, consented usage data, triage,
 interfaces built to change) was filed and checked on 16 November 2026 and built into the user-
 experience skill's feedback-loop module. It found no sources for open-source triage practice,
-measuring a fix, release notes, Python and Qt crash reporting, or whether an automatic crash
-upload counts as strictly necessary. This run takes those. Don't repeat R30's findings; where
-one has changed since, say so.
+measuring a fix, release notes, Python and Qt crash reporting. This run takes those. Don't
+repeat R30's findings; where one has changed since, say so. Consent for crash and usage data
+moved to R18.
 
 ## Rules
 
@@ -74,8 +74,6 @@ Then these sections, in this order:
 - Mozilla, Kubernetes and GNOME each publish a triage guide covering reproduction, duplicates
   and closing the loop with the reporter.
 - Python's `faulthandler` writes a native traceback on a crash but uploads nothing.
-- The EDPB has not said whether an automatic crash report is "strictly necessary" under ePrivacy
-  Article 5(3).
 - Keep a Changelog is the most common published guidance for release notes.
 
 ## Questions
@@ -87,15 +85,13 @@ Then these sections, in this order:
    reporter, quoted.
 2. **Crash reporting for Python and Qt apps:** `faulthandler`, Sentry's Python SDK, Qt's crash
    handling and Crashpad with Qt, with versions, and symbols for PyInstaller or Nuitka builds.
-3. **Consent for crash reports:** any regulator, court or EDPB text on whether an automatic
-   crash upload is strictly necessary, and GDPR's bases for crash and usage data.
-4. **Measuring whether a fix helped:** task success, time on task, error rates and support
+3. **Measuring whether a fix helped:** task success, time on task, error rates and support
    tickets in published practice, and A/B testing's minimum sample sizes.
 
 ### Standard
 
-5. **Release notes:** published guidance (Keep a Changelog, GNOME's or KDE's release-note
+4. **Release notes:** published guidance (Keep a Changelog, GNOME's or KDE's release-note
    practice, platform store guidance) on telling users what changed.
-6. **Strings and settings in one place:** resource files and settings centralization per toolkit
+5. **Strings and settings in one place:** resource files and settings centralization per toolkit
    (.resx, Qt's tr and .ts, gettext, Android resources).
-7. **Percy and other visual-testing services:** versions, method and pricing model.
+6. **Percy and other visual-testing services:** versions, method and pricing model.

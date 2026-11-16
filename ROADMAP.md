@@ -84,10 +84,10 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `keeping-current` | `project-bootstrap-and-audit` | Sweep a repository for versions behind, end-of-life dates, deprecated APIs and stale facts; propose the updates | planned | core | R05, R21, R05b, R21b |
+| `keeping-current` | `project-bootstrap-and-audit` | Sweep a repository for versions behind, end-of-life dates, deprecated APIs and stale facts; propose the updates | planned | core | R05, R21, R24, R21b |
 | `skill-builder` | `agent-engineering` | Design, write, test and tune a skill | shipped | core | done |
 | `agent-context-files` | `agent-engineering` | AGENTS.md, CLAUDE.md, rules, settings, hooks, subagents, MCP, other agents' files | shipped | core | R01, R01b |
-| `review-loops` | `agent-engineering` | Agent sessions in two repositories reviewing each other's work: the few rules that end rounds, the ones that cost more than they caught, and where agents have to stop for a person | shipped | core | R26, R26b |
+| `review-loops` | `agent-engineering` | Agent sessions in two repositories reviewing each other's work: the few rules that end rounds, the ones that cost more than they caught, and where agents have to stop for a person | shipped | core | R26, R01b |
 
 ### B. Engineering practice, for every language
 
@@ -101,7 +101,7 @@ Grouped by subject; the Skill column is each module's one home.
 | `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03, R03b |
 | `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04, R04b |
 | `secure-coding` | `security` | OWASP Top 10, ASVS, CWE Top 25, authentication, cryptography, threat modeling | shipped | core | R04, R04b |
-| `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24, R05b, R21b |
+| `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24, R21b |
 | `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01, R01b |
 | `error-handling` | `coding` | Failure classes, retries, timeouts, circuit breakers, causes per language, bulkheads | shipped | core | R07, R07b, R07d |
 | `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d, R07f |
@@ -122,11 +122,11 @@ Grouped by subject; the Skill column is each module's one home.
 | `actions-security` | `git-workflows` | Workflow permissions, untrusted input, `pull_request_target`, scanning workflows | shipped | core | R08, R08b |
 | `action-pinning` | `git-workflows` | SHA-pinned actions, lockfiles, the pinning policy, Dependabot for actions, Node 20 actions | shipped | core | R08, R08b |
 | `git-hooks` | `git-workflows` | Writing, installing and testing hooks, and where CI is the gate instead | shipped | core | R08, R08b |
-| `releases-and-versions` | `git-workflows` | Release tags and workflows, changelog entries, version numbers, release lines and backports | shipped | core | R05, R05b |
+| `releases-and-versions` | `git-workflows` | Release tags and workflows, changelog entries, version numbers, release lines and backports | shipped | core | R05, R24, R21b |
 | `leaked-data` | `git-workflows` | A secret or personal information in a commit: rotating, and rewriting history at the owner's request | shipped | core | R08, R08b |
 | `gitignore` | `git-workflows` | `.gitignore` rules, secret files, lockfiles, untracking a file | shipped | core | R08, R08b |
 | `ci-cd` | `git-workflows` | Environments and deployment, beyond the CI that `ci-workflows` and `ci-speed` cover | shipped | core | R08, R21, R08b, R21b |
-| `versioning-and-releases` | `git-workflows` | Release notes and support windows, beyond the tags, changelogs, versions and deprecation that `releases-and-versions` covers | shipped | core | R05, R05b |
+| `versioning-and-releases` | `git-workflows` | Release notes and support windows, beyond the tags, changelogs, versions and deprecation that `releases-and-versions` covers | shipped | core | R05, R24, R21b |
 | `legacy-modernization` | `architecture` | Reading legacy code, characterization tests, the strangler fig pattern, migration playbooks | planned | core | R17 |
 | `logging-and-observability` | `coding` | Structured logs, OpenTelemetry, metrics, tracing, what never to log | shipped | standard | R07, R07b, R07d |
 | `logging-libraries` | `coding` | Logging libraries per language: versions, trace IDs, redaction and OpenTelemetry severity | shipped | standard | R07b, R07d, R07f |
@@ -198,8 +198,8 @@ Grouped by subject; the Skill column is each module's one home.
 | `docker-containers` | `operations` | Dockerfiles, Compose, hardening, registries | shipped | standard | R15 |
 | `log-analysis` | `operations` | Event logs, crash dumps, journals, application logs | shipped | standard | R07 |
 | `optimization-and-scheduling` | `optimization-and-scheduling` | Solvers, business rules as constraints, the human factors in plans, with `human-factors` | shipped | standard | R28, R23, R28b, R28c |
-| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c, R28d |
-| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c, R28d |
+| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c, R23d |
+| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c, R23d |
 | `linux-gaming` | `linux-gaming` | Proton, Steam, handhelds | planned | on request | R15 |
 | `kubernetes` | `operations` | Clusters, workloads, the Gateway API | planned | on request | R15 |
 | `cloud` | `operations` | Azure, AWS and Google Cloud baselines | planned | on request | R15 |

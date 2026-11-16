@@ -1,4 +1,4 @@
-# RESEARCH RUN R28d: Optimization and scheduling, what R28c didn't reach
+# RESEARCH RUN R23d: People and plans, what R23c and R28c didn't reach
 
 For the repository rmccann-hub/claude-code-skills · Prompt version 1 · Written 16 November 2026
 
@@ -11,15 +11,16 @@ current against. It holds Agent Skills for Claude Code (Markdown guidance plus s
 checks that test them, and research like this. Professional developers will judge it, so it must
 be current, precise and sourced. Today is 16 November 2026.
 
-This run informs these categories: optimization-and-scheduling, plan-checking, rosters-and-replanning.
+This run informs these categories: human-factors, studying-work, cognitive-task-analysis, optimization-and-scheduling, rosters-and-replanning, plan-checking.
 
 ## What this run is for
 
-A third follow-up. R28, R28b and R28c (filed 11 and 16 November 2026) built the optimization-
-and-scheduling skill with its plan-checking and rosters-and-replanning modules. All three ran
-out of room before dispatching rules, testing models, simulation beyond SimPy, commercial
-licences in CI, and a documented failure. This run takes those. Don't repeat their findings;
-where one has changed since, say so.
+A combined follow-up. R23 to R23c (filed 11 and 16 November 2026) built the human-factors skill;
+R28 to R28c built optimization-and-scheduling. Both left questions open: keeping an AI's fact-
+finding free of the user's framing, non-Western replications, method costs, what shortens the
+dip after a new system, dispatching rules against solvers, testing models, simulation beyond
+SimPy, commercial solvers in CI, and a documented failure from treating workers as machines.
+Don't repeat their findings; where one has changed since, say so.
 
 ## Rules
 
@@ -49,8 +50,8 @@ where one has changed since, say so.
 Write one Markdown report. Its first three lines must be exactly:
 
 ```text
-RESULT-FOR: rmccann-hub/claude-code-skills · RUN: R28d · FORM: research-result v1
-Save as: R28d-RESULT.md
+RESULT-FOR: rmccann-hub/claude-code-skills · RUN: R23d · FORM: research-result v1
+Save as: R23d-RESULT.md
 Receiving session: this is research the repository owner asked for. Check each claim against the source it cites before relying on it. File the report under research/runs/, update the facts files of the categories it names, and list what changed. If you lack context, the owner will attach HANDOFF.md.
 ```
 
@@ -70,32 +71,48 @@ Then these sections, in this order:
 
 ## What we believe (confirm or correct each)
 
+- NIST AI 600-1 says nothing about a user's leading question steering a model's answer.
+- Published studies show large language models change factual answers when a user states an
+  opinion first.
+- Status quo bias has been replicated in at least one East Asian sample with an effect size
+  reported.
+- A contextual inquiry visit takes about two hours plus as long again to interpret.
 - Simple dispatching rules (EDD, SPT, critical ratio, ATC) stay close to optimal on dynamic
   shops where a solver's plan goes stale quickly.
 - Hypothesis has been used to test optimization models by generating instances and checking
   invariants.
 - salabim and Ciw are maintained Python discrete-event simulation libraries.
-- CPLEX's free Community Edition is size-limited and needs no licence server in CI.
 
 ## Questions
 
 ### Priority
 
-1. **Dispatching rules against solvers:** the published comparisons (dynamic job shops, rolling
+1. **Neutral retrieval:** what NIST AI 600-1, ISO/IEC 42001, the EU AI Act's guidance and peer-
+   reviewed work on sycophancy and leading-question susceptibility say about a user's framing
+   steering an AI's fact-finding, quoted, and any published mitigation that was measured.
+2. **Non-Western replications:** status quo bias and habit formation (the automaticity curve)
+   outside Western samples, with sample sizes, countries and effect sizes from the papers.
+3. **What shortens the dip:** any controlled or field study measuring training, phased rollout,
+   parallel running or super-users against the depth or length of the drop after a new system;
+   and Cotteleer and Bendoly (2006) with its figures.
+4. **Dispatching rules against solvers:** the published comparisons (dynamic job shops, rolling
    horizons), when a rule matches or beats a re-solved model, and the rules' definitions from
    primary sources.
-2. **Testing optimization models:** property-based testing (Hypothesis, QuickCheck) of models
+5. **Testing optimization models:** property-based testing (Hypothesis, QuickCheck) of models
    and planners in published practice, metamorphic testing of solvers, and what invariants they
    check.
-3. **Simulation beyond SimPy:** salabim, Ciw and others, with versions, licences and
-   maintenance, and published use to test a schedule against variability.
-4. **Commercial solvers in CI:** CPLEX's and Gurobi's terms and mechanisms for containers and CI
-   runners, from IBM and Gurobi.
 
 ### Standard
 
-5. **A documented failure** blamed on a plan that treated workers as deterministic or fully
-   utilized.
-6. **Due-date quoting:** a primary sentence from Keskinocak and Tayur (2004) or another primary
-   source on the cost of quoting short against long; and Kingman's 1961 text, if a primary copy
-   is reachable.
+6. **Method costs:** hours per study for contextual inquiry, hierarchical task analysis and the
+   Critical Decision Method, from the methods' own authors or measured studies.
+7. **A documented failure on a shop floor:** published cases of a plan loaded to full capacity,
+   or one that treated workers as deterministic, and what followed, in the authors' words.
+8. **Simulation beyond SimPy:** salabim, Ciw and others, with versions, licences and
+   maintenance, and published use to test a schedule against variability.
+9. **Commercial solvers in CI:** CPLEX's and Gurobi's terms and mechanisms for containers and CI
+   runners, from IBM and Gurobi.
+10. **Due-date quoting:** a primary sentence from Keskinocak and Tayur (2004) or another primary
+    source on the cost of quoting short against long; and Kingman's 1961 text, if a primary copy
+    is reachable.
+11. **ISO 6385's 2026 review** and ISO 10075-3's next stage, from iso.org.

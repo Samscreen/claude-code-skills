@@ -1,6 +1,6 @@
 # RESEARCH RUN R18: Accessibility, internationalization, privacy and licensing compliance
 
-For the repository rmccann-hub/claude-code-skills · Prompt version 2 · Written 22 September 2026, updated 10 November 2026
+For the repository rmccann-hub/claude-code-skills · Prompt version 3 · Written 22 September 2026, updated 16 November 2026
 
 Paste this whole file into a new chat with Research turned on. Nothing else is needed.
 
@@ -100,3 +100,5 @@ Then these sections, in this order:
    - third-party notices practice; DCO versus CLA; OpenChain (ISO/IEC 5230)
    - the copyright status of AI-generated code: the US Copyright Office's 2025 report, Part 2, and court rulings through 2026
 7. Security policy files: security.txt (RFC 9116), SECURITY.md, coordinated disclosure norms (ISO/IEC 29147 and 30111), CVE numbering for small projects (GitHub as a CNA).
+8. **Consent for crash reports:** any regulator, court or EDPB text on whether an automatic
+   crash upload is strictly necessary, and GDPR's bases for crash and usage data.
