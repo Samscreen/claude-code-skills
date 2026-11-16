@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:1915dce0-1588-5a2a-b45b-fdd381e534c6",
+  "serialNumber": "urn:uuid:a83a068f-fd6d-5e9c-aca2-896f94cf1ccf",
   "version": 1,
   "metadata": {
     "tools": {
@@ -41,7 +41,7 @@
         },
         {
           "name": "claude-code-skills:language",
-          "value": "Python: 53 file(s)"
+          "value": "Python: 55 file(s)"
         },
         {
           "name": "claude-code-skills:language",

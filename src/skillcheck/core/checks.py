@@ -12,7 +12,16 @@ from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from skillcheck.core import content, facts, frontmatter, modules, reporting, standard, times
+from skillcheck.core import (
+    citations,
+    content,
+    facts,
+    frontmatter,
+    modules,
+    reporting,
+    standard,
+    times,
+)
 from skillcheck.core.paths import WORKTREES
 from skillcheck.core.text import HIDDEN
 
@@ -150,6 +159,8 @@ class Report:
     roadmap_entries: int | None = None
     readme_entries: int | None = None
     standard_version: str | None = None
+    # How many commit citations the records hold, or why they went unchecked (core/citations.py).
+    commits: str | None = None
     findings: list[Finding] = field(default_factory=list)
 
     def add(self, path: str, rule: str, message: str) -> None:
@@ -171,6 +182,7 @@ class Report:
             f"skillcheck: {self.skills} skill(s), {self.modules} module(s), "
             f"{self.description_chars} description "
             f"characters, {self.facts} fact(s), {catalog}, {roadmap}, {stamp}, "
+            f"{'' if self.commits is None else self.commits + ', '}"
             f"{len(self.findings)} finding(s)"
         )
 
@@ -201,6 +213,7 @@ def check_repository(root: Path) -> Report:
     _check_agent_files(root, report)
     _check_conflict_markers(root, report)
     times.check(root, report.add)
+    report.commits = citations.check(root, report.add)
     content.check(root, report.add)
     for skill_dir in skills:
         if (skill_dir / EXCLUSIONS).is_file():

@@ -36,7 +36,7 @@ freshness run and the release workflow both run it.
 |---|---|
 | Markdown | 207 |
 | JSON | 88 |
-| Python | 53 |
+| Python | 55 |
 | YAML | 25 |
 | Shell | 4 |
 | TOML | 2 |
