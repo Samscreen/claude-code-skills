@@ -8,6 +8,9 @@ the last section lists each that still stands or is cited.
 
 ## 2026-11-16 — Mutation tests of all of `src/skillcheck/core/`, for release 0.1.31
 
+- **Released as 0.1.31,** with every change merged since 0.1.30, by the owner's standing word of
+  2026-11-16 that a session releases after each finished change; its contents are in the
+  CHANGELOG.
 - **Asked, by the owner:** a session runs mutation testing on `src/skillcheck/core/` before each
   release and fixes what survives (the owner's decision, 2026-11-16). Release 0.1.31 waits on
   this run. The run of 2026-11-03 covered `times.py` and `text.py` alone; this one covers every

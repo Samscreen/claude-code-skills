@@ -6,6 +6,8 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.31] - 2026-11-16
+
 ### Added
 
 - `skillcheck --due` also counts a fact due when its own words date an end of support, such as

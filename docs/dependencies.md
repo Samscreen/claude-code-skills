@@ -1,6 +1,6 @@
 # Dependency map
 
-What `claude-code-skills` 0.1.30 is built from, runs on and relies on: the
+What `claude-code-skills` 0.1.31 is built from, runs on and relies on: the
 plugins it ships, the languages it's written in, its runtimes and tools, every package
 at its exact version, the GitHub Actions it pins, the services it uses, and the sources
 its skills' facts cite.
@@ -16,19 +16,19 @@ freshness run and the release workflow both run it.
 
 | Plugin | Version | License | Skill | What it carries |
 |---|---|---|---|---|
-| `standards` | 0.1.30 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.51.0 |
-| `engineering` | 0.1.30 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
-| `engineering` | 0.1.30 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
-| `engineering` | 0.1.30 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `git-workflows` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
-| `engineering` | 0.1.30 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `security` | reviewed 2026-11-11 |
-| `engineering` | 0.1.30 | Apache-2.0 | `testing` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
+| `standards` | 0.1.31 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.51.0 |
+| `engineering` | 0.1.31 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
+| `engineering` | 0.1.31 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
+| `engineering` | 0.1.31 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `git-workflows` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
+| `engineering` | 0.1.31 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `security` | reviewed 2026-11-11 |
+| `engineering` | 0.1.31 | Apache-2.0 | `testing` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
+| `engineering` | 0.1.31 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
 
 ## Languages
 
