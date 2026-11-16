@@ -6,6 +6,7 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+
 ## [0.1.31] - 2026-11-16
 
 ### Added
