@@ -267,8 +267,8 @@ palettes in `visual-design`, not in `excel-master`.
      by hand, from a list the session gives them. Shipped 2026-10-21 as `skillcheck --triggers`
      and `--tries`. Its first run, on `gitignore`, found none of its four requests loading
      `git-workflows`, so the descriptions were to be tuned against it before the rebuilds.
-     That's still open: `docs/decisions.md` records no such tuning as of 2026-11-16, though the
-     rebuilds went ahead;
+     Closed on 2026-11-16 by the owner's answer: the trigger runs each module's review makes
+     since then do this tuning;
    - `skillcheck --move` and its record of moves, renames and removals. Shipped 2026-10-16;
    - `skill-builder`, from `skill-creator`'s method under its license, and the stress tester's
      two good checks: content safety, and compiling every code block. Shipped 2026-11-11 as
@@ -480,7 +480,7 @@ trigger.
 | End-of-life warning | A runtime or dependency whose support ends within six months. `--due` counts a fact due when its own words date an end of support, after a word such as "ends", "ended", "to" or "until", that falls within six months or has passed since the fact was checked, so the weekly check names it | shipped | done, 2026-11-16 |
 | `copier` template | The standard's starter files, so a new repository is set up without a session | planned | the first repository set up from this one |
 | A repository's own skills | `skillcheck` on a consuming repository's `.claude/skills/`, without this catalog's checks, with a marker for a draft and a check of a skill's scripts and tests beside it. Both audited repositories' steward skills asked for it; `--verify` there also needs to tell a source that wants credentials from a quote that's gone | planned | the next audit of either repository |
-| Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI |
+| Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI: met, by the owner's answer of 2026-11-16, since the private companion runs `skillcheck` from here |
 | `upstream-defects.md` | The standard's register of upstream defects shared across repositories | planned | the first upstream defect found |
 | Map refresh on dependency updates | Dependabot's pull requests change the lockfiles but not `bom.json` or `docs/dependencies.md`. CI's `--bom-check` fails such a pull request until a session regenerates the map in its branch before merging, as the owner chose on 2026-10-13 | shipped | done |
 | Fewest dependencies here | This repository's own dependencies and pins, in `pyproject.toml`, `package.json` and CI, held to the R21 rule | planned | the rule is in the standard |
