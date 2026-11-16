@@ -65,7 +65,7 @@ a held pull request: the owner lifts a hold by removing the label.
 
 | Standing hold | Covers | Set by, when | Lifted by |
 |---|---|---|---|
-| Releases | Dispatching the Release workflow, or tagging | The owner, standing | The owner's word, for each release |
+| Releases | Dispatching the Release workflow, or tagging, except as below | The owner | Lifted by standing word, 2026-11-16: a session releases after each finished change it merges |
 | The standard | Any edit to `skills/project-bootstrap-and-audit/references/` as part of other work | `AGENTS.md` | A change proposed, approved and applied on its own |
 | The other repositories | Any push, comment, issue or pull request in a repository this one audits | The owner, 2026-10-26, in `docs/decisions.md` | The owner's word, each time |
 
@@ -119,7 +119,10 @@ as required too, whether or not the ruleset lists them yet.
 
 ## Releases and other repositories
 
-- **A release needs the owner's word.** Then:
+- **A session releases after each finished change it merges,** by the owner's standing word of
+  2026-11-16; a `hold` label on the release's pull request still stops it. Before the release, a
+  session runs mutation testing on `src/skillcheck/core/` and fixes or records each survivor
+  (the owner, 2026-11-16). Then:
   - open a pull request that dates the changelog section, moves both catalog versions,
     regenerates the map with `uv run skillcheck --bom`, and records the release in
     `docs/decisions.md`;
