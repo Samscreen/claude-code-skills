@@ -6,6 +6,10 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- An issue form, *A problem with a skill*, whose fields match the report every skill drafts.
+
 ### Fixed
 
 - Fourteen modules no longer call shipped skills and modules planned, and modules that name a
