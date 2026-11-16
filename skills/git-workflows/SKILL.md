@@ -1,6 +1,6 @@
 ---
 name: git-workflows
-description: "Sets up and runs Git and GitHub work: commits, branches, pull requests and agents tending them, merges, conflicts, CI and deploys, hooks, leaked secrets, tags, versions, releases, support windows. Use when writing or fixing any of these."
+description: "Sets up and runs Git and GitHub work: commits, branches, pull requests and agents tending them, merges, conflicts, CI and deploys, hooks, leaked secrets, releases, tags, changelogs, versions, backports, support windows. Use when doing or fixing any."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
@@ -30,13 +30,14 @@ run the commands; on claude.ai, give them to the person to run.
    pinned to a full commit SHA, installs that fail on lockfile drift, a run on every change
    before or as it lands, and no path filter on a required check (`actions-security`,
    `action-pinning`, `ci-workflows`).
-7. **Release from an annotated tag on the release commit's SHA,** after the changelog entry and
-   after CI is green on that commit. The tag is optional where the project's records make a
-   release a commit named in a committed manifest that consumers pin by SHA
-   (`releases-and-versions`).
+7. **Read the release module before release work,** even for a question you think you can
+   answer. `releases-and-versions`: cutting, tagging or publishing a release, a release
+   workflow that misbehaves, a changelog entry, a version number, a release branch or a
+   backport. `versioning-and-releases`: release notes, support windows, whether to keep a
+   long-term support line, advisories, deprecations, and which release shows as latest. Both
+   hold steps and traps a general answer misses.
 8. **Read Git's output whole,** and never read an exit status through a pipe
    (`rebasing-and-recovery`, `ci-workflows`).
-9. **Keep a second release line only when users need it** (`releases-and-versions`).
 
 Before anything destructive, show what it will do, and wait for confirmation. That covers
 deleting a branch or a tag, resetting, force-pushing, and rewriting history. Commit, stash or
@@ -44,7 +45,8 @@ copy uncommitted work before any command that touches the working tree.
 
 ## Modules
 
-Read the module that fits the request, and each one a request spans. Each holds its rules,
+Read the module that fits the request, and each one a request spans, whole: a search of it
+finds a line and misses the exception or trap beside it. Each holds its rules,
 mistakes, audit checks, reasons, dated facts and sources. A module names a fact by its ID, such
 as fact `node20`, and the fact's row is in whichever module holds it.
 
@@ -58,12 +60,12 @@ as fact `node20`, and the fact's row is in whichever module holds it.
 | [`actions-security`](references/actions-security.md) | a workflow's permissions and credentials, untrusted input in a `run:` step, `pull_request_target` and `workflow_run`, approving fork runs, or linting and scanning workflows with actionlint, zizmor or CodeQL |
 | [`action-pinning`](references/action-pinning.md) | pinning a workflow's actions to commit SHAs, finding a tag's commit, workflow dependency lockfiles, Dependabot for actions and its cooldown, the SHA-pinning policy, or moving off Node 20 actions |
 | [`git-hooks`](references/git-hooks.md) | writing, installing or testing a commit or push hook, or a hook that didn't run |
-| [`releases-and-versions`](references/releases-and-versions.md) | cutting a release or tag, a release workflow, changelog entries, version numbers, release lines and backports |
+| [`releases-and-versions`](references/releases-and-versions.md) | cutting and publishing a release; release tags, annotated or lightweight, and protecting them; a release or publish workflow that didn't run; writing a changelog entry; choosing the next version number; release branches and backporting a fix to one |
 | [`leaked-data`](references/leaked-data.md) | a secret or personal information that reached a commit, and rewriting history to remove it |
 | [`gitignore`](references/gitignore.md) | writing or debugging `.gitignore`, ignoring secrets, committing lockfiles, or untracking a file |
 | [`pr-stewardship`](references/pr-stewardship.md) | writing or auditing a repository's steward skill, the file that tells agent sessions when to merge or hold a pull request, what to do about red or stalled CI, how to answer review, and what an owner's hold covers |
 | [`ci-cd`](references/ci-cd.md) | Deploying from GitHub Actions: environments and their gates, which refs may deploy, required reviewers, OIDC instead of cloud keys, one artifact promoted, one deploy at a time, smoke tests and rollback |
-| [`versioning-and-releases`](references/versioning-and-releases.md) | Release notes for people upgrading, a published support window, long-term support lines, security advisories and CVEs, deprecation timelines, and which release is marked latest |
+| [`versioning-and-releases`](references/versioning-and-releases.md) | release notes for people upgrading, a published support window, whether to keep a long-term support line, security advisories and CVEs, deprecation timelines, and which release is marked latest; not tags, changelog entries or backports |
 
 Tested examples to copy, each described in its module:
 

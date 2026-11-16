@@ -8,11 +8,11 @@
     "should_trigger": true
   },
   {
-    "query": "Backport this fix to the release/9.0 branch.",
+    "query": "A crash fix just merged to main. Backport it to our release/9.0 branch.",
     "should_trigger": true
   },
   {
-    "query": "Write the changelog entry for this change and pick the next version number.",
+    "query": "We fixed a crash when the config file is empty. Write the changelog entry for it and pick the version after 2.3.0.",
     "should_trigger": true
   },
   {
