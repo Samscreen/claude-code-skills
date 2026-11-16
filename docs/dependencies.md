@@ -20,8 +20,8 @@ freshness run and the release workflow both run it.
 | `engineering` | 0.1.30 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
-| `engineering` | 0.1.30 | Apache-2.0 | `git-workflows` | reviewed 2026-11-03 |
-| `engineering` | 0.1.30 | Apache-2.0 | `house-style` | reviewed 2026-10-27 |
+| `engineering` | 0.1.30 | Apache-2.0 | `git-workflows` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
