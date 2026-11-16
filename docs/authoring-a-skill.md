@@ -35,12 +35,14 @@ and dependencies. A second version of a published rule drifts from the first.
    - other text names a fact by its ID, such as fact `node20`, rather than repeating it. An ID
      is defined once in the repository, and any file in any skill may name it, so a module
      that moves keeps every fact it names.
+   - an end of support is written as a word that ends it and an ISO date, such as "extended to
+     2027-01-12" or "ended 2026-11-10", so `skillcheck --due` warns six months before it.
 
    `skillcheck` checks every row's shape and every fact a skill names. `skillcheck --due` lists
    the facts due to be checked again, and `skillcheck --verify` fetches each source and looks
    for its quote. A quote whose only source is a PDF is checked by hand when it falls due,
-   since its text can't be searched. The freshness workflow runs both each week, and keeps one issue open while
-   anything is due. Research results are leads until each claim is checked against its source.
+   since its text can't be searched. The freshness workflow runs both each week, and keeps one
+   issue open while anything is due. Research results are leads until each claim is checked against its source.
 3. **Licenses.** Quote, paraphrase or adapt a source only as its license allows. The licenses of
    common sources are in `research/runs/2026-09-23-A-source-licences.md`. Broadly:
    - **Adaptable with a notice:** CC0, MIT, Apache-2.0, BSD, CC BY, OGL and PSF sources. Examples

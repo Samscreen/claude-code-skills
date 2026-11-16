@@ -164,7 +164,7 @@ Severity uses the standard's status words.
 
 ## Why
 
-**1. The edition.** 7.4 and 7.5 end on 2026-11-10 (fact `ps-lifecycle-74-75`); 5.1 lives with
+**1. The edition.** 7.4 and 7.5 ended on 2026-11-10 (fact `ps-lifecycle-74-75`); 5.1 lives with
 its Windows (fact `ps-windows-ps`), so many admin scripts stay on it. Without `#Requires`, a
 7-only script under 5.1 stops halfway. The cost: 7 is a runtime to patch; 5.1 gets no new
 features. Linux and macOS need 7.
@@ -192,7 +192,7 @@ Checked 2026-10-26; each is named above.
 | ID | Fact | Source | Quote | Checked | Check by |
 |---|---|---|---|---|---|
 | `ps-lifecycle-76` | 7.6 is LTS to 2028-11-14 | [Lifecycle](https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle) | "PowerShell 7.6 (LTS) 18-Mar-2026 14-Nov-2028" | 2026-10-26 | 2027-04-26 |
-| `ps-lifecycle-74-75` | 7.4 and 7.5 end 2026-11-10 | [Lifecycle](https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle) | "7.5 23-Jan-2025 10-Nov-2026" and "7.4 (LTS) 16-Nov-2023 10-Nov-2026" | 2026-10-26 | 2027-04-26 |
+| `ps-lifecycle-74-75` | 7.4 and 7.5 ended 2026-11-10 | [Lifecycle](https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle) | "7.5 23-Jan-2025 10-Nov-2026" and "7.4 (LTS) 16-Nov-2023 10-Nov-2026" | 2026-11-16 | 2027-05-16 |
 | `ps-windows-ps` | 5.1 follows Windows | [Lifecycle](https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle) | "subject to the Windows support lifecycle" | 2026-10-26 | 2027-10-26 |
 | `ps-side-by-side` | 7 sits beside 5.1 | [Migrating](https://learn.microsoft.com/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7) | "coexist with Windows PowerShell 5.1" and "named powershell.exe" and "named pwsh.exe" | 2026-10-26 | 2027-10-26 |
 | `ps-requires` | Floor, edition | [Requires](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_requires) | "minimum version of PowerShell" and "Core for PowerShell and Desktop for Windows PowerShell" | 2026-10-26 | 2027-10-26 |

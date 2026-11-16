@@ -4,7 +4,8 @@ A fact that can go stale carries its source, a short quote, the date it was chec
 to check it again by (docs/authoring-a-skill.md, item 2). Three checks keep the rows honest:
 
 - on every run, each row is well formed, and every fact a skill's files name by ID exists;
-- ``skillcheck --due`` lists the facts whose check-by date has come;
+- ``skillcheck --due`` lists the facts whose check-by date has come, and those whose own words
+  date an end of support that falls within six months, or has passed since they were checked;
 - ``skillcheck --verify`` fetches each source again and looks for its quote.
 
 The last two depend on the date and the network, so they run on a schedule and never on a pull
@@ -17,7 +18,7 @@ import subprocess
 import urllib.request
 from collections.abc import Callable, Iterator
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -38,6 +39,17 @@ COMMAND = re.compile(rf"`({LS_REMOTE}https://[^`\s]+)`")
 QUOTED = re.compile(r'"((?:[^"\\]|\\.)+)"')
 CODE = re.compile(r"`([^`]+)`")
 ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+# A fact's own words date an end of support after a word that ends it: "ended on 2026-11-10",
+# "LTS to 2028-11-14", "reaches end of life on 2027-05-05", "security fixes until 2027-10". A
+# date by itself is most often a release's, so it doesn't count; nor does the quote, which is
+# the source's wording.
+END = re.compile(
+    r"\b(?:end(?:s|ed)?|EOL|end[ -]of[ -](?:life|support)|removed|retired|discontinued|halted"
+    r"|to|until|through)(?:\s+(?:on|in))?\s+(\d{4}-\d{2}(?:-\d{2})?)\b",
+    re.IGNORECASE,
+)
+# How far ahead an end of support makes its fact due: about six months.
+WARNING = timedelta(days=183)
 # A source served as one of these has no text to search: its quote is checked by hand.
 NOT_TEXT = ("application/pdf",)
 
@@ -71,6 +83,9 @@ class Fact:
     sources: tuple[str, ...]
     quotes: tuple[str, ...]
     check_by: date
+    checked: date
+    # Each end of support the fact's text dates, as written and as the day it falls on.
+    ends: tuple[tuple[str, date], ...]
 
 
 def check(root: Path, skill_dir: Path, add: Add) -> list[Fact]:
@@ -156,6 +171,26 @@ def verify(facts: list[Fact], fetch: Fetch | None = None) -> Iterator[tuple[Fact
                     yield fact, f'the quote is not in the sources read: "{quote}"; {unread}'
                 else:
                     yield fact, f'the quote is no longer at its source: "{quote}"'
+
+
+def support_ending(fact: Fact, by: date) -> list[str]:
+    """Why a fact's end-of-support dates make it due by a day, if they do.
+
+    An end within six months makes the fact due once, unless it was checked inside those six
+    months; an end that has passed makes it due again, unless it was checked since. Checking
+    the fact again, and moving its Checked date, clears each, so a fact that records an end
+    already past doesn't keep the weekly issue open.
+    """
+    reasons = []
+    for written, end in fact.ends:
+        if fact.checked < end <= by:
+            reasons.append(
+                f"names support ending {written}, which has passed since it was checked on "
+                f"{fact.checked}"
+            )
+        elif by < end <= by + WARNING and fact.checked < end - WARNING:
+            reasons.append(f"names support ending {written}, within six months of {by}")
+    return reasons
 
 
 def _fetch_once_more(fetch: Fetch, source: str) -> str | Exception:
@@ -253,7 +288,7 @@ def _row(where: str, number: int, cells: list[str], problems: list[str]) -> Fact
     if len(cells) != len(COLUMNS):
         problems.append(f"line {number}: a fact row has {len(COLUMNS)} cells, not {len(cells)}")
         return None
-    ident, _, source, quote, checked, check_by = cells
+    ident, text, source, quote, checked, check_by = cells
     wrong = []
     name = FACT_ID.fullmatch(ident)
     if name is None:
@@ -271,8 +306,18 @@ def _row(where: str, number: int, cells: list[str], problems: list[str]) -> Fact
     if wrong:
         problems.append(f"line {number}: {'; '.join(wrong)}")
         return None
-    quotes = tuple(text.replace('\\"', '"') for text in QUOTED.findall(quote))
-    return Fact(where, number, name.group(1), sources, quotes or tuple(CODE.findall(quote)), due_on)
+    quotes = tuple(each.replace('\\"', '"') for each in QUOTED.findall(quote))
+    ends = tuple((written, day) for written in END.findall(text) if (day := _end_day(written)))
+    return Fact(
+        where,
+        number,
+        name.group(1),
+        sources,
+        quotes or tuple(CODE.findall(quote)),
+        due_on,
+        checked_on,
+        ends,
+    )
 
 
 def _day(text: str) -> date | None:
@@ -283,6 +328,11 @@ def _day(text: str) -> date | None:
         return date.fromisoformat(text)
     except ValueError:  # the right shape, but no such day, such as 2026-02-30
         return None
+
+
+def _end_day(written: str) -> date | None:
+    # A month alone, such as 2027-10, counts from its first day, so the warning comes early.
+    return _day(written if len(written) == len("YYYY-MM-DD") else f"{written}-01")
 
 
 def _check_references(root: Path, path: Path, ids: set[str], add: Add) -> None:
