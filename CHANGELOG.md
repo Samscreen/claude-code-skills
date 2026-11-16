@@ -13,12 +13,17 @@ Notable changes to this repository. The format follows
   the fact was checked, so the weekly Freshness issue names a runtime or dependency nearing its
   end of life.
 - An issue form, *A problem with a skill*, whose fields match the report every skill drafts.
+- `testing` gains `test-strategy`: the mix of tests by size and scope, a command-line
+  program's tests, test data and factories, finding what no test covers, skipped tests, and
+  metamorphic and differential testing.
 
 ### Changed
 
 - Dependencies brought up together, each past the three-day wait: uv 0.13.8 in every workflow,
   the `uv_build` floor 0.13.8, Vale 3.27.0 (with `house-style`'s shipped workflow and its
   facts), ruff 0.17.5, coverage 7.17.3 and Claude Code 2.1.325. This replaces #123 and #147.
+- `testing-patterns` no longer holds the strategy note that waited for R06c, and `test-oracles`,
+  `acceptance-runs`, `flaky-tests` and `test-gates` send strategy questions to `test-strategy`.
 
 ### Fixed
 
