@@ -1,0 +1,64 @@
+name: A problem with a skill
+description: Advice that's wrong, out of date, fails or doesn't fit. Claude can draft this for you.
+title: "<skill>: <what went wrong>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Leave out private data, company detail and the names of private repositories.
+        A security problem goes through the Security tab instead, as SECURITY.md says.
+  - type: input
+    id: skill
+    attributes:
+      label: Skill and module
+      placeholder: "coding, python-coding"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version, or the skill's date
+      description: "`/plugin` in Claude Code lists the version; on claude.ai, the date in the skill's frontmatter."
+      placeholder: "0.1.30"
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - Claude Code
+        - claude.ai
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: Your request, word for word
+    validations:
+      required: true
+  - type: textarea
+    id: line
+    attributes:
+      label: The line of the skill that misled
+      description: Quote it, and name a fact's ID if it's a fact, such as `node20`.
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: right
+    attributes:
+      label: What's right, with its source
+      description: A link to the primary source where a fact is wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: The fix you'd suggest

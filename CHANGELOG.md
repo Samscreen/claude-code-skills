@@ -6,6 +6,10 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- An issue form, *A problem with a skill*, whose fields match the report every skill drafts.
+
 ### Changed
 
 - Dependencies brought up together, each past the three-day wait: uv 0.13.8 in every workflow,
