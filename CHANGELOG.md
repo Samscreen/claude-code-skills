@@ -21,6 +21,10 @@ Notable changes to this repository. The format follows
 - `testing` gains `test-strategy`: the mix of tests by size and scope, a command-line
   program's tests, test data and factories, finding what no test covers, skipped tests, and
   metamorphic and differential testing.
+- `skillcheck`'s `citations` check fails a commit that `docs/decisions.md`, `CHANGELOG.md` or
+  `ROADMAP.md` cites and `HEAD` doesn't reach, as a squash or rebase-merge leaves a branch's
+  commits, and a hash there that names no commit unless `.github/foreign-hashes.txt` lists it.
+  In a shallow clone it checks nothing and says so in the summary line.
 
 ### Changed
 

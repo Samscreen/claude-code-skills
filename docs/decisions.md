@@ -6,6 +6,36 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — A check that cited commits stay reachable
+
+- **Asked, by the owner:** "do all" to the triage list (2026-11-16), which approved a
+  `skillcheck` rule for `AGENTS.md`'s merge-commit convention. That convention said a squash or
+  rebase-merge strands each cited commit, and nothing checked it.
+- **The rule:** `src/skillcheck/core/citations.py` reads `docs/decisions.md`, `CHANGELOG.md` and
+  `ROADMAP.md`. A citation is a standalone run of 7 to 40 lowercase hexadecimal characters
+  holding at least one digit and one letter, so numbers such as a workflow run's ID and words
+  such as `defaced` aren't read as commits. Each must resolve to one commit here, and `HEAD`
+  must reach it (`git merge-base --is-ancestor`). Either failure names the file, line and hash.
+- **Other hashes:** a run of that shape that isn't this repository's commit, such as another
+  repository's commit or a file's hash, goes in `.github/foreign-hashes.txt` with what it is.
+  Every unlisted run counts as a commit citation, so a mistyped commit can't pass as a file's
+  hash. The file starts empty: the five such hashes the self-audit found moved to the `archive`
+  branch with the entries before 2026-10-16.
+- **Where it can't run:** with no `git`, outside a repository's root, before its first commit,
+  or in a shallow clone, the rule checks nothing, raises no finding, and the summary line says
+  which: `cited commits unchecked (shallow clone)`. CI's `checks` job now checks out full
+  history (`fetch-depth: 0`), as the `commit-subjects` and release workflows already do, so CI
+  runs the rule; the owner's answer 8 covers that workflow line.
+- **Today:** `main` cites 2 commits in these files, `c8c3a07` and `f902d4c`, both reachable; 0
+  findings. Run on the records as they stood before the archive move, it counted 32 citations
+  and named the same five non-commit hashes the self-audit found, with none unreachable.
+- **Trade-off:** a commit whose 7-character prefix is all digits or all letters (about 4 in 100)
+  goes unchecked unless cited by a longer prefix. Reading those too would read every 7-digit
+  number and hex-letter word as a commit.
+- **Tests:** 17, each on its own git repository under the test's temporary directory, among them
+  a commit cited after its branch was squash-merged and deleted, which fails, and the same branch
+  merged with a merge commit, which passes. `.test-baseline` 669 to 686.
+
 ## 2026-11-16 — Standard v0.50.0: fewest dependencies, newest versions
 
 - **Asked:** the owner's "do all recommended" (2026-11-16), approving proposal S1 of the
