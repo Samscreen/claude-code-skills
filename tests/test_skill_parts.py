@@ -18,9 +18,8 @@ SCRIPT = (
     / "scripts"
     / "verify_copy.py"
 )
+# The block on the file's first line is read too.
 SELF_CHECK = """\
-# Conformance self-check
-
 ```yaml
 conformance:
   standard_version: "<version>"
@@ -37,8 +36,16 @@ VOCABULARIES = """\
 | 1 | `GAP` | Missing |
 | 2 | `OK` | Fine |
 """
+# A block naming a standard but no job isn't the header, and an empty block hides nothing.
 SKELETON = """\
 # Skeleton
+
+```yaml
+standard: <a standard's name in prose>
+```
+
+```yaml
+```
 
 ```yaml
 standard: <name>
@@ -108,8 +115,15 @@ def rehash(skill_dir: Path, value: str | None = None) -> None:
     skill_md.write_text("\n".join(lines), encoding="utf-8")
 
 
+SKILL = "skills/standard-skill"
+
+
 def findings(repo) -> list[str]:
     return [f.message for f in check_repository(repo.root).findings if f.rule == "standard"]
+
+
+def located(repo) -> list[tuple[str, str]]:
+    return [(f.path, f.message) for f in check_repository(repo.root).findings]
 
 
 def test_conforming_parts_pass(repo):
@@ -125,9 +139,10 @@ def test_the_standard_alone_needs_no_parts(repo):
 def test_a_stale_copy_hash_is_reported(repo):
     skill_dir = add_parts(repo)
     (skill_dir / "scripts/check.py").write_text("print('changed')\n", encoding="utf-8")
-    [message] = findings(repo)
+    [(path, message)] = located(repo)
+    assert path == f"{SKILL}/SKILL.md"
     assert message.startswith("SKILL.md's files-sha256 is ")
-    assert skill_parts.files_sha256(skill_dir) in message
+    assert message.endswith(f"; the skill's files hash to {skill_parts.files_sha256(skill_dir)}")
 
 
 def test_a_schema_without_a_copy_hash_is_reported(repo):
@@ -139,7 +154,9 @@ def test_a_schema_without_a_copy_hash_is_reported(repo):
         if "files-sha256" not in line
     )
     skill_md.write_text(text, encoding="utf-8")
-    assert findings(repo) == ["SKILL.md records no files-sha256, which Step 0 checks"]
+    assert located(repo) == [
+        (f"{SKILL}/SKILL.md", "SKILL.md records no files-sha256, which Step 0 checks")
+    ]
 
 
 def test_an_unlinked_part_is_reported(repo):
@@ -148,7 +165,7 @@ def test_an_unlinked_part_is_reported(repo):
     (skill_dir / "scripts/__pycache__/check.pyc").write_bytes(b"\0")
     (skill_dir / "scripts/extra.py").write_text("\n", encoding="utf-8")
     rehash(skill_dir)
-    assert findings(repo) == ["SKILL.md doesn't link scripts/extra.py"]
+    assert located(repo) == [(f"{SKILL}/SKILL.md", "SKILL.md doesn't link scripts/extra.py")]
 
 
 def test_each_part_passes_the_structural_checks(repo):
@@ -157,10 +174,36 @@ def test_each_part_passes_the_structural_checks(repo):
         SELF_CHECK + "\nA line.  \n", encoding="utf-8"
     )
     (skill_dir / "assets/report-skeleton.md").write_text(SKELETON + "```\n", encoding="utf-8")
+    (skill_dir / "references/vocabularies.md").write_text(
+        VOCABULARIES
+        + "<!-- a comment that splits the table -->\n| - | none | Unranked |\n\n"
+        + "<constraints>\n<constraints>\n</constraints>\n\n```text\n```\nAfter a fence. \n",
+        encoding="utf-8",
+    )
     rehash(skill_dir)
-    assert findings(repo) == [
-        "trailing whitespace on 1 line(s), first at line 11",
-        "code fences are unbalanced: 5 fence lines",
+    assert located(repo) == [
+        (f"{SKILL}/references/self-check.md", "trailing whitespace on 1 line(s), first at line 9"),
+        (f"{SKILL}/references/vocabularies.md", "<constraints> opens inside another at line 11"),
+        (f"{SKILL}/references/vocabularies.md", "<constraints> opens 2 times and closes 1 times"),
+        (f"{SKILL}/references/vocabularies.md", "HTML comment inside a table at line 7"),
+        (
+            f"{SKILL}/references/vocabularies.md",
+            "trailing whitespace on 1 line(s), first at line 16",
+        ),
+        (f"{SKILL}/assets/report-skeleton.md", "code fences are unbalanced: 9 fence lines"),
+    ]
+
+
+def test_a_part_is_checked_from_its_first_line(repo):
+    # Unlike the standard, a part has no frontmatter, so its first lines are prose.
+    skill_dir = add_parts(repo)
+    (skill_dir / "references/vocabularies.md").write_text(
+        "| A |\n<!-- c -->\n| B |\n\n" + VOCABULARIES, encoding="utf-8"
+    )
+    (skill_dir / "assets/report-skeleton.md").write_text("\n\n" + SKELETON, encoding="utf-8")
+    rehash(skill_dir)
+    assert located(repo) == [
+        (f"{SKILL}/references/vocabularies.md", "HTML comment inside a table at line 2")
     ]
 
 
@@ -202,7 +245,39 @@ def test_the_schema_agrees_with_the_templates(repo, change, expected):
     schema = json.loads(json.dumps(SCHEMA))
     change(schema)
     add_parts(repo, schema)
-    assert findings(repo) == [expected]
+    assert located(repo) == [(f"{SKILL}/assets/report-schema.json", expected)]
+
+
+def test_every_block_is_compared_with_the_others_first_then_the_phases_in_order(repo):
+    schema = json.loads(json.dumps(SCHEMA))
+    del schema["blocks"]["phase 0"]
+    schema["blocks"]["phase 4"] = {}
+    schema["blocks"]["post_gate"] = {"fields": [], "optional": []}
+    add_parts(repo, schema)
+    assert findings(repo) == [
+        "the schema's post_gate block has no template",
+        "the schema has no phase 0 block, which a template gives",
+        "phase 4: the template has notes, which the schema doesn't list",
+    ]
+
+
+def test_a_missing_skeleton_leaves_the_other_templates_read(repo):
+    skill_dir = add_parts(repo)
+    (skill_dir / "assets/report-skeleton.md").unlink()
+    text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+    (skill_dir / "SKILL.md").write_text(
+        text.replace("[k](assets/report-skeleton.md) ", ""), "utf-8"
+    )
+    rehash(skill_dir)
+    assert findings(repo) == ["the schema's header block has no template"]
+
+
+def test_a_yaml_block_left_open_at_the_end_is_read_to_the_end(repo):
+    skill_dir = add_parts(repo)
+    with (skill_dir / "assets/report-skeleton.md").open("a", encoding="utf-8") as file:
+        file.write("```yaml\nnote: x\n")
+    rehash(skill_dir)
+    assert findings(repo) == ["code fences are unbalanced: 9 fence lines"]
 
 
 def test_missing_templates_leave_the_schema_without_them(repo):
@@ -232,11 +307,14 @@ def test_the_script_and_skillcheck_hash_alike(tmp_path):
         "references/a.md": b"line one\r\nline two\n",
         "scripts/run.py": b"print(1)\n",
         "scripts/__pycache__/run.pyc": b"\0",
+        # A file name that sorts before a folder's by its path, and after it by its parts.
+        "assets/a-b.txt": b"1\n",
+        "assets/a/b.txt": b"2\n",
         ".hidden/file": b"skipped\n",
     }.items():
         (skill / name).parent.mkdir(parents=True, exist_ok=True)
         (skill / name).write_bytes(data)
     expected = skill_parts.files_sha256(skill)
-    assert load_script().digest(skill) == (expected, 2)
+    assert load_script().digest(skill) == (expected, 4)
     (skill / "references/a.md").write_bytes(b"line one\nline two\n")
     assert skill_parts.files_sha256(skill) == expected  # Windows line endings read as Unix ones

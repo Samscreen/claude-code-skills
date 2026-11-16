@@ -46,3 +46,8 @@ def test_a_repository_inside_a_worktree_still_scans_itself(tmp_path):
 
 def test_a_missing_directory_has_no_files(tmp_path):
     assert paths.files_under(tmp_path, "docs") == []
+
+
+def test_a_folder_named_worktrees_outside_claude_is_scanned(repo):
+    write(repo, "docs/worktrees/notes.md", DEFECTS["conflict"])
+    assert rules(repo) == [("docs/worktrees/notes.md", "conflict")]

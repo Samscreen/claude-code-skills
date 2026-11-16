@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from skillcheck.core.checks import EXCLUSIONS, SETTINGS, check_repository
+from skillcheck.core.checks import EXCLUSIONS, MAX_NAME_LENGTH, SETTINGS, check_repository
 
 LIST = f"skills/demo-skill/{EXCLUSIONS}"
 
@@ -91,9 +91,30 @@ def test_settings_here_hide_every_installed_copy_of_a_skill_here(repo, settings)
     repo.catalog(repo.plugin("demo", "./skills/demo-skill"))
     (repo.root / ".claude").mkdir()
     (repo.root / SETTINGS).write_text(json.dumps(settings), "utf-8")
+    assert found(repo) == [
+        (
+            SETTINGS,
+            "own-copies",
+            "skillOverrides doesn't turn off demo-skill, so a session here would load an "
+            "installed copy beside the files being edited",
+        )
+    ]
+
+
+def test_every_skill_left_on_is_named(repo):
+    for name in ("demo-skill", "other-skill"):
+        repo.skill(name)
+    repo.catalog(repo.plugin("demo", "./skills/demo-skill", "./skills/other-skill"))
+    (repo.root / ".claude").mkdir()
+    (repo.root / SETTINGS).write_text('{"skillOverrides": {}}', "utf-8")
     ((path, rule, text),) = found(repo)
-    assert (path, rule) == (SETTINGS, "own-copies")
-    assert text.startswith("skillOverrides doesn't turn off demo-skill, so")
+    assert text.startswith("skillOverrides doesn't turn off demo-skill, other-skill, so")
+
+
+def test_a_name_at_the_length_limit_is_a_skill_name(repo):
+    name = "a" * MAX_NAME_LENGTH
+    plant(repo, {name: "off"}, applied={name: "off"})
+    assert found(repo) == []
 
 
 @pytest.mark.parametrize(
