@@ -8,10 +8,6 @@
     "should_trigger": true
   },
   {
-    "query": "Our REST endpoint returns 400 with a plain string when the database is down. What should the error response look like?",
-    "should_trigger": true
-  },
-  {
     "query": "This validator wraps everything in try/except and returns an empty list of problems if anything throws. Is that a problem?",
     "should_trigger": true
   },
@@ -20,7 +16,11 @@
     "should_trigger": true
   },
   {
-    "query": "When the upload fails, users see a Python traceback in the dialog. What should they see instead?",
+    "query": "Our Java logs say 'Failed to save order' and nothing about why, even though we pass the original exception into the new one. What are we doing wrong?",
+    "should_trigger": true
+  },
+  {
+    "query": "One slow downstream service ties up every connection in our HTTP client pool, and then calls to the healthy services time out too. How do we stop that?",
     "should_trigger": true
   },
   {
@@ -28,7 +28,7 @@
     "should_trigger": false
   },
   {
-    "query": "Why doesn't my PowerShell catch block run when Get-Content can't find the file?",
+    "query": "Our REST endpoint returns 400 with a plain string when the database is down. What should the error body look like?",
     "should_trigger": false
   }
 ]

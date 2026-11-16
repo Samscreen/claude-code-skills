@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Our desktop app's users never open GitHub issues, they just stop using it. How do I add a 'report a problem' button that sends useful info without leaking their data?",
+    "should_trigger": true
+  },
+  {
+    "query": "Can the app open a GitHub issue form with the version number already filled in?",
+    "should_trigger": true
+  },
+  {
+    "query": "Crash reports from our C++ release come in as raw addresses. What did we do wrong with the symbols?",
+    "should_trigger": true
+  },
+  {
+    "query": "We want to know which features people use in our Qt app. Do we need consent in the EU, and should it be opt-in?",
+    "should_trigger": true
+  },
+  {
+    "query": "A user reported a clipped label on the export screen. How do I fix it so it doesn't come back and doesn't break the other dialogs that use the same layout?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our tool has about 30 users on the office network, too few for an A/B test. How do we tell if the redesign actually helped?",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this settings window for anything that would confuse users, and rate each problem's severity.",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I write a pytest-qt test that clicks Start and waits for the status label to change?",
+    "should_trigger": false
+  }
+]

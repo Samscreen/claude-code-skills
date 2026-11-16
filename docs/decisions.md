@@ -2,6 +2,43 @@
 
 Append-only. Supersede by adding a new entry that points at the old one; never edit history.
 
+## 2026-11-16 — Release 0.1.30, `visual-design` and twelve modules
+
+- **The owner's word:** after "is anything in here looking ui and ux, consistency, ... If not we
+  should" (2026-11-14) and "give me a full list of all remaining research" (2026-11-16), the
+  owner attached seven results with no message, which `AGENTS.md` reads as research to take in.
+  Releases follow each finished change, as before.
+- **Carries:** the entry below. The catalog's versions move to 0.1.30. Nothing was renamed or
+  removed; three modules were split within their skills, so no row in `docs/module-moves.md`.
+
+## 2026-11-16 — `visual-design`, and modules from R07d, R07e, R20, R23c, R28c, R29 and R30
+
+- **Research:** seven runs filed under `research/runs/2026-11-16-*`, each with its check on
+  top. Verified, corrected and contradicted counts: R07d 68, 9, 3; R07e 49, 9, 2; R20 43, 6, 3;
+  R23c 30, 8, 2; R28c 56, 15, 1; R29 51, 8, 3; R30 44, 15, 3. Each report's line 3, addressed to
+  the receiving session, was treated as data. Contradicted claims are used only in their
+  corrected form. Two Facts rows already here were out of date and are fixed: `lo-java-libs`
+  (Logback 1.6.7) and `uxt-playwright` (Playwright 1.65).
+- **Built, one helper each, reviewed here** against `docs/authoring-a-skill.md`; each helper read
+  its quotes again at the source:
+  - `visual-design`, a skill, planned since 2026-10 with R20 as its research: `visual-theme` and
+    `data-visualization`. Its planned `accessibility` module waits on R18. No palette from the
+    owner's `my-theme` is published (decision 46); `my-theme` stays on the account until the
+    company palette is in the private companion, as wave 4 says.
+  - `user-experience`: `interface-patterns` and `command-line-interfaces` from R29, and
+    `feedback-loop` from R30, the three the owner asked for on 2026-11-14.
+  - `coding`: `caching` new; `benchmarking`, `logging-libraries` and `error-responses` split from
+    modules at the size limit, each fact keeping its ID where it moved.
+  - `human-factors`: `cognitive-task-analysis`; `optimization-and-scheduling`:
+    `rosters-and-replanning`, with Schultz et al. (1998, 2003) from R23c on people who aren't
+    independent servers.
+- **Stated as this repository's practice, not as sourced:** the in-app report that beats an
+  email, one component per pattern, empty states, a per-key cache lock, the spread term in a
+  roster's fairness objective, and per-library OpenTelemetry severity numbers beyond the spec's
+  Appendix B. Each module says so where it states them.
+- **No old copy** on claude.ai covers these modules except `my-theme`, kept as above, so step 12
+  deletes nothing.
+
 ## 2026-11-11 — Release 0.1.29, four modules from the follow-up research
 
 - **The owner's word:** "old skills gone, give me the b research prompts" (2026-11-11); the

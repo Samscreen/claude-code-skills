@@ -6,6 +6,37 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.30] - 2026-11-16
+
+### Added
+
+- `visual-design`, a new skill: `visual-theme` (design tokens in the DTCG format, dark mode as a
+  second value set, OKLCH, WCAG contrast thresholds, font fallbacks) and `data-visualization`
+  (never color alone, color-blind-safe palettes, a chart's takeaway in words, charting libraries
+  and how active each is).
+- `user-experience` gains `interface-patterns` (each platform's design language and toolkit,
+  layout by window width, forms, loading and empty states), `command-line-interfaces` (POSIX and
+  GNU syntax, output for people and scripts, NO_COLOR, argument parsers) and `feedback-loop`
+  (in-app reports, issue forms, crash symbols, consented usage data, triage, interfaces built to
+  change).
+- `coding` gains `caching`, `benchmarking` (split from `performance-and-concurrency`),
+  `logging-libraries` (split from `logging-and-observability`) and `error-responses` (split from
+  `error-handling`).
+- `human-factors` gains `cognitive-task-analysis`; `optimization-and-scheduling` gains
+  `rosters-and-replanning`.
+- The research R07d, R07e, R20, R23c, R28c, R29 and R30 is filed with its checks.
+
+### Changed
+
+- `logging-and-observability`: personal data in logs, retention with a floor and a ceiling, and
+  sampling that keeps errors; Logback 1.6.7.
+- `performance-and-concurrency`: data-structure defaults, Go's `context`, free threading in
+  Python libraries.
+- `error-handling`: causes in Java, PHP, Ruby and Rust, and bulkheads.
+- `human-factors`: cross-cultural evidence and the difference between a screen change and a
+  whole-system replacement; `plan-checking`: which benchmark sets may be copied.
+- `gui-testing`: Playwright 1.65.
+
 ## [0.1.29] - 2026-11-11
 
 ### Added

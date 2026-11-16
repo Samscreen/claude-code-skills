@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Every hour on the hour our product API's latency spikes and the database CPU hits 100% for about a minute. We cache product pages in Redis with a one-hour expiry. What's going on and how do I fix it?",
+    "should_trigger": true
+  },
+  {
+    "query": "I put @functools.cache on a function that looks up customer records by email in our Flask app, and memory keeps climbing until the pod restarts. What should I use instead?",
+    "should_trigger": true
+  },
+  {
+    "query": "Should we cache the 404s from the inventory service? Bots keep requesting part numbers that don't exist and every request goes through to the database.",
+    "should_trigger": true
+  },
+  {
+    "query": "Which in-memory cache library should I use in a Rust web service, and how do I make sure two requests for the same missing key don't both call the backend?",
+    "should_trigger": true
+  },
+  {
+    "query": "We switched to HybridCache in ASP.NET Core and still see a burst of identical queries from all twelve servers whenever a popular entry expires. Isn't it supposed to prevent that?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I pick a size and expiry time for the in-process cache in front of our pricing service? Right now it's 1000 entries and 5 minutes because that's what the example used.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our GitHub Actions job reinstalls node_modules and rebuilds everything on every run. How do I cache that between runs?",
+    "should_trigger": false
+  },
+  {
+    "query": "This endpoint got slow after last week's release. How do I profile it to find where the time goes?",
+    "should_trigger": false
+  }
+]

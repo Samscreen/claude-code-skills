@@ -8,7 +8,11 @@
     "should_trigger": true
   },
   {
-    "query": "How do I get the trace id into my pino logs so I can line them up with the traces?",
+    "query": "Our app logs client IP addresses for every request. Is that personal data under GDPR, and how long can we keep them?",
+    "should_trigger": true
+  },
+  {
+    "query": "Log volume is costing a fortune. Can we sample the logs without losing the ones we need during an incident?",
     "should_trigger": true
   },
   {
@@ -16,15 +20,11 @@
     "should_trigger": true
   },
   {
-    "query": "My Rust binary emits tracing events but nothing ever shows up. What am I missing?",
-    "should_trigger": true
-  },
-  {
     "query": "Go through last night's journalctl output and tell me why the service kept restarting",
     "should_trigger": false
   },
   {
-    "query": "How do I escape user-supplied file names before printing them to the terminal so escape codes can't run?",
+    "query": "How do I configure pino's redact option so the Authorization header is censored?",
     "should_trigger": false
   },
   {

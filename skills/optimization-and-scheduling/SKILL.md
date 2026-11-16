@@ -3,7 +3,7 @@ name: optimization-and-scheduling
 description: "Builds and checks schedulers, rosters and shift plans made by a solver: OR-Tools CP-SAT, HiGHS, Timefold, Gurobi; rules as constraints; fatigue and utilization; lead times from backlog and capacity. Use when an optimizer makes the plan."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-11"
+  reviewed: "2026-11-16"
 ---
 
 # Optimization and scheduling
@@ -41,6 +41,7 @@ mistakes, audit checks, reasons, dated facts and sources.
 |---|---|
 | [`optimization-and-scheduling`](references/optimization-and-scheduling.md) | Building a solver's plan: choosing CP-SAT, HiGHS, SCIP, Timefold, Gurobi or CPLEX; hard and soft constraints, weights and strict priorities; CP-SAT settings; solver licenses in containers; fatigue, learning and utilization; lead-time quotes from backlog |
 | [`plan-checking`](references/plan-checking.md) | Checking what a solver returns and testing a planner: an unconfirmed OPTIMAL or INFEASIBLE, an infeasibility core, a run stopped at its time limit, CP-SAT tests that repeat, and benchmark instances with published bounds |
+| [`rosters-and-replanning`](references/rosters-and-replanning.md) | Rosters and plans people work to: fairness across people, objective weights and acceptance thresholds, skills and cross-training chains, people who aren't independent servers, re-planning from the published plan without churn, and official examples to start from |
 
 ## When something here is wrong
 

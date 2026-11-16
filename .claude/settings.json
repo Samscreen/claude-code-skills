@@ -46,6 +46,7 @@
     "slack-gif-creator": "off",
     "testing": "off",
     "user-experience": "off",
+    "visual-design": "off",
     "web-artifacts-builder": "off"
   }
 }

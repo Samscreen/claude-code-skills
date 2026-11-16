@@ -1,0 +1,37 @@
+[
+  {
+    "query": "Our senior underwriters just know which claims to flag, and when we watch them we can't see how they decide. How do we get that out of their heads before we build the scoring tool?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I run a Critical Decision Method interview, and what should I ask at each pass?",
+    "should_trigger": true
+  },
+  {
+    "query": "Should we use ACTA or a full cognitive task analysis for the grid operators? We have two weeks and nobody on the team has done one.",
+    "should_trigger": true
+  },
+  {
+    "query": "The plant shutdown the operators handle only happens once or twice a year, so we'll never see it on a visit. How can we learn what they look for when it goes wrong?",
+    "should_trigger": true
+  },
+  {
+    "query": "When I interview nurses about a hard case, how do I avoid putting words in their mouths?",
+    "should_trigger": true
+  },
+  {
+    "query": "Is hierarchical task analysis worth doing for our order-picking process, and how far down should we break it?",
+    "should_trigger": false,
+    "note": "studying-work module (goal hierarchies and where to stop)"
+  },
+  {
+    "query": "We found the reason behind the operators' manual cross-check. Now do we keep it once the automation goes in, or retire it?",
+    "should_trigger": false,
+    "note": "human-factors module (keep, change gradually or override; automation)"
+  },
+  {
+    "query": "Run a usability test on the new triage screen and tell me where the nurses get stuck.",
+    "should_trigger": false,
+    "note": "user-experience skill"
+  }
+]

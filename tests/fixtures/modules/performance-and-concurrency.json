@@ -8,27 +8,27 @@
     "should_trigger": true
   },
   {
-    "query": "Write a Go benchmark comparing these two string-joining functions, and tell me how to make sure the compiler doesn't optimize it away.",
-    "should_trigger": true
-  },
-  {
     "query": "Some of our asyncio tasks keep running after one of them fails, and errors seem to vanish. We start them with create_task and gather. What's wrong?",
     "should_trigger": true
   },
   {
-    "query": "Rewrite this Java code that uses StructuredTaskScope.ShutdownOnFailure so it compiles on JDK 27.",
+    "query": "This script takes jobs off the front of a Python list of 200,000 items and it crawls. What should I use instead?",
     "should_trigger": true
   },
   {
-    "query": "Should I move these image resizing calls into worker threads in our Express app, and what about the database queries?",
+    "query": "We moved to free-threaded Python 3.14 and all our wheels are cp314t, but more threads don't make it faster. How do I tell whether the GIL is really off?",
     "should_trigger": true
   },
   {
-    "query": "Add retries with exponential backoff and a timeout to this HTTP client call that sometimes hangs.",
+    "query": "Review this Go handler: it keeps the request's context in a struct field and ignores the cancel function from WithTimeout. Is that a problem?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a Go benchmark comparing these two string-joining functions, and tell me how many runs I need before I can say one is faster.",
     "should_trigger": false
   },
   {
-    "query": "Our CI integration test fails about one run in twenty with no code change. How do we find out whether it's flaky and quarantine it?",
+    "query": "Add retries with exponential backoff and a timeout to this HTTP client call that sometimes hangs.",
     "should_trigger": false
   }
 ]
