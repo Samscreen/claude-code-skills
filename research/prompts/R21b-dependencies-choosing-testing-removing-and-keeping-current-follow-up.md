@@ -1,4 +1,4 @@
-# RESEARCH RUN R21b: Fewest dependencies and newest versions, what R21 didn't reach
+# RESEARCH RUN R21b: Dependencies: choosing, testing, removing and keeping current, what R21 and R05 didn't reach
 
 For the repository rmccann-hub/claude-code-skills · Prompt version 1 · Written 16 November 2026
 
@@ -11,17 +11,17 @@ current against. It holds Agent Skills for Claude Code (Markdown guidance plus s
 checks that test them, and research like this. Professional developers will judge it, so it must
 be current, precise and sourced. Today is 16 November 2026.
 
-This run informs these categories: supply-chain-security, keeping-current, project-bootstrap-and-audit.
+This run informs these categories: supply-chain-security, keeping-current, and the dependency advice in every language skill.
 
 ## What this run is for
 
-A follow-up. R21 was filed on 26 October 2026. It measured what a dependency costs, release
-cooldowns and runtime support windows, and ran out of budget. The standard's fewest-dependencies
-rule and the planned `supply-chain-security` and `keeping-current` modules still lack: published
-guidance on adding a dependency, test-matrix policies, removal and outdated-listing tools,
-built-ins that replace packages, and freshness metrics. This run takes those. Lockfiles,
-provenance and registries are R24's; Rust's MSRV is R25's. Don't repeat its findings; where one
-has changed since, say so.
+A follow-up to R21 (filed 26 October 2026: what a dependency costs, release cooldowns, runtime
+support windows) and R05 (filed 23 September 2026). The standard's fewest-dependencies rule and
+the planned supply-chain-security and keeping-current modules still lack published guidance on
+adding a dependency, judging a package, test matrices, finding what to remove and what is
+behind, freshness evidence, and tools that update code. Lockfiles, provenance, scanning and
+registries are R24's; Rust's MSRV is R25's. Don't repeat their findings; where one has changed
+since, say so.
 
 ## Rules
 
@@ -84,6 +84,7 @@ Then these sections, in this order:
   package list --outdated`.
 - e18e's module-replacements sorts its entries into "native", "micro-utilities" and "preferred"
   lists.
+- The endoflife.date v1 API is still in beta.
 
 ## Questions
 
@@ -94,31 +95,39 @@ Then these sections, in this order:
    and Kubernetes' dependency policy. Say what deps.dev and Scorecard report that a maintainer
    can check in minutes. Find where these sources say copying code beats adding a package, and
    where they say it doesn't.
-2. **Which runtime versions a library and an application test:** Find written policies for
+2. **Judging a package before adding it:** the OpenSSF Concise Guide for Evaluating Open Source
+   Software, Scorecard run against a dependency, and deps.dev's signals, quoted; and any
+   measurement linking a signal (maintainer count, release cadence, Scorecard score) to later
+   compromise or abandonment.
+3. **Which runtime versions a library and an application test:** Find written policies for
    testing the oldest and newest supported versions, or every one. Cover SPEC 0's current table,
    Django's and NumPy's support policies, the Node.js Package Maintenance Working Group's
    guidance, and .NET's target-framework advice for libraries. Find any data on how often a
    middle version fails when both ends pass. Find what maintainers advise where the platform
    fixes the runtime: Windows PowerShell 5.1 and a distribution's system Python (PEP 668).
-3. **Finding what to remove and what is behind:** For Python, JavaScript and TypeScript, .NET,
+4. **Finding what to remove and what is behind:** For Python, JavaScript and TypeScript, .NET,
    PowerShell, Go and Rust, give each tool that finds unused dependencies (knip, deptry, cargo-
    machete, cargo-udeps, `go mod tidy`, and whatever exists for .NET and PowerShell). Give its
    current version, date, maintenance status and documented false positives. Give the exact
    command that lists outdated dependencies in each ecosystem, from the tool's own docs.
-4. **Freshness metrics and evidence:** Report libyear and technical-lag metrics (Cox et al.
+5. **Freshness metrics and evidence:** Report libyear and technical-lag metrics (Cox et al.
    2015, and Zerouali, Decan and Mens), the tools that compute them now, and any study linking
    dependency count, freshness or versions behind to fewer vulnerabilities or incidents. Give
    each study's sample, ecosystem, years and effect size.
 
 ### Standard
 
-5. **Packages the platform now replaces, beyond Node.js:** Report e18e's module-replacements
+6. **Tools that find and fix what's behind:** the endoflife.date API's status, Renovate's
+   `endoflife-date` datasource, and per-language tools that rewrite deprecated API uses (`go
+   fix`, Ruff's `UP` rules, pyupgrade, `cargo fix --edition`, and .NET's upgrade tooling), with
+   versions and what each changes without a person.
+7. **Packages the platform now replaces, beyond Node.js:** Report e18e's module-replacements
    (current release and how entries are sorted). Find the Python backports made redundant by 3.9
    to 3.15 (`tomli`, `backports.zoneinfo`, `importlib-metadata`, `typing_extensions`, `mock`,
    `six`). Find the .NET built-ins that replace common packages (System.Text.Json,
    `TimeProvider`, and others Microsoft names). For each, give the version that added it and
    quote the source.
-6. **Agents and dependencies:** Find measured evidence, from 2024 on, that coding agents add
+8. **Agents and dependencies:** Find measured evidence, from 2024 on, that coding agents add
    dependencies a task doesn't need or pin versions from their training data rather than the
    newest. Find which mitigations were tested, such as a version-lookup tool or an instruction
    in a context file, and their effect. Package hallucination rates are already sourced; leave

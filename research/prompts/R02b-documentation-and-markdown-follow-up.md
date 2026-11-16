@@ -119,6 +119,5 @@ Then these sections, in this order:
    and any 5.0 plans, and the guidance from adr.github.io, AWS Prescriptive Guidance,
    Microsoft's Azure Well-Architected Framework and the UK Government Digital Service on one
    file per decision versus a single log, and on how to mark a decision superseded.
-7. **Citation and contact files:** Find the current Citation File Format version and what
-   GitHub's "Cite this repository" reads from it. Find whether RFC 9116 `security.txt` applies
-   to a source repository or only to a website. Quote GitHub Docs and the RFC.
+7. **Citation files:** Find the current Citation File Format version and what GitHub's "Cite
+   this repository" reads from it. Quote GitHub Docs.
