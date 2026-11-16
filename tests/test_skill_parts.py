@@ -123,7 +123,9 @@ def findings(repo) -> list[str]:
 
 
 def located(repo) -> list[tuple[str, str]]:
-    return [(f.path, f.message) for f in check_repository(repo.root).findings]
+    found = check_repository(repo.root).findings
+    assert {f.rule for f in found} <= {"standard"}
+    return [(f.path, f.message) for f in found]
 
 
 def test_conforming_parts_pass(repo):
