@@ -2,6 +2,20 @@
 
 Append-only. Supersede by adding a new entry that points at the old one; never edit history.
 
+## 2026-11-16 — Anthropic's document skills may be adapted, from a pinned commit
+
+- **Approved, by the owner:** F, on 2026-11-11 (the entry of that date below records the
+  answers). It supersedes the rule that took nothing from Anthropic's source-available
+  document skills.
+- **Why:** the license files of `skills/docx`, `skills/pdf`, `skills/pptx` and `skills/xlsx`
+  in anthropics/skills, and its README, say Apache 2.0 (read 2026-11-11 on the `main` branch),
+  so the reason for the rule no longer holds.
+- **The guard:** a file is taken only from a pinned commit whose license file was read at
+  that commit, named in the skill's notice, since a license can change again.
+- **Where it applies first:** R16's `business-apps` work, on Word and Excel documents.
+- **Merged by a session on the owner's word,** "do all" (2026-11-16), given to a list that
+  named this pull request (#143) as the owner's to merge, since it changes `AGENTS.md`.
+
 ## 2026-11-16 — Documentation audit: what agreed, what was fixed, what was combined
 
 - **The owner's word:** "review all open tasks, questions, open items, unresolved issues, and

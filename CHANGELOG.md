@@ -6,6 +6,12 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Dependencies brought up together, each past the three-day wait: uv 0.13.8 in every workflow,
+  the `uv_build` floor 0.13.8, Vale 3.27.0 (with `house-style`'s shipped workflow and its
+  facts), ruff 0.17.5, coverage 7.17.3 and Claude Code 2.1.325. This replaces #123 and #147.
+
 ### Fixed
 
 - Fourteen modules no longer call shipped skills and modules planned, and modules that name a
