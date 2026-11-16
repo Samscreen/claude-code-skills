@@ -76,7 +76,7 @@ that is planned, with its status.
 
 ## Development
 
-You need [uv](https://docs.astral.sh/uv/) 0.13.5 or later, the version CI pins in
+You need [uv](https://docs.astral.sh/uv/) 0.13.8 or later, the version CI pins in
 `.github/workflows/ci.yml`. It installs the Python version named in `.python-version`. You also
 need Node.js, to run Claude Code's own catalog validator.
 
