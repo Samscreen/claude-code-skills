@@ -1,9 +1,9 @@
 ---
 name: testing
-description: "Writes, reviews and fixes tests: doubles, coverage, frameworks, checks that can fail, oracles, flaky tests, tests AI agents write, and acceptance runs on hardware. Use when writing tests, or when tests pass but the output is wrong."
+description: "Writes, reviews and fixes tests: strategy, test data, doubles, coverage, frameworks, checks that can fail, oracles, flaky tests, tests AI agents write, and hardware acceptance runs. Use when writing tests, or when tests pass but the output is wrong."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-11"
+  reviewed: "2026-11-16"
 ---
 
 # Testing
@@ -45,6 +45,7 @@ mistakes, audit checks, reasons, dated facts and sources.
 | [`testing-patterns`](references/testing-patterns.md) | Writing a test suite: coverage targets and gates, test doubles and adapters, contract tests with Pact, runner settings that let an empty or skipped run pass, property-based and mutation tools, and each language's framework and version |
 | [`agent-written-tests`](references/agent-written-tests.md) | Tests an AI coding agent writes, changes or runs: tests first and seen failing, the agent told not to touch them, test diffs reviewed as high risk, gaming by special-casing, holdout tests, a way for the agent to stop, and mutation-testing what it wrote |
 | [`acceptance-runs`](references/acceptance-runs.md) | Unattended acceptance runs on real hardware: a health check before the run, a device lost mid-run, rig failures told from product failures, retries, run tiers, the evidence a run keeps; fault injection for disk, memory and network faults on Linux, Windows and macOS |
+| [`test-strategy`](references/test-strategy.md) | Choosing what to test and how: the mix of unit, integration and end-to-end tests, test sizes, testing a command-line program, test data and factories, finding what no test covers, tests always skipped, and metamorphic and differential testing where no expected output exists |
 
 ## When something here is wrong
 

@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Should our suite follow the test pyramid or the testing trophy? A reviewer wants 70% unit tests and we're mostly integration tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm writing a command-line file renamer in Python. What should I test in-process, and should I also run the actual binary in tests?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our tests all read and write one shared fixtures.json and start failing when run in a different order. How should test data be set up instead?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I test an image resizing routine when I can't know the exact expected pixels for most inputs?",
+    "should_trigger": true
+  },
+  {
+    "query": "We found a whole group of tests had been silently skipped in CI for months. How do we notice that sooner, and find features nothing tests?",
+    "should_trigger": true
+  },
+  {
+    "query": "Is a test that writes to a temp directory a unit test or an integration test, and which CI stage should it run in?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which mutation testing tool should I use for a Rust crate, and what's its current version?",
+    "should_trigger": false
+  },
+  {
+    "query": "Our test passes about one run in ten on the same commit. How do I find out why?",
+    "should_trigger": false
+  }
+]
