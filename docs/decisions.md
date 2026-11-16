@@ -2,6 +2,61 @@
 
 Append-only. Supersede by adding a new entry that points at the old one; never edit history.
 
+## 2026-11-16 — `markdown-format` split from `writing-style`; L23, L25 and L27 taken in
+
+- **Why now:** `writing-style` (15,925 characters) and `prose-check` (15,996) sat at the
+  16,000-character limit, as the 2026-10-27 entry warned, and L25 and L27 waited for
+  `writing-style`, which had no room.
+- **The seam:** what prose says against how a Markdown file is laid out. `writing-style` keeps
+  rules 1 to 7 and 11 to 13: voice, words to cut, plain words, American spelling, dates and
+  records. The new `markdown-format` takes rules 8 to 10: headings, wrapping, lists, code
+  blocks, tables, links and emphasis, file names and a README's sections, with their Why
+  sections. Both stay in `house-style`, so no row in `docs/module-moves.md`. Every fact keeps
+  its ID: `google-sentence-case` and `ms-sentence-case` move to `markdown-format`.
+- **`prose-check` trimmed to 14,869 characters,** with no rule lost: the spelling rule's list of
+  patterns moved to `writing-style`'s American spelling section, and the `heading-colon` fact,
+  a style guides' fact, to `markdown-format`. `prose-check` names both.
+- **Lessons taken in:**
+  - L25, in `writing-style`'s *Claims and their evidence*: the strongest verb the evidence
+    supports and no stronger, the artifact named, and what an absence means. Its Why cites L25,
+    with L5 and L4 as the cases.
+  - L27, in `writing-style`'s *Instructions for a reader who isn't a programmer*: no
+    application name where it could be typed, the screen described, one command per block
+    with its expected output. `markdown-format`'s code rule and Why carry its formatting half.
+  - The rest of L23, in `coding`'s `c-build`: argument shape is a probe axis of its own (rule
+    8, the Fuzzing section, an audit row and the Why, which now cites L23 three times). Room
+    came from tighter wording and shorter quotes that stay exact substrings of the checked
+    ones, with no rule, mistake, audit row or example cut: 15,970 characters, so its next
+    addition splits it first.
+- **One new fact,** `google-code-font`: Google keeps code font for text entered verbatim, and
+  bold, not code font, for a named element on screen. Read at the source on 2026-11-16.
+- **Pointers moved:** the router, `documentation`'s and `prose-check`'s openings, the
+  `prose-check` trigger test's note, and `architecture`'s `repo-structure`, which sent Markdown
+  file names to `writing-style`, now name `markdown-format`.
+- **Reviewed against `docs/authoring-a-skill.md`, for `markdown-format`:**
+  1. Whose work: the owner's own, moved from `writing-style`; nothing work-owned.
+  2. Sources: three facts moved with their IDs and dates; one new, checked today.
+  3. Licenses: Google's guide is CC BY 4.0 (fact `google-license`), Microsoft's short quotes
+     for facts, as before.
+  4. No secrets, company detail or audited repository: the L27 case is "one owner".
+  5. Fits both surfaces: no tool names, no network.
+  6. Frontmatter: `house-style`'s description already covers Markdown; unchanged.
+  7. Shape: Rules, Mistakes, Audit, Why, Facts, Sources; 9,924 characters; other modules named
+     in words.
+  8. No code blocks added.
+  9. Trigger evaluations: five should-trigger requests and three near misses
+     (`writing-style`, `prose-check`, `documentation`). `writing-style`'s set gains a claims
+     request and a non-programmer request, and its heading near miss now names
+     `markdown-format`.
+  10. Catalog unchanged, since the skill isn't new; a shipped `ROADMAP.md` row; the README's
+      `house-style` row still fits.
+  11. CHANGELOG lines below; `metadata.reviewed` was already 2026-11-16.
+  12. No old copy on claude.ai covers this module, so nothing to delete.
+- **Requests for the owner to try on claude.ai,** from `uv run skillcheck --tries
+  markdown-format writing-style`: "Are headings in sentence case or title case here?" should
+  read `markdown-format`, not `writing-style`; "Rewrite this README so it reads plainly and
+  drops the marketing fluff." should read `writing-style`, not `markdown-format`.
+
 ## 2026-11-16 — `testing`'s `test-strategy`, from R06c
 
 - **Asked, by the owner:** "do all" to the triage list (2026-11-16), which included the

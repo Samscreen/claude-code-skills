@@ -97,9 +97,10 @@ Grouped by subject; the Skill column is each module's one home.
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
 | `repo-structure` | `architecture` | Layouts by project type, where each file goes, naming files and folders | shipped | core | R02, R02b |
-| `writing-style` | `house-style` | Prose and Markdown: voice, headings, lists, wrapping, code, tables, links, file names, a README's sections, words to cut, American spelling | shipped | core | R02, R02b |
+| `writing-style` | `house-style` | What prose says: voice, claims and their evidence, instructions for a reader who isn't a programmer, words to cut, American spelling, dates and records | shipped | core | R02, R02b |
+| `markdown-format` | `house-style` | How Markdown is laid out: headings, wrapping, lists, code blocks, tables, links, file names, a README's sections | shipped | core | R02, R02b |
 | `prose-check` | `house-style` | The Vale check: the HouseStyle package, `.vale.ini`, the CI job with its canary, a repository's vocabulary, files left alone | shipped | core | R02, R02b |
-| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections, records and prose that `writing-style` covers | shipped | core | R02, R02b |
+| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections `markdown-format` covers and the records and prose `writing-style` covers | shipped | core | R02, R02b |
 | `code-style` | `coding` | Naming, formatting, structure, comments and docstrings | shipped | core | R03, R03b |
 | `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03, R03b |
 | `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04, R04b |
@@ -400,16 +401,15 @@ moves it to the archive.
   303. A contract records every argument as used, declined with a reason, or not yet examined.
 - **L22, `api-patterns`:** when a provider rewords a line its consumer parses, the consumer's
   release that reads both wordings ships first.
-- **L23, `c-build`, taken in apart from the argument-shape probe:** gate on the count of warnings
+- **L23, `c-build`, taken in:** gate on the count of warnings
   under the shipped flags rather than `-Werror`, which fails on a new compiler's new warnings.
   Ask the binary whether it's instrumented: a test log looked sanitized while the binary
-  wasn't. `c-build` carries both, in its rules 3 and 5 and its Why. Argument shape is a probe
-  axis of its own, and it found an overread both sanitizers missed. That part still waits:
-  no C module names it yet.
+  wasn't. Argument shape is a probe axis of its own, and it found an overread both sanitizers
+  missed. `c-build` carries all three, in its rules 3, 5 and 8 and its Why.
 - **L24, `versioning-and-releases`, taken in:** a fork whose advancing part is SemVer build metadata
   can't order its releases by version, since the specification ignores build metadata for
   precedence. Order by a release sequence.
-- **L25, `writing-style`, waiting, module shipped:** a claim takes the strongest verb its
+- **L25, `writing-style`, taken in:** a claim takes the strongest verb its
   evidence supports and no stronger, names the artifact, and says what an absence means.
 - **L26, `review-loops`, taken in:** what one loop of two repositories learned over 31 rounds and eight
   protocol versions, as a starting set:
@@ -443,7 +443,7 @@ moves it to the archive.
     flag upstream had dropped, a filtered message list and one-word parser misses. Nearly all
     came from reading the other side's committed artifacts or a run on real hardware, rarely
     from a lap's argument.
-- **L27, `writing-style`, waiting, module shipped:** instructions for a reader who isn't a
+- **L27, `writing-style`, taken in:** instructions for a reader who isn't a
   programmer never put an application's name where it could be taken for something to type.
   One owner typed `Konsole` at a prompt after reading "open Konsole". Say what the screen looks
   like instead, such as "you're in the terminal when you see a `$`". Each command goes in its

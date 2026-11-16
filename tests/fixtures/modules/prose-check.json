@@ -18,7 +18,7 @@
   {
     "query": "Are headings in sentence case or title case here?",
     "should_trigger": false,
-    "note": "writing-style"
+    "note": "markdown-format"
   },
   {
     "query": "Rewrite this README so it reads plainly and drops the marketing fluff.",
