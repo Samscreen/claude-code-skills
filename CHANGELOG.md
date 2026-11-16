@@ -6,6 +6,13 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `skillcheck --due` also counts a fact due when its own words date an end of support, such as
+  "ended on 2026-11-10" or "LTS to 2028-11-14", that falls within six months or has passed since
+  the fact was checked, so the weekly Freshness issue names a runtime or dependency nearing its
+  end of life.
+
 ### Changed
 
 - Dependencies brought up together, each past the three-day wait: uv 0.13.8 in every workflow,

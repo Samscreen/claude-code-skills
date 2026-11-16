@@ -2,6 +2,34 @@
 
 Append-only. Supersede by adding a new entry that points at the old one; never edit history.
 
+## 2026-11-16 — The end-of-life warning, in `--due`
+
+- **What:** the roadmap's end-of-life warning, planned since its trigger was met in 0.1.22,
+  is built into `skillcheck --due`. A fact whose own text dates an end of support makes it due
+  once when that end comes within six months (183 days) and again once the end has passed,
+  each unless the fact was checked inside that span. The Freshness workflow names it in the
+  existing "Due to be checked again" section, and `--due`'s exit code opens the issue, so the
+  workflow is unchanged.
+- **The signal:** an ISO date (`YYYY-MM-DD`, or `YYYY-MM` counted from the month's first day)
+  straight after a word that ends support: "end", "ends", "ended", "EOL", "end of life", "end of
+  support", "removed", "retired", "discontinued", "halted", "to", "until" or "through", with an
+  optional "on" or "in". Only the Fact column counts: the quote is the source's wording, and a
+  date alone is most often a release's. Tested against all 1,111 facts on 2026-11-16: it finds
+  16 facts and 21 dates, all of them ends of support or of a runtime, and none of the 98 facts
+  with only release or start dates. No marker on fact rows was needed.
+- **Why not list every end in the window or past:** a fact that records an end already past,
+  such as `py-eol-310`, would keep the weekly issue open for good. Counting the end only when it
+  has come since the fact's Checked date makes the warning one an author clears by checking the
+  fact again, as with a check-by date.
+- **What it misses:** three facts date an end in words the pattern doesn't read.
+  `win-server-support` lists its dates after "ends:" ("2016, 2027-01-12"), and Windows Server
+  2016's end, 2027-01-12, is inside six months now; `linux-ubuntu` says "22.04 ends May 2027";
+  `os-timefold-editions` says "1.x ends early 2027", which has no day. The first two are reworded here,
+  and step 2 of `docs/authoring-a-skill.md` now says to write an end of support that way.
+  PowerShell 7.4 and 7.5's fact was read again at its source and now says they ended.
+- **First run, 2026-11-16:** `ps-lifecycle-74-75` (PowerShell 7.4 and 7.5 end 2026-11-10,
+  checked 2026-10-26) is due.
+
 ## 2026-11-16 — Anthropic's document skills may be adapted, from a pinned commit
 
 - **Approved, by the owner:** F, on 2026-11-11 (the entry of that date below records the
