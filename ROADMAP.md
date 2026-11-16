@@ -62,7 +62,7 @@ research. These rules are that structure.
 
 | Skill | Plugin | Loads when | Status |
 |---|---|---|---|
-| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.49.1 | shipped |
+| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.50.0 | shipped |
 | `git-workflows` | `engineering` | Commits, branches, pull requests, CI, hooks, tags, changelogs and releases | shipped |
 | `house-style` | `engineering` | Writing prose, Markdown, READMEs and documentation | shipped |
 | `coding` | `engineering` | Writing, reviewing or fixing code in any language: the contract every change meets, then the language and the practice at hand | shipped |
@@ -267,8 +267,8 @@ palettes in `visual-design`, not in `excel-master`.
      by hand, from a list the session gives them. Shipped 2026-10-21 as `skillcheck --triggers`
      and `--tries`. Its first run, on `gitignore`, found none of its four requests loading
      `git-workflows`, so the descriptions were to be tuned against it before the rebuilds.
-     That's still open: `docs/decisions.md` records no such tuning as of 2026-11-16, though the
-     rebuilds went ahead;
+     Closed on 2026-11-16 by the owner's answer: the trigger runs each module's review makes
+     since then do this tuning;
    - `skillcheck --move` and its record of moves, renames and removals. Shipped 2026-10-16;
    - `skill-builder`, from `skill-creator`'s method under its license, and the stress tester's
      two good checks: content safety, and compiling every code block. Shipped 2026-11-11 as
@@ -410,6 +410,13 @@ One finding is still open, from the two audits of 2026-10-27:
   line. It's a restructure of its own, beside R22's work on the routing table, and the rebuild's
   one file per dimension, above, is where it lands.
 
+Applied since the archive was cut:
+
+- **F168, in v0.49.2:** *Language toolchains* says PowerShell 7.4 and 7.5 and .NET 8 and 9
+  ended on 2026-11-10, and names .NET 11 as an STS beside 10, the LTS; approved 2026-11-16.
+- **F169, in v0.50.0:** dimension 8 takes R21's verified claims, below, as rules on dependency
+  trees, names, unused ones, support and age gates; approved 2026-11-16.
+
 The owner asked for one more rule, researched before it's written:
 
 - **Fewest dependencies, newest versions:** a repository the standard sets up or audits runs on
@@ -417,7 +424,8 @@ The owner asked for one more rule, researched before it's written:
   and less for CI and dependency tools to check. R21 tests the aim against the evidence, and
   asks where it needs a limit. Its checked result goes into the standard as a change of its
   own, in dimensions 2, 6 and 8 and in what a new project starts with, so the pieces move text
-  that already carries it.
+  that already carries it. Dimension 8's part is in, as F169; the rest waits on claims R21
+  didn't verify, which R21b asks again.
 
 The owner also asked for one command that starts the standard from any repository, researched
 before it's built:
@@ -480,7 +488,7 @@ trigger.
 | End-of-life warning | A runtime or dependency whose support ends within six months. `--due` counts a fact due when its own words date an end of support, after a word such as "ends", "ended", "to" or "until", that falls within six months or has passed since the fact was checked, so the weekly check names it | shipped | done, 2026-11-16 |
 | `copier` template | The standard's starter files, so a new repository is set up without a session | planned | the first repository set up from this one |
 | A repository's own skills | `skillcheck` on a consuming repository's `.claude/skills/`, without this catalog's checks, with a marker for a draft and a check of a skill's scripts and tests beside it. Both audited repositories' steward skills asked for it; `--verify` there also needs to tell a source that wants credentials from a quote that's gone | planned | the next audit of either repository |
-| Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI |
+| Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI: met, by the owner's answer of 2026-11-16, since the private companion runs `skillcheck` from here |
 | `upstream-defects.md` | The standard's register of upstream defects shared across repositories | planned | the first upstream defect found |
 | Map refresh on dependency updates | Dependabot's pull requests change the lockfiles but not `bom.json` or `docs/dependencies.md`. CI's `--bom-check` fails such a pull request until a session regenerates the map in its branch before merging, as the owner chose on 2026-10-13 | shipped | done |
 | Fewest dependencies here | This repository's own dependencies and pins, in `pyproject.toml`, `package.json` and CI, held to the R21 rule | planned | the rule is in the standard |

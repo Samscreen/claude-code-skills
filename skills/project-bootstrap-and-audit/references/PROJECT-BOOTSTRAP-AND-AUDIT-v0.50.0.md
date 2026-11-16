@@ -2,9 +2,9 @@
 name: project-bootstrap-and-audit
 description: "Re-runnable configuration standard for one maintainer. One file, read in ranges rather than end to end, that proposes changes to itself at the approval gate. Chooses a language and a shape for something new, sets up the repository, retrofits an existing one, or audits configuration that already exists — against a two-axis stakes model and ten dimensions, then sequences what is left. Emits a fixed schema so two runs on the same repository produce comparable output. Folds in file governance, the release and deploy currency gate, secret handling, licensing, and cross-repository contracts. Stops at a hard approval gate before changing anything."
 metadata:
-  version: "0.49.1"
-  updated: "2026-11-11"
-  supersedes: "0.49.0"
+  version: "0.50.0"
+  updated: "2026-11-16"
+  supersedes: "0.49.2"
   reading: "One file, read in ranges. Start at How to read this file; take only the sections your job names."
   absorbs: "REPO-RECON.md, TEST-PROCEDURE.md, the standalone test procedure for this file — all deleted, their content is below"
   standards_repo: "<asked at the Phase 3 wait, recorded in the Phase 0 block — none is a valid answer>"
@@ -693,6 +693,9 @@ reads as diligence.
 | Code owners: public repositories on any plan, including GitHub Free; private repositories only on GitHub Pro, Team or Enterprise | 2026-09 | Dimension 3. Decides `GAP` against `N/A` for a missing `CODEOWNERS` |
 | Immutable releases are a **repository or organization setting**, not a default. When on: tag and assets frozen at publish, title and notes still editable, and assets must be uploaded while the release is a draft | 2026-09 | The release gate. Read the setting; do not assume either way |
 | Dependency-update pull requests wait three days after a release by default, with no configuration; security updates are exempt. The period is set with `default-days` under `cooldown:`, with per-semver keys alongside; a bare `cooldown: 0` is not a documented form. GitHub's *Dependabot options reference*, read 2026-11-03: "Apply a default cooldown period of 3 days to version updates, even when `cooldown` is not configured" | 2026-11 | Dimension 8. A config matching the default is `OVER`; a longer one is not |
+| npm's `min-release-age` holds back versions younger than the days it's set to, and is off by default (npm's config documentation, read 2026-11-16: "Default: null", and "only versions that were available more than the given number of days ago will be installed") | 2026-11 | Dimension 8. An install-time age gate, opt-in |
+| uv's `exclude-newer` takes a duration, such as `1 week`, as a cooldown (uv's resolution documentation, read 2026-11-16: "uv also supports dependency \"cooldowns\" in which resolution will ignore packages newer than a duration.") | 2026-11 | Dimension 8. An install-time age gate, opt-in |
+| pnpm's `minimumReleaseAge` defaults to 1440 minutes, one day (pnpm's supply-chain security page, read 2026-11-16: "This defaults to 1440 (1 day)") | 2026-11 | Dimension 8. The one age gate here that's on by default |
 | A tag can be created in the browser at publish time, with no clone | 2026-09 | The only reason the release gate is reachable at all without a working copy |
 | A workflow `run` step with no `shell:` runs under `bash -e` on Linux and macOS runners: it stops at the first failing command, a failing command substitution included, with no `pipefail`. Naming `shell: bash` adds `-o pipefail` | 2026-09 | The starter CI template's guard, and reading any step's exit status |
 | `actions/checkout` is at v7 (v7.0.1, commit `3d3c42e5aac5ba805825da76410c181273ba90b1`) | 2026-09 | *Starter file contents*. A template's action versions go stale like any other pin |
@@ -805,8 +808,8 @@ pinning anything — and check what answered you, per the probe rule above.**
 | Stack | Current at 2026-10 | Lockfile | Notes |
 |---|---|---|---|
 | **Python** | 3.15.x, released 2026-10-09; 3.14 still gets bug fixes, and 3.13, 3.12 and 3.11 security fixes only, until 3.11's end in 2027-10; 3.10 ended on 2026-10-01 (Python's devguide, read 2026-10-26); `uv` carries the momentum, Poetry fully supported, pip-tools for minimalists | `uv.lock` / `poetry.lock` | `ruff` for lint and format, `pytest`, `src/` layout. Dependency groups are standardized |
-| **PowerShell** | 7.6.x, LTS until 2028-11-14; 7.4 and 7.5 end on 2026-11-10 (Microsoft's lifecycle page, read 2026-10-26) | none exists | Pester 6.x (6.2.0 at 2026-10). Its migration guide says most v5 suites run on v6 unchanged, so a project on 5.x moves once its suite passes on 6; 5.9.1 is the newest 5.x. `PSScriptAnalyzer` for lint. **Windows PowerShell 5.1 is a component of Windows** and follows its support lifecycle; 7 installs beside it |
-| **.NET / C#** | 10, LTS until 2028-11-14; 8 and 9 end on 2026-11-10 (Microsoft's support policy, read 2026-10-26) | `packages.lock.json`, opt-in | `Directory.Build.props` for shared properties, `Directory.Packages.props` for central versions |
+| **PowerShell** | 7.6.x, LTS until 2028-11-14; 7.4 and 7.5 ended on 2026-11-10; 7.7 is a preview (Microsoft's lifecycle page, read 2026-11-16) | none exists | Pester 6.x (6.2.0 at 2026-10). Its migration guide says most v5 suites run on v6 unchanged, so a project on 5.x moves once its suite passes on 6; 5.9.1 is the newest 5.x. `PSScriptAnalyzer` for lint. **Windows PowerShell 5.1 is a component of Windows** and follows its support lifecycle; 7 installs beside it |
+| **.NET / C#** | 10, the LTS for new work, until 2028-11-14; 11, an STS released 2026-11-10, also until 2028-11-14; 8 and 9 ended on 2026-11-10 (Microsoft's support policy and its release index, read 2026-11-16) | `packages.lock.json`, opt-in | `Directory.Build.props` for shared properties, `Directory.Packages.props` for central versions |
 | **JS / TS** | Node 26 for new work, Active LTS from 2026-10-28; 24 in maintenance since 2026-10-20; 22 ends 2027-04-30 (Node's release schedule, read 2026-10-26) | `package-lock.json` / `pnpm-lock.yaml` | Biome 2.x for a new project; ESLint plus Prettier where plugins already exist. Vitest for new tests |
 | **Go** | 1.27 | `go.mod` + `go.sum`, both committed | `go vet`, `go test -race`, `gofmt`. Pin `golangci-lint` by version in CI |
 | **Rust** | 1.99.x (1.99.1, 2026-10-15), edition 2024 | `Cargo.lock`, **committed for libraries too** | `cargo fmt --check`, `clippy -D warnings`. That lockfile guidance reversed in 2023 — old advice says otherwise |
@@ -2349,6 +2352,36 @@ reason to keep it unrecorded.
 
 **Do not propose adding a cooldown that matches the default.** It is the same `OVER` in the
 making, one run later.
+
+**Fewer dependencies is judged by the tree each one brings.** Pruning declared dependencies
+that nothing uses is a small win: of 723,444 Maven dependency relationships, 75.1% were
+bloated, but only 2.7% were bloated direct dependencies, and most of the rest were transitive
+(Soto-Valero et al., `arXiv:2001.07808`). The larger choice is which direct dependency to take,
+so for each one the run proposes, or finds added since the last run, it asks in this order:
+
+1. Does the runtime the project targets already do it?
+2. How many packages does it add? Count them from the lockfile's diff.
+3. Does a package of exactly that name exist on its registry, published longer ago than the
+   cooldown? Code models still name packages that don't exist, 4.62% to 6.10% of the time
+   across five models in a 2026 replication (`arXiv:2605.17062`), so a name an agent proposed
+   is looked up before anything installs it.
+
+**A declared dependency that nothing uses is `OVER`,** with its removal as the amendment. It
+costs CI time out of proportion to its size: in one npm study, 55.88% of the CI build time
+spent on dependency updates went to unused dependencies (Weeraddana, Alfadel and McIntosh,
+FSE 2024). A tool, plugin or type stub that no import names can still be in use, so read a
+finder's list against how the project runs before calling anything unused.
+
+**A runtime or a dependency past its end of support is `GAP`,** with a supported line as the
+amendment; *Language toolchains* has the dates. Newest means the newest supported line at its
+newest patch, taken after the cooldown, never on the day it's published.
+
+**A package manager's age gate holds a hand-made install to the same wait.** The 2025 npm
+compromises of chalk and debug were live for about 2 hours, and nx's for 4, so a gate of a day
+covers both. pnpm sets one by default; npm and uv take one when configured, as *Facts with an
+expiry date* records. A locked install in CI resolves nothing new, so the gate matters where a
+person or an agent adds or upgrades a package. Where the manager has a gate and it's off, it is
+an `optional` amendment, not a status.
 
 **A catch-all group with a low open-PR limit is a trap.** One breaking major inside the group
 blocks every other update in that ecosystem behind it, and the symptom is silence rather than
@@ -5421,6 +5454,16 @@ development is for. Versions 1.0.0 through 1.12.1 are the same content as 0.1.0 
 records are append-only and are not edited for this.
 
 ## Entries
+
+**0.50.0**: **one change**, F169, which the owner approved on 2026-11-16: dimension 8 judges
+dependencies by their trees, checks a new name on its registry, rates an unused dependency
+`OVER` and an unsupported runtime `GAP`, and offers a package manager's age gate, from R21's
+verified claims. *Platform capability* records npm's, uv's and pnpm's age gates.
+
+**0.49.2**: **one change**, F168, which the owner approved on 2026-11-16: *Language
+toolchains* says PowerShell 7.4 and 7.5 and .NET 8 and 9 ended on 2026-11-10, a date its
+rows gave in the future tense, and names .NET 11, an STS released that day, beside 10, the LTS
+for new work. Each row was read again at its source.
 
 **0.49.1**: **two changes**, F166 and F167, which the owner approved on 2026-11-11. *Turns
 are written down, and a crossing is settled without the person*, in *Cross-repository

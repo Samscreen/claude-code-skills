@@ -6,6 +6,98 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Standard v0.50.0: fewest dependencies, newest versions
+
+- **Asked:** the owner's "do all recommended" (2026-11-16), approving proposal S1 of the
+  self-audit, as F169, a minor applied on its own after v0.49.2. The owner asked for the rule
+  on 2026-09-24, and it waited on R21's checked result.
+- **Changed, dimension 8:** fewer dependencies is judged by the tree each one brings; each new
+  direct dependency is asked whether the runtime already does it, how many packages it adds,
+  and whether that exact name exists on its registry past the cooldown; a declared dependency
+  nothing uses is `OVER`, and a runtime or dependency past its end of support is `GAP`; a
+  package manager's age gate that's off is an `optional` amendment. Every claim used is one
+  R21's verification marks verified.
+- **Changed, *Platform capability*:** three rows, each quote read again at its source on
+  2026-11-16: npm's `min-release-age`, "Default: null", in days; uv's `exclude-newer` taking a
+  duration as a cooldown; pnpm's `minimumReleaseAge`, "This defaults to 1440 (1 day)". The
+  draft's npm and pnpm rows gave no quote; they carry one now.
+- **Left for R21b:** dimensions 2 and 6 and what a new project starts with get nothing from R21
+  yet, since R21 didn't verify the claims they'd need. `ROADMAP.md` says so.
+- **Cost:** about 30 lines every audit reads in dimension 8, three facts to recheck, and new
+  findings for audited repositories. No parity run: Tests B and C's answer keys may need a row
+  for an unused dependency before the next release.
+
+## 2026-11-16 — Standard v0.49.2: the toolchain rows past 2026-11-10
+
+- **Asked:** the owner's "do all recommended" (2026-11-16), approving it as F168, a patch
+  applied on its own.
+- **Why:** *Language toolchains* said PowerShell 7.4 and 7.5 and .NET 8 and 9 "end on
+  2026-11-10", a date that has passed, so a run read their end of support as still ahead.
+- **Changed:** each row was read again at its source on 2026-11-16 and now says so. PowerShell:
+  7.6.x is the LTS until 2028-11-14, 7.4 and 7.5 ended on 2026-11-10, and 7.7 is a preview
+  ([Microsoft's lifecycle page](https://learn.microsoft.com/powershell/scripting/install/powershell-support-lifecycle):
+  "PowerShell 7.6 (LTS) 18-Mar-2026 14-Nov-2028"). .NET: 10 is the LTS for new work until
+  2028-11-14, 11 is an STS released 2026-11-10 with the same end, and 8 and 9 ended on
+  2026-11-10. The [release index](https://builds.dotnet.microsoft.com/dotnet/release-metadata/releases-index.json)
+  gives 11.0 `sts`, eol `2028-11-14`, and 9.0 and 8.0 `eol` on `2026-11-10`; the
+  [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) agrees.
+- **Checked:** no other text in the standard states those versions as current; the 0.48.2
+  version-history entry keeps its words, as records do.
+
+## 2026-11-16 — The owner's answers to 23 decisions
+
+- **The owner's word:** "do all recomended" (2026-11-16), to a list of 23 decisions, each with
+  options and a recommendation, given after "give all decisions with options and
+  recommendations". Each answer below is the recommended option.
+- **Releases and installs:**
+  1. Release 0.1.31 now.
+  2. A standing word: a session releases after each finished change it merges. This lifts the
+     steward's release hold, which asked for the owner's word on each release, and settles what
+     "Releases follow each finished change, as before" in the newest release entries meant. A
+     `hold` label still stops a release.
+  3. Claude Code installs keep following the catalog's `version`, bumped at each release.
+- **The standard:**
+  4. S1, fewest dependencies and newest versions from R21, is approved as v0.50.0 (F169).
+  5. The PowerShell and .NET rows, past their end dates, are approved as patch v0.49.2 (F168),
+     applied first, on its own.
+  6. Piece 1 of rebuilding `project-bootstrap-and-audit` starts now.
+- **Testing and checks:**
+  7. Before each release, a session runs mutation testing on `src/skillcheck/core/` and fixes
+     or records each survivor. This answers the inception entry's A19, whose trigger fired on
+     2026-11-03.
+  8. A `skillcheck` rule holds every commit the records cite reachable from `main`.
+  9. The trigger test stays strict: a search of a module isn't a read of it.
+  10. `testing-patterns` keeps counting every test's coverage, and gives *Software Engineering
+      at Google*'s view, small tests only, as the trade-off.
+  11. This repository is re-checked against the standard after each release of the standard,
+      and at least every three months, not after every skills release.
+- **Licenses:**
+  12. Claude Code, under Anthropic's own terms, is approved as a development tool only, like
+      ShellCheck under GPL-3.0: run in CI and by hand, never in a release asset or a skill.
+- **GitHub settings, the owner's to change:**
+  13. Add `subjects` and `hold` to `protect-main`'s required checks.
+  14. A ruleset on `archive` that blocks force-pushes and deletion.
+  15. A pull request rule on `main`, with no approvals required.
+  16. Delete nine stale branches, each merged or replaced.
+- **Research and drafts:**
+  17. R24 and R21b run first, then the rest of priority 1.
+  18. Draft #73 stays until R24 and R21b are in.
+- **Other repositories:**
+  19. A session in each of the other repositories batches its Dependabot pull requests and
+      reports any branch with no pull request to the owner. This is the owner's word that the
+      steward's hold on other repositories asks for, for this one task.
+- **The account:**
+  20. `my-theme` stays until the company palette is in the private companion.
+- **Smaller ones:**
+  21. `c-build` splits when it next needs an addition.
+  22. The roadmap's item to tune descriptions before the rebuilds is closed: each module's trigger
+      runs do that work.
+  23. The reusable-workflows trigger, "a second repository wants this CI", is met, since the
+      private companion runs `skillcheck` from here; the `copier` template's isn't.
+- **Changed here:** the steward's release hold and release steps, the README's re-check step,
+  the research index's order, and two `ROADMAP.md` items. The rest are their own pull requests,
+  or the owner's settings.
+
 ## 2026-11-16 — Cells marked "not checked" in `error-responses` and `logging-libraries`, answered
 
 - **Asked, by the owner:** "do all" to the triage list (2026-11-16), which named these cells.

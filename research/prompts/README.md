@@ -1,8 +1,9 @@
 # Research runs
 
 Fifty-six prompts, one file each. Of those, 24 are still to run and are marked `not run`; the
-other 32 link their filed result in the Result column. Run the 24 in any order, priority 1 first,
-several at a time in separate chats. Each file is the whole prompt: paste all of it into a new
+other 32 link their filed result in the Result column. Run R24 and R21b first, since
+together they unblock `supply-chain-security`, then the rest of priority 1, several at a time in
+separate chats (the owner, 2026-11-16). Each file is the whole prompt: paste all of it into a new
 claude.ai chat with Research turned on (or Web search, if Research isn't offered).
 
 How to save a report and send it back is in [Taking in a result](../README.md#taking-in-a-result).
