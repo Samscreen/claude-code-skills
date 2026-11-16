@@ -2,7 +2,8 @@
 
 PROJECT-BOOTSTRAP-AND-AUDIT lists them under "Validating a change to this standard" as Test G:
 properties of the file checkable by reading it, each added because it once failed. Its version
-history shows them run by hand. Here they run in CI on every change.
+history shows them run by hand. Here they run in CI on every change, on the standard file and,
+where they apply, on the skill's other Markdown files (``skill_parts.py``).
 """
 
 import re
@@ -10,7 +11,7 @@ from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
 
-from skillcheck.core import frontmatter
+from skillcheck.core import frontmatter, skill_parts
 
 FILENAME = re.compile(r"PROJECT-BOOTSTRAP-AND-AUDIT-v(\d+\.\d+\.\d+)\.md")
 FENCE = re.compile(r"^\s*```")
@@ -58,7 +59,22 @@ def check(root: Path, path: Path, add: Add) -> str:
     _check_whitespace(prose, where, add)
     version = _check_versions(text, prose, file_version, where, add)
     _check_skill_version(root, path.parent.parent, file_version, add)
+    skill_parts.check(root, path.parent.parent, path, check_markdown, add)
     return version
+
+
+def check_markdown(path: Path, where: str, add: Add) -> None:
+    """The structural checks that hold for any of the skill's Markdown files."""
+    lines = path.read_text(encoding="utf-8").split("\n")
+    fences = [number for number, line in enumerate(lines, 1) if FENCE.match(line)]
+    if len(fences) % 2:
+        add(where, "standard", f"code fences are unbalanced: {len(fences)} fence lines")
+        return
+    inside = _fenced(lines)
+    prose = [(number, line) for number, line in enumerate(lines, 1) if not inside[number - 1]]
+    _check_constraints(prose, where, add)
+    _check_tables(lines, inside, where, add)
+    _check_whitespace(prose, where, add)
 
 
 def _fenced(lines: list[str]) -> list[bool]:

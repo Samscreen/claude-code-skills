@@ -56,7 +56,7 @@ To check another repository's prose against the house style, follow the house-st
 
 | Skill | Plugin | What it does |
 |---|---|---|
-| `project-bootstrap-and-audit` | `standards` | Sets up a new repository, or audits an existing one, against the PROJECT-BOOTSTRAP-AND-AUDIT standard (v0.50.0) |
+| `project-bootstrap-and-audit` | `standards` | Sets up a new repository, or audits an existing one, against the PROJECT-BOOTSTRAP-AND-AUDIT standard (v0.51.0) |
 | `agent-engineering` | `engineering` | Building, securing and running AI agents: AGENTS.md and CLAUDE.md, settings, hooks and Agent Skills, prompt injection and permissions, and agent sessions reviewing each other's work, closing rounds on evidence and stopping for a person |
 | `coding` | `engineering` | The contract every code change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson, plus errors, logging, caching, benchmarking, performance and settings in any language: rules, common mistakes, review checks and the reasons for each, with dated facts |
 | `git-workflows` | `engineering` | Commit messages, pull requests and the agents tending them, the merge strategy, conflicts, GitHub Actions CI and deploys, hooks, leaked secrets, `.gitignore`, release tags, versions, changelogs, backports and support windows, with the reasons for each and what other projects do |

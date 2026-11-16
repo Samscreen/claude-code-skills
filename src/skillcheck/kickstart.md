@@ -1,12 +1,17 @@
 > **About this file.** This is the kickstart file from release RELEASE_VERSION of
-> REPOSITORY. It holds standard vSTANDARD_VERSION, whose full file has this SHA-256:
-> `STANDARD_SHA256`
+> REPOSITORY. It holds standard vSTANDARD_VERSION: the skill's procedure, from its `SKILL.md`,
+> then each reference that names, then the standard file. The skill's files have this
+> `files-sha256`, as its Step 0 computes it:
+> `FILES_SHA256`
 >
 > The two sections no run reads are left out: *Validating a change to this standard* and
-> *Provenance*. The standard's text is otherwise unchanged. Around it, this file adds its first
-> lines, these run instructions, the frontmatter's `extract` and `run_file` lines, and the end
-> marker. The routing table and a few sentences still name the two sections; a job that needs
-> them needs the full file, from the same release.
+> *Provenance*. The skill's text is otherwise unchanged. Around it, this file adds its first
+> lines, these run instructions, the frontmatter's `extract` and `run_file` lines, a line under
+> each part's first heading naming the file it came from, and the end marker. A link to one of
+> the skill's files leads to the part that line names. The routing table and a few sentences
+> still name the two sections left out; a job that needs them needs the full skill, from the
+> same release. The skill's scripts aren't here, so Step 0 of the procedure doesn't apply: the
+> end marker shows the file arrived whole.
 
 **Run instructions.** They say which job to run and what holds throughout. The standard below
 governs everything else.

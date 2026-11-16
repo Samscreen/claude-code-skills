@@ -1,0 +1,104 @@
+{
+  "description": "The run report's blocks and each one's fields, which scripts/check_report.py reads. The fields are the templates': the header in report-skeleton.md, each phase block in the standard file's phase of that number, post_gate in its Phase 9, and the conformance self-check in references/self-check.md, whose optional blocks sit beside it. skillcheck holds this file to the templates, and its statuses to the vocabularies. A field listed in `optional` may be left out; every other field is required.",
+  "stops": {"3": "the Phase 3 wait", "5": "the end of a survey", "6": "the Phase 6 gate", "9": "the end of a full run"},
+  "waits_observed": {"3": 1, "5": 1, "6": 2, "9": 2},
+  "statuses": ["BLOCKER", "DRIFT", "GAP", "OVER", "MIRROR", "UNVERIFIABLE-HERE", "OK", "N/A"],
+  "dimensions": 10,
+  "blocks": {
+    "header": {
+      "fields": ["lifecycle", "expires", "standard", "tool", "repository", "job", "mode", "tier",
+                 "tally", "capabilities_absent", "deviations", "decisions_open",
+                 "sections_read", "sections_skipped"],
+      "optional": []
+    },
+    "phase 0": {
+      "fields": ["capabilities", "capability_proof", "asked", "degraded", "tool",
+                 "clean_tree_proof", "fetch_proof", "remote", "default_branch",
+                 "working_branch", "branch_used", "branch_override", "shallow",
+                 "clock_session", "clock_git", "clock_delta_days",
+                 "ignored_at_start", "go", "notes"],
+      "optional": []
+    },
+    "phase 1": {
+      "fields": ["decision_record_found", "decision_record_alias", "decision_entries",
+                 "adr_files", "recorded_tier", "tier_grep_proof", "runbook_found",
+                 "runbook_proof", "mode", "mode_evidence", "prior_entry",
+                 "prior_declines", "prior_deferrals", "local_mitigations",
+                 "do_not_repropose", "notes"],
+      "optional": []
+    },
+    "phase 2": {
+      "fields": ["recon_report_used", "proposed", "environment_preexisting", "setup", "languages",
+                 "agent_config", "total_lines_loaded_at_session_start",
+                 "total_bytes_loaded_at_session_start",
+                 "reference_markdown_lines", "hooks_configured",
+                 "hooks_installed", "hooks_proof", "ci", "ci_remote_conclusion",
+                 "gates_present", "gates_absent", "lockfile", "license_file",
+                 "tags", "repo_visibility", "plan_supports_branch_protection",
+                 "collaborators", "history", "present", "absent", "commands",
+                 "command_tally", "template", "notes"],
+      "optional": ["proposed"]
+    },
+    "phase 3": {
+      "fields": ["answers_source", "drafts", "owner", "copyright_holder", "exposure",
+                 "production", "dependents", "blast_radius", "audience", "tier",
+                 "tier_basis", "tier_reasoning", "tier_previous",
+                 "irreversible_resolved", "irreversible_open", "readings",
+                 "deployment", "inception", "notes"],
+      "optional": ["inception"]
+    },
+    "phase 4": {
+      "fields": ["dimensions", "tally", "tally_sum", "secondaries", "strengths", "corrections",
+                 "validated", "constrained", "overrides", "notes"],
+      "optional": []
+    },
+    "phase 5": {
+      "fields": ["table", "blockers", "over_items", "fired_triggers", "unfired_triggers",
+                 "category_checks", "notes"],
+      "optional": []
+    },
+    "phase 6": {
+      "fields": ["gate_artifact", "human_decisions", "amendments", "standard_amendments",
+                 "human_actions", "not_proposed", "premise_check", "counts",
+                 "closure_check", "no_writes_proof", "notes"],
+      "optional": []
+    },
+    "phase 7": {
+      "fields": ["applied", "declined", "deferred", "not_applicable", "base", "commits",
+                 "fresh_clone_verification", "post_apply_commands", "pushed",
+                 "pull_request", "report_delivered",
+                 "ci_remote_conclusion_after_push", "corrections", "overrides",
+                 "notes"],
+      "optional": []
+    },
+    "phase 8": {
+      "fields": ["recorded_at", "entries", "standard_version_recorded", "base_commits",
+                 "do_not_repropose_added", "notes"],
+      "optional": []
+    },
+    "phase 9": {
+      "fields": ["next_trigger", "outstanding_human_actions", "human_action_states", "sequence",
+                 "milestones", "plan_home", "plan_home_why", "review",
+                 "overrides", "notes"],
+      "optional": ["plan_home_why"]
+    },
+    "post_gate": {
+      "fields": ["asked", "review", "merge", "branches", "notes"],
+      "optional": []
+    },
+    "conformance": {
+      "fields": ["standard_version", "standard_sha256", "job", "sections_read",
+                 "sections_skipped", "ten_statuses_emitted", "tally_sums_to_ten",
+                 "new_vocabulary_coined", "fields_added_beyond_schema",
+                 "waits_observed", "wrote_before_approval",
+                 "proof_fields_hold_literal_output", "unverified_facts_relied_on",
+                 "premise_verified", "second_reader", "amendments_pre_selected",
+                 "both_consequences_on_every_amendment",
+                 "actions_requiring_a_local_clone",
+                 "declines_reproposed_without_a_fired_trigger", "report_written",
+                 "report_handed_over", "deviations", "honest_summary"],
+      "optional": [],
+      "beside": ["validated", "constrained", "corrections"]
+    }
+  }
+}

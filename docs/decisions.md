@@ -6,6 +6,48 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Piece 1 of the rebuild: the procedure into the skill, standard v0.51.0
+
+- **Chosen:** the procedure moves into `project-bootstrap-and-audit`'s `SKILL.md`: how to read
+  it, the one routing table, what it is for, its scope, the two stops and the run report. The
+  standing rules, the environment, the vocabularies, the assumptions and limitations and the
+  conformance self-check each become a reference, and `other-tools.md` says how to run the skill
+  elsewhere and lists each Claude Code-only feature it uses. The pull request lists every rule
+  moved and where.
+- **Chosen:** *Assumptions* and *Limitations* go to a reference, not `SKILL.md` as the pieces
+  table says, because `SKILL.md` holds 20,000 characters at most and they are background, not
+  procedure. Phase 6's rules on deviations and where each phase's overrides go stay in Phase 6
+  for piece 4, for the same limit.
+- **Chosen:** the run report stays Markdown with YAML blocks, the question the 2026-09-23 entry
+  left open for piece 1. Every run so far wrote it, the parity grader reads it, and a person
+  answers its decisions without a viewer. Its skeleton and schema are in `assets/`, and
+  `scripts/check_report.py` checks a report against the schema. `skillcheck` holds the schema to
+  the templates it was taken from.
+- **Chosen, from R22's choices of 2026-10-13:** Step 0 checks the copy. `SKILL.md` records
+  `files-sha256`, a hash of every other file in the skill, since the standard is no longer one
+  file; `scripts/verify_copy.py` checks it from a command line Claude Code runs as the skill
+  loads, and `skillcheck` holds it current. A newer standard on `main` gets a warning, not a stop.
+- **Version:** 0.51.0, a minor bump by the standard's *Versioning*: new rules and fields, with
+  older reports still readable.
+- **Parity, run by the coordinator on 2026-11-16:** fresh subagents ran the three samples with
+  this branch's skill, and each report passed every check in its key, `check_report.py` found 0
+  problems, and each sample was left unchanged. Three statuses differ from the baselines of
+  2026-09-23, each explained:
+  - `audit-python-cli`, dimension 4, `BLOCKER` where the baseline gave `DRIFT`: meant. A tracked
+    `settings.local.json` that allows `pip install` is a `BLOCKER` by a rule added after the
+    baseline, in the version history's "ratings made definite where runs split".
+  - `recheck-declines`, dimension 6, `GAP` where the baseline gave `DRIFT`: not piece 1's. A
+    control run of v0.50.0, before this piece, gave `GAP` too.
+  - `recheck-declines`, dimension 10, `GAP` where the baseline and the control gave `DRIFT`:
+    noise. Every run found the README's `uv sync` against `AGENTS.md`'s `uv sync --locked`; the
+    control filed it on dimension 10, a second run of this branch on dimension 2, and the first
+    left it out. Piece 1 moves none of dimension 10's rules. A second run of this branch gave
+    the same statuses as the first.
+  - Piece 1 is `shipped`. The baselines are kept as they are, since they measure the skill
+    before the rebuild.
+- **Found, not fixed:** Phase 3's draft block numbers Phase 0's questions as `p0-4`, while Phase
+  0 asks five; a run read it as `p0-<n>`. It predates piece 1 and goes to a later patch.
+
 ## 2026-11-16 — Google's small-tests-only coverage, kept as rule 2's trade-off
 
 - **Asked, by the owner:** keep `testing-patterns` rule 2, which counts integration and system
