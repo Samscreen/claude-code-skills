@@ -106,7 +106,10 @@ def test_a_branch_commit_cited_after_a_squash_merge_fails(tmp_path, merge, stran
         return
     ((path, rule, message),) = found
     assert (path, rule) == ("docs/decisions.md", "citations")
-    assert message.startswith(f"line 3: {short(cited)} is a commit HEAD doesn't reach")
+    assert message == (
+        f"line 3: {short(cited)} is a commit HEAD doesn't reach, as a squash or rebase-merge "
+        "leaves a branch's commits; cite the commit that reached main"
+    )
 
 
 def test_a_hash_naming_no_commit_here_fails_until_listed_as_foreign(tmp_path):
@@ -121,6 +124,10 @@ def test_a_hash_naming_no_commit_here_fails_until_listed_as_foreign(tmp_path):
     assert citations.FOREIGN in message
     write(root, citations.FOREIGN, "# What each hash is.\n\nabc1234def  a file's hash\n")
     assert run(root) == ("0 cited commit(s)", [])
+    # A listed hash is passed over, and the citations after it are still read.
+    first = commit(root, "first")
+    write(root, "docs/decisions.md", f"- Pinned at abc1234def, built in `{short(first)}`.\n")
+    assert run(root) == ("1 cited commit(s)", [])
 
 
 @pytest.mark.parametrize(
@@ -147,7 +154,8 @@ def test_a_shallow_clone_checks_nothing_and_says_so(tmp_path):
     first = commit(source, "first")
     write(source, "docs/decisions.md", f"- Built in `{short(first)}`.\n")
     commit(source, "records", None)
-    clone = tmp_path / "clone"
+    # A space in the path, so the check reads git's answer by line, not by word.
+    clone = tmp_path / "a clone"
     subprocess.run(
         ["git", "clone", "-q", "--depth", "1", source.as_uri(), str(clone)],
         check=True,
@@ -182,3 +190,19 @@ def test_the_summary_line_says_what_was_checked(tmp_path):
     commit(root, "records", None)
     report = check_repository(root)
     assert "standard, 1 cited commit(s), " in report.summary()
+
+
+def test_a_repository_whose_path_holds_a_space_is_checked(tmp_path):
+    root = new_repository(tmp_path / "a repo")
+    first = commit(root, "first")
+    write(root, "ROADMAP.md", f"Shipped in `{short(first)}`.\n")
+    assert run(root) == ("1 cited commit(s)", [])
+
+
+def test_a_citation_s_finding_reaches_the_report(tmp_path):
+    root = new_repository(tmp_path / "repo")
+    write(root, "CHANGELOG.md", "- Built in abc1234def.\n")
+    commit(root, "records", None)
+    assert [(f.path, f.rule) for f in check_repository(root).findings] == [
+        ("CHANGELOG.md", "citations")
+    ]

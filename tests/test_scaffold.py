@@ -78,6 +78,14 @@ def test_the_placeholder_rule_counts_and_locates(repo):
     assert finding.message == f"2 unfinished part(s) marked {PLACEHOLDER}, the first on line 3"
 
 
+def test_the_placeholder_line_counts_every_line_before_it(repo):
+    skill = repo.skill("example-skill")
+    (skill / "references" / "why.md").write_text(f"\n# Why\n\n{PLACEHOLDER} one\n", "utf-8")
+    repo.catalog(repo.plugin("example", "./skills/example-skill"))
+    (finding,) = check_repository(repo.root).findings
+    assert finding.message == f"1 unfinished part(s) marked {PLACEHOLDER}, the first on line 4"
+
+
 @pytest.mark.parametrize("name", ["Demo", "demo_skill", "-demo", "demo--skill", "d" * 65, ""])
 def test_a_bad_name_is_refused_with_nothing_written(repo, name):
     with pytest.raises(scaffold.ScaffoldError, match="lowercase letters"):

@@ -70,7 +70,8 @@ def check(root: Path, add: Add) -> None:
     """Report each time of day in the repository's Markdown written without its zone."""
     for path in _markdown(root):
         where = path.relative_to(root).as_posix()
-        lines = path.read_text(encoding="utf-8").splitlines()
+        # A stray byte that isn't UTF-8 mustn't stop the run: the rest of the file is still read.
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
         for number, line in _checked_lines(where, lines):
             for problem in _problems(CODE_SPAN.sub("", line)):
                 add(where, "times", f"line {number}: {problem}")

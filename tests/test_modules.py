@@ -60,11 +60,13 @@ def test_a_router_without_its_table_fires(repo):
     ],
 )
 def test_a_malformed_router_row_fires(repo, row, message):
-    skill_dir = built(repo, "first")
+    skill_dir = built(repo, "first", "second")
     text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
     old = "| [`first`](references/first.md) | first requests |"
     (skill_dir / "SKILL.md").write_text(text.replace(old, row), encoding="utf-8")
     assert ("skills/demo/SKILL.md", "modules", message) in findings(repo)
+    # The rows after it are still read.
+    assert [module.name for module in modules.router(skill_dir)[0]] == ["second"]
 
 
 def test_a_module_routed_twice_fires(repo):
@@ -72,6 +74,40 @@ def test_a_module_routed_twice_fires(repo):
     modules.add_row(skill_dir / "SKILL.md", "| [`first`](references/first.md) | again |")
     assert findings(repo) == [
         ("skills/demo/SKILL.md", "modules", "line 13: `first` is routed twice")
+    ]
+
+
+def test_rows_after_one_routed_twice_are_still_read(repo):
+    skill_dir = built(repo, "first", "second")
+    text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+    old = "| [`first`](references/first.md) | first requests |\n"
+    (skill_dir / "SKILL.md").write_text(text.replace(old, old * 2), encoding="utf-8")
+    assert [module.name for module in modules.router(skill_dir)[0]] == ["first", "second"]
+
+
+def test_a_router_written_without_spaces_is_read(repo):
+    skill_dir = built(repo, "first")
+    text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+    text = text.replace("| Module | Read it for |", "|Module|Read it for|")
+    text = text.replace(
+        "| [`first`](references/first.md) | first requests |", "|[`first`](references/first.md)|x|"
+    )
+    (skill_dir / "SKILL.md").write_text(text, encoding="utf-8")
+    assert findings(repo) == []
+
+
+def test_a_module_with_no_facts_section_is_reported_not_fatal(repo):
+    skill_dir = built(repo, "first")
+    path = skill_dir / "references" / "first.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(text[: text.index("## Facts")] + text[text.index("## Sources") :], "utf-8")
+    assert findings(repo) == [
+        (
+            "skills/demo/references/first.md",
+            "facts",
+            "line 7 names fact `first-fact`, which no fact table in the repository defines",
+        ),
+        ("skills/demo/references/first.md", "modules", "missing the section(s) Facts"),
     ]
 
 
@@ -128,16 +164,26 @@ def test_a_module_missing_sections_fires(repo):
 @pytest.mark.parametrize(
     ("content", "message"),
     [
-        (None, "`first` has no trigger tests"),
-        ("[", "not JSON: Expecting value: line 1 column 2 (char 1)"),
-        ('[{"query": 1}]', 'a list of {"query": text, "should_trigger": true or false}'),
+        (None, ("modules", "`first` has no trigger tests")),
+        ("[", ("modules", "not JSON: Expecting value: line 1 column 2 (char 1)")),
+        (
+            '[{"query": 1}]',
+            ("modules", 'a list of {"query": text, "should_trigger": true or false}'),
+        ),
+        (
+            '[{"query": "q"}]',
+            ("modules", 'a list of {"query": text, "should_trigger": true or false}'),
+        ),
         (
             '[{"query": "q", "should_trigger": true}]',
-            "needs requests that should reach the module and near misses that shouldn't",
+            (
+                "modules",
+                "needs requests that should reach the module and near misses that shouldn't",
+            ),
         ),
         (
             '[{"query": "TODO(new-skill) q", "should_trigger": true}]',
-            "a request still marked TODO(new-skill)",
+            ("placeholder", "a request still marked TODO(new-skill)"),
         ),
     ],
 )
@@ -148,8 +194,7 @@ def test_a_module_needs_sound_trigger_tests(repo, content, message):
         fixture.unlink()
     else:
         fixture.write_text(content, encoding="utf-8")
-    found = [(path, text) for path, _, text in findings(repo)]
-    assert found == [("tests/fixtures/modules/first.json", message)]
+    assert findings(repo) == [("tests/fixtures/modules/first.json", *message)]
 
 
 def test_an_unrouted_reference_fires(repo):
@@ -288,8 +333,8 @@ def test_due_skips_a_routed_module_with_no_file(repo, capsys):
 def test_the_roadmap_keeps_step_with_the_routers(repo, rows, message):
     built(repo, "first")
     repo.roadmap({"demo": "shipped"}, rows)
-    found = [(path, text) for path, _, text in findings(repo)]
-    assert message in found
+    path, text = message
+    assert (path, "roadmap", text) in findings(repo)
 
 
 def test_a_roadmap_row_naming_another_skill_fires(repo):
@@ -299,9 +344,10 @@ def test_a_roadmap_row_naming_another_skill_fires(repo):
         path.read_text(encoding="utf-8").replace("| `first` | `demo` |", "| `first` | demo |"),
         encoding="utf-8",
     )
-    assert ("skills/demo/SKILL.md", "roadmap", "ROADMAP.md gives module `first` another skill") in (
-        findings(repo)
-    )
+    assert findings(repo) == [
+        ("ROADMAP.md", "roadmap", "module `first` is marked shipped in ``, which doesn't route it"),
+        ("skills/demo/SKILL.md", "roadmap", "ROADMAP.md gives module `first` another skill"),
+    ]
 
 
 def test_a_module_listed_twice_in_the_roadmap_fires(repo):
@@ -342,3 +388,25 @@ def test_the_fixture_helper_writes_both_kinds_of_case(repo):
     repo.modular_skill("demo", "first")
     cases = json.loads((repo.root / modules.FIXTURES / "first.json").read_text(encoding="utf-8"))
     assert {case["should_trigger"] for case in cases} == {True, False}
+
+
+def test_a_modules_table_without_skill_or_status_columns_fails_each_row(repo):
+    built(repo, "first")
+    path = repo.root / "ROADMAP.md"
+    text = path.read_text(encoding="utf-8")
+    text = text.replace(
+        "| Module | Skill | Status |\n|---|---|---|", "| Module | Note |\n|---|---|"
+    )
+    path.write_text(text.replace("| `first` | `demo` | shipped |", "| `first` | none |"), "utf-8")
+    assert findings(repo) == [
+        (
+            "ROADMAP.md",
+            "roadmap",
+            "module `first` has status ''; use one of shipped, building, researching, planned",
+        ),
+        (
+            "skills/demo/SKILL.md",
+            "roadmap",
+            "module `first` is not listed as shipped in ROADMAP.md",
+        ),
+    ]

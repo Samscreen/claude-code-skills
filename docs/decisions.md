@@ -6,6 +6,89 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Mutation tests of all of `src/skillcheck/core/`, for release 0.1.31
+
+- **Asked, by the owner:** a session runs mutation testing on `src/skillcheck/core/` before each
+  release and fixes what survives (the owner's decision, 2026-11-16). Release 0.1.31 waits on
+  this run. The run of 2026-11-03 covered `times.py` and `text.py` alone; this one covers every
+  module in `core/`, `citations.py` and `skill_parts.py` included, which merged during it.
+- **Tool:** mutmut 3.8.1, still the newest release on 2026-11-16 (PyPI, uploaded 2026-10-28),
+  with `uv run --with mutmut==3.8.1`. Every mutant faced the whole suite, which mutmut narrows
+  to the tests that reach the mutated function.
+- **Setup, for the next run:** in a scratch directory outside the checkout, never committed:
+  - `git clone --no-local` the checkout, since the citations tests and the repository's own
+    test need its history, and copy in any uncommitted change.
+  - In the copy's `pyproject.toml`, drop the three `--cov` options from `addopts`, and add a
+    `[tool.mutmut]` table: `source_paths = ["src/"]`, `only_mutate =
+    ["src/skillcheck/core/*.py"]`, and `also_copy` naming every top-level file and directory the
+    tests read (`skills`, `docs`, `research`, `.claude`, `.claude-plugin`, `.github`, `.vale`,
+    `.vale.ini`, the root Markdown files, `LICENSE`, `bom.json`, `package.json`,
+    `package-lock.json`, `uv.lock`, `.test-baseline`, `.gitignore`, `.editorconfig`,
+    `.gitattributes` and `.python-version`).
+  - `git clone --no-local . mutants`, then delete `mutants/src/skillcheck/core`, so mutmut's
+    working copy has the history and mutmut writes its own mutants there. Without the deletion
+    it keeps the unmutated files and stops with "could not find any test case for any mutant".
+  - `uv run --with mutmut==3.8.1 mutmut run --max-children 4`, then `mutmut results` and
+    `mutmut show <name>`; `mutmut run <name> ...` reruns chosen mutants after a test changes.
+- **Before:** on the tree this work started from, mutmut made 3,057 mutants: 2,641 killed, 14
+  timed out, 2 crashed the test run and 400 survived. Most survivors were findings whose file,
+  rule or words no test held: a test checked only the rule, or only part of the message, so a
+  check could name no file or say nothing and still pass. The rest were real gaps: rows read
+  after a malformed or duplicate row, a name that is not a string, a plugin with no name or no
+  `skills`, a whole-folder catalog entry followed by more paths, a line count after a blank
+  first line, a listing exactly at its budget, a context file exactly at its byte limit, the
+  standard's version history with a repeated version, an empty or unclosed `yaml` block, a
+  table separator with alignment colons, an indented or compact table, an allowance before an
+  empty block, steering text in a script, an address after a version number, a page in Latin-1
+  or with a byte that isn't UTF-8, a quote's sources failing together, and `git ls-remote` run
+  for real. The code merged during the run brought more of the same: `citations.py` had 17
+  survivors, and `skill_parts.py` with `standard.check_markdown` about 55, among them a
+  `<constraints>` or table defect in a part, which no test planted.
+- **Tests:** every finding a test plants is now held whole, file, rule and words. New tests
+  plant each gap above. `.test-baseline` moves from 738 to 799.
+- **After:** on the final tree, mutmut made 3,682 mutants: 3,508 killed, 15 timed out, 3
+  crashed the test run and 156 survived. None is a missing test:
+  - **124 change nothing a run can see:** 40 spell UTF-8 another way (`"UTF-8"`); 43 drop the
+    encoding, which Python 3.15's default UTF-8 mode makes UTF-8 (PEP 686), and
+    `.python-version` and CI run 3.15 (on 3.14, which `requires-python` still allows, they would
+    differ only under a locale that isn't UTF-8); 12 pass `None` or nothing for a `False`
+    keyword; 4 pass `None` as `str.count`'s start; 5 change `git rev-parse` flags whose exit
+    status stays the same; 4 split `FACTS` another way on a path with one slash; 2 change an
+    anchor split's limit, keeping its first part; 4 number fence lines only counted; 2 read a
+    comment line's first word as a withheld hash or a foreign hash, which no word or citation
+    equals; 2 change `User-Agent`'s case, which `urllib` normalizes; and one each:
+    `_Text.hidden = 1`, since HTML parsers read a script's or style's contents as text, so no
+    second one opens inside it; `support_ending`'s `by <= end`, whose extra case the first
+    branch always takes; a missing Skill cell defaulting to `XXXX`, which `_ticked` reads as
+    `""` too; `found =` for `found +=` where the list is always empty; `lstrip("XX0XX")` on an
+    hour's digits; and `(-2, name)` for `(-1, name)`, still before phase 0.
+  - **16 can't be reached:** each changes how a skill's Markdown with a byte that isn't UTF-8 is
+    read (`errors="replace"`). `times.check` reads every Markdown file strictly first and stops
+    the run with `UnicodeDecodeError`, so no such file got that far. Fixed: below.
+  - **16 differ only on input no file here has:** a capital X at one end of a table row, a
+    secret's value, a quotation, a repository URL or a link target (`checks._cells`,
+    `content._test_data`, `content._safety`, `reporting.issues_url`, `_check_reference_mentions`,
+    `facts._parse`, `facts._plain`, `times.check`); a standard's first or second line holding a
+    table comment, a blank or a `yaml` block, where its frontmatter starts (`_check_tables`,
+    `_check_phase_blocks`, `_check_whitespace`); a fence line with trailing spaces (`_fenced`,
+    twice); a `yaml` fence that closes another block, or a phase line on the line above one
+    (`_check_phase_blocks`, twice); and `content._files` reading root files of every suffix for
+    withheld names, which is stricter, not weaker.
+- **Time:** about 4 hours 50 minutes in all, 15:42 UTC to 20:45 UTC, with a pause for a usage limit.
+  The full runs took 29 minutes 22 seconds (3,057 mutants), 27 minutes 45 seconds (3,223, after
+  the first merge) and 32 minutes 10 seconds (3,682, the final tree); reruns of chosen mutants
+  took about 12 minutes. The suite takes about 20 seconds.
+- **Not run:** the 51 hand-written mutants of 2026-11-03, for the module-level patterns mutmut
+  leaves alone. `text.py` has changed since, and the script's edits no longer apply as written.
+- **Found and fixed:** `times.check` read each Markdown file with strict UTF-8, so one byte
+  that isn't UTF-8 in any Markdown file it read ended `skillcheck` with a traceback, not a
+  finding. It now reads with `errors="replace"`, as the checks before it do, and a test plants
+  such a byte and expects the file's other findings; it fails on the old code. The 16
+  unreachable mutants above can now be reached, for the next run.
+- **README:** the *Releasing* list gains step 2, before the Release workflow runs: a session
+  runs mutation testing on `src/skillcheck/core/`, and each survivor gets a test or a line here
+  saying why it changes nothing that matters.
+
 ## 2026-11-16 — Piece 1 of the rebuild: the procedure into the skill, standard v0.51.0
 
 - **Chosen:** the procedure moves into `project-bootstrap-and-audit`'s `SKILL.md`: how to read

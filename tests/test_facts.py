@@ -114,10 +114,31 @@ def test_malformed_row_fires_alone(repo, bad_row, message):
 
 
 def test_an_id_defined_twice_fires(repo):
-    facts_skill(repo, HEADER + row() + row(checked="2026-02-01"))
+    facts_skill(repo, HEADER + row() + row(checked="2026-02-01") + row(ident="`two`"))
     assert findings(repo) == [
         (FACTS_MD, "facts", f"line {FIRST_ROW + 1}: `one` is already defined above")
     ]
+    assert [fact.id for fact in facts.collect(repo.root)] == ["one", "two"]
+
+
+def test_rows_after_a_malformed_row_are_still_read(repo):
+    facts_skill(repo, HEADER + row(quote="") + row(ident="`two`"))
+    assert [fact.id for fact in facts.collect(repo.root)] == ["two"]
+
+
+def test_a_table_written_without_spaces_or_with_aligned_columns_is_read(repo):
+    compact = "|ID|Fact|Source|Quote|Checked|Check by|\n| :-- | :-- | :-- | :-- | :-- | --: |\n"
+    compact += '|`one`|A fact|[Docs](https://example.com/docs)|"a quote"|2026-01-01|2026-06-30|\n'
+    facts_skill(repo, compact)
+    assert findings(repo) == []
+    assert [fact.id for fact in facts.collect(repo.root)] == ["one"]
+
+
+def test_collect_gathers_every_skills_facts(repo):
+    facts_skill(repo, HEADER + row())
+    other = repo.skill("other-skill")
+    (other / "references" / "facts.md").write_text(f"{HEADER}{row(ident='`two`')}", "utf-8")
+    assert [fact.id for fact in facts.collect(repo.root)] == ["one", "two"]
 
 
 def test_a_table_with_other_columns_fires_and_its_rows_are_skipped(repo):
@@ -135,7 +156,7 @@ def test_a_table_with_other_columns_fires_and_its_rows_are_skipped(repo):
 def test_a_named_fact_that_is_not_defined_fires(repo):
     skill_dir = facts_skill(repo, HEADER + row(), body="See fact `missing-one`.\n")
     (skill_dir / "references" / "other.md").write_text(
-        "Facts `one` and `gone`, and a fact `NOT-AN-ID` in prose.\n", encoding="utf-8"
+        "\nFacts `one` and `gone`, and a fact `NOT-AN-ID` in prose.\n", encoding="utf-8"
     )
     # The facts file itself isn't searched: its rows describe facts, they don't name them.
     (skill_dir / "references" / "facts.md").write_text(
@@ -150,7 +171,7 @@ def test_a_named_fact_that_is_not_defined_fires(repo):
         (
             "skills/facts-skill/references/other.md",
             "facts",
-            "line 1 names fact `gone`, which no fact table in the repository defines",
+            "line 2 names fact `gone`, which no fact table in the repository defines",
         ),
     ]
 
@@ -219,11 +240,13 @@ def test_verify_finds_quotes_however_the_page_sets_them():
 
 def test_verify_reports_a_missing_quote_and_an_unreadable_source():
     def fetch(source: str) -> str:
-        if source == "https://example.com/down":
+        if source.startswith("https://example.com/down"):
             raise OSError("HTTP Error 404: Not Found")
         return "the words that are there"
 
     checked = [
+        fact("by-hand", "https://example.com/up", quotes=()),
+        fact("unreadable-first", "https://example.com/down", "https://example.com/down-too"),
         fact("gone", "https://example.com/up", quotes=("the words that are there", "and gone")),
         fact("elided-gone", "https://example.com/up", quotes=("the words … never were",)),
         fact("unreadable", "https://example.com/down"),
@@ -235,6 +258,11 @@ def test_verify_reports_a_missing_quote_and_an_unreadable_source():
         ),
     ]
     assert [(f.id, problem) for f, problem in facts.verify(checked, fetch)] == [
+        (
+            "unreadable-first",
+            "https://example.com/down could not be read (HTTP Error 404: Not Found); "
+            "https://example.com/down-too could not be read (HTTP Error 404: Not Found)",
+        ),
         ("gone", 'the quote is no longer at its source: "and gone"'),
         ("elided-gone", 'the quote is no longer at its source: "the words … never were"'),
         ("unreadable", "https://example.com/down could not be read (HTTP Error 404: Not Found)"),
@@ -243,7 +271,7 @@ def test_verify_reports_a_missing_quote_and_an_unreadable_source():
 
 def test_a_quote_on_a_source_that_failed_is_not_called_gone():
     def fetch(source: str) -> str:
-        if source == "https://example.com/down":
+        if source.startswith("https://example.com/down"):
             raise OSError("HTTP Error 404: Not Found")
         return "the first package's version"
 
@@ -252,12 +280,14 @@ def test_a_quote_on_a_source_that_failed_is_not_called_gone():
             "two-pages",
             "https://example.com/up",
             "https://example.com/down",
+            "https://example.com/down-too",
             quotes=("the first package's version", "the second package's version"),
         )
     ]
     assert [problem for _, problem in facts.verify(checked, fetch)] == [
         'the quote is not in the sources read: "the second package\'s version"; '
-        "https://example.com/down could not be read (HTTP Error 404: Not Found)"
+        "https://example.com/down could not be read (HTTP Error 404: Not Found); "
+        "https://example.com/down-too could not be read (HTTP Error 404: Not Found)"
     ]
 
 
@@ -340,6 +370,23 @@ def test_fetch_returns_other_content_as_it_came(monkeypatch):
     assert facts.fetch_text("https://example.com/api") == body
 
 
+@pytest.mark.parametrize(
+    ("body", "content_type", "text"),
+    [
+        ("café".encode("latin-1"), "text/plain; charset=latin-1", "café"),
+        # A byte that isn't UTF-8 becomes U+FFFD rather than ending the run.
+        (b"caf\xe9", "text/plain", "caf\ufffd"),
+    ],
+)
+def test_fetch_decodes_by_the_charset_the_server_names(monkeypatch, body, content_type, text):
+    monkeypatch.setattr(
+        facts.urllib.request,
+        "urlopen",
+        lambda request, timeout: FakeResponse(body, content_type),
+    )
+    assert facts.fetch_text("https://example.com/notes") == text
+
+
 def test_fetch_refuses_a_pdf_rather_than_read_its_bytes_as_text(monkeypatch):
     monkeypatch.setattr(
         facts.urllib.request,
@@ -394,11 +441,34 @@ def test_a_failed_or_slow_ls_remote_is_an_unreadable_source(monkeypatch):
         facts.fetch_text("git ls-remote --tags https://example.com/repo")
 
     def slow(args, **kwargs):
+        assert kwargs["timeout"] == facts.TIMEOUT_SECONDS
         raise subprocess.TimeoutExpired(args, kwargs["timeout"])
 
     monkeypatch.setattr(facts.subprocess, "run", slow)
     with pytest.raises(OSError, match="git ls-remote took over 30 seconds"):
         facts.fetch_text("git ls-remote --tags https://example.com/repo")
+
+
+def test_ls_remote_reads_a_real_repository_s_tags_and_reports_a_missing_one(tmp_path):
+    def git(*args: str) -> None:
+        subprocess.run(["git", "-C", str(tmp_path), *args], check=True, capture_output=True)
+
+    git("init", "-q")
+    git(
+        "-c",
+        "user.name=t",
+        "-c",
+        "user.email=t@example.com",
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "x",
+    )
+    git("tag", "v1.0.0")
+    assert facts._ls_remote(str(tmp_path)).endswith("\trefs/tags/v1.0.0\n")
+    with pytest.raises(OSError, match="git ls-remote exited 128"):
+        facts._ls_remote(str(tmp_path / "missing"))
 
 
 def dated_skill(repo):
@@ -473,6 +543,7 @@ def ending(end: str, checked: str) -> facts.Fact:
             ],
         ),
         ("2026-11-10", "2026-11-11", []),  # checked since it passed
+        ("2026-11-10", "2026-11-10", []),  # checked on the day it passed
         (
             "2026-11-16",
             "2026-01-01",

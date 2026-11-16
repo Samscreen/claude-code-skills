@@ -75,9 +75,51 @@ def test_a_shipped_row_with_no_skill_fires(repo):
 @pytest.mark.parametrize("status", ["done", "Shipped", ""])
 def test_a_status_outside_the_closed_set_fires(repo, status):
     roadmap(repo, ("later-skill", status))
-    [(path, rule, message)] = findings(check_repository(repo.root))
-    assert (path, rule) == ("ROADMAP.md", "roadmap")
-    assert "status" in message
+    assert findings(check_repository(repo.root)) == [
+        (
+            "ROADMAP.md",
+            "roadmap",
+            f"`later-skill` has status {status!r}; use one of "
+            "shipped, building, researching, planned",
+        )
+    ]
+
+
+def test_a_skills_table_without_a_status_column_fails_each_row(repo):
+    text = "| Skill | Covers |\n|---|---|\n| `later-skill` | covers |\n"
+    (repo.root / "ROADMAP.md").write_text(text, encoding="utf-8")
+    assert findings(check_repository(repo.root)) == [
+        (
+            "ROADMAP.md",
+            "roadmap",
+            "`later-skill` has status ''; use one of shipped, building, researching, planned",
+        )
+    ]
+
+
+@pytest.mark.parametrize(
+    "table",
+    [
+        # GitHub's alignment colons and spaces in the separator line.
+        "| Skill | Status |\n| :--- | :---: |\n| `later-skill` | planned |\n",
+        # A row indented under its table.
+        "| Skill | Status |\n|---|---|\n  | `later-skill` | planned |\n",
+        # A name not in code formatting, and a row with a cell more than its header.
+        "| Skill | Status |\n|---|---|\n| later-skill | planned | an extra cell |\n",
+    ],
+)
+def test_each_way_of_writing_a_skills_table_is_read(repo, table):
+    (repo.root / "ROADMAP.md").write_text(table + table.split("\n", 2)[2], encoding="utf-8")
+    assert findings(check_repository(repo.root)) == [
+        ("ROADMAP.md", "roadmap", "`later-skill` is listed 2 times")
+    ]
+
+
+def test_a_line_under_a_skill_header_with_other_characters_is_not_a_separator(repo):
+    text = "| Skill | Status |\n| -X- | --- |\n| `later-skill` | done |\n"
+    (repo.root / "ROADMAP.md").write_text(text, encoding="utf-8")
+    report = check_repository(repo.root)
+    assert (report.findings, report.roadmap_entries) == ([], 0)
 
 
 def test_a_skill_listed_twice_fires(repo):
