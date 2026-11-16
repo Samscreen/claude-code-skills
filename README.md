@@ -56,7 +56,7 @@ To check another repository's prose against the house style, follow the house-st
 
 | Skill | Plugin | What it does |
 |---|---|---|
-| `project-bootstrap-and-audit` | `standards` | Sets up a new repository, or audits an existing one, against the PROJECT-BOOTSTRAP-AND-AUDIT standard (v0.49.1) |
+| `project-bootstrap-and-audit` | `standards` | Sets up a new repository, or audits an existing one, against the PROJECT-BOOTSTRAP-AND-AUDIT standard (v0.49.2) |
 | `agent-engineering` | `engineering` | Building, securing and running AI agents: AGENTS.md and CLAUDE.md, settings, hooks and Agent Skills, prompt injection and permissions, and agent sessions reviewing each other's work, closing rounds on evidence and stopping for a person |
 | `coding` | `engineering` | The contract every code change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson, plus errors, logging, caching, benchmarking, performance and settings in any language: rules, common mistakes, review checks and the reasons for each, with dated facts |
 | `git-workflows` | `engineering` | Commit messages, pull requests and the agents tending them, the merge strategy, conflicts, GitHub Actions CI and deploys, hooks, leaked secrets, `.gitignore`, release tags, versions, changelogs, backports and support windows, with the reasons for each and what other projects do |
@@ -135,8 +135,9 @@ ones nothing checks.
    the version changes; the release that follows reaches cloud sessions with the hook.
 2. Once it merges and CI passes on `main`, run the Release workflow from the Actions tab, with
    the version and the merge commit's full SHA.
-3. Then a session re-checks this repository against the standard, with the new release's
-   kickstart file, and sends the owner its report. What it raises waits for the owner's
+3. After each release of the standard, and at least every three months, a session re-checks
+   this repository against the standard, with the newest release's kickstart file, and sends
+   the owner its report (the owner, 2026-11-16). What it raises waits for the owner's
    answers, as in any other run, and the release doesn't wait for it.
 
 ## Operations
