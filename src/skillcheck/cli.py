@@ -33,7 +33,8 @@ def main(argv: list[str] | None = None) -> int:
         const=date.today(),
         type=_day,
         metavar="DATE",
-        help="list the facts to check again by today, or by DATE (YYYY-MM-DD)",
+        help="list the facts to check again by today, or by DATE (YYYY-MM-DD), with those "
+        "naming an end of support within six months of it, or one passed since their check",
     )
     mode.add_argument(
         "--verify",
@@ -266,12 +267,14 @@ def _day(text: str) -> date:
 
 def _due(root: Path, by: date) -> int:
     found = facts.collect(root)
-    due = [fact for fact in found if fact.check_by <= by]
-    for fact in due:
-        print(
-            f"{fact.path}:{fact.line}: due: `{fact.id}` was to be checked again by {fact.check_by}"
-        )
-    print(f"skillcheck: {len(found)} fact(s), {len(due)} due by {by}")
+    due = 0
+    for fact in found:
+        reasons = [f"was to be checked again by {fact.check_by}"] if fact.check_by <= by else []
+        reasons += facts.support_ending(fact, by)
+        for reason in reasons:
+            print(f"{fact.path}:{fact.line}: due: `{fact.id}` {reason}")
+        due += bool(reasons)
+    print(f"skillcheck: {len(found)} fact(s), {due} due by {by}")
     return 1 if due else 0
 
 

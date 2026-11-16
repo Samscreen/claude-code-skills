@@ -1442,7 +1442,7 @@ trigger.
 | Item | What it is | Status | Trigger |
 |---|---|---|---|
 | Weekly currency check | The Freshness workflow, each Monday: facts due or whose quote is gone (`--due`, `--verify`), and dependencies behind their newest release (`--outdated`), each kept as one open issue | shipped | done, 2026-10-20 |
-| End-of-life warning | A runtime or dependency whose support ends within six months, which the weekly check doesn't yet name | planned | the first category skill ships: met when `coding` shipped in release 0.1.22 on 2026-10-26, so the item is open |
+| End-of-life warning | A runtime or dependency whose support ends within six months. `--due` counts a fact due when its own words date an end of support, after a word such as "ends", "ended", "to" or "until", that falls within six months or has passed since the fact was checked, so the weekly check names it | shipped | done, 2026-11-16 |
 | `copier` template | The standard's starter files, so a new repository is set up without a session | planned | the first repository set up from this one |
 | A repository's own skills | `skillcheck` on a consuming repository's `.claude/skills/`, without this catalog's checks, with a marker for a draft and a check of a skill's scripts and tests beside it. Both audited repositories' steward skills asked for it; `--verify` there also needs to tell a source that wants credentials from a quote that's gone | planned | the next audit of either repository |
 | Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI |

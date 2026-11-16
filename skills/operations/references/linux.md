@@ -198,7 +198,7 @@ Versions, dates and defaults, each named elsewhere by its ID. Checked 2026-11-11
 
 | ID | Fact | Source | Quote | Checked | Check by |
 |---|---|---|---|---|---|
-| `linux-ubuntu` | Ubuntu LTS: five years; interims nine months; 22.04 ends May 2027 | [Ubuntu release cycle](https://ubuntu.com/about/release-cycle) | "LTS are released every two years and receive 5 years of standard security maintenance." and "with only 9 months of updates" and "Ubuntu 22.04 LTS Released: Apr 2022 Standard security maintenance May 2027" | 2026-11-11 | 2027-02-11 |
+| `linux-ubuntu` | Ubuntu LTS: five years; interims nine months; 22.04 ends 2027-05 | [Ubuntu release cycle](https://ubuntu.com/about/release-cycle) | "LTS are released every two years and receive 5 years of standard security maintenance." and "with only 9 months of updates" and "Ubuntu 22.04 LTS Released: Apr 2022 Standard security maintenance May 2027" | 2026-11-11 | 2027-02-11 |
 | `linux-debian-13` | Debian 13: full to 2028-08-09, LTS to 2030-06-30 | [Debian trixie](https://www.debian.org/releases/trixie/) | "the initial three years of full Debian support, until August 9th, 2028, and two years of Long Term Support (LTS), until June 30th, 2030" | 2026-11-11 | 2027-02-11 |
 | `linux-debian-12` | Debian 12: full ended 2026-07-11, LTS to 2028-06-30 | [Debian bookworm](https://www.debian.org/releases/bookworm/) | "until July 11th, 2026, and two years of Long Term Support (LTS), until June 30th, 2028" | 2026-11-11 | 2027-02-11 |
 | `linux-rhel` | RHEL 8, 9 and 10: ten-year life cycle | [RHEL life cycle](https://access.redhat.com/support/policy/updates/errata) | "Red Hat Enterprise Linux versions 8, 9, and 10 deliver a ten-year life cycle" | 2026-11-11 | 2027-02-11 |
