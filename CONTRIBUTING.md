@@ -66,13 +66,10 @@ didn't work. Every skill tells it to answer your problem first, then to say in o
 whether the fault looks like the skill's, and why. When it is the skill's, Claude drafts a full
 report for you to paste as an issue here. Check the draft before you post it.
 
-To write one yourself, open an issue on this repository. Say:
-
-- what you asked, word for word;
-- where: Claude Code or claude.ai, and the plugin's version (`/plugin` in Claude Code lists it);
-- what loaded and what it said;
-- what you expected instead, and why, with a source where a fact is wrong. A fact's ID, such as
-  `node20`, is in the module that holds it.
+To write one yourself, open an issue on this repository and choose *A problem with a skill*.
+Its fields ask for what Claude's draft holds: the skill and module, the version, where you used
+it, your request word for word, the line that misled, what happened, and what's right with its
+source. A fact's ID, such as `node20`, is in the module that holds it.
 
 A security problem goes through the Security tab instead, as [SECURITY.md](SECURITY.md) says.
 Please don't open a public issue for one.

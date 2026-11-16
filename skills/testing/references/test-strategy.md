@@ -6,8 +6,9 @@ data and temporary directories, finding what no test covers, tests that are alwa
 testing with no expected output: metamorphic and differential testing.
 
 Coverage, doubles, contract tests, runner settings and each language's tools are
-`testing-patterns`; what output is checked against, `test-oracles`; hardware runs, their tiers and fault injection, `acceptance-runs`; which tests
-run before a merge and how long CI takes, git-workflows' `ci-speed`. The standard's dimension 5,
+`testing-patterns`; what output is checked against, `test-oracles`; hardware runs, their tiers
+and fault injection, `acceptance-runs`; which tests run before a merge and how long CI takes,
+git-workflows' `ci-speed`. The standard's dimension 5,
 *Testing and verification*, sets the gates a repository needs.
 
 ## Rules
