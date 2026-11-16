@@ -131,7 +131,8 @@ ones nothing checks.
 ## Releasing
 
 1. In the pull request, set the new version in every catalog entry, and add its section to
-   `CHANGELOG.md`.
+   `CHANGELOG.md`. Its merge is what reaches Claude Code plugin installs, which take `main` once
+   the version changes; the release that follows reaches cloud sessions with the hook.
 2. Once it merges and CI passes on `main`, run the Release workflow from the Actions tab, with
    the version and the merge commit's full SHA.
 3. Then a session re-checks this repository against the standard, with the new release's

@@ -68,3 +68,20 @@ def test_each_action_is_pinned_to_one_commit_everywhere():
         "pin each action to the commit this repository's own workflows use, in the skills' "
         f"assets/workflows too: {split}"
     )
+
+
+def test_every_tracked_shell_script_passes_shellcheck():
+    # cloud-setup.sh runs in every cloud session that installs the skills, and wrap-check.sh
+    # ships to users; neither is a Markdown example, so the examples check never reads them.
+    # cloud-setup.sh is lines to append to a setup script, so it names no shell of its own.
+    listed = subprocess.run(
+        ["git", "ls-files", "*.sh"], cwd=ROOT, capture_output=True, text=True, check=True
+    ).stdout.split()
+    assert listed
+    linted = subprocess.run(
+        ["shellcheck", "--shell=bash", "--severity=warning", *listed],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert linted.returncode == 0, linted.stdout
