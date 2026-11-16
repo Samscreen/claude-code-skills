@@ -31,6 +31,12 @@ Notable changes to this repository. The format follows
   patterns are in `writing-style`, and the heading-colon fact in `markdown-format`.
 - `testing-patterns` no longer holds the strategy note that waited for R06c, and `test-oracles`,
   `acceptance-runs`, `flaky-tests` and `test-gates` send strategy questions to `test-strategy`.
+- `ROADMAP.md`'s applied findings, its lessons taken in and the front door's settled choices, and
+  `docs/decisions.md`'s entries before 2026-10-16 and its release-only entries, moved verbatim to
+  the `archive` branch under `2026-11-16/`. `docs/archive.md` indexes them, and
+  `docs/decisions.md` ends with the standing decisions they hold.
+- The README's runbook for withdrawing a bad skill is now `docs/withdrawing-a-skill.md`, linked
+  from the README's Operations section.
 
 ### Fixed
 
