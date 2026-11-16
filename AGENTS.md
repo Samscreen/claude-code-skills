@@ -83,8 +83,8 @@ Each says what fails when it's broken. One that names nothing is advice: nothing
   it's a dependency or a research source. CI's `gitleaks` catches credentials; the
   `private-name` rule fails a name hashed in `.github/private-names.sha256` (add one with
   `uv run skillcheck --hash-name NAME`, never writing the name in a commit).
-- **Pull requests merge with a merge commit,** the only method the settings allow. Commits are
-  cited in pull requests, records and reports, and a squash or rebase-merge strands each citation.
+- **Pull requests merge with a merge commit,** the only method the settings allow. A squash or
+  rebase-merge strands each cited commit. The `citations` check fails a stranded one in the records.
 - **Commit subjects read "area: summary",** such as `skillcheck: name the stale map file`. The
   `subjects` check fails any other, merges and reverts aside. Dependabot's carry a `deps:` prefix.
 - **A session merges its own pull request once every check passes,** for work the owner asked
