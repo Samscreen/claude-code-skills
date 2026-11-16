@@ -10,7 +10,7 @@ What a result is checked against, independent references and scoring a tool by i
 are `test-oracles`; a test that fails only some of the time is `flaky-tests`. CI triggers,
 required checks, timeouts and the completion guard are `ci-workflows`, and how long CI takes is
 `ci-speed`, both in the git-workflows skill. Test strategy, doubles, fixtures, coverage and
-mutation-testing tools are the planned `testing-patterns` module.
+mutation-testing tools are the `testing-patterns` module.
 
 ## Rules
 
@@ -76,7 +76,7 @@ Each gets a planted test of its own (L56):
 Google mutates only changed code, during code review (fact `tg-mutation-diff`), and leaves out
 lines that are uncovered or uninteresting, which it calls arid (fact `tg-arid-lines`). Do the
 same to a check's own diff: turn `>=` into `>`, `all` into `any`, delete an assertion, compare
-a value with itself. A test of the checker should fail on each. Tools for it are the planned
+a value with itself. A test of the checker should fail on each. Tools for it are the
 `testing-patterns` module's.
 
 `claude plugin eval` runs each case with and without the plugin, and leaves out of the score a

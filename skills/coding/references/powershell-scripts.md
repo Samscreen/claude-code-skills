@@ -5,8 +5,8 @@ writing for both, encoding, advanced functions, `-WhatIf`, errors and exit codes
 prompts in jobs, modules, PSScriptAnalyzer and Pester.
 
 Credentials, untrusted input, `Invoke-Expression`, execution policy and signing are
-`powershell-security`'s; Windows Server administration, the planned `windows-admin` module's;
-test design, the planned `testing` skill's. Pins, CI and layout are the
+`powershell-security`'s; Windows Server administration, the `windows-admin` module's;
+test design, the `testing` skill's. Pins, CI and layout are the
 project-bootstrap-and-audit standard's.
 
 ## Rules

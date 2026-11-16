@@ -84,27 +84,27 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `keeping-current` | `project-bootstrap-and-audit` | Sweep a repository for versions behind, end-of-life dates, deprecated APIs and stale facts; propose the updates | planned | core | R05, R21 |
+| `keeping-current` | `project-bootstrap-and-audit` | Sweep a repository for versions behind, end-of-life dates, deprecated APIs and stale facts; propose the updates | planned | core | R05, R21, R05b, R21b |
 | `skill-builder` | `agent-engineering` | Design, write, test and tune a skill | shipped | core | done |
-| `agent-context-files` | `agent-engineering` | AGENTS.md, CLAUDE.md, rules, settings, hooks, subagents, MCP, other agents' files | shipped | core | R01 |
-| `review-loops` | `agent-engineering` | Agent sessions in two repositories reviewing each other's work: the few rules that end rounds, the ones that cost more than they caught, and where agents have to stop for a person | shipped | core | R26 |
+| `agent-context-files` | `agent-engineering` | AGENTS.md, CLAUDE.md, rules, settings, hooks, subagents, MCP, other agents' files | shipped | core | R01, R01b |
+| `review-loops` | `agent-engineering` | Agent sessions in two repositories reviewing each other's work: the few rules that end rounds, the ones that cost more than they caught, and where agents have to stop for a person | shipped | core | R26, R26b |
 
 ### B. Engineering practice, for every language
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `repo-structure` | `architecture` | Layouts by project type, where each file goes, naming files and folders | shipped | core | R02 |
-| `writing-style` | `house-style` | Prose and Markdown: voice, headings, lists, wrapping, code, tables, links, file names, a README's sections, words to cut, American spelling | shipped | core | R02 |
-| `prose-check` | `house-style` | The Vale check: the HouseStyle package, `.vale.ini`, the CI job with its canary, a repository's vocabulary, files left alone | shipped | core | R02 |
-| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections, records and prose that `writing-style` covers | shipped | core | R02 |
-| `code-style` | `coding` | Naming, formatting, structure, comments and docstrings | shipped | core | R03 |
-| `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03 |
-| `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04 |
-| `secure-coding` | `security` | OWASP Top 10, ASVS, CWE Top 25, authentication, cryptography, threat modeling | shipped | core | R04 |
-| `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24 |
-| `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01 |
+| `repo-structure` | `architecture` | Layouts by project type, where each file goes, naming files and folders | shipped | core | R02, R02b |
+| `writing-style` | `house-style` | Prose and Markdown: voice, headings, lists, wrapping, code, tables, links, file names, a README's sections, words to cut, American spelling | shipped | core | R02, R02b |
+| `prose-check` | `house-style` | The Vale check: the HouseStyle package, `.vale.ini`, the CI job with its canary, a repository's vocabulary, files left alone | shipped | core | R02, R02b |
+| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections, records and prose that `writing-style` covers | shipped | core | R02, R02b |
+| `code-style` | `coding` | Naming, formatting, structure, comments and docstrings | shipped | core | R03, R03b |
+| `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03, R03b |
+| `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04, R04b |
+| `secure-coding` | `security` | OWASP Top 10, ASVS, CWE Top 25, authentication, cryptography, threat modeling | shipped | core | R04, R04b |
+| `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24, R05b, R21b |
+| `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01, R01b |
 | `error-handling` | `coding` | Failure classes, retries, timeouts, circuit breakers, causes per language, bulkheads | shipped | core | R07, R07b, R07d |
-| `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d |
+| `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d, R07f |
 | `testing-patterns` | `testing` | Strategy, test doubles and contract tests, coverage, each framework's settings that fail open, frameworks per language, property-based and mutation tools | shipped | core | R06, R06b |
 | `agent-written-tests` | `testing` | Tests an AI coding agent writes, changes or runs: tests first, high-risk test diffs, gaming, holdout tests, mutation-testing what it wrote | shipped | core | R06b |
 | `acceptance-runs` | `testing` | Unattended acceptance runs on hardware: preconditions, a device lost mid-run, run tiers, evidence; fault injection for ordinary programs | shipped | core | R06c |
@@ -113,38 +113,38 @@ Grouped by subject; the Skill column is each module's one home.
 | `flaky-tests` | `testing` | A test that passes and fails on the same code: the cause, races in the program, quarantine, keeping a fix | shipped | core | R06 |
 | `api-patterns` | `architecture` | REST, OpenAPI, GraphQL, gRPC, auth flows, pagination, versioning, webhooks | planned | core | R19 |
 | `sql-craftsman` | `data` | Schema design, migrations, SQL style, indexing, transactions | planned | core | R14 |
-| `commits-and-pull-requests` | `git-workflows` | Commit grammar and messages, trailers, the author's address, branch names, pull requests and review comments | shipped | core | R08 |
-| `branches-and-merging` | `git-workflows` | Branching models, protecting the default branch, merge strategies | shipped | core | R08 |
-| `rebasing-and-recovery` | `git-workflows` | Deleting branches, rebasing, conflicts, recovering lost commits, and reading Git's output | shipped | core | R08 |
-| `ci-workflows` | `git-workflows` | GitHub Actions triggers, timeouts, installs, required checks, proving a gate works | shipped | core | R08, R21 |
-| `ci-speed` | `git-workflows` | How long CI takes, where suites run, caching builds, and slow tests | shipped | core | R08, R21 |
-| `pr-stewardship` | `git-workflows` | A repository's own steward skill: how its sessions drive pull requests, when to merge or hold, re-running a stalled job, what an owner's hold covers, and auditing it | shipped | core | R08 |
-| `actions-security` | `git-workflows` | Workflow permissions, untrusted input, `pull_request_target`, scanning workflows | shipped | core | R08 |
-| `action-pinning` | `git-workflows` | SHA-pinned actions, lockfiles, the pinning policy, Dependabot for actions, Node 20 actions | shipped | core | R08 |
-| `git-hooks` | `git-workflows` | Writing, installing and testing hooks, and where CI is the gate instead | shipped | core | R08 |
-| `releases-and-versions` | `git-workflows` | Release tags and workflows, changelog entries, version numbers, release lines and backports | shipped | core | R05 |
-| `leaked-data` | `git-workflows` | A secret or personal information in a commit: rotating, and rewriting history at the owner's request | shipped | core | R08 |
-| `gitignore` | `git-workflows` | `.gitignore` rules, secret files, lockfiles, untracking a file | shipped | core | R08 |
-| `ci-cd` | `git-workflows` | Environments and deployment, beyond the CI that `ci-workflows` and `ci-speed` cover | shipped | core | R08, R21 |
-| `versioning-and-releases` | `git-workflows` | Release notes and support windows, beyond the tags, changelogs, versions and deprecation that `releases-and-versions` covers | shipped | core | R05 |
+| `commits-and-pull-requests` | `git-workflows` | Commit grammar and messages, trailers, the author's address, branch names, pull requests and review comments | shipped | core | R08, R08b |
+| `branches-and-merging` | `git-workflows` | Branching models, protecting the default branch, merge strategies | shipped | core | R08, R08b |
+| `rebasing-and-recovery` | `git-workflows` | Deleting branches, rebasing, conflicts, recovering lost commits, and reading Git's output | shipped | core | R08, R08b |
+| `ci-workflows` | `git-workflows` | GitHub Actions triggers, timeouts, installs, required checks, proving a gate works | shipped | core | R08, R21, R08b, R21b |
+| `ci-speed` | `git-workflows` | How long CI takes, where suites run, caching builds, and slow tests | shipped | core | R08, R21, R08b, R21b |
+| `pr-stewardship` | `git-workflows` | A repository's own steward skill: how its sessions drive pull requests, when to merge or hold, re-running a stalled job, what an owner's hold covers, and auditing it | shipped | core | R08, R08b |
+| `actions-security` | `git-workflows` | Workflow permissions, untrusted input, `pull_request_target`, scanning workflows | shipped | core | R08, R08b |
+| `action-pinning` | `git-workflows` | SHA-pinned actions, lockfiles, the pinning policy, Dependabot for actions, Node 20 actions | shipped | core | R08, R08b |
+| `git-hooks` | `git-workflows` | Writing, installing and testing hooks, and where CI is the gate instead | shipped | core | R08, R08b |
+| `releases-and-versions` | `git-workflows` | Release tags and workflows, changelog entries, version numbers, release lines and backports | shipped | core | R05, R05b |
+| `leaked-data` | `git-workflows` | A secret or personal information in a commit: rotating, and rewriting history at the owner's request | shipped | core | R08, R08b |
+| `gitignore` | `git-workflows` | `.gitignore` rules, secret files, lockfiles, untracking a file | shipped | core | R08, R08b |
+| `ci-cd` | `git-workflows` | Environments and deployment, beyond the CI that `ci-workflows` and `ci-speed` cover | shipped | core | R08, R21, R08b, R21b |
+| `versioning-and-releases` | `git-workflows` | Release notes and support windows, beyond the tags, changelogs, versions and deprecation that `releases-and-versions` covers | shipped | core | R05, R05b |
 | `legacy-modernization` | `architecture` | Reading legacy code, characterization tests, the strangler fig pattern, migration playbooks | planned | core | R17 |
 | `logging-and-observability` | `coding` | Structured logs, OpenTelemetry, metrics, tracing, what never to log | shipped | standard | R07, R07b, R07d |
-| `logging-libraries` | `coding` | Logging libraries per language: versions, trace IDs, redaction and OpenTelemetry severity | shipped | standard | R07b, R07d |
+| `logging-libraries` | `coding` | Logging libraries per language: versions, trace IDs, redaction and OpenTelemetry severity | shipped | standard | R07b, R07d, R07f |
 | `performance-and-concurrency` | `coding` | Profiling, flame graphs, data structures, async and threads | shipped | standard | R07, R07c, R07e |
-| `caching` | `coding` | In-process and shared caches: expiry and invalidation, stampedes, negative caching, bounds, and cache libraries per language | shipped | standard | R07e |
-| `benchmarking` | `coding` | Benchmark harnesses and their pitfalls, comparing runs with statistics, and catching regressions in CI | shipped | standard | R07c, R07e |
-| `configuration` | `coding` | Layered config, environment variables, validation at startup, secret stores | shipped | standard | R04 |
+| `caching` | `coding` | In-process and shared caches: expiry and invalidation, stampedes, negative caching, bounds, and cache libraries per language | shipped | standard | R07e, R07f |
+| `benchmarking` | `coding` | Benchmark harnesses and their pitfalls, comparing runs with statistics, and catching regressions in CI | shipped | standard | R07c, R07e, R07f |
+| `configuration` | `coding` | Layered config, environment variables, validation at startup, secret stores | shipped | standard | R04, R04b |
 | `architecture-and-design` | `architecture` | Principles, boundaries, decision records, diagrams, planning, refactoring | planned | standard | R19 |
 | `human-factors` | `human-factors` | The habits, notions and mindsets common to people that look odd or wasteful from outside but serve a purpose: what each is for, how to spot one before a design, an automation or an optimization removes it, and how to design with it. Loaded only by the few agents that design or change what people do; it never bends a factual finding | shipped | standard | R23, R23b, R23c |
-| `studying-work` | `human-factors` | Finding what a step is for: watching and interviewing people at their work, goals and plans, how deep to go, and the traps that bend a study | shipped | standard | R23b, R23c |
-| `cognitive-task-analysis` | `human-factors` | Finding the judgment and cues behind expert work: the Critical Decision Method, ACTA, what each produces and costs, and when it beats task analysis or a visit | shipped | standard | R23c |
-| `usability-review` | `user-experience` | A heuristic review of a program's interface: status that's current, consistency, error prevention and recovery, recognition over recall, severity ratings | shipped | standard | R27 |
-| `windows-and-dialogs` | `user-experience` | When a window or dialog appears, modality, focus and stacking, nothing shown before it's ready or hidden behind another, long operations and notifications | shipped | standard | R27 |
-| `settings-and-options` | `user-experience` | Defaults, presets, progressive disclosure, each setting in one place, and how many choices is too many | shipped | standard | R27 |
-| `gui-testing` | `user-experience` | Testing a GUI by machine, through accessibility interfaces and toolkit helpers, and with people, by task-based tests | shipped | standard | R27 |
-| `interface-patterns` | `user-experience` | What a current interface is built from on each platform: design languages, consistent components, layout and window sizes, forms, empty, loading and error states, UX writing, keyboard-first use | shipped | standard | R29 |
-| `command-line-interfaces` | `user-experience` | Command-line programs for people and scripts: arguments and help, output for people against programs, exit codes, progress, confirming destructive commands | shipped | standard | R29 |
-| `feedback-loop` | `user-experience` | From user issues to fixes: feedback in the product, crash reports and consented usage data, triage, interfaces built to change, visual regression tests | shipped | standard | R30 |
+| `studying-work` | `human-factors` | Finding what a step is for: watching and interviewing people at their work, goals and plans, how deep to go, and the traps that bend a study | shipped | standard | R23b, R23c, R23d |
+| `cognitive-task-analysis` | `human-factors` | Finding the judgment and cues behind expert work: the Critical Decision Method, ACTA, what each produces and costs, and when it beats task analysis or a visit | shipped | standard | R23c, R23d |
+| `usability-review` | `user-experience` | A heuristic review of a program's interface: status that's current, consistency, error prevention and recovery, recognition over recall, severity ratings | shipped | standard | R27, R27b |
+| `windows-and-dialogs` | `user-experience` | When a window or dialog appears, modality, focus and stacking, nothing shown before it's ready or hidden behind another, long operations and notifications | shipped | standard | R27, R27b |
+| `settings-and-options` | `user-experience` | Defaults, presets, progressive disclosure, each setting in one place, and how many choices is too many | shipped | standard | R27, R27b |
+| `gui-testing` | `user-experience` | Testing a GUI by machine, through accessibility interfaces and toolkit helpers, and with people, by task-based tests | shipped | standard | R27, R27b |
+| `interface-patterns` | `user-experience` | What a current interface is built from on each platform: design languages, consistent components, layout and window sizes, forms, empty, loading and error states, UX writing, keyboard-first use | shipped | standard | R29, R29b |
+| `command-line-interfaces` | `user-experience` | Command-line programs for people and scripts: arguments and help, output for people against programs, exit codes, progress, confirming destructive commands | shipped | standard | R29, R29b |
+| `feedback-loop` | `user-experience` | From user issues to fixes: feedback in the product, crash reports and consented usage data, triage, interfaces built to change, visual regression tests | shipped | standard | R30, R30b |
 | `accessibility` | `visual-design` | WCAG 2.2, ARIA, contrast, testing tools | planned | standard | R18 |
 | `internationalization` | `coding` | Unicode, locales, time zones, formats, right-to-left text | planned | standard | R18 |
 | `privacy-and-compliance` | `security` | Personal data, retention, licenses and notices, obligations on software publishers | planned | standard | R18 |
@@ -153,21 +153,21 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `python-coding` | `coding` | Python 3, its toolchain and idioms | shipped | core | R09 |
-| `python-security` | `coding` | Python's untrusted-input calls: shells, `eval`, deserialization, SQL, archives, paths, tokens | shipped | core | R09 |
-| `javascript-coding` | `coding` | TypeScript, JavaScript, Node.js | shipped | core | R10 |
-| `javascript-security` | `coding` | Node.js input handling: shells, `eval`, prototype pollution, paths, ReDoS, SQL | shipped | core | R10 |
-| `html-coding` | `coding` | HTML, CSS, accessibility basics, forms | shipped | core | R10 |
-| `web-security` | `coding` | Browser-side security: output encoding, sanitizing, Trusted Types, CSP, SRI, `noopener` | shipped | core | R10 |
-| `csharp-coding` | `coding` | C# and .NET | shipped | core | R11 |
-| `csharp-security` | `coding` | C# deserialization, SQL, processes, batch files, paths, DLL search paths, analyzers | shipped | core | R11 |
-| `powershell-scripts` | `coding` | PowerShell 7 and Windows PowerShell 5.1 | shipped | core | R11 |
-| `powershell-security` | `coding` | PowerShell credentials, `Invoke-Expression`, batch-file arguments, execution policy, signing | shipped | core | R11 |
+| `python-coding` | `coding` | Python 3, its toolchain and idioms | shipped | core | R09, R09b |
+| `python-security` | `coding` | Python's untrusted-input calls: shells, `eval`, deserialization, SQL, archives, paths, tokens | shipped | core | R09, R09b |
+| `javascript-coding` | `coding` | TypeScript, JavaScript, Node.js | shipped | core | R10, R10b |
+| `javascript-security` | `coding` | Node.js input handling: shells, `eval`, prototype pollution, paths, ReDoS, SQL | shipped | core | R10, R10b |
+| `html-coding` | `coding` | HTML, CSS, accessibility basics, forms | shipped | core | R10, R10b |
+| `web-security` | `coding` | Browser-side security: output encoding, sanitizing, Trusted Types, CSP, SRI, `noopener` | shipped | core | R10, R10b |
+| `csharp-coding` | `coding` | C# and .NET | shipped | core | R11, R11b |
+| `csharp-security` | `coding` | C# deserialization, SQL, processes, batch files, paths, DLL search paths, analyzers | shipped | core | R11, R11b |
+| `powershell-scripts` | `coding` | PowerShell 7 and Windows PowerShell 5.1 | shipped | core | R11, R11b |
+| `powershell-security` | `coding` | PowerShell credentials, `Invoke-Expression`, batch-file arguments, execution policy, signing | shipped | core | R11, R11b |
 | `bash-coding` | `coding` | Bash and POSIX sh | shipped | core | R15 |
 | `bash-security` | `coding` | Bash and POSIX sh: guarded deletes, `eval`, arithmetic on input, secrets, input checks | shipped | core | R15 |
-| `c-coding` | `coding` | C: standards and compilers, undefined behavior, ownership, bounds, checked I/O, porting | shipped | core | R12 |
-| `c-build` | `coding` | C built with Meson: options, the warning gate, hardening, sanitizers, analyzers, fuzzing | shipped | core | R12 |
-| `c-security` | `coding` | C handling outside data: strings and buffers, format strings, overflow, paths, processes, output | shipped | core | R12 |
+| `c-coding` | `coding` | C: standards and compilers, undefined behavior, ownership, bounds, checked I/O, porting | shipped | core | R12, R12b |
+| `c-build` | `coding` | C built with Meson: options, the warning gate, hardening, sanitizers, analyzers, fuzzing | shipped | core | R12, R12b |
+| `c-security` | `coding` | C handling outside data: strings and buffers, format strings, overflow, paths, processes, output | shipped | core | R12, R12b |
 | `vba-coding` | `coding` | VBA in Office applications | planned | core | R16 |
 | `go-coding` | `coding` | Go | planned | standard | R25 |
 | `rust-coding` | `coding` | Rust | planned | standard | R25 |
@@ -188,7 +188,7 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11 |
+| `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11, R11b |
 | `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
 | `word-documents` | `business-apps` | Generating and filling Word templates | planned | core | R16 |
 | `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
@@ -198,8 +198,8 @@ Grouped by subject; the Skill column is each module's one home.
 | `docker-containers` | `operations` | Dockerfiles, Compose, hardening, registries | shipped | standard | R15 |
 | `log-analysis` | `operations` | Event logs, crash dumps, journals, application logs | shipped | standard | R07 |
 | `optimization-and-scheduling` | `optimization-and-scheduling` | Solvers, business rules as constraints, the human factors in plans, with `human-factors` | shipped | standard | R28, R23, R28b, R28c |
-| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c |
-| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c |
+| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c, R28d |
+| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c, R28d |
 | `linux-gaming` | `linux-gaming` | Proton, Steam, handhelds | planned | on request | R15 |
 | `kubernetes` | `operations` | Clusters, workloads, the Gateway API | planned | on request | R15 |
 | `cloud` | `operations` | Azure, AWS and Google Cloud baselines | planned | on request | R15 |
@@ -209,8 +209,8 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `visual-theme` | `visual-design` | Design tokens, palettes, typography, dark mode | shipped | standard | R20 |
-| `data-visualization` | `visual-design` | Choosing charts, accessible charts, charting libraries | shipped | standard | R20 |
+| `visual-theme` | `visual-design` | Design tokens, palettes, typography, dark mode | shipped | standard | R20, R20b |
+| `data-visualization` | `visual-design` | Choosing charts, accessible charts, charting libraries | shipped | standard | R20, R20b |
 
 ## Rebuilding the owner's older skills
 

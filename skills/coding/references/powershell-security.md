@@ -7,7 +7,7 @@ batch files, paths from input, execution policy, and signing with App Control fo
 Editions, functions, `-WhatIf`, errors and exit codes, prompts in jobs, PSScriptAnalyzer and
 Pester are `powershell-scripts`'s. Where a secret is kept, and why never in a task's arguments,
 is the project-bootstrap-and-audit standard's dimension 7 and *Wiring*. Windows Server
-administration is the planned `windows-admin` module's.
+administration is the `windows-admin` module's.
 
 ## Rules
 

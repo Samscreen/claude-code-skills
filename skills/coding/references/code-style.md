@@ -9,7 +9,7 @@ The contract's first two rules, read before you write and make the smallest chan
 this module says what to match and how. Each language module names its formatter and linter:
 `python-coding` (Ruff), `javascript-coding`, `csharp-coding` (`dotnet format`),
 `powershell-scripts` (PSScriptAnalyzer) and `bash-coding` (shfmt). What a type annotation says
-is `types`. File and folder names are the standard's *Project shapes and layout* and a planned
+is `types`. File and folder names are the standard's *Project shapes and layout* and the
 `repo-structure` module; redesign beyond a function is a planned `architecture-and-design`
 module. Prose and Markdown are house-style.
 

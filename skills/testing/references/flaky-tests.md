@@ -6,7 +6,7 @@ which tests flake and why, when and how to quarantine one, and how to keep a fix
 Proving that a check can fail, a fix's test among them, is `test-gates`; what a result is
 checked against is `test-oracles`. A slow test, a timing test, or a timeout that comes and goes
 is `ci-speed` in `git-workflows`: read it where a timeout is the symptom. Test strategy and each
-framework's retry and ordering options are the planned `testing-patterns` module.
+framework's retry and ordering options are the `testing-patterns` module.
 
 ## Rules
 
