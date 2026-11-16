@@ -16,7 +16,7 @@ freshness run and the release workflow both run it.
 
 | Plugin | Version | License | Skill | What it carries |
 |---|---|---|---|---|
-| `standards` | 0.1.30 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.49.2 |
+| `standards` | 0.1.30 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.50.0 |
 | `engineering` | 0.1.30 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
