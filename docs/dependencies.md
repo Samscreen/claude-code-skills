@@ -317,7 +317,7 @@ again.
 | `git-workflows` | sre.google | 1 |
 | `git-workflows` | towncrier.readthedocs.io | 1 |
 | `git-workflows` | www.conventionalcommits.org | 1 |
-| `house-style` | developers.google.com | 5 |
+| `house-style` | developers.google.com | 6 |
 | `house-style` | raw.githubusercontent.com | 4 |
 | `house-style` | vale.sh | 4 |
 | `house-style` | www.sphinx-doc.org | 3 |

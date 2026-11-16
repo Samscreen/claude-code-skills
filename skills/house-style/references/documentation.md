@@ -5,10 +5,10 @@ write, whether to build a docs site and with what, diagrams kept as text, when t
 document, reference generated from code, checks that keep docs true to the code, and docs in a
 pull request.
 
-It covers the documents as a set. How the prose reads, a README's sections, records and
-generated sections are `writing-style`; the Vale check is `prose-check`. A pull request's
-description is git-workflows'; a context file's content, agent-engineering's agent-context-files, and its budget,
-project-bootstrap-and-audit's.
+It covers the documents as a set. How the prose reads and records are `writing-style`; a README's
+sections and generated sections, `markdown-format`; the Vale check, `prose-check`. A pull request's
+description is git-workflows'; a context file's content, agent-engineering's agent-context-files,
+and its budget, project-bootstrap-and-audit's.
 
 ## Rules
 

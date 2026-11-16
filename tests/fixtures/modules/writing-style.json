@@ -8,14 +8,6 @@
     "should_trigger": true
   },
   {
-    "query": "Are headings in sentence case or title case here?",
-    "should_trigger": true
-  },
-  {
-    "query": "What sections should every README have, and in what order?",
-    "should_trigger": true
-  },
-  {
     "query": "Is it OK to say 'simply run the installer' in our getting-started guide?",
     "should_trigger": true
   },
@@ -24,12 +16,20 @@
     "should_trigger": true
   },
   {
-    "query": "Add a Vale check for our Markdown to CI.",
-    "should_trigger": false,
-    "note": "prose-check"
+    "query": "Check my status report before I send it. Am I overclaiming when I say the crash is fixed and there were no errors?",
+    "should_trigger": true
   },
   {
-    "query": "Vale fails on a heading with our product name in it. How do I make it accept the name?",
+    "query": "Write setup steps my dad can follow. He's never opened a terminal in his life.",
+    "should_trigger": true
+  },
+  {
+    "query": "Are headings in sentence case or title case here?",
+    "should_trigger": false,
+    "note": "markdown-format"
+  },
+  {
+    "query": "Add a Vale check for our Markdown to CI.",
     "should_trigger": false,
     "note": "prose-check"
   }

@@ -19,7 +19,8 @@ git-workflows.
    instrumented.
 6. **Make every checker fail on a finding.** Most exit 0 by default.
 7. **Run a static analyzer in CI.**
-8. **Fuzz every parser of outside data,** with the code under test instrumented too.
+8. **Fuzz every parser of outside data,** the code under test instrumented too; probe argument
+   shapes.
 9. **Pin each wrap.**
 
 ### The project
@@ -36,7 +37,7 @@ flags = ['-Wformat=2', '-Wconversion', '-Wimplicit-fallthrough',
   '-Werror=incompatible-pointer-types', '-Werror=int-conversion',
   '-fstack-protector-strong', '-fstack-clash-protection',
   '-fstrict-flex-arrays=3', '-fcf-protection=full', '-U_FORTIFY_SOURCE']
-# FORTIFY needs -O1 or more, and sanitizers don't support it.
+# FORTIFY needs -O1 or more; sanitizers don't support it.
 if get_option('b_sanitize') == 'none' and get_option('optimization') not in ['0', 'plain']
   flags += '-D_FORTIFY_SOURCE=3'
 endif
@@ -44,7 +45,7 @@ if cc.has_function('strlcpy', prefix : '#include <string.h>')
   flags += '-DHAVE_STRLCPY=1'
 endif
 add_project_arguments(cc.get_supported_arguments(flags), language : 'c')
-if get_option('fuzzing')  # Clang: coverage for the code the fuzzer drives
+if get_option('fuzzing')  # Clang: cover the code the fuzzer drives
   add_project_arguments('-fsanitize=fuzzer-no-link', language : 'c')
 endif
 add_project_link_arguments(cc.get_supported_link_arguments(
@@ -59,23 +60,23 @@ if get_option('fuzzing')
 endif
 ```
 
-- **The root** holds `project()`, the flags, which precede every target, and `subdir()`; each
-  directory's `meson.build` holds its targets.
-- **The floor:** Meson warns of newer features (fact `cb-feature-new`), but 1.12.1 passed the
-  `c_std` list under `>=1.2`, which Meson 1.2 rejects. CI builds with `meson==1.3.0` too.
-- **`c_std=gnu17,c17`** falls back to ISO C on MSVC, where a bare `gnu17` is to become an error
+- **The root** holds `project()`, the flags (before any target) and `subdir()`; each
+  directory's `meson.build`, its targets.
+- **The floor:** Meson warns of newer features (fact `cb-feature-new`), but 1.12.1 passed a
+  `c_std` list under `>=1.2`, which 1.2 rejects. CI also builds with `meson==1.3.0`.
+- **`c_std=gnu17,c17`** falls back to ISO C on MSVC, where a bare `gnu17` will be an error
   (fact `cb-c-std`).
 - **Defaults:** `buildtype` `debug` (`-O0`), `b_pie` and `werror` off; `-Ddebug=false` leaves
-  `NDEBUG` out (fact `cb-meson-defaults`). `default_options` reach new build directories only,
-  and `c_args` there drops the packager's `CFLAGS` (fact `cb-default-options`). Packagers'
-  `CFLAGS` come last and win: `-D_FORTIFY_SOURCE=2` there lowers the level.
-- **Tests:** `timeout` defaults to 30 seconds (fact `cb-test-env`); `meson test --suite unit`
-  runs a suite, `--setup valgrind` the setup above.
+  `NDEBUG` out (fact `cb-meson-defaults`). `default_options` reach new build directories only;
+  `c_args` there drops the packager's `CFLAGS` (fact `cb-default-options`), which otherwise come
+  last and win: `-D_FORTIFY_SOURCE=2` there lowers the level.
+- **Tests:** `timeout` defaults to 30 s (fact `cb-test-env`); `meson test --suite unit` runs a
+  suite, `--setup valgrind` the setup above.
 
 ### Warnings and the CI gate
 
-The set is a subset of OpenSSF's (fact `cb-openssf`): add its production flags, such as
-`-ftrivial-auto-var-init=zero` and `-fno-strict-overflow`, where speed allows, and
+The set is a subset of OpenSSF's (fact `cb-openssf`): add its production flags where speed
+allows, such as `-ftrivial-auto-var-init=zero`, `-fno-strict-overflow`, and
 `-mbranch-protection=standard` on aarch64. Turn on `-Wconversion` in old code by degrees. The
 gate builds fresh, like the release, and counts:
 
@@ -91,14 +92,14 @@ if ((count > limit)); then
 fi
 ```
 
-Ninja shows warnings only for files it compiles, and color breaks the pattern. A gate run by
+Ninja shows warnings only for files it compiles; color breaks the pattern. A gate under
 `meson test` takes `meson.project_build_root()` as an argument, never a fixed `build/` (fact
 `cb-build-root`).
 
-### Hardening and the distributions
+### Hardening
 
-Ubuntu builds hardening into its GCC (fact `cb-ubuntu`); Debian and Fedora put it in package
-build flags (facts `cb-debian`, `cb-fedora`), which a developer's `gcc` never sees. On Ubuntu
+Ubuntu builds hardening into its GCC (fact `cb-ubuntu`); Debian and Fedora into package build
+flags (facts `cb-debian`, `cb-fedora`), which a developer's `gcc` never sees. On Ubuntu
 24.04, GCC 13.3 at `-O2` set `_FORTIFY_SOURCE` to 3 and Clang 18.1 not at all (checked
 2026-10-27), so ask: `echo | gcc -O2 -dM -E - | grep FORTIFY`. Level 3 needs GCC 12 and glibc
 2.35, or Clang 9 and glibc 2.33 (fact `cb-fortify3`). Check the binary: `readelf -h` shows
@@ -110,19 +111,18 @@ build flags (facts `cb-debian`, `cb-fedora`), which a developer's `gcc` never se
   `meson test` makes ASan and UBSan abort (fact `cb-test-env`). Run alone, a UBSan binary
   reports and exits 0 (fact `cb-sanitizers`): set `UBSAN_OPTIONS=halt_on_error=1`.
 - **Ask the binary, not the log:** `nm build/tests/test-parse | grep -c __asan_init`, or
-  `__ubsan_handle_`; `grep -q` stops early, and `pipefail` fails on `nm`'s broken pipe.
+  `__ubsan_handle_`; `grep -q` stops early, and `pipefail` fails on the broken pipe.
 - **Threaded code** gets a `-Db_sanitize=thread` job; TSan can't join ASan (fact `cb-sanitizers`).
-- **Valgrind returns the program's status** unless `--error-exitcode` is set (fact
-  `cb-valgrind`), so a leaking test passes. On an ASan build it stops at once.
+- **Valgrind returns the program's status** without `--error-exitcode` (fact `cb-valgrind`),
+  so a leaking test passes. On an ASan build it stops at once.
 
 ### Static analysis
 
-- **`-fanalyzer`** is for C, and slow (fact `cb-analyzer`): a job of its own.
+- **`-fanalyzer`** is for C, and slow (fact `cb-analyzer`): its own job.
 - **clang-tidy** is Meson's `clang-tidy` target with a `.clang-tidy`, failing only on checks
   named in `WarningsAsErrors` (fact `cb-clang-tidy`).
 - **scan-build** is `SCANBUILD='scan-build --status-bugs' ninja -C build scan-build`, or a
-  versioned `scan-build-NN`; the target takes none
-  (fact `cb-scan-build`).
+  versioned `scan-build-NN`; the target takes none (fact `cb-scan-build`).
 - **cppcheck** needs `--error-exitcode=1`, with `--project=build/compile_commands.json` (fact
   `cb-cppcheck`).
 
@@ -130,6 +130,8 @@ build flags (facts `cb-debian`, `cb-fedora`), which a developer's `gcc` never se
 
 A target hands any bytes to the parser and never calls `exit()` (fact `cb-libfuzzer`). Build it
 with Clang and `-Dfuzzing=true`; `build/fuzz/fuzz-parse corpus/*` replays a corpus.
+**Argument shape is its own axis:** run each command under the sanitizers with arguments
+missing, empty, repeated and overlong, values after `=` and apart.
 
 ```c
 #include <stddef.h>
@@ -165,53 +167,54 @@ Severity uses the standard's status words.
 | Check | What to look for | Severity | Fix |
 |---|---|---|---|
 | Floor | A feature above `meson_version` | `DRIFT` | Raise it; build on it |
-| Shipped flags | `werror=true` or `c_args` in `default_options`; a broad `-Werror=` group, such as `format`; `add_global_arguments` | `GAP` | Move them; narrow `-Werror=` |
-| Warning gate | None, or flags other than the release's; a gate under `meson test` that assumes `build/` | `GAP`; `DRIFT` for the path | The count gate |
+| Shipped flags | `werror=true` or `c_args` in `default_options`; a broad `-Werror=` group (`format`); `add_global_arguments` | `GAP` | Move them; narrow `-Werror=` |
+| Warning gate | None, or flags other than the release's; a `meson test` gate assuming `build/` | `GAP`; `DRIFT` for the path | The count gate |
 | Hardening | Flags missing, or `_FORTIFY_SOURCE=2` | `GAP` | The set above |
-| Sanitizer job | None, or not checked by `nm` | `GAP`; `BLOCKER` if uninstrumented | `b_sanitize` |
-| Valgrind, threads | No Valgrind setup; threaded code with no TSan job | `GAP` | The setup above; `b_sanitize=thread` |
+| Sanitizer job | None, or unchecked by `nm` | `GAP`; `BLOCKER` if uninstrumented | `b_sanitize` |
+| Valgrind, threads | No Valgrind setup; threads with no TSan job | `GAP` | The setup above; `b_sanitize=thread` |
 | Static analysis | No analyzer in CI | `GAP` | A job above |
 | Silent checkers | A checker that can't fail | `BLOCKER` | The flags above |
-| Fuzzing | A parser of outside data unfuzzed | `GAP` | A target |
+| Fuzzing | An outside-data parser unfuzzed; arguments in one shape | `GAP` | A target; a shape probe |
 | Wraps | `revision = HEAD`; no `source_hash` | `DRIFT` | Pin |
 
 ## Why
 
 **The count gate.** OpenSSF keeps blanket `-Werror` to development: in shipped source it ties
 the build to one compiler (fact `cb-openssf`). Counting under the release's flags is this
-repository's own lesson: a CI-only `-Werror` job at
-`-O0` misses warnings GCC gives only when optimizing (fact `cb-gcc-opt-warnings`), and a limit
-lets old code ratchet down. Cost: the pattern fits GCC and Clang, not MSVC.
-Otherwise: OpenSSF's `-Dwerror=true` in CI, on a pinned compiler.
+repository's own lesson (L23): a CI-only `-Werror` job at `-O0` misses warnings GCC gives only
+when optimizing (fact `cb-gcc-opt-warnings`), and a limit lets old code ratchet down. Cost: the
+pattern fits GCC and Clang, not MSVC. Otherwise: OpenSSF's `-Dwerror=true` in CI, on a pinned
+compiler.
 
 **Hardening.** Distribution defaults vary and reach only their packages; a build's flags reach
-every user, at some cost in speed.
+every user, at a cost in speed.
 
 **Sanitizers, and asking the binary.** They catch what tests pass over, when built in: a test
-log once looked sanitized while the binary wasn't. Cost: tests run 2 to 4 times slower, 20 to 50
-under Valgrind (fact `cb-openssf`).
+log once looked sanitized while the binary wasn't (L23). Cost: tests run 2 to 4 times slower,
+20 to 50 under Valgrind (fact `cb-openssf`).
 
-**Checkers that fail.** Exiting 0 on a finding reports success while measuring nothing.
+**Checkers that fail.** Exiting 0 on a finding reports success, measuring nothing.
 
-**Fuzzing** finds inputs nobody tested. Cost: Clang and CI time. libFuzzer gets fixes, not
-features (fact `cb-libfuzzer`); AFL++ runs the same target. **Pinned wraps** build the same code
-each day, at the cost of updating by hand.
+**Fuzzing** finds inputs nobody tested; an argument-shape probe found an overread both
+sanitizers missed (L23). Cost: Clang and CI time. libFuzzer gets fixes, not features (fact
+`cb-libfuzzer`); AFL++ runs the same target. **Pinned wraps** build the same code each day, at
+the cost of updating by hand.
 
 ## Facts
 
 | ID | Fact | Source | Quote | Checked | Check by |
 |---|---|---|---|---|---|
-| `cb-build-root` | The project's build root | [meson](https://mesonbuild.com/Reference-manual_builtin_meson.html) | "Try using meson.current_build_dir() or meson.project_build_root()" | 2026-10-27 | 2027-10-27 |
-| `cb-feature-new` | Newer features warn | [0.47](https://mesonbuild.com/Release-notes-for-0-47-0.html) | "that's newer than the version specified inside project()" | 2026-10-27 | 2027-10-27 |
+| `cb-build-root` | Build root | [meson](https://mesonbuild.com/Reference-manual_builtin_meson.html) | "or meson.project_build_root()" | 2026-10-27 | 2027-10-27 |
+| `cb-feature-new` | Newer features warn | [0.47](https://mesonbuild.com/Release-notes-for-0-47-0.html) | "newer than the version specified inside project()" | 2026-10-27 | 2027-10-27 |
 | `cb-c-std` | `c_std` lists, 1.3; `gnuXX` on MSVC | [Options](https://mesonbuild.com/Builtin-options.html) | "Since 1.3.0 c_std and cpp_std options now accept a list of values." and "will become an hard error" | 2026-10-27 | 2027-04-27 |
-| `cb-meson-defaults` | Defaults | [Options](https://mesonbuild.com/Builtin-options.html) | "werror false" and "b_pie false" and "-Ddebug=false does not cause the compiler preprocessor macro NDEBUG to be defined" | 2026-10-27 | 2027-04-27 |
+| `cb-meson-defaults` | Defaults | [Options](https://mesonbuild.com/Builtin-options.html) | "werror false" and "b_pie false" and "does not cause the compiler preprocessor macro NDEBUG to be defined" | 2026-10-27 | 2027-04-27 |
 | `cb-default-options` | First run; `c_args` | [project()](https://mesonbuild.com/Reference-manual_functions.html) | "only used when running Meson for the first time" and "the CFLAGS environment variable is not used" | 2026-10-27 | 2027-10-27 |
 | `cb-werror-linker` | 1.12: linker too | [1.12](https://mesonbuild.com/Release-notes-for-1-12-0.html) | "fatal-warnings flag to the linker" | 2026-10-27 | 2027-10-27 |
 | `cb-sanitize` | `b_lundef`, Clang ASan | [Options](https://mesonbuild.com/Builtin-options.html) | "incompatible with the address sanitizer when building shared libraries with clang" | 2026-10-27 | 2027-04-27 |
 | `cb-test-env` | Aborts; 30 s | [test()](https://mesonbuild.com/Reference-manual_functions.html) | "set to enable aborting on detected violations" and "defaults to 30 seconds" | 2026-10-27 | 2027-04-27 |
 | `cb-sanitizers` | UBSan continues; TSan alone | [GCC](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) | "may indicate success even when errors have been reported" and "cannot be combined with -fsanitize=address" | 2026-10-27 | 2027-10-27 |
 | `cb-fortify3` | Level 3 floors | [2.33](https://lists.gnu.org/archive/html/info-gnu/2021-02/msg00000.html), [2.35](https://savannah.gnu.org/news/?id=10075) | "available only on LLVM 9 and later" and "compiling with glibc and gcc 12 and later" | 2026-10-27 | 2027-10-27 |
-| `cb-valgrind` | Status passed through | [Valgrind](https://valgrind.org/docs/manual/manual-core.html) | "will always be the return value of the process being simulated" | 2026-10-27 | 2027-10-27 |
+| `cb-valgrind` | Passes status on | [Valgrind](https://valgrind.org/docs/manual/manual-core.html) | "the return value of the process being simulated" | 2026-10-27 | 2027-10-27 |
 | `cb-openssf` | Guide of 2026-08-20 | [OpenSSF](https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html) | "2026-08-20" and "should not be used in this blanket form when distributing source code" and "treating obsolete C constructs as errors" and "Requires -O1 or higher" and "2× to 4× slowdown" and "20× to 50×" and "CC BY 4.0" | 2026-10-27 | 2027-04-27 |
 | `cb-gcc-opt-warnings` | Warnings need `-O` | [GCC](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html) | "may not be issued at all unless optimization is enabled" | 2026-10-27 | 2027-10-27 |
 | `cb-ubuntu` | Ubuntu patches GCC | [Ubuntu](https://documentation.ubuntu.com/security/docs/security-features/security-features-overview/) | "Built with Fortify Source gcc patch" | 2026-10-27 | 2027-04-27 |
