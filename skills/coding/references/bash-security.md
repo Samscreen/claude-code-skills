@@ -7,7 +7,7 @@ arithmetic on input, secrets on the command line, and checking input.
 The rest of shell scripting, from the shebang and strict mode to quoting, arrays, temporary
 files, portability and ShellCheck, is bash-coding's. Secret storage and rotation are the
 project-bootstrap-and-audit standard's; a secret already committed is git-workflows'.
-Containers and Linux administration are the planned operations skill's.
+Containers and Linux administration are the operations skill's.
 
 ## Rules
 

@@ -5,8 +5,8 @@ and its traps, quoting, tests and globs, arrays, lines and file names, temporary
 portability to macOS and dash, and ShellCheck, shfmt and bats.
 
 Deletes, `eval`, fetched code, arithmetic on input, secrets and input checks: bash-security.
-Containers and Linux: the planned operations skill. CI files: git-workflows. Test design: the
-planned testing skill. Layout and when to use Python: project-bootstrap-and-audit.
+Containers and Linux: the operations skill. CI files: git-workflows. Test design: the testing
+skill. Layout and when to use Python: project-bootstrap-and-audit.
 
 ## Rules
 

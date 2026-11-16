@@ -6,7 +6,7 @@ after WSUS, hotpatching, baselines, Credential Guard, the firewall, Remoting and
 
 Writing the scripts is `coding`'s `powershell-scripts`, and credentials and input in them
 `powershell-security`. Network firewalls and segmentation are `networking-security`. Event logs
-and crash dumps belong to the planned `log-analysis`.
+and crash dumps belong to `log-analysis`.
 
 ## Rules
 
