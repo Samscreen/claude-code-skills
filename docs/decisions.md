@@ -6,6 +6,33 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Finished records move to the `archive` branch
+
+- **The owner's word:** "do all" (2026-11-16), given to a list that named moving `ROADMAP.md`'s
+  finished findings and lessons, and decisions before 2026-10-16, to `archive`, which the
+  documentation audit of that day proposed. It changes `docs/archive.md`'s answer that these
+  files stay whole on `main`.
+- **Moved, verbatim, to `archive:2026-11-16/`:** the standard's findings F1 to F167, less F165,
+  still planned; the 52 lessons their modules took in (L23, L25 and L27 the same day); the front
+  door's choices of 2026-10-13; every decision entry dated before 2026-10-16; and the eleven
+  entries since that only record a release. Each archive file opens with the commit it came from.
+- **Kept on `main`:** every open lesson as it stood, F165, the pieces table, whose rows now name
+  the findings each piece places, and the front door's open items with a one-item summary of
+  its choices. `docs/decisions.md` ends with a section listing each standing or cited decision
+  from before 2026-10-16, the pointers in later entries that name a moved one, and each moved
+  release, so the old entries stay as written.
+- **Changed:** from 2026-11-16, a release is one line in the entry of the change it ships, not
+  an entry of its own. Releases 0.1.19, 0.1.20 and 0.1.22 keep their entries, since each records
+  more than its contents. The README's withdrawal runbook is now `docs/withdrawing-a-skill.md`,
+  linked from the README's Operations section.
+- **Measured:** `ROADMAP.md` from 1,452 lines to 487; `docs/decisions.md` from 3,837 to 1,927,
+  counting the day's new entries.
+- **Checked:** nothing in `src/skillcheck` reads a lesson, a finding, a decision entry or a README
+  section; `skillcheck` reports 0 findings, and the suite's 652 tests pass.
+- **Left to the owner:** the 0.1.25 entry's open item, the claude.ai tries of `ci-workflows` and
+  `ci-speed`, which no later entry records. The steward now cites answer 4 through the end
+  section.
+
 ## 2026-11-16 — `markdown-format` split from `writing-style`; L23, L25 and L27 taken in
 
 - **Why now:** `writing-style` (15,925 characters) and `prose-check` (15,996) sat at the
