@@ -14,7 +14,8 @@ def test_clean_repository_exits_zero_and_prints_summary(repo, capsys):
     assert capsys.readouterr().out == (
         "skillcheck: 1 skill(s), 0 module(s), "
         f"{len(DEFAULT_DESCRIPTION)} description characters, 0 fact(s), "
-        "1 catalog plugin(s), no roadmap, no standard, 0 finding(s)\n"
+        "1 catalog plugin(s), no roadmap, no standard, "
+        "cited commits unchecked (no git history), 0 finding(s)\n"
     )
 
 
@@ -28,7 +29,7 @@ def test_findings_exit_one_with_one_line_each(repo, capsys):
         "'example-skill'",
         "skillcheck: 1 skill(s), 0 module(s), 1 description characters, 0 fact(s), "
         "1 catalog plugin(s), "
-        "no roadmap, no standard, 1 finding(s)",
+        "no roadmap, no standard, cited commits unchecked (no git history), 1 finding(s)",
     ]
 
 
@@ -47,5 +48,5 @@ def test_module_entry_point(repo, monkeypatch, capsys):
     assert capsys.readouterr().out == (
         "skillcheck: 0 skill(s), 0 module(s), 0 description characters, 0 fact(s), no catalog, "
         "no roadmap, "
-        "no standard, 0 finding(s)\n"
+        "no standard, cited commits unchecked (no git history), 0 finding(s)\n"
     )

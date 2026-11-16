@@ -1,0 +1,4 @@
+# Hashes in docs/decisions.md, CHANGELOG.md and ROADMAP.md that aren't this repository's
+# commits, such as another repository's commit or a file's hash. skillcheck's `citations` rule
+# (src/skillcheck/core/citations.py) reads every other run of that shape as a commit citation.
+# One per line: the hash as the record writes it, then what it is.
