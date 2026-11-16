@@ -104,7 +104,7 @@ Grouped by subject; the Skill column is each module's one home.
 | `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24 |
 | `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01 |
 | `error-handling` | `coding` | Failure classes, retries, timeouts, circuit breakers, causes per language, bulkheads | shipped | core | R07, R07b, R07d |
-| `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d |
+| `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d, R07f |
 | `testing-patterns` | `testing` | Strategy, test doubles and contract tests, coverage, each framework's settings that fail open, frameworks per language, property-based and mutation tools | shipped | core | R06, R06b |
 | `agent-written-tests` | `testing` | Tests an AI coding agent writes, changes or runs: tests first, high-risk test diffs, gaming, holdout tests, mutation-testing what it wrote | shipped | core | R06b |
 | `acceptance-runs` | `testing` | Unattended acceptance runs on hardware: preconditions, a device lost mid-run, run tiers, evidence; fault injection for ordinary programs | shipped | core | R06c |
@@ -129,22 +129,22 @@ Grouped by subject; the Skill column is each module's one home.
 | `versioning-and-releases` | `git-workflows` | Release notes and support windows, beyond the tags, changelogs, versions and deprecation that `releases-and-versions` covers | shipped | core | R05 |
 | `legacy-modernization` | `architecture` | Reading legacy code, characterization tests, the strangler fig pattern, migration playbooks | planned | core | R17 |
 | `logging-and-observability` | `coding` | Structured logs, OpenTelemetry, metrics, tracing, what never to log | shipped | standard | R07, R07b, R07d |
-| `logging-libraries` | `coding` | Logging libraries per language: versions, trace IDs, redaction and OpenTelemetry severity | shipped | standard | R07b, R07d |
+| `logging-libraries` | `coding` | Logging libraries per language: versions, trace IDs, redaction and OpenTelemetry severity | shipped | standard | R07b, R07d, R07f |
 | `performance-and-concurrency` | `coding` | Profiling, flame graphs, data structures, async and threads | shipped | standard | R07, R07c, R07e |
-| `caching` | `coding` | In-process and shared caches: expiry and invalidation, stampedes, negative caching, bounds, and cache libraries per language | shipped | standard | R07e |
-| `benchmarking` | `coding` | Benchmark harnesses and their pitfalls, comparing runs with statistics, and catching regressions in CI | shipped | standard | R07c, R07e |
+| `caching` | `coding` | In-process and shared caches: expiry and invalidation, stampedes, negative caching, bounds, and cache libraries per language | shipped | standard | R07e, R07f |
+| `benchmarking` | `coding` | Benchmark harnesses and their pitfalls, comparing runs with statistics, and catching regressions in CI | shipped | standard | R07c, R07e, R07f |
 | `configuration` | `coding` | Layered config, environment variables, validation at startup, secret stores | shipped | standard | R04 |
 | `architecture-and-design` | `architecture` | Principles, boundaries, decision records, diagrams, planning, refactoring | planned | standard | R19 |
 | `human-factors` | `human-factors` | The habits, notions and mindsets common to people that look odd or wasteful from outside but serve a purpose: what each is for, how to spot one before a design, an automation or an optimization removes it, and how to design with it. Loaded only by the few agents that design or change what people do; it never bends a factual finding | shipped | standard | R23, R23b, R23c |
-| `studying-work` | `human-factors` | Finding what a step is for: watching and interviewing people at their work, goals and plans, how deep to go, and the traps that bend a study | shipped | standard | R23b, R23c |
-| `cognitive-task-analysis` | `human-factors` | Finding the judgment and cues behind expert work: the Critical Decision Method, ACTA, what each produces and costs, and when it beats task analysis or a visit | shipped | standard | R23c |
+| `studying-work` | `human-factors` | Finding what a step is for: watching and interviewing people at their work, goals and plans, how deep to go, and the traps that bend a study | shipped | standard | R23b, R23c, R23d |
+| `cognitive-task-analysis` | `human-factors` | Finding the judgment and cues behind expert work: the Critical Decision Method, ACTA, what each produces and costs, and when it beats task analysis or a visit | shipped | standard | R23c, R23d |
 | `usability-review` | `user-experience` | A heuristic review of a program's interface: status that's current, consistency, error prevention and recovery, recognition over recall, severity ratings | shipped | standard | R27 |
 | `windows-and-dialogs` | `user-experience` | When a window or dialog appears, modality, focus and stacking, nothing shown before it's ready or hidden behind another, long operations and notifications | shipped | standard | R27 |
 | `settings-and-options` | `user-experience` | Defaults, presets, progressive disclosure, each setting in one place, and how many choices is too many | shipped | standard | R27 |
 | `gui-testing` | `user-experience` | Testing a GUI by machine, through accessibility interfaces and toolkit helpers, and with people, by task-based tests | shipped | standard | R27 |
-| `interface-patterns` | `user-experience` | What a current interface is built from on each platform: design languages, consistent components, layout and window sizes, forms, empty, loading and error states, UX writing, keyboard-first use | shipped | standard | R29 |
-| `command-line-interfaces` | `user-experience` | Command-line programs for people and scripts: arguments and help, output for people against programs, exit codes, progress, confirming destructive commands | shipped | standard | R29 |
-| `feedback-loop` | `user-experience` | From user issues to fixes: feedback in the product, crash reports and consented usage data, triage, interfaces built to change, visual regression tests | shipped | standard | R30 |
+| `interface-patterns` | `user-experience` | What a current interface is built from on each platform: design languages, consistent components, layout and window sizes, forms, empty, loading and error states, UX writing, keyboard-first use | shipped | standard | R29, R29b |
+| `command-line-interfaces` | `user-experience` | Command-line programs for people and scripts: arguments and help, output for people against programs, exit codes, progress, confirming destructive commands | shipped | standard | R29, R29b |
+| `feedback-loop` | `user-experience` | From user issues to fixes: feedback in the product, crash reports and consented usage data, triage, interfaces built to change, visual regression tests | shipped | standard | R30, R30b |
 | `accessibility` | `visual-design` | WCAG 2.2, ARIA, contrast, testing tools | planned | standard | R18 |
 | `internationalization` | `coding` | Unicode, locales, time zones, formats, right-to-left text | planned | standard | R18 |
 | `privacy-and-compliance` | `security` | Personal data, retention, licenses and notices, obligations on software publishers | planned | standard | R18 |
@@ -198,8 +198,8 @@ Grouped by subject; the Skill column is each module's one home.
 | `docker-containers` | `operations` | Dockerfiles, Compose, hardening, registries | shipped | standard | R15 |
 | `log-analysis` | `operations` | Event logs, crash dumps, journals, application logs | shipped | standard | R07 |
 | `optimization-and-scheduling` | `optimization-and-scheduling` | Solvers, business rules as constraints, the human factors in plans, with `human-factors` | shipped | standard | R28, R23, R28b, R28c |
-| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c |
-| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c |
+| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c, R28d |
+| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c, R28d |
 | `linux-gaming` | `linux-gaming` | Proton, Steam, handhelds | planned | on request | R15 |
 | `kubernetes` | `operations` | Clusters, workloads, the Gateway API | planned | on request | R15 |
 | `cloud` | `operations` | Azure, AWS and Google Cloud baselines | planned | on request | R15 |
@@ -209,8 +209,8 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `visual-theme` | `visual-design` | Design tokens, palettes, typography, dark mode | shipped | standard | R20 |
-| `data-visualization` | `visual-design` | Choosing charts, accessible charts, charting libraries | shipped | standard | R20 |
+| `visual-theme` | `visual-design` | Design tokens, palettes, typography, dark mode | shipped | standard | R20, R20b |
+| `data-visualization` | `visual-design` | Choosing charts, accessible charts, charting libraries | shipped | standard | R20, R20b |
 
 ## Rebuilding the owner's older skills
 
