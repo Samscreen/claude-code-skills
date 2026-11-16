@@ -14,6 +14,7 @@ import pytest
 
 from skillcheck import bom, release
 from skillcheck.cli import main
+from skillcheck.core import skill_parts
 
 STANDARD = """\
 ---
@@ -92,7 +93,12 @@ def fixture(root: Path) -> Path:
             }
         ),
         "skills/project-bootstrap-and-audit/SKILL.md": "---\nname: project-bootstrap-and-audit\n"
-        'metadata:\n  standard-version: "1.0.0"\n---\nBody.\n',
+        'metadata:\n  standard-version: "1.0.0"\n---\n# Fixture\n\n'
+        "Read [the rules](references/rules.md), [again](references/rules.md#top), "
+        "[more](references/more.md), and "
+        f"[the standard]({STANDARD_PATH.split('/', 2)[2]}).\n",
+        "skills/project-bootstrap-and-audit/references/rules.md": "A rule.\n",
+        "skills/project-bootstrap-and-audit/references/more.md": "# More\n\nText.\n",
         STANDARD_PATH: STANDARD,
         "skills/tool/SKILL.md": "---\nname: tool\n---\nBody.\n",
         "skills/tool/hooks/run": "#!/bin/sh\nexit 0\n",
@@ -135,14 +141,20 @@ def test_a_release_is_built_from_the_commit(tmp_path):
         "RUN-FILE-FOR: the repository this session works in · JOB: chosen by what it holds · "
         "FROM: example/fixture, release 1.0.0\n\n"
     )
-    assert hashlib.sha256(STANDARD.encode()).hexdigest() in kick
+    skill_dir = root / "skills/project-bootstrap-and-audit"
+    assert skill_parts.files_sha256(skill_dir) in kick
     assert "release 1.0.0 of\n> example/fixture." in kick
-    assert "RELEASE_VERSION" not in kick and "STANDARD_SHA256" not in kick
+    assert "RELEASE_VERSION" not in kick and "FILES_SHA256" not in kick
     assert (
         'extract: "Validating a change to this standard and Provenance left out; the full' in kick
     )
     assert "No warranty of any kind.\n\n> **About this file.**" in kick
-    assert "\n---\n\n# How to read this file\n" in kick
+    assert "\n---\n\n# The procedure\n\n*This section is the skill's `SKILL.md`.*\n\nRead" in kick
+    # Each reference once, under a heading of its own, before the standard file's text.
+    rules = "\n---\n\n# references/rules.md\n\n*This section is the skill's `references/rules.md`.*"
+    assert kick.count(rules) == 1
+    assert kick.index(rules) < kick.index("# How to read this file")
+    assert "\n# More\n\n*This section is the skill's `references/more.md`.*\n\nText." in kick
     assert "# Validating a change" not in kick and "# Provenance" not in kick
     assert kick.endswith(f"\n\n{release.END}\n")
     notes = (out / "notes.md").read_text(encoding="utf-8")

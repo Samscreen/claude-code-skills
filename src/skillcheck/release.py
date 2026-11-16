@@ -1,8 +1,8 @@
 """What a release publishes beside its tag, built from the commit being released.
 
 - ``KICKSTART.md``: the standard as one file, with run instructions for any repository, so a
-  session can be handed it with no message. The standard's text is unchanged; only the two
-  sections no run reads are left out.
+  session can be handed it with no message: the skill's procedure, then its references, then
+  the standard file. Their text is unchanged; only the two sections no run reads are left out.
 - ``<skill>.zip``: each skill, packaged to upload to claude.ai.
 - ``skills.zip``: every skill in one ZIP, with ``release.json`` naming the version and the skills,
   for the hook that ``cloud-setup.sh`` installs to fetch from the newest release.
@@ -17,7 +17,6 @@ The release workflow runs ``skillcheck --release-assets VERSION DIR`` on the tag
 nothing is built until the catalog, the changelog and the map all agree with that version.
 """
 
-import hashlib
 import json
 import subprocess
 import zipfile
@@ -26,7 +25,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from skillcheck import bom, skills_hook
-from skillcheck.core import standard
+from skillcheck.core import frontmatter, skill_parts, standard
 from skillcheck.core.checks import HIDDEN
 
 KICKSTART = "KICKSTART.md"
@@ -37,7 +36,11 @@ SETUP = "cloud-setup.sh"
 SETUP_TEMPLATE = Path(__file__).with_name(SETUP)
 # The two sections no run reads come last, from the first of them to the end of the file.
 CUT = "\n---\n\n# Validating a change to this standard"
-AFTER_LICENSE = "No warranty of any kind.\n\n---\n\n# How to read this file"
+AFTER_LICENSE = "No warranty of any kind.\n\n---\n\n"
+# Where each of the skill's own files begins in the kickstart file, so a link to it has a target.
+PART = "*This section is the skill's `{name}`.*"
+# The procedure's own title would repeat the standard's, which opens the kickstart file.
+PROCEDURE = "# The procedure"
 END = "**End of the kickstart file.** If you can read this line, the whole file arrived."
 # A fixed time for every entry, so the same commit always packs the same bytes.
 EPOCH = (1980, 1, 1, 0, 0, 0)
@@ -98,6 +101,7 @@ def kickstart(root: Path, version: str) -> str:
         raise ReleaseError(f"expected one copy of the standard, found {len(copies)}")
     [path] = copies
     text = path.read_text(encoding="utf-8")
+    skill_dir = path.parent.parent
     number = standard.FILENAME.fullmatch(path.name)[1]
     frontmatter_version = f'  version: "{number}"\n'
     for marker in (CUT, AFTER_LICENSE, frontmatter_version):
@@ -108,7 +112,7 @@ def kickstart(root: Path, version: str) -> str:
         INSTRUCTIONS.read_text(encoding="utf-8")
         .replace("RELEASE_VERSION", version)
         .replace("STANDARD_VERSION", number)
-        .replace("STANDARD_SHA256", hashlib.sha256(text.encode("utf-8")).hexdigest())
+        .replace("FILES_SHA256", skill_parts.files_sha256(skill_dir))
         .replace("REPOSITORY", repository)
     )
     text = text[: text.index(CUT)] + "\n"
@@ -122,8 +126,10 @@ def kickstart(root: Path, version: str) -> str:
     )
     text = text.replace(
         AFTER_LICENSE,
-        "No warranty of any kind.\n\n" + instructions.rstrip("\n") + "\n\n---\n\n"
-        "# How to read this file",
+        "No warranty of any kind.\n\n"
+        + instructions.rstrip("\n")
+        + "\n\n---\n\n"
+        + "".join(part + "\n\n---\n\n" for part in _parts(skill_dir, path)),
     )
     first = (
         "RUN-FILE-FOR: the repository this session works in · JOB: chosen by what it holds · "
@@ -136,6 +142,38 @@ def kickstart(root: Path, version: str) -> str:
     if hidden:
         raise ReleaseError(f"the kickstart file would hold U+{ord(hidden.group()):04X}")
     return whole
+
+
+def _parts(skill_dir: Path, standard_path: Path) -> list[str]:
+    """The skill's procedure, then each reference it links, in its order, each marked by name."""
+    _, body = frontmatter.parse((skill_dir / "SKILL.md").read_text(encoding="utf-8"))
+    parts = [_marked(body, "SKILL.md", PROCEDURE)]
+    seen = set()
+    for match in skill_parts.LINK.finditer(body):
+        name = match.group(1)
+        target = skill_dir / name
+        if (
+            name.startswith("references/")
+            and name.endswith(".md")
+            and target != standard_path
+            and name not in seen
+        ):
+            seen.add(name)
+            parts.append(_marked(target.read_text(encoding="utf-8"), name))
+    return parts
+
+
+def _marked(text: str, name: str, title: str | None = None) -> str:
+    """The text under its first heading, or ``title``, and the line naming the file it came from."""
+    lines = text.strip("\n").split("\n")
+    heading = next((i for i, line in enumerate(lines) if line.startswith("# ")), None)
+    if heading is None:
+        lines[:0] = [title or f"# {name}", ""]
+        heading = 0
+    elif title:
+        lines[heading] = title
+    lines.insert(heading + 1, "\n" + PART.format(name=name))
+    return "\n".join(lines)
 
 
 def notes(root: Path, version: str) -> str:

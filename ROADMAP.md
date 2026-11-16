@@ -62,7 +62,7 @@ research. These rules are that structure.
 
 | Skill | Plugin | Loads when | Status |
 |---|---|---|---|
-| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.50.0 | shipped |
+| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.51.0 | shipped |
 | `git-workflows` | `engineering` | Commits, branches, pull requests, CI, hooks, tags, changelogs and releases | shipped |
 | `house-style` | `engineering` | Writing prose, Markdown, READMEs and documentation | shipped |
 | `coding` | `engineering` | Writing, reviewing or fixing code in any language: the contract every change meets, then the language and the practice at hand | shipped |
@@ -470,7 +470,7 @@ before it's built:
 | Piece | What moves | Status |
 |---|---|---|
 | 0 | Parity checks: sample repositories, answer keys, the grader, and the current skill's results as the baseline | shipped |
-| 1 | The procedure into `SKILL.md`, from How to read this file, the routing table, What this is for, Scope, Assumptions, Limitations and the stop rules. Standing rules, vocabularies, environment and the conformance self-check into references, with `other-tools.md`. The report's skeleton and schema, and `check_report.py`. `skillcheck` checks the new structure. Findings it places, at `archive:2026-11-16/roadmap-standard-findings.md`: F3, F4, F13, F15, F17, F18, F22, F26, F30, F35, F38, F41, F43, F53, F54, F59, F62, F64, F65, F66, F67, F68, F96. | planned |
+| 1 | The procedure into `SKILL.md`, from How to read this file, the routing table, What this is for, Scope, Assumptions, Limitations and the stop rules. Standing rules, vocabularies, environment and the conformance self-check into references, with `other-tools.md`. The report's skeleton and schema, and `check_report.py`. `skillcheck` checks the new structure. Findings it places, at `archive:2026-11-16/roadmap-standard-findings.md`: F3, F4, F13, F15, F17, F18, F22, F26, F30, F35, F38, F41, F43, F53, F54, F59, F62, F64, F65, F66, F67, F68, F96. | building |
 | 2 | Starter file contents into `assets/templates/`, each file tested, with `starter-files.md`. Findings it places, at `archive:2026-11-16/roadmap-standard-findings.md`: F9, F70. | planned |
 | 3 | Phase 4: one file per dimension, and `phase-4-dimensions.md` for greenfield generation. Findings it places, at `archive:2026-11-16/roadmap-standard-findings.md`: F5, F6, F8, F21, F24, F25, F29, F34, F49, F56, F58, F63, F72, F73, F74, F76, F78, F79, F80, F81, F82, F83, F84, F85, F86, F87, F88, F89, F90, F92, F93, F94, F95, F97, F99. | planned |
 | 4 | Phases 0 to 3 and 5 to 9 into four phase files, with `preflight.py` and `inventory.py`. Findings it places, at `archive:2026-11-16/roadmap-standard-findings.md`: F1, F2, F12, F14, F16, F23, F27, F28, F31, F32, F35, F39, F42, F44, F45, F46, F47, F48, F50, F51, F52, F55, F60, F61, F69, F71, F80. | planned |

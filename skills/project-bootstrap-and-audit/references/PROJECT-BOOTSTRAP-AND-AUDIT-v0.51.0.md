@@ -1,11 +1,11 @@
 ---
 name: project-bootstrap-and-audit
-description: "Re-runnable configuration standard for one maintainer. One file, read in ranges rather than end to end, that proposes changes to itself at the approval gate. Chooses a language and a shape for something new, sets up the repository, retrofits an existing one, or audits configuration that already exists — against a two-axis stakes model and ten dimensions, then sequences what is left. Emits a fixed schema so two runs on the same repository produce comparable output. Folds in file governance, the release and deploy currency gate, secret handling, licensing, and cross-repository contracts. Stops at a hard approval gate before changing anything."
+description: "Re-runnable configuration standard for one maintainer. A skill whose procedure is its SKILL.md, with this file and the other references read in ranges rather than end to end, that proposes changes to itself at the approval gate. Chooses a language and a shape for something new, sets up the repository, retrofits an existing one, or audits configuration that already exists — against a two-axis stakes model and ten dimensions, then sequences what is left. Emits a fixed schema so two runs on the same repository produce comparable output. Folds in file governance, the release and deploy currency gate, secret handling, licensing, and cross-repository contracts. Stops at a hard approval gate before changing anything."
 metadata:
-  version: "0.50.0"
+  version: "0.51.0"
   updated: "2026-11-16"
-  supersedes: "0.49.2"
-  reading: "One file, read in ranges. Start at How to read this file; take only the sections your job names."
+  supersedes: "0.50.0"
+  reading: "Read in ranges. Start at the skill's SKILL.md, whose routing table names the sections each job takes."
   absorbs: "REPO-RECON.md, TEST-PROCEDURE.md, the standalone test procedure for this file — all deleted, their content is below"
   standards_repo: "<asked at the Phase 3 wait, recorded in the Phase 0 block — none is a valid answer>"
   license: "CC0-1.0"
@@ -19,192 +19,12 @@ license to do all of the above unconditionally. No warranty of any kind.
 
 ---
 
-# How to read this file
+# Versioning and dated facts
 
-<constraints>
-
-**Do not read this file end to end.** It is a reference, not a document, and no job needs all of
-it. Read this section, then only the ranges your job calls for. **A run that reads everything has
-paid for attention it did not use and diluted the rules it did.**
-
-**Line numbers below are generated and go stale the moment anything is edited. Build your own
-index first** — one command, and it is authoritative where this table is only a hint:
-
-```
-grep -n '^# \|^## ' <this file>
-```
-
-Some of those matches are **inside template code blocks, not sections:** `# <project name>`
-twice, `# Decisions`, `# Test Verification Checklist` and the `## ` headings under each, and
-Phase 8's example entry, `## 2026-09-12 — Configuration audit`. A heading inside a code block
-is never a section, and the table below routes each job to the real ones.
-
-**Then read by range**, not by scrolling: `sed -n '<start>,<end>p'`, or your tool's read with an
-offset and a limit. Where a section turns out to continue past the range you took, take the next
-range — do not guess at what was cut off.
-
-</constraints>
-
-## What to read, by job
-
-**Always, first:** this section, then all of **Before you start** — one H1, so the heading
-index finds it in one match. It holds *Scope*, *How to read a finding* with the standing
-rules, *Environment — detected, not assumed*, *Vocabularies* and *Facts with an expiry date*.
-**Everything else is on demand.**
-
-**This is the one routing table.** Each section is named exactly as it is headed, so the
-heading index finds it in one match.
-
-| Job | Then read | Skip |
-|---|---|---|
-| **Survey** — look, change nothing | *The run*, phases 0–5, then stop and report | Phases 6–9 |
-| **Audit or retrofit** | *The run*, all phases, with the ten dimensions inside phase 4, plus *File governance* | *The release and deploy currency gate*; *Choosing a language and runtime*, *Choosing the shape* and *Project shapes and layout* unless a choice is itself a finding |
-| **Set up something new**, including a repository that holds no source yet | *The run*, all phases, plus *Choosing a language and runtime*, *Choosing the shape*, *Project shapes and layout*, *Starter file contents* and *File governance* | *The release and deploy currency gate* |
-| **Choose a language and a shape** before any source exists, with no repository yet or in one that holds no source | *Choosing a language and runtime*, *Choosing the shape* and *Project shapes and layout*. In a repository, *The run* as well: phases 0–3, stopping at the Phase 3 wait with the recommendation, and Phase 6 for the shape of its report | Everything else, until the choice is made. Setting it up is then the row above |
-| **Write a missing config file** | *Starter file contents* and *The configuration file map* | Everything else |
-| **Cut a release or a deploy** | *The release and deploy currency gate*, plus version reconciliation in dimension 10 | Phases 1–9 |
-| **Prune files** | *File governance* | Everything else |
-| **Two repositories are involved, or more** | *Cross-repository contracts* — including the fleet case, and the copied-file trade | Nothing extra |
-| **Plan what happens next** | *The run*, phase 9 | Everything else, if the audit is already done |
-| **Running on a tool that is not Claude Code** | *Any agent, any tool*, then your job's row | Nothing extra |
-| **Contribute a run to whoever maintains this** | *Sending results back* | Nothing extra |
-| **Test this standard** | *Validating a change to this standard* | Everything else |
-
-**Every job ends with the *Conformance self-check*.** It is short and it is the only part of this
-file that asks the run to report on itself.
-
-## What not to read during a run
-
-| Section | Why |
-|---|---|
-| *Provenance* | The incident behind every rule. Read it when a rule looks arbitrary and you want to know what produced it — **never to be thorough** |
-| *Validating a change to this standard* | For testing this file, not for running it |
-| *Proposing a change to this standard* | Read it only when you have found this file wrong |
-
-**If your tool gave you this whole file in context and you cannot read selectively, that is
-fine** — the routing above still tells you which parts to attend to, and which to skip.
-
----
-
-# Before you start
-
-**Everything in this section is read on every job, whatever the job is.** It is the shortest
-part of the file that cannot be skipped: what this covers and does not, how to read a finding,
-the rules that hold in every phase, what the environment decides rather than assumes, and the
-closed set of words a report may use.
-
-Run this to set up a repository, retrofit one, or check whether existing configuration
-still matches reality. It is re-runnable by design. Running it twice on an unchanged
-repository must produce the same statuses and the same schema.
-
-**Two cadences, one file.** This standard runs at inception, before a release or deploy, and
-when something feels stale. `TEST-VERIFICATION-CHECKLIST.md` runs per task, before claiming
-work complete — it lives in the repository rather than beside this file, and **Starter file
-contents** specifies what goes in it.
-
-**To run it:** attach this file to an agent session on a repository and say *"Run the attached
-PROJECT-BOOTSTRAP-AND-AUDIT standard against this repository"* plus the job. It stops and waits
-twice; nothing is written before you approve. **Sending results back** has the full prompt
-and what to return.
-
-**For something that does not exist yet**, attach it to an empty repository — or none — and say
-what you want to build and who runs it. It will choose a language and a shape with you before
-it writes anything.
-
-**It runs on any agent tool**, not only the one whose paths it names. **Any agent, any tool**
-translates them, and every run closes with a **conformance self-check** so a run on an
-unfamiliar model reports its own weak points rather than leaving you to find them.
-
-## What this is for
-
-Set up a new repository, or check an existing one against a baseline, **without a second
-reviewer and without a platform team.** It replaces the judgment a colleague would apply at
-inception and at release, with the reasoning written down so a later run can disagree with it.
-
-**Goals.** Make inception decisions explicit, especially the irreversible ones. Make drift
-findable rather than discovered. Keep configuration proportionate to what the project can
-actually break. Leave a record that survives the session, so the next run starts from what was
-decided rather than from scratch.
-
-**Not a goal.** Judging whether the code is good. This reads configuration, structure and
-process — never program logic, algorithms or correctness.
-
-## Assumptions
-
-These are beliefs the design rests on. Each could be wrong, and saying so is cheaper than
-discovering it.
-
-- **Instruction files are weak, and the evidence is specific about how.** A controlled study
-  (Gloaguen et al., ETH Zurich / LogicStar, 2026, `arXiv:2602.11988`) tested four agents on 438
-  tasks and found repository-level context files produced **no significant task-success gain
-  while raising inference cost over 20% on average** — and that this held for developer-written
-  files as much as generated ones. A follow-up (Lulla et al., 2026, `arXiv:2601.20404`)
-  compared agents with and without an `AGENTS.md` on 124 pull requests in 10 repositories: the
-  file went with **lower median runtime (28.64%) and fewer output tokens (16.58%)**, and task
-  completion stayed comparable. One measures success and the other efficiency, so the two do
-  not conflict. **What survives both results:** keep the context file short, hand-written, and
-  limited to what a reader cannot discover from the codebase — tool commands being the one
-  content type measurably used, by two orders of magnitude when the file names a non-standard
-  tool, while repository overviews earned nothing. Two later measurements point the same way,
-  the first only tentatively. First, **adherence to written instructions may decay within a
-  session** — about 5.6% lower odds of compliance for each additional function generated
-  (`arXiv:2605.10039`), an exploratory and non-monotonic finding in a study whose main result
-  was that file size, position, structure and conflicts made no detectable difference — which
-  is why this file uses hard gates and puts its self-check last, where any decay is worst,
-  rather than trusting one instruction stated once. Second, **the same guidance file measurably
-  helped one model while hurting another**, which is why every budget rule here says minimal
-  rather than complete. Everything here treats written rules as guidance, and only deny rules,
-  hooks and server-side checks as enforcement.
-- **Accretion is the failure mode**, not absence. A solo project dies of configuration nobody
-  maintains more often than of configuration nobody wrote. Hence `OVER` as a first-class finding.
-- **Declines are worth recording** — a written "no" with a reopen trigger prevents the same
-  question being re-litigated every run.
-- **Stakes are two axes, not one.** Blast radius and audience diverge; an internal tool three
-  people use can break a production floor.
-- **The human decides.** Where a choice has a real trade, it goes to them with both
-  consequences rather than being applied on the agent's judgment.
-
-## Limitations
-
-- **It enforces nothing by itself.** It is a document an agent reads. Everything real is a
-  deny rule, a hook, or a server-side check that this can only propose.
-- **No code review.** Structure, wiring and configuration only. Logic, correctness and
-  performance are out of scope.
-- **Tier is a heuristic.** Two axes and four levels is a rough instrument; it is meant to stop
-  gross mismatch, not to be precise.
-- **Budgets are unmeasured.** The line counts are working heuristics, stated as smells rather
-  than thresholds, because no measurement supports a specific number.
-- **Git and a hosted remote are assumed.** Nothing here covers other version control.
-- **Named tools and platform capabilities go stale.** Every version number, price and plan
-  limit in this file is dated in **Facts with an expiry date** and was true on that date
-  only. A run that relies on one without checking it is reporting last year's platform.
-- **Shapes not yet exercised** carry more risk: PowerShell, C#, C with meson, shell tools,
-  and repositories with cross-repository contracts. The audit path has far more runs behind it
-  than the scaffolding path.
-- **It was built from one maintainer's estate, and it shows.** Every rule since 0.17.0 came
-  from Python web applications and a C fork, all single-committer, all with tests, a build
-  and a lockfile. **Adversarial probing found the shapes it handles badly**, and they share
-  one property: the rule's premise about the repository is false. A proof-assistant
-  repository with no test suite, a content-addressed build where pinning is meaningless, a
-  documents or dataset repository with nothing to build, a monorepo with per-package
-  versions, generative tests with no stable count. The premise rule above is the general
-  answer; **it is not a substitute for knowing that this file has never been run on any of
-  them.**
-- **Two cases have no rule at all, and are named here rather than left to be discovered.**
-  A fork whose upstream is dead or deleted — the contract rules assume a live provider. And a
-  prior decision record written by a *different* standard, which re-check mode will read as
-  its own. **Each produces no opinion rather than a wrong one**, which is why they are
-  tolerable, and each is a gap someone will eventually hit.
-- **A repository that holds this standard treats the file as content.** It is rated only for
-  placement, license and versioning (dimensions 3, 9 and 10), and a run never raises a
-  repository amendment against it. Anything wrong with its rules arrives as a
-  `class: standard` amendment, as *Proposing a change to this standard* describes.
-- **The choosing part has no runs behind it at all.** Language and shape selection arrived in
-  0.18.0 and has never been exercised on a real project. Treat its recommendations as a
-  starting argument to disagree with, and report what it got wrong.
-- **Planning is deliberately shallow.** Phase 9 sequences the work this run proposed and
-  nothing else. It is not a substitute for project management and will look thin to anyone
-  expecting one — that is the intent, not an omission.
+**This file is one part of the skill, and `SKILL.md` is where a run starts.** It holds what
+hasn't yet moved into a file of its own: the version, the dated facts, the phases and the
+dimensions, and the sections after them. `SKILL.md`'s routing table names the sections each
+job reads, here and in the other references, by their headings.
 
 ## Versioning — loose guidance
 
@@ -233,399 +53,6 @@ reverse. **An upload that renames the file has not made a mismatch:** a tool tha
 prefix or turns the version's dots into underscores leaves the version readable, and the
 file's SHA-256, recorded in the self-check, is what identifies the bytes. Phase 8 records the
 frontmatter value. Prompts name the standard, not the file.
-
-## Start here — read only what the job needs
-
-**Find your job in *What to read, by job*, at the top of this file, read those sections, and
-skip the rest.** That table is the only one. A second table here drifted from it, and two
-runs of the same job could have read different sections. Reading a section that does not
-apply costs context and dilutes attention on the ones that do.
-
-**Testing the standard rather than a repository?** Read *Validating a change to this standard* and
-nothing else — it carries the whole procedure: corpus, order, prompts, what to record, and how to
-triage a failure. Its mechanical checks need no repository at all.
-
-**This is one file, read in ranges.** *How to read this file*, at the top, says which
-sections each job needs and which to skip. Where a run finds this standard itself wrong,
-*Proposing a change to this standard* says how that reaches the gate.
-
-***Provenance* carries the version history and the incident behind every rule. It is never read
-during a run** — only when a rule looks arbitrary and you want to know what produced it. It is the
-record of why rules exist, for whoever maintains this file. Skip it unless you are changing the
-standard. Within a run, skip further:
-
-- ***The release and deploy currency gate*, *Cross-repository contracts*,
-  *Standards distribution*** — only when cutting a release or a deploy, where this repository
-  provides to or consumes from another, or when proposing how a standard reaches many
-  repositories. Most runs need none of the three.
-- **A dimension that is `N/A` at this tier** — record it and move on. Do not argue it.
-
-**Survey mode is the whole of the old reconnaissance pass.** Phases 0–5 are read-only and
-produce more than a separate survey tool did. If you were asked only to look, run them, emit
-their blocks, and stop before Phase 6.
-
-**Whatever the job, it ends with one file.** Survey ends with phases 0–5 in it; a run stopped
-at the Phase 3 wait ends with 0–3 and the questions to answer; a run stopped at the gate ends
-with 0–6 and the decisions to answer; a full run ends with 0–9. Same name, same shape, one
-attachment.
-
-## Scope
-
-This covers **the repository**: how it is set up, configured, gated, reviewed, documented and
-released. It does not cover how the work is run.
-
-**In scope.** Bootstrap and setup files, agent configuration, enforcement and CI, review and
-merge discipline, secrets handling, dependencies, licensing, packaging, versioning,
-documentation currency, file governance, cross-repository contracts.
-
-**Also in scope, and narrowly:** sequencing and milestones **for the repository's own
-configuration work** — the order the amendments land in, what constitutes done, and where
-that record lives. Phase 9 covers it. This is a deliberate reversal of the earlier position
-that all planning was out of scope, made because a run that produces sixteen amendments and
-no order of operations has handed over a pile, not a plan.
-
-**Out of scope.** What the business should depend on, what is worth building, which features
-come first, staffing, process. The line: **this file may sequence work it proposed; it may
-never sequence the product.** Where a finding needs one of those as an input — who depends
-on this, does it touch production — **it is asked, never assumed**, and the answer is recorded
-as given rather than argued with.
-
-## How to read a finding
-
-**A status describes the repository. It does not issue an instruction.**
-
-Every recommendation carries what happens if it is taken **and what happens if it is not**.
-Declining is a first-class answer, recorded with a reopen trigger and honoured until that
-trigger fires. Nothing here is mandatory. **An audit that reads as a list of orders has been
-written wrong.**
-
-Where the baseline has a strong opinion it says so and gives the reason. Where practice is
-genuinely split it gives both options and the trade, and asks. The ranking exists so the
-consequences can be sorted, not so anything can be demanded.
-
-<constraints>
-
-**Standing rules. These hold in every phase.**
-
-**The gates — what stops a run.**
-
-- **Stop at Phase 6.** Nothing is written to the repository before explicit human
-  approval. Reporting is not permission.
-<!-- WHY exactly two waits: adherence decays measurably within a session, so gates counter
-     drift — but each extra wait costs a round trip and invites the human to answer what the
-     file could answer itself. Two is the floor, not a default to extend. -->
-- **Phases 0–5 run in one pass**, each emitting its schema block before the next begins.
-  **There are exactly two waits: Phase 3 and Phase 6.** Do not invent others.
-- **Each phase opens with one short progress line:** the phase, and what it's about to do.
-  In a long session the owner otherwise hears nothing between blocks, and the platform
-  reminds the session, again and again, that the owner has heard nothing.
-- **Every run produces exactly one file.** Written outside the repository, named
-  `RUN-REPORT-<repo>-<YYYY-MM-DD>.md`, containing everything the run produced — decisions to
-  answer first, then every emission block. **The human must never have to assemble a report
-  by copying pieces out of the conversation.** Emission blocks still appear in the reply as
-  the run proceeds; the file is the durable copy and the only thing that has to travel.
-  **Where the request names the report's files, form or place, follow it,** keep every schema
-  block, and record the difference in `overrides`. One audit's owner asked for two files in a
-  private repository, and the run had no rule saying the request wins.
-- **Emit the schema, and only its fields.** Every phase has a required field set and every
-  phase has `notes` for anything the fields cannot hold. Fill every field. **Do not add
-  fields.**
-**Evidence — what counts as knowing something.**
-
-- **Evidence, not assertion.** Any field whose name ends `_proof` carries literal command
-  output. Never a summary, never a paraphrase, never "verified".
-- **An absolute negative is inverted by a single counterexample, and it is the claim shape a
-  reader is least likely to doubt.** *There is no X anywhere in Y* reads as thoroughness
-  while resting on one command having been run once, over a tree that may since have
-  changed — including by this run's own amendments. **State what you searched, with what
-  command, and when.** Prefer *this search found none* over *there are none*: the first is a
-  result and can be re-run, the second is a claim about the world. Where an absolute negative
-  is load-bearing — it makes a question unanswerable, or it justifies a decision — **re-run
-  it immediately before writing it down.**
-- **Never read an exit status through a pipe.** `pytest … | tail -25` reports **tail's**
-  status, not pytest's, and tail succeeds at truncating failed output. A live run recorded
-  `exit 0` that way; unpiped it was `exit 1` with four collection errors, and that run's
-  largest finding would have been lost. **This voids every other evidence rule on this
-  list**, because the output looks literal and the status is fabricated by the pipeline.
-  Run the command unpiped and truncate afterwards, or use `set -o pipefail`, or read
-  `${PIPESTATUS[0]}`. **The tell is output that was shortened for readability** — `tail`,
-  `head`, `grep`, `less`, `| jq`. Where a `_proof` field holds trimmed output, the status
-  beside it was taken unpiped or the field says how it was obtained.
-- **`pipefail` has a trap of its own.** Under it, `producer | grep -q` can read a match as a
-  failure: `grep` exits at the first match, and the producer dies of SIGPIPE writing to it.
-  A live check silently ate a legitimate changelog opt-out that way. Capture the output
-  first, so a failing producer still fails, then give `grep -q` a here-string, which has no
-  pipe: `out=$(producer) || exit 2; grep -q <pattern> <<<"$out"`. And `grep -c` over a glob
-  prints a count per file, not a total.
-- **Output that lists work to do is read whole.** Shortening is for output read for a status.
-  A list of conflicts, failures or files to change is the work itself: a live merge's output,
-  cut short, hid a conflict, and its markers shipped through nine green jobs.
-- **A subagent's finding is a lead, and it is verified before it's reported**, like any claim
-  the run didn't observe itself. A lead the run can't verify is reported as the subagent's,
-  unverified, and a finding resting on it is `UNVERIFIABLE-HERE`. **Read a fan-out's failures
-  before its results:** a live seven-lane fan-out lost 16 of its 17 agents to usage limits.
-- **Local green is not remote green.** A locally passing gate says nothing about the
-  repository's actual CI conclusion. Where a remote exists, read it.
-- **Enabling a feature is not the same as satisfying what it needs, and the gap is silent.** A
-  configuration option whose precondition is unmet does not fail — it does nothing, reports
-  nothing, and reads as coverage. The preconditions are the usual ones: a permission the token
-  was not granted, a credential never set, a platform feature switched off at the repository, a
-  plan tier the account does not hold. **A feature that cannot run has nothing to report, which
-  is why this never surfaces on its own.** A live review caught a dependency tool configured to
-  bypass its own schedule for security advisories, against a token scoped without the permission
-  that reads them — the block was deliberate, correct in intent, and inert. **So read each
-  enabled option against what it requires, and say which preconditions you verified and which
-  you could not.** Where a precondition cannot be satisfied, the honest fix is removing the
-  option, not leaving it as decoration.
-- **Read a new configuration against its preconditions before it ships, not after.** The same
-  defect in an older workflow had been green for a year before anyone read the log. **The cost of
-  this check falls entirely on when you run it**, and a configuration not yet landed is the
-  cheapest moment there will ever be.
-- **A step configured not to fail reports success unconditionally, so its conclusion is not
-  evidence at any depth.** `continue-on-error`, `|| true`, and a step's own
-  fail-if-error switch set false each convert a gate into a log line, silently, with no
-  signal at the level anyone checks. A live run found a coverage upload green at the rollup,
-  green at the job, **green at the step** — while its log read `Token length: 0` and
-  `Upload ... failed`. It had never once uploaded anything, across every run in its history,
-  and the documentation described it as a live capability of the pipeline. **Read the `on:`
-  and the suppression switches together at Phase 2**: for any step that cannot fail, read
-  its output or record it as unrun. Never count it as a gate.
-- **Read it at job and log level, not from the rollup — and read the skip list.** At run
-  level **a job or a test that silently did not run looks exactly like one that passed**, and
-  a green tick is the sum of both. A skipped test is not a passing test; a conditional job
-  whose condition went false reports nothing and subtracts nothing from the conclusion. This
-  matters most for the gates an amendment changed, which is precisely when the rollup is
-  least informative: a live run read a green conclusion at job and log level and confirmed
-  three things the tick could not have told it — that the downloaded scanner really was
-  checksum-verified before execution, that a newly added guard ran rather than skipping, and
-  that a widened gate reached all three workflows. **Name the skip count and what skipped**,
-  and where an amendment touched a gate, quote the log line proving it fired.
-- **And check the workflow will run on the branch before you promise to read it.** A
-  workflow triggering only on the default branch and on pull requests produces **nothing** on
-  a feature branch — not a pending run, an absent one. A live apply pushed five commits and
-  found zero workflow runs, so every gate on that work stayed local-only, with no way to
-  discharge the rule above. **Read the `on:` block at Phase 2 and say so at the gate**, where
-  the human is deciding whether to approve, rather than in the completion report where the
-  answer is already fixed. Absent is recorded as absent; **calling it pending is a false
-  statement about a run that will never arrive.**
-**Honesty — what you may not do to make a report look better.**
-
-- **Never invent a value.** Unknown is `unknown`. Absent is `none`. Never leave blank.
-- **A placeholder left unfilled in the request is asked about at once**, such as
-  `<Windows / macOS / Linux>`. It isn't an answer, and a guess at it is an invented value.
-  Ask in the first reply, and carry the question to the Phase 3 wait, as Phase 0 carries its
-  own, so it isn't a third wait. Unanswered there, it's `unknown`, and a finding that
-  depends on it is `UNVERIFIABLE-HERE`.
-- **Never invent a status.** The vocabularies are closed. If nothing fits, use `secondary`,
-  `strength` or `notes` — never coin a new term.
-- **Never fill a placeholder with a real credential, and never ask the human for one.**
-- **Never delete a file, a test, or a rule to make a check pass.** The remedies for a
-  scanner or gate finding are: fix the real problem, narrow the check, or record an
-  exemption. Removing the thing that failed is the forbidden resolution.
-- **Record every override** — what you saw, what you did, why.
-- **Correct, never silently edit.** A wrong claim gets a dated correction pointing at what it
-  replaces. A pushed commit message cannot be amended, so the correction lives in the record.
-- **Verify a stated problem before acting on it.** A premise in the prompt — "CI is
-  failing", "this dependency is broken" — is a report, not a finding. Reproduce it, or read
-  the current state. **It may already be fixed**, and proposing a repair for something
-  already repaired wastes a run and adds churn to a repository that did not need it. Say what
-  you found either way.
-**Posture — how a finding is raised.**
-
-- **Do not fix while inventorying.** Findings are Phase 4; fixes are Phase 7, after approval.
-- **Two surfaces answering one question must be shown to agree, and only one may route.**
-  Where a check, a router, a config value or a claim exists in two places, **they are one
-  surface with one implementation, or they are a defect waiting for the day they disagree.**
-  Observed three times in one project: a log sniffer reading only the first line while the
-  parser it guarded found the marker anywhere — so a valid file routed to the wrong parser
-  and returned **zero records from a fourteen-record input, silently**; an update offer and
-  an approval check keyed differently, so the tool would have installed a build its own
-  reports called unapproved; and two call sites spelling one output path. **Where merging is
-  impossible, name both, say which one routes, and have the test assert the relation between
-  them** so neither can drift alone.
-- **Check a dimension's premise before rating it, and name the premise you checked.** Every
-  dimension assumes something about the repository: that tests exist and are countable, that
-  dependencies are pinned by version, that there is one version, that there is source at all.
-  **Those assumptions are usually true and are not always true**, and where one is false the
-  rule does not become lenient — **it becomes wrong, confidently.** A repository whose
-  correctness argument is a machine-checked proof rather than a test suite is not missing
-  tests. A build whose dependencies are content-addressed is not unpinned; it is pinned more
-  strongly than a lockfile manages. A repository of documents, data or infrastructure has no
-  build to gate. A monorepo with independent per-package versions has nothing to reconcile
-  against a single tag. **Record `N/A` with the false premise named as the reason** — the
-  same discipline as marking a fact `UNVERIFIABLE-HERE` rather than guessing at it. **A `GAP`
-  raised against a premise that does not hold is the worst output this file can produce**,
-  because it is specific, confident, and asks the human to break something that was right.
-- **The deployment is a premise, and the most expensive one to get wrong.** Every dimension
-  that rates exposure, reachability or blast radius assumes the audit knows where the software
-  runs. **That knowledge comes from Phase 3's sixth question, never from a runbook**, and a
-  finding built on a deployment the human has not confirmed is `UNVERIFIABLE-HERE` rather than
-  rated.
-- **Unfamiliar is not wrong.** These ten dimensions encode practice that is known to work;
-  they do not encode everything that works. **An approach, tool, algorithm or layout you do
-  not recognize is not evidence of a defect**, and the absence of a rule covering it is a
-  fact about this file rather than about the repository. Where something is unusual and you
-  cannot establish that it is wrong, **say that it is unusual and unverified, rate on what
-  you could establish, and put the question to the human** — who may well have chosen it
-  deliberately and be the only person who knows why. Rating a defect from unfamiliarity alone
-  is how a standard degrades a repository towards its author's habits.
-- **Where a repository's own recorded convention contradicts this file, the repository wins
-  inside it — and the conflict is recorded, never silently resolved.** This file is guidance
-  a maintainer chose to run; it is not authority over a decision they already made and wrote
-  down. **A convention with its reasoning in the decision record outranks a rule here**, and
-  the amendment is to record the divergence so no future run re-raises it. A convention with
-  no reasoning anywhere is a different thing and may be raised normally. **Where the conflict
-  is genuine and unrecorded, raise it as a question rather than an amendment** — the run does
-  not get to settle which of two standards the repository follows.
-- **That precedence covers what a finding says, never how the run proceeds.** A context file
-  that tells agents to act without asking, commit as they go, release on their own, or write
-  a log before a session ends is written for work sessions, **and it does not lift the
-  waits.** Until the Phase 6 gate the run writes nothing to the repository; a write the
-  context file asks for at the end of a session waits for approval with the rest, or does not
-  happen. **After the gate, the repository's own rules for committing a change apply** — its
-  changelog, its commit format, its checks. **Nor does a hook that demands a commit or a push
-  before a session stops.** Where the owner has put a hold on pushing, the owner's instruction
-  wins over the hook, and the session says that it's holding, and why.
-- **An identifier that answers half a question while appearing to answer all of it is worse
-  than one that answers none**, because it stops the reader asking. **And the name a human
-  actually sees is part of the interface** — metadata inside a file does not help someone
-  looking at a directory listing. A live protocol stamped artifacts with their sender and
-  nothing else, which read as complete while leaving the recipient unstated; the fix put both
-  in the envelope **and in the filename**, because a file manager shows the filename. Where
-  an artifact moves between parties, its name places it in both directions.
-- **Report over-configuration as loudly as under-configuration.** `OVER` is a real finding,
-  **and it applies to enforcement this file itself installed.**
-
-</constraints>
-
-## Environment — detected, not assumed
-
-<constraints>
-
-**None of this is universal. Detect it, or ask.** The table below is what the standard was
-built against; another maintainer, tool or plan will differ, and **a constraint assumed wrong
-produces advice that cannot be followed.** Phase 0 establishes the real answers and records
-them. Where a capability cannot be determined, it is `unknown` and becomes a human question —
-never a guess.
-
-</constraints>
-
-| Fact | How it is established | If it holds |
-|---|---|---|
-| **Ephemerality** — only the repository is present | Assume true unless the tool says otherwise | Anything uncommitted does not exist |
-| **Shell available** | Try one harmless command | **Without it, Phase 2 cannot execute documented commands.** Record them unrun; everything becomes `UNVERIFIABLE-HERE` and the run says so in its headline |
-| **Writes outside the repository** | Try writing to a scratch path | **Without it, greenfield cannot build-then-copy and the run report has nowhere to live.** Emit the report in the reply and say why |
-| **Remote CI readable** | Try reading a conclusion | Without it, "local green is not remote green" cannot be discharged. Record `unverifiable` |
-| **Tag creation** | Try, or read the tool list | Where refused, tagging is a human action via the host UI or a dispatch job, and from T2 the job, which can make the tag annotated — **never "tag locally"** |
-| **Local working copy exists** | **Ask. It cannot be detected** | Without one: no local tagging, no desktop tooling, and **client-side hooks gate nothing**, because every commit comes from an ephemeral container. A committed SessionStart hook installs them in agent sessions only, and CI stays the gate |
-| **Enforced layer** | See *Any agent, any tool* | Where the tool has none, dimension 6 is `N/A`, never `GAP`, and the guarantee moves server-side |
-| **Branch protection available** | Read the plan, or ask | Unavailable on private repositories on free plans — **and rulesets carry the same gating**, so the newer mechanism is not an escape. Where unavailable, `N/A` with the reason — never a `GAP` re-proposed every run |
-| **Third-party repositories readable** | Try one | Often scoped to the maintainer's own. An upstream fix status is then `unverifiable`, **never "no fix coming"** |
-| **Clock agreement** | Compare `date -u` with `git log` | They can differ by days. Record both; anything written takes the session date |
-
-## Vocabularies
-
-**Closed sets, with precedence, and both are counted.**
-
-### Agent-layer terms
-
-The body uses these names; *Any agent, any tool* maps each to a filename per tool. Shell
-blocks below name Claude Code paths because a command must be concrete — substitute your
-tool's and record the substitution.
-
-| Term | What it is |
-|---|---|
-| **context file** | The canonical, portable project context. `AGENTS.md` |
-| **tool shim** | A per-tool file that imports the context file and holds only what cannot be portable |
-| **scoped rules** | Rules loaded per file or per path rather than every session |
-| **enforced layer** | Permission configuration the tool obeys mechanically. **Not available on every tool** |
-| **tool-server config** | Committed external-tool configuration, where the tool supports it |
-
-### Dimension status
-
-Exactly one `status` per dimension, plus any `secondary` entries and an optional `strength`.
-
-<!-- WHY OVER is first-class: a solo project fails from configuration nobody maintains far
-     more often than from configuration nobody wrote. Removing OVER makes this a ratchet that
-     only ever adds. It applies to rules this file installed, too. -->
-| Precedence | Status | Meaning |
-|---|---|---|
-| 1 | `BLOCKER` | A live exposure, or a check reporting success while measuring nothing. Ranked first for what it risks — the ranking is information, never an order |
-| 2 | `DRIFT` | Configured, but no longer matches reality. Actively misleading |
-| 3 | `GAP` | Missing something this tier warrants |
-| 4 | `OVER` | Heavier than this tier warrants |
-| 5 | `MIRROR` | Source of truth is outside the repository; unverifiable by design |
-| 6 | `UNVERIFIABLE-HERE` | Cannot be established from this environment |
-| 7 | `OK` | Present, correct, proven by output |
-| 8 | `N/A` | Does not apply — by tier, by plan, **or because the rule's premise is false for this repository** |
-
-<!-- WHY the closure rule: two early runs emitted 12 and 11 statuses for 10 dimensions, one
-     by inventing `OK-with-gap` for a dimension that was partly fine. A count that need not
-     balance hides both. Do not relax this to "roughly one per dimension". -->
-**Closure rule.** Phase 4 emits exactly ten primary statuses, numbered 1–10. **If the tally
-does not sum to ten, the phase failed — recount.** Secondaries and strengths are never counted.
-
-<!-- WHY strength exists: precedence carries only the worst finding, so a repository with an
-     excellent suite and one missing file reported as ten bare GAPs, and the run had to write
-     a paragraph arguing against its own table. This field replaces that paragraph. -->
-**`strength` is required wherever a dimension is materially better than its status implies.**
-Precedence carries only the worst finding; without `strength` a report misrepresents the
-repository and forces prose apologia the schema exists to remove.
-
-### Command result
-
-| Result | Meaning |
-|---|---|
-| `PASS` | Ran, exit 0 |
-| `FAIL` | Ran, non-zero exit |
-| `UNVERIFIABLE-HERE` | **Cannot** run here — no network, no daemon, needs a credential, wrong host OS, a side effect outside the container, or the session refuses it |
-| `NOT-RUN-HERE` | **Could** run, but could not finish in the time the run had |
-
-**A command the session refuses is `UNVERIFIABLE-HERE`**, whether its permission layer or
-the enforced layer refused it, and the refusal is recorded as it was worded. **Never re-spell
-the command to get past a refusal**, for the reason the deny layer is never routed around.
-
-**A command whose exit status is its report is not a gate, unless a workflow gates on it.** A
-status check that exits 1 while something is open, or `git diff --exit-code` asking whether
-anything differs, answers a question rather than passing or failing. Record its answer in the
-phase block's `notes`, not in `commands`, so the tally doesn't count a failure that isn't
-one. Where a workflow does gate on its exit, it is a gate like any other, and it goes in
-`commands` with its result.
-
-### Amendment severity
-
-`recommended` or `optional`. **Nothing else.** Severity records how strongly the baseline
-argues for something — it is never an instruction, and it is not a dimension status. An
-amendment on a `BLOCKER` dimension is `recommended`; it does not have severity `BLOCKER`.
-
-**Every amendment carries `if_accepted` and `if_declined`.** A recommendation without the
-consequence of refusing it is an order wearing a suggestion's clothes.
-
-<constraints>
-
-**The setup carve-out.** Installing the **project's own declared dependencies** into the
-ephemeral container — `pip install -e ".[test,dev]"`, `npm ci`, `meson setup build` — is
-**setup, not a side effect.** Record it in `setup`. **Do not count it in `command_tally`** —
-**unless the install is itself a gate**, such as CI's install step or the install the context
-file documents. Then it goes in `commands` as well, and its result is counted: the carve-out
-exempts installing from being a side effect, not a gate's result from the tally. A lockfile
-install that fails is the gate failing, and a tally that reads all `PASS` beside it misleads
-the reader who triages from the numbers.
-
-**What the project's CI installs counts as declared**, because its workflow is where the project
-declares it: the system packages a job installs, such as a library the test suite needs from
-`apt-get`; the tools a job installs, such as `pip-audit`; and a binary an action downloads,
-fetched here at the same version and checked against its published checksum. Installing any of
-them in the container is setup, recorded with the workflow line that declares it. **A suite
-that cannot import for want of one is not `UNVERIFIABLE-HERE` while the container can install
-it**: install it the way the workflow does, then run the suite.
-A dependency environment that already existed at session start goes in
-`environment_preexisting`, not `setup` — the distinction is material to reproducibility.
-
-Still `UNVERIFIABLE-HERE`: hand-patching an installed package, installing anything the
-project does not declare, or writing outside the container.
-
-</constraints>
 
 ## Facts with an expiry date
 
@@ -789,6 +216,7 @@ action for each page they're on. Each is in the account's Settings, under the pr
 | A cloud session installs no plugin that a repository's `.claude/settings.json` turns on under `enabledPlugins`, including those from marketplaces it lists under `extraKnownMarketplaces` | 2026-09 | Dimension 4 and *Standards distribution*. A repository that relies on its settings for a plugin gets none in cloud sessions |
 | A cloud environment's setup script is set in the environment, not the repository. It runs before Claude Code launches, in cloud sessions only, and is skipped when a cached environment exists; the page gives it the toolchains the image lacks. A SessionStart hook in the repository's `.claude/settings.json` runs after launch in every session that holds only that repository, local and cloud, resumed ones included. A session holding several repositories runs no repository's hooks, and the page sends those sessions to a setup script (Claude Code's cloud environments page) | 2026-10 | Dimension 4. What a session needs from the repository comes from a committed hook, and a toolchain from the environment |
 | In a cloud session, a public repository's committed files arrive through `raw.githubusercontent.com`, which is on the default Trusted network list, while GitHub API requests reach only repositories attached to the session. The docs say release-asset requests do too, with a 403 otherwise, but on 2026-09-26 and 2026-09-29 an unattached public repository's `releases/download/` link returned 200 while its API returned 403 | 2026-09 | *Sending results back*. A file linked at a commit is documented to arrive; a release asset is documented not to, whatever one download showed |
+| A skill's `` !`command` `` line runs before Claude reads the skill, its output in place of the line, and `${CLAUDE_SKILL_DIR}` names the folder holding `SKILL.md`. A synced skill's body keeps that behavior in a cloud session, and in a terminal or VS Code session Claude Code doesn't run such commands in a synced skill (Claude Code's skills page, read 2026-11-16: "The `` !`<command>` `` syntax runs shell commands before the skill content is sent to Claude"; "In a cloud session, the body keeps the behavior a local skill has"; "In a terminal or VS Code session, Claude Code doesn't run these commands in skills synced from your claude.ai account") | 2026-11 | `SKILL.md`'s Step 0. Where the line arrives as a command, the run runs it itself |
 | Claude Code's web-fetch tool returns a small model's answer about a page, not the page. Its documentation calls that lossy by design and points to `curl` for the unprocessed page | 2026-09 | *Sending results back*. A file meant to be read whole is downloaded, not fetched |
 
 ### Scanners and formatters
@@ -833,6 +261,34 @@ already implements it.
 ---
 
 # The run
+
+## The setup carve-out
+
+<constraints>
+
+**The setup carve-out.** Installing the **project's own declared dependencies** into the
+ephemeral container — `pip install -e ".[test,dev]"`, `npm ci`, `meson setup build` — is
+**setup, not a side effect.** Record it in `setup`. **Do not count it in `command_tally`** —
+**unless the install is itself a gate**, such as CI's install step or the install the context
+file documents. Then it goes in `commands` as well, and its result is counted: the carve-out
+exempts installing from being a side effect, not a gate's result from the tally. A lockfile
+install that fails is the gate failing, and a tally that reads all `PASS` beside it misleads
+the reader who triages from the numbers.
+
+**What the project's CI installs counts as declared**, because its workflow is where the project
+declares it: the system packages a job installs, such as a library the test suite needs from
+`apt-get`; the tools a job installs, such as `pip-audit`; and a binary an action downloads,
+fetched here at the same version and checked against its published checksum. Installing any of
+them in the container is setup, recorded with the workflow line that declares it. **A suite
+that cannot import for want of one is not `UNVERIFIABLE-HERE` while the container can install
+it**: install it the way the workflow does, then run the suite.
+A dependency environment that already existed at session start goes in
+`environment_preexisting`, not `setup` — the distinction is material to reproducibility.
+
+Still `UNVERIFIABLE-HERE`: hand-patching an installed package, installing anything the
+project does not declare, or writing outside the container.
+
+</constraints>
 
 ## Phase 0 — preflight
 
@@ -1359,7 +815,8 @@ question to Phase 6's first list, where the human confirms or corrects it.
 
 **A job that ends at this wait still ends here.** Choosing a language and a shape stops at this
 wait with the recommendation, as the routing table says, and nothing is picked by default. An
-unattended run of that job hands over its report here, as below, and goes no further.
+unattended run of that job hands over its report here, as `SKILL.md`'s *The report* says,
+and goes no further.
 
 On a **re-check**, do not re-ask from scratch and do not silently carry forward either.
 **Show each recorded answer and ask of it: "Is that still the case?"** — with no answer
@@ -1389,15 +846,6 @@ dependency alerts off.
 
 **Do not fold this into the Phase 6 gate.** A tier confirmation arriving after the dimensions
 have been rated is a confirmation of work already done.
-
-**A run that ends at this wait still hands over its report**, in the shape Phase 6 gives: the
-same name, `lifecycle: transient` with a concrete `expires:`, and the reconciliation header,
-whose `tally` reads `not yet rated`. **In place of Phase 6's three lists it holds the questions
-asked**, each with its draft and evidence, and any recommendation still waiting on a pick. The
-appendix holds the blocks from `phase: 0` to `phase: 3`, then the *Conformance self-check*,
-where `ten_statuses_emitted` and `tally_sums_to_ten` are `n/a` and `waits_observed` is 1. If the
-run continues after the answers, it appends to the same file. Its `overrides` go in the Phase 3
-block's `notes`, since the Phase 4 block that holds them is never emitted.
 
 1. **Owner** — work (employer-owned), personal, or mixed?
 2. **Exposure** — already public / possible later / never?
@@ -2893,39 +2341,8 @@ treat an unedited template as agreement with whichever option happens to be list
 
 **HARD STOP. Nothing has been written to the repository and nothing may be.**
 
-<!-- WHY a file, not the reply body: a reply does not survive being carried into another
-     session, and the human should never assemble a report by copying blocks out of a
-     transcript. Two runs read silence here and did opposite things. -->
-<!-- WHY delivery is separate from writing: reports have been written to a container
-     scratchpad that dies within the hour. Every run so far attached the file anyway, which
-     was the agent being sensible rather than this file requiring it. -->
-**Writing the report is not delivering it.** Outside the repository, in an ephemeral
-container, means gone within the hour. **Hand the file over in the same turn** — attached, or
-its full content in the reply where the tool cannot attach — and say plainly that the path is
-temporary. A report that was written and not delivered is the same as no report, and it is the
-one artifact with no copy anywhere else.
-
-**Emit the run report as a markdown file outside the repository**, named
-`RUN-REPORT-<repo>-<YYYY-MM-DD>.md`, with `lifecycle: transient` and a concrete `expires:`.
-The prohibition is on writing **to the repository**.
-
-**Open with a reconciliation header**, so any reader — human or another model — can triage
-without reading the body and can diff two runs mechanically:
-
-```yaml
-standard: PROJECT-BOOTSTRAP-AND-AUDIT v<metadata.version>
-tool: <agent, surface and version>
-repository: <owner/name> @ <commit>
-job: <survey | choose | set up | audit | release | prune | validate>
-mode: <greenfield | retrofit | audit | recheck>
-tier: <T0-T3> (blast radius <B>, audience <A>, basis <current|imminent>)
-tally: {BLOCKER: 0, DRIFT: 0, GAP: 0, OVER: 0, MIRROR: 0, UNVERIFIABLE-HERE: 0, OK: 0, N/A: 0}
-capabilities_absent: [<what the environment could not do>]
-deviations: <count>          # rules not followed as written, each in `overrides`
-decisions_open: <count>
-sections_read: [...]
-sections_skipped: [...]
-```
+**The run report's name, header, order and delivery are in `SKILL.md`, under *The report*.**
+This gate fills its decisions section.
 
 **Deviating is allowed; hiding it is not.** Where the run departed from this file — a rule
 that did not fit, a capability that was missing, a judgment the text did not cover — record
@@ -2942,14 +2359,6 @@ the rule as written, so a reader can find them. A live re-check recorded nine ov
 of them steps this file asks for. **Each phase's overrides go in the next block emitted:** Phase
 4's holds those of Phases 0 to 4, the Phase 6 block's `notes` those of 5 and 6, Phase 7's its own,
 Phase 9's those of 8 and 9, and `post_gate`'s `notes` any after the gate.
-
-**Then structure it for two readers, in this order:**
-
-1. **The decisions**, in plain prose a human answers without scrolling — the three lists below.
-2. **An appendix holding every emission block so far**, `phase: 0` through `phase: 6`, verbatim.
-
-The human reads the top to answer and forwards the whole file to whoever is reviewing the
-standard. **They must not have to copy blocks out of the conversation to do that.**
 
 **Three lists, in this order:**
 
@@ -3307,11 +2716,6 @@ pytest cut short, and one a strict decode that crashed the gate script on output
 UTF-8. **Where the tool can't start one, say so in `review`.** The human's review of the pull
 request is then the second reading, before they merge it, and the run doesn't wait for it.
 
-**Then finish the run report.** Append the `phase: 7`, `phase: 8` and `phase: 9` blocks to the
-same file from Phase 6 — do not start a second one — and replace its decisions section with a
-short outcome summary: what was applied, declined, deferred, what remains for the human, and
-the CI conclusion after the push. **Say where the file is and that it is ready to hand on.**
-
 **A report committed to a public repository gets the check any public write gets**, even when
 the owner asks for it. A report is written for the owner, so it can hold what a public tree
 mustn't: a live run's survey of the owner's other repositories named three private ones.
@@ -3360,175 +2764,7 @@ post_gate:
 
 ---
 
-# Conformance self-check
-
-**Emit this at the end of every run, after the last phase block, whatever the job was.**
-
-<constraints>
-
-**This exists because the same file is run on different models, and they fail differently.** A
-report that looks complete tells you nothing about whether the rules were followed; this block
-makes the common failures visible in one place, cheaply. **It reports on the run, not on the
-change**, so it doesn't replace the second reader Phase 9 asks for.
-
-**Answer from what you actually did, not from what the file says to do.** A `yes` that means "the
-instruction was there" rather than "I did it" makes this block worse than absent — it
-manufactures assurance. **Where the honest answer is `no`, that is a useful run**, and the reason
-belongs beside it.
-
-**Never pre-fill this from the template.** Each line is checked against the run that
-happened.
-
-</constraints>
-
-```yaml
-conformance:
-  standard_version: "<metadata.version, read from the frontmatter>"
-  standard_sha256: "<sha256 of the file this run read | unknown>"   # shows which bytes ran
-  job: <survey | choose | set up | audit | release | prune | validate>
-  sections_read: [<by name>]
-  sections_skipped: [<by name>]
-
-  # Structure
-  ten_statuses_emitted: yes | no | n/a  # exactly ten, numbered 1-10; n/a when no Phase 4 ran
-  tally_sums_to_ten: yes | no | n/a
-  new_vocabulary_coined: no | "<what was invented, if any>"
-  fields_added_beyond_schema: no | "<which>"
-
-  # Gates
-  waits_observed: <int>                 # 2 on a full run OR an audit stopping at the gate;
-                                        # 1 on a survey, or on a run that stops at Phase 3.
-                                        # An unattended run's Phase 3, met by answers
-                                        # given in advance, counts.
-                                        # Count a wait when you STOP at it —
-                                        # arriving at Phase 6 and stopping is observing it,
-                                        # not skipping it. Two runs disagreed on this.
-  wrote_before_approval: no | "<what, and why>"
-
-  # Evidence
-  proof_fields_hold_literal_output: yes | no | n/a
-  unverified_facts_relied_on: [<any dated fact used without checking it>]
-  premise_verified: yes | no | n/a      # a claim in the prompt was reproduced, not assumed
-  second_reader: yes | the human | no | n/a   # Phase 9's review; n/a when nothing was applied
-
-  # Posture
-  amendments_pre_selected: no | yes
-  both_consequences_on_every_amendment: yes | no
-  actions_requiring_a_local_clone: <int>   # must be 0 where Phase 0 recorded no local copy
-  declines_reproposed_without_a_fired_trigger: <int>   # must be 0
-
-  # Delivery
-  report_written: <path>
-  report_handed_over: yes | no          # attached or reproduced in the reply, this turn
-
-  deviations: <int>                     # each one present in `overrides`
-  honest_summary: "<one sentence: where this run was weakest>"
-
-  # Optional, and the only part of this file that reports back on the file itself.
-  # Omit the key entirely rather than emitting it empty.
-validated:
-  - {rule: "<the rule, quoted from this standard>",
-     caught: "<what it found in this repository that reading would not have>"}
-constrained:
-  - {rule: "<the rule, quoted from this standard>",
-     stopped: "<what you were about to do, and did not>"}
-corrections:
-  - prior_run: "<standard version and date, or 'this run' with the phase>"
-    prior_claim: "<what was asserted, quoted>"
-    actual: "<what is true, and the evidence>"
-    rule_that_caught_it: "<the rule, or a gap where none exists>"
-    decision_affected: yes | no
-```
-
-## The three optional blocks, and why they exist
-
-<constraints>
-
-**`validated` is how this file learns which of its rules earn their place.** Every rule here
-was added because something went wrong once, and **nothing currently records whether a rule
-has ever caught anything since.** A rule that catches nothing across many runs is `OVER` by
-this file's own logic and should come out — but that judgment needs evidence, and this block
-is the only place it accumulates. Quote the rule and say what it found **that reading the
-repository would not have.** Three or four entries, not a transcript; a run that lists every
-rule it followed has recorded compliance rather than value.
-
-**`constrained` exists because `validated` alone would get the pruning exactly wrong.**
-Sixteen `validated` entries across three live runs credited execution rules almost without
-exception — and that is not because the other rules are worthless, it is because **the
-instrument can only see rules that catch.** Every posture rule constrains instead of
-detecting: do not pre-select an amendment, both consequences on every one, two waits, never
-substitute at apply time, re-ask a blank rather than defaulting. **None of them can ever
-appear in `validated`, and they are the rules that make the output trustworthy.** Pruning on
-detection alone would keep every rule that finds bugs and delete every rule that keeps a run
-honest.
-
-**So record what a rule stopped you doing.** Live runs have produced these already, in prose
-where nothing could count them: re-asking a blank answer instead of taking the default,
-refusing to infer an approval from detail the human had written out but not listed, and —
-after a force-push was denied — verifying the branch relationship rather than retrying the
-command. **The moment worth recording is the one where you were about to do something and a
-rule stopped you**, which is invisible in any output that only reports what happened.
-
-**`corrections` is for a claim this run or an earlier record got wrong.** Not a finding about
-the repository — a finding about the report. It exists because a withdrawn or mistaken claim
-otherwise vanishes silently, and a decision record that quietly overwrites its own history is
-the thing append-only was meant to prevent. **The entry stays even when `decision_affected`
-is `no`**, because an overconfident claim that changed no rating still misleads the next run
-that reads it. Where no rule caught the error, say so in `rule_that_caught_it` — a gap named
-is the most useful thing a run can send back.
-
-**Emitting any of these is a schema addition, so `fields_added_beyond_schema` says `yes`
-and names them.** A run that adds a block and reports no additions has contradicted itself in
-the one field that exists to catch that, which a live run did.
-
-</constraints>
-
-## What a failing line means
-
-| Line | If it comes back wrong |
-|---|---|
-| `tally_sums_to_ten` | Phase 4 did not finish. Recount before emitting anything else — this has been wrong twice, both times by inventing a combined status for a dimension that was partly fine |
-| `new_vocabulary_coined` | The vocabularies are closed. Use `secondary`, `strength` or `notes` and re-emit |
-| `waits_observed` | Fewer than two on a full run means a gate was skipped, and a gate skipped is approval assumed. More than two means waits were invented, which costs the human round trips the file could have answered |
-| `actions_requiring_a_local_clone` | Where Phase 0 recorded no local working copy, anything above zero is unusable by a maintainer who has none: rewrite each as a browser action or a dispatch job. Where it recorded one, count the actions with no browser route; the count is reported, not failed |
-| `declines_reproposed_without_a_fired_trigger` | The re-check obligations were not honoured, and the decision record is being ignored. This is the failure that makes people stop reading the gate |
-| `report_handed_over` | A report written to an ephemeral container and not handed over is the same as no report, and it is the one artifact with no copy anywhere else |
-| `unverified_facts_relied_on` | Not a failure by itself. **A non-empty list with no matching `UNVERIFIABLE-HERE` in the findings is** — it means a dated fact was used as though it had been checked |
-
-## Running this on a model that is not the one it was written against
-
-<constraints>
-
-**Nothing in this file requires a particular model or tool.** It names Claude Code paths because
-a command has to be concrete, and *Any agent, any tool* maps every one of them. Where a path
-does not exist for the tool in use, substitute and record the substitution as an override.
-
-**Three failure modes show up specifically when the model changes**, and they are worth watching
-for rather than discovering in the output:
-
-- **Compliance theatre.** The schema is filled, every field is populated, and the content is
-  generated rather than observed. **The tell is `_proof` fields holding summaries** — "verified",
-  "command ran successfully", "output as expected" — instead of literal output. A proof field
-  that has been paraphrased is a fabrication with good manners.
-- **Instruction decay across a long run.** Adherence may drop as the session lengthens — one
-  study found about 5.6% lower odds of compliance per additional function generated, though as
-  an exploratory, non-monotonic finding — which is why there are gates rather than a single
-  approval at the end, and why this block sits at the end where any drop is worst. **A
-  run that was careful in Phase 2 and loose in Phase 7 is the normal shape of this failure**,
-  not an unusual one.
-- **Helpful ordering.** Presenting amendments with a recommendation already selected, or
-  proceeding past a wait because nothing seemed to be blocking. **Both read as service and are
-  the posture this file exists to prevent.**
-
-**Where a model cannot do something this file asks for, say so in `degraded` at Phase 0 and in
-`deviations` here.** A run that names its own limits is more useful than one that works around
-them silently, because the workaround is invisible and the limit is not.
-
-</constraints>
-
----
-
-## Proposing a change to this standard
+# Proposing a change to this standard
 
 **When a run finds this standard wrong, that is a finding like any other and it goes to the
 gate.** Not a note in the report, not a silent workaround, and never an edit the run makes
@@ -5106,8 +4342,9 @@ a desktop `copier update` proposes something that cannot happen.
 **Read this when running the standard for someone else, or to contribute a run to whoever
 maintains it.**
 
-**What the runner needs**, and nothing more: this file, the repository, and a prompt naming the
-job. No other file is required — it references none.
+**What the runner needs**, and nothing more: the skill, or the release's `KICKSTART.md`, which
+holds the whole standard as one file; the repository; and a prompt naming the job. Attached, the
+kickstart file needs no other file — it references none.
 
 ```
 Run the attached PROJECT-BOOTSTRAP-AND-AUDIT standard against this repository. <job>.
@@ -5122,15 +4359,15 @@ gate, I want to cut <version>* · *plan the order of what is left*.
 other than Claude Code — because the run cannot infer them and will otherwise propose things
 that cannot be done.
 
-**The file can be linked instead of attached.** A link to it at a fixed commit gives every run
-the same bytes, with no copy changing hands. **Link a commit, never a branch**: a branch link
-reads whatever lands there next. The session downloads the file whole, with `curl` or `git` —
+**The kickstart file can be linked instead of attached.** A link to one release's copy gives
+every run the same bytes, with no copy changing hands. **Link a release, never `latest`**: that
+link reads whatever is released next. The session downloads the file whole, with `curl` or `git` —
 a fetch tool that summarizes pages returns an answer about the file, not the file — and checks
 its SHA-256 before reading on. The self-check's `standard_sha256` then shows which bytes ran.
 
 ```
 Run the PROJECT-BOOTSTRAP-AND-AUDIT standard against this repository. <job>.
-Download it whole, with curl, from <link to the file at a commit>, and check that its
+Download it whole, with curl, from <link to KICKSTART.md in one release>, and check that its
 SHA-256 is <hash> before using it. If it doesn't match, stop and tell me.
 Write the run report file and tell me where it is.
 ```
@@ -5454,6 +4691,22 @@ development is for. Versions 1.0.0 through 1.12.1 are the same content as 0.1.0 
 records are append-only and are not edited for this.
 
 ## Entries
+
+**0.51.0**: **piece 1 of the rebuild**, which the owner started on 2026-11-16. The procedure
+moves out of this file into the skill's `SKILL.md`: *How to read this file* and its routing
+table, *What this is for*, *Scope*, *Start here* folded into the routing, the gates among the
+standing rules, and the report's name, header, order and delivery from Phases 3, 6 and 9.
+*How to read a finding* and the other standing rules, *Environment — detected, not assumed*,
+*Vocabularies*, *Assumptions*, *Limitations* and the *Conformance self-check* each become a
+reference, and *Running this on a model that is not the one it was written against* goes into
+a new one on other tools, with each Claude Code-only feature the skill uses. The setup
+carve-out moves to the head of *The run*, and *Proposing a change to this standard* becomes a
+section of its own. Nothing moved changes meaning. Three things are new, from R22's choices of
+2026-10-13: Step 0 checks the copy against a hash of the skill's files and warns, without
+stopping, when `main` holds a newer standard; the run report's skeleton and schema sit in the
+skill's `assets/`, with the header's `lifecycle` and `expires` as its first fields; and a
+script checks a report against the schema. *Agent tooling* records how Claude Code runs a
+skill's command lines.
 
 **0.50.0**: **one change**, F169, which the owner approved on 2026-11-16: dimension 8 judges
 dependencies by their trees, checks a new name on its registry, rates an unused dependency
