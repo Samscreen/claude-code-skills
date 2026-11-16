@@ -7,7 +7,7 @@ injection in an ordinary program: a failed read, a full disk, a dropped network 
 
 Proving any check can fail is `test-gates`; what a result is checked against is `test-oracles`;
 a test that fails only sometimes on a healthy device is `flaky-tests`; the mix of unit,
-integration and end-to-end tests is `testing-patterns`. A GUI's tests are user-experience's
+integration and end-to-end tests is `test-strategy`. A GUI's tests are user-experience's
 `gui-testing`; a shorter run scoped from a diff in review rounds is agent-engineering's
 `review-loops`.
 

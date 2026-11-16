@@ -18,6 +18,9 @@ Notable changes to this repository. The format follows
 - `writing-style` says how strong a claim's verb may be, what it names and what an absence
   means, and how to write steps for a reader who isn't a programmer.
 - `c-build` probes argument shapes as an axis of their own.
+- `testing` gains `test-strategy`: the mix of tests by size and scope, a command-line
+  program's tests, test data and factories, finding what no test covers, skipped tests, and
+  metamorphic and differential testing.
 
 ### Changed
 
@@ -26,6 +29,8 @@ Notable changes to this repository. The format follows
   facts), ruff 0.17.5, coverage 7.17.3 and Claude Code 2.1.325. This replaces #123 and #147.
 - `writing-style` now covers what prose says, and `prose-check` is shorter: its spelling
   patterns are in `writing-style`, and the heading-colon fact in `markdown-format`.
+- `testing-patterns` no longer holds the strategy note that waited for R06c, and `test-oracles`,
+  `acceptance-runs`, `flaky-tests` and `test-gates` send strategy questions to `test-strategy`.
 
 ### Fixed
 

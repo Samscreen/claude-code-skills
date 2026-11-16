@@ -9,8 +9,8 @@ wiring it was written for.
 What a result is checked against, independent references and scoring a tool by its worst case
 are `test-oracles`; a test that fails only some of the time is `flaky-tests`. CI triggers,
 required checks, timeouts and the completion guard are `ci-workflows`, and how long CI takes is
-`ci-speed`, both in the git-workflows skill. Test strategy, doubles, fixtures, coverage and
-mutation-testing tools are the `testing-patterns` module.
+`ci-speed`, both in the git-workflows skill. Doubles, coverage and mutation-testing tools are
+the `testing-patterns` module; test strategy and test data, `test-strategy`.
 
 ## Rules
 

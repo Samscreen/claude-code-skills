@@ -57,6 +57,59 @@ Append-only. Supersede by adding a new entry that points at the old one; never e
   read `markdown-format`, not `writing-style`; "Rewrite this README so it reads plainly and
   drops the marketing fluff." should read `writing-style`, not `markdown-format`.
 
+## 2026-11-16 — `testing`'s `test-strategy`, from R06c
+
+- **Asked, by the owner:** "do all" to the triage list (2026-11-16), which included the
+  planned `test-strategy` row.
+- **Built:** `test-strategy`: tests sorted by size and by scope, the mix set by what broad
+  tests cost rather than by a shape, a command-line program's logic tested in process and its
+  binary in a temporary directory, real dependencies kept where quick and hermetic, test data
+  built per test from factories, an inventory of the program's commands and settings matched
+  against tests, skipped tests counted, and metamorphic and differential testing where no
+  oracle exists. 13 facts, prefix `ts-`, each quote read at its source on 2026-11-16.
+- **Sources:** R06c's checked claims (Fowler's TestPyramid and test-shapes article, Dodds'
+  trophy, *Software Engineering at Google* ch. 11, the Tetragon pull request, Testcontainers'
+  versions, with Go at v0.45.0 as R06c's verification corrected). R06c doesn't cover
+  metamorphic or differential testing, and R06b names them only as unchecked leads. Those were
+  checked today against the primary sources, as `research/README.md` allows when a skill relies
+  on a claim: Chen, Cheung and Yiu's 1998 report (arXiv 2002.12543), Segura and others' 2016
+  survey (White Rose eprint), and Yang and others' Csmith paper (PLDI 2011). Test data adds
+  pytest's `tmp_path`, Go's `t.TempDir()` and factory_boy 3.3.3, read today from their docs
+  and PyPI. R06c's factory_boy and Bogus lines were unchecked; Bogus isn't used.
+- **Moved:** `testing-patterns`' "Strategy, still being checked" paragraph is gone (15,960 to
+  15,734 characters); it held no facts, so no ID moved. Its ROADMAP row drops "Strategy".
+- **Neighbours:** `test-oracles` no longer says differential and metamorphic testing wait for
+  R06c; `acceptance-runs`, `flaky-tests` and `test-gates` send test strategy to
+  `test-strategy`. The router gains its row, the description gains "strategy, test data"
+  (249 characters), and `metadata.reviewed` is 2026-11-16. The README's `testing` row names
+  test data and metamorphic and differential testing.
+- **The review in `docs/authoring-a-skill.md`:**
+  1. Whose work: this repository's own; nothing work-owned.
+  2. Sources: each fact from a primary source with its link, exact quote, checked 2026-11-16,
+     and a check-by date (six months for guidance, three for versions). Three PDFs are checked
+     by hand when due.
+  3. Licenses: SWE at Google CC BY-NC-ND 4.0 and Fowler's pages quoted, never adapted; Dodds,
+     the papers and Tetragon (Apache-2.0) as short quotes; pytest, Go and factory_boy docs as
+     short quotes. Nothing adapted, so no notice file.
+  4. No secrets, company detail or audited repository names; the one named project, Cilium
+     Tetragon, is a research source.
+  5. Fits Claude Code and claude.ai: no commands to run, no tool names.
+  6. Frontmatter: spec fields only; description at 249 characters.
+  7. Shape: Rules, Mistakes, Audit (status words only), Why, Facts, Sources; 15,511
+     characters; names other modules in words.
+  8. No code examples.
+  9. Trigger evaluations: six requests that should reach it and two near misses (a mutation
+     tool's version, `testing-patterns`; a test passing one run in ten, `flaky-tests`).
+  10. ROADMAP row shipped; README row updated; `skillcheck` 0 findings.
+  11. CHANGELOG lines below; `metadata.reviewed` set.
+  12. Old copy: none; a new module of a shipped skill.
+- **Found, not changed:** SWE at Google ch. 11 recommends "only measuring coverage from small
+  tests to avoid coverage inflation", while `testing-patterns` rule 2 says to count
+  integration and system tests' coverage too. The two need reconciling in `testing-patterns`,
+  with that quote as a fact, in a later change.
+- **Not taken in:** snapshot and approval-testing rules, transaction rollback per test, and
+  idioms per language, which R06c lists as not covered.
+
 ## 2026-11-16 — The end-of-life warning, in `--due`
 
 - **What:** the roadmap's end-of-life warning, planned since its trigger was met in 0.1.22,
