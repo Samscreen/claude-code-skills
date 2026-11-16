@@ -6,6 +6,28 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Google's small-tests-only coverage, kept as rule 2's trade-off
+
+- **Asked, by the owner:** keep `testing-patterns` rule 2, which counts integration and system
+  tests' coverage too, and give *Software Engineering at Google*'s contrary view as its
+  trade-off (the owner's decision, 2026-11-16).
+- **The source:** chapter 11, *Testing Overview*, read 2026-11-16 at
+  https://abseil.io/resources/swe-book/html/ch11.html: "We recommend only measuring coverage
+  from small tests to avoid coverage inflation that occurs when executing larger tests." No
+  existing `ts-google-*` fact quotes that sentence, so it is a new fact, `tp-google-small`.
+- **The change:** the Coverage Why says what inflation is (a broad test runs lines it never
+  checks, so the figure overstates what's tested), what each choice costs (counting broad tests
+  inflates the figure; counting small tests alone marks wiring only broad tests reach as
+  untested), and when to count small tests alone: a large suite whose broad tests touch most
+  lines without checking them. The book is in the Sources table under CC BY-NC-ND 4.0, quoted,
+  never adapted.
+- **Room:** the module was 15,734 characters against the 16,000 limit. Wording elsewhere was
+  tightened, with no rule, mistake, audit row or fact cut: the neighbours paragraph, rule 4,
+  the `coding` pointer under the tool table, a mistake's repeated reason, and Sources rows
+  whose links the Facts table already carries. It is now 15,987 bytes by `wc -c`.
+- **Not changed:** `test-strategy`'s pointer already sends coverage to `testing-patterns`, and
+  needs no new words.
+
 ## 2026-11-16 — Standard v0.49.2: the toolchain rows past 2026-11-10
 
 - **Asked:** the owner's "do all recommended" (2026-11-16), approving it as F168, a patch
