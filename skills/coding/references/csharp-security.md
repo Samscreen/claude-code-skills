@@ -6,7 +6,7 @@ analyzers that catch each.
 
 The rest of C#, from the target framework to async code, `HttpClient`, System.Text.Json, NativeAOT
 and P/Invoke, is `csharp-coding`. Package audits and lockfiles belong to the security skill's
-supply-chain-security module, and test design to the planned testing skill. Each C# example
+supply-chain-security module, and test design to the testing skill. Each C# example
 compiled on 2026-10-26 with the .NET 10.0.403 SDK, nullable on, `latest-Recommended` analysis and
 warnings as errors, and again with the security rules on. CI has no C# checker, so it doesn't
 compile them again.

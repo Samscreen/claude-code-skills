@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Which logging library should a new Node service use, pino or winston, and what version?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our Spring app logs with Logback. How do I get the OpenTelemetry trace and span IDs into each line?",
+    "should_trigger": true
+  },
+  {
+    "query": "Can pino hide the password and token fields itself, or do I have to strip them before every call?",
+    "should_trigger": true
+  },
+  {
+    "query": "We ship Monolog records to an OTLP collector. What SeverityNumber should CRITICAL and NOTICE get?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write me a structlog processor that adds the current span to every event and masks anything called authorization",
+    "should_trigger": true
+  },
+  {
+    "query": "Is the Log4j version in this pom still affected by a known bug, and is RewriteAppender a good way to mask card numbers?",
+    "should_trigger": true
+  },
+  {
+    "query": "How long are we allowed to keep access logs that contain customer IP addresses?",
+    "should_trigger": false
+  },
+  {
+    "query": "Which alerts on our checkout service should page someone, and what's a sensible error budget burn rate?",
+    "should_trigger": false
+  }
+]

@@ -1,6 +1,6 @@
 # Dependency map
 
-What `claude-code-skills` 0.1.25 is built from, runs on and relies on: the
+What `claude-code-skills` 0.1.30 is built from, runs on and relies on: the
 plugins it ships, the languages it's written in, its runtimes and tools, every package
 at its exact version, the GitHub Actions it pins, the services it uses, and the sources
 its skills' facts cite.
@@ -16,23 +16,26 @@ freshness run and the release workflow both run it.
 
 | Plugin | Version | License | Skill | What it carries |
 |---|---|---|---|---|
-| `standards` | 0.1.25 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.49.1 |
-| `engineering` | 0.1.25 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
-| `engineering` | 0.1.25 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
-| `engineering` | 0.1.25 | Apache-2.0 | `coding` | reviewed 2026-10-27 |
-| `engineering` | 0.1.25 | Apache-2.0 | `git-workflows` | reviewed 2026-11-03 |
-| `engineering` | 0.1.25 | Apache-2.0 | `house-style` | reviewed 2026-10-27 |
-| `engineering` | 0.1.25 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
-| `engineering` | 0.1.25 | Apache-2.0 | `security` | reviewed 2026-11-11 |
-| `engineering` | 0.1.25 | Apache-2.0 | `testing` | reviewed 2026-11-11 |
-| `engineering` | 0.1.25 | Apache-2.0 | `user-experience` | reviewed 2026-11-11 |
+| `standards` | 0.1.30 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.49.1 |
+| `engineering` | 0.1.30 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `git-workflows` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `security` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `testing` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
+| `engineering` | 0.1.30 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
 
 ## Languages
 
 | Language | Tracked files |
 |---|---|
-| Markdown | 135 |
-| JSON | 64 |
+| Markdown | 204 |
+| JSON | 86 |
 | Python | 53 |
 | YAML | 23 |
 | Shell | 4 |
@@ -161,80 +164,124 @@ again.
 | `architecture` | peps.python.org | 1 |
 | `architecture` | pkg.go.dev | 1 |
 | `architecture` | pnpm.io | 1 |
-| `coding` | learn.microsoft.com | 66 |
-| `coding` | docs.python.org | 25 |
-| `coding` | nodejs.org | 16 |
+| `coding` | learn.microsoft.com | 80 |
+| `coding` | docs.python.org | 34 |
+| `coding` | raw.githubusercontent.com | 25 |
+| `coding` | nodejs.org | 19 |
+| `coding` | cheatsheetseries.owasp.org | 18 |
+| `coding` | www.w3.org | 17 |
 | `coding` | tiswww.case.edu | 16 |
-| `coding` | www.w3.org | 16 |
-| `coding` | cheatsheetseries.owasp.org | 15 |
 | `coding` | man7.org | 15 |
 | `coding` | developer.mozilla.org | 13 |
-| `coding` | raw.githubusercontent.com | 13 |
 | `coding` | mesonbuild.com | 12 |
+| `coding` | pypi.org | 12 |
+| `coding` | pubs.opengroup.org | 11 |
 | `coding` | docs.astral.sh | 9 |
 | `coding` | gcc.gnu.org | 9 |
-| `coding` | pubs.opengroup.org | 9 |
-| `coding` | pypi.org | 6 |
+| `coding` | github.com | 8 |
+| `coding` | pkg.go.dev | 7 |
+| `coding` | www.rfc-editor.org | 7 |
+| `coding` | go.dev | 6 |
+| `coding` | aws.amazon.com | 5 |
 | `coding` | clang.llvm.org | 5 |
 | `coding` | cwe.mitre.org | 5 |
 | `coding` | devblogs.microsoft.com | 5 |
 | `coding` | html.spec.whatwg.org | 5 |
+| `coding` | opentelemetry.io | 5 |
+| `coding` | repo1.maven.org | 5 |
 | `coding` | www.typescriptlang.org | 5 |
+| `coding` | crates.io | 4 |
 | `coding` | curl.se | 4 |
 | `coding` | dotnet.microsoft.com | 4 |
 | `coding` | google.github.io | 4 |
 | `coding` | mypy.readthedocs.io | 4 |
 | `coding` | packaging.python.org | 4 |
+| `coding` | registry.npmjs.org | 4 |
 | `coding` | typescript-eslint.io | 4 |
+| `coding` | doc.rust-lang.org | 3 |
+| `coding` | docs.rs | 3 |
 | `coding` | git-scm.com | 3 |
 | `coding` | web.dev | 3 |
+| `coding` | www.nuget.org | 3 |
+| `coding` | api.nuget.org | 2 |
+| `coding` | bencher.dev | 2 |
+| `coding` | benchmarkdotnet.org | 2 |
 | `coding` | best.openssf.org | 2 |
+| `coding` | builder.aws.com | 2 |
 | `coding` | devguide.python.org | 2 |
 | `coding` | docs.pydantic.dev | 2 |
+| `coding` | docs.spring.io | 2 |
 | `coding` | eslint.org | 2 |
-| `coding` | go.dev | 2 |
+| `coding` | logging.apache.org | 2 |
+| `coding` | man.freebsd.org | 2 |
+| `coding` | openjdk.org | 2 |
+| `coding` | prometheus.io | 2 |
 | `coding` | pyyaml.org | 2 |
 | `coding` | rust-lang.github.io | 2 |
-| `coding` | www.rfc-editor.org | 2 |
+| `coding` | sre.google | 2 |
+| `coding` | www.brendangregg.com | 2 |
 | `coding` | www.shellcheck.net | 2 |
 | `coding` | yaml.org | 2 |
 | `coding` | 12factor.net | 1 |
 | `coding` | arxiv.org | 1 |
+| `coding` | bheisler.github.io | 1 |
 | `coding` | biomejs.dev | 1 |
+| `coding` | cachetools.readthedocs.io | 1 |
 | `coding` | check-jsonschema.readthedocs.io | 1 |
 | `coding` | community.owasp.org | 1 |
+| `coding` | csrc.nist.gov | 1 |
+| `coding` | curia.europa.eu | 1 |
+| `coding` | design-system.service.gov.uk | 1 |
+| `coding` | developers.cloudflare.com | 1 |
 | `coding` | doc.qt.io | 1 |
+| `coding` | docs.cloud.google.com | 1 |
 | `coding` | docs.github.com | 1 |
+| `coding` | docs.oracle.com | 1 |
+| `coding` | docs.ruby-lang.org | 1 |
 | `coding` | documentation.ubuntu.com | 1 |
+| `coding` | eur-lex.europa.eu | 1 |
 | `coding` | git.kernel.org | 1 |
 | `coding` | gmplib.org | 1 |
+| `coding` | grafana.com | 1 |
+| `coding` | ico.org.uk | 1 |
+| `coding` | isaacs.github.io | 1 |
 | `coding` | jinja.palletsprojects.com | 1 |
 | `coding` | json-schema.org | 1 |
 | `coding` | lists.gnu.org | 1 |
 | `coding` | llvm.org | 1 |
-| `coding` | man.freebsd.org | 1 |
+| `coding` | logback.qos.ch | 1 |
 | `coding` | manpages.debian.org | 1 |
 | `coding` | martinfowler.com | 1 |
 | `coding` | neverworkintheory.org | 1 |
+| `coding` | numpy.org | 1 |
 | `coding` | oxc.rs | 1 |
 | `coding` | packages.debian.org | 1 |
+| `coding` | pandas.pydata.org | 1 |
 | `coding` | peps.python.org | 1 |
 | `coding` | pester.dev | 1 |
-| `coding` | registry.npmjs.org | 1 |
+| `coding` | pytest-benchmark.readthedocs.io | 1 |
+| `coding` | rubygems.org | 1 |
 | `coding` | savannah.gnu.org | 1 |
 | `coding` | services.nvd.nist.gov | 1 |
 | `coding` | sourceware.org | 1 |
 | `coding` | specifications.freedesktop.org | 1 |
 | `coding` | src.fedoraproject.org | 1 |
 | `coding` | support.apple.com | 1 |
+| `coding` | tc39.es | 1 |
 | `coding` | toml.io | 1 |
 | `coding` | valgrind.org | 1 |
 | `coding` | www.cisa.gov | 1 |
+| `coding` | www.cnil.fr | 1 |
+| `coding` | www.edpb.europa.eu | 1 |
 | `coding` | www.freedesktop.org | 1 |
 | `coding` | www.kernel.org | 1 |
+| `coding` | www.nngroup.com | 1 |
 | `coding` | www.open-std.org | 1 |
+| `coding` | www.php.net | 1 |
 | `coding` | www.powershellgallery.com | 1 |
+| `coding` | www.structlog.org | 1 |
 | `coding` | www.unicode.org | 1 |
+| `coding` | www.vldb.org | 1 |
 | `coding` | yamllint.readthedocs.io | 1 |
 | `coding` | zod.dev | 1 |
 | `git-workflows` | docs.github.com | 64 |
@@ -288,57 +335,181 @@ again.
 | `house-style` | www.gov.uk | 1 |
 | `house-style` | www.mkdocs.org | 1 |
 | `house-style` | zensical.org | 1 |
-| `operations` | learn.microsoft.com | 16 |
+| `human-factors` | www.thefreelibrary.com | 6 |
+| `human-factors` | pmc.ncbi.nlm.nih.gov | 5 |
+| `human-factors` | books.hse.gov.uk | 4 |
+| `human-factors` | doi.org | 3 |
+| `human-factors` | ixdf.org | 3 |
+| `human-factors` | journals.sagepub.com | 3 |
+| `human-factors` | pubmed.ncbi.nlm.nih.gov | 3 |
+| `human-factors` | arxiv.org | 2 |
+| `human-factors` | knowledge.lancashire.ac.uk | 2 |
+| `human-factors` | aisel.aisnet.org | 1 |
+| `human-factors` | ckrybus.com | 1 |
+| `human-factors` | eric.ed.gov | 1 |
+| `human-factors` | hciengineering.net | 1 |
+| `human-factors` | link.springer.com | 1 |
+| `human-factors` | mitpress.mit.edu | 1 |
+| `human-factors` | openai.com | 1 |
+| `human-factors` | pages.ucsd.edu | 1 |
+| `human-factors` | papers.ssrn.com | 1 |
+| `human-factors` | plato.stanford.edu | 1 |
+| `human-factors` | press.uchicago.edu | 1 |
+| `human-factors` | pressblog.uchicago.edu | 1 |
+| `human-factors` | repositorio.ispa.pt | 1 |
+| `human-factors` | www.chesterton.org | 1 |
+| `human-factors` | www.csse.canterbury.ac.nz | 1 |
+| `human-factors` | www.england.nhs.uk | 1 |
+| `human-factors` | www.konsortswd.de | 1 |
+| `human-factors` | www.ri.cmu.edu | 1 |
+| `human-factors` | www.scielo.br | 1 |
+| `human-factors` | www.sciencedirect.com | 1 |
+| `operations` | learn.microsoft.com | 22 |
 | `operations` | docs.docker.com | 12 |
+| `operations` | raw.githubusercontent.com | 4 |
+| `operations` | github.com | 3 |
 | `operations` | ubuntu.com | 3 |
+| `operations` | www.freedesktop.org | 3 |
+| `operations` | www.rfc-editor.org | 3 |
 | `operations` | csrc.nist.gov | 2 |
 | `operations` | docs.fedoraproject.org | 2 |
-| `operations` | github.com | 2 |
 | `operations` | man.openbsd.org | 2 |
-| `operations` | raw.githubusercontent.com | 2 |
+| `operations` | man7.org | 2 |
 | `operations` | suricata.io | 2 |
 | `operations` | wiki.nftables.org | 2 |
 | `operations` | www.cisa.gov | 2 |
 | `operations` | www.debian.org | 2 |
-| `operations` | www.freedesktop.org | 2 |
 | `operations` | access.redhat.com | 1 |
 | `operations` | blog.snort.org | 1 |
 | `operations` | dnf.readthedocs.io | 1 |
 | `operations` | docs.sigstore.dev | 1 |
 | `operations` | fedoraproject.org | 1 |
 | `operations` | firewalld.org | 1 |
-| `operations` | man7.org | 1 |
+| `operations` | grafana.com | 1 |
+| `operations` | jsonlines.org | 1 |
 | `operations` | netfilter.org | 1 |
+| `operations` | pypi.org | 1 |
 | `operations` | techcommunity.microsoft.com | 1 |
 | `operations` | wiki.almalinux.org | 1 |
 | `operations` | www.netfilter.org | 1 |
-| `operations` | www.rfc-editor.org | 1 |
 | `operations` | www.wi-fi.org | 1 |
 | `operations` | www.wireguard.com | 1 |
+| `operations` | yamato-security.github.io | 1 |
 | `operations` | zeek.org | 1 |
+| `optimization-and-scheduling` | github.com | 20 |
+| `optimization-and-scheduling` | doi.org | 8 |
+| `optimization-and-scheduling` | docs.timefold.ai | 3 |
+| `optimization-and-scheduling` | arxiv.org | 2 |
+| `optimization-and-scheduling` | docs.gurobi.com | 2 |
+| `optimization-and-scheduling` | assets.publishing.service.gov.uk | 1 |
+| `optimization-and-scheduling` | business.columbia.edu | 1 |
+| `optimization-and-scheduling` | d-krupke.github.io | 1 |
+| `optimization-and-scheduling` | groups.google.com | 1 |
+| `optimization-and-scheduling` | hub.docker.com | 1 |
+| `optimization-and-scheduling` | lirias.kuleuven.be | 1 |
+| `optimization-and-scheduling` | mistic.iict-heig-vd.ch | 1 |
+| `optimization-and-scheduling` | people.brunel.ac.uk | 1 |
+| `optimization-and-scheduling` | plato.asu.edu | 1 |
+| `optimization-and-scheduling` | pubsonline.informs.org | 1 |
+| `optimization-and-scheduling` | pypi.org | 1 |
+| `optimization-and-scheduling` | scipopt.org | 1 |
+| `optimization-and-scheduling` | support.gurobi.com | 1 |
+| `optimization-and-scheduling` | www.coin-or.org | 1 |
+| `optimization-and-scheduling` | www.ibm.com | 1 |
+| `optimization-and-scheduling` | www.om-db.wi.tum.de | 1 |
+| `optimization-and-scheduling` | www.schedulingbenchmarks.org | 1 |
+| `optimization-and-scheduling` | www.tandfonline.com | 1 |
 | `security` | cheatsheetseries.owasp.org | 7 |
 | `security` | owasp.org | 6 |
 | `security` | cwe.mitre.org | 1 |
 | `security` | go.dev | 1 |
 | `security` | pages.nist.gov | 1 |
 | `security` | www.threatmodelingmanifesto.org | 1 |
-| `testing` | code.claude.com | 6 |
+| `testing` | arxiv.org | 9 |
+| `testing` | code.claude.com | 8 |
+| `testing` | gitlab.com | 4 |
+| `testing` | testing.googleblog.com | 4 |
 | `testing` | github.blog | 3 |
-| `testing` | testing.googleblog.com | 3 |
+| `testing` | raw.githubusercontent.com | 3 |
+| `testing` | docs.kernelci.org | 2 |
+| `testing` | docs.pytest.org | 2 |
+| `testing` | pypi.org | 2 |
+| `testing` | registry.npmjs.org | 2 |
+| `testing` | research.google.com | 2 |
+| `testing` | www.anthropic.com | 2 |
 | `testing` | www.microsoft.com | 2 |
-| `testing` | arxiv.org | 1 |
-| `testing` | research.google.com | 1 |
-| `user-experience` | www.nngroup.com | 16 |
+| `testing` | api.nuget.org | 1 |
+| `testing` | blitiri.com.ar | 1 |
+| `testing` | coverage.readthedocs.io | 1 |
+| `testing` | crates.io | 1 |
+| `testing` | developer.apple.com | 1 |
+| `testing` | docs.cypress.io | 1 |
+| `testing` | docs.pact.io | 1 |
+| `testing` | go.dev | 1 |
+| `testing` | growing-object-oriented-software.com | 1 |
+| `testing` | jestjs.io | 1 |
+| `testing` | lava.readthedocs.io | 1 |
+| `testing` | learn.microsoft.com | 1 |
+| `testing` | man7.org | 1 |
+| `testing` | open.qa | 1 |
+| `testing` | pester.dev | 1 |
+| `testing` | repo.packagist.org | 1 |
+| `testing` | repo1.maven.org | 1 |
+| `testing` | rubygems.org | 1 |
+| `testing` | testcontainers.com | 1 |
+| `testing` | www.pantsbuild.org | 1 |
+| `user-experience` | www.nngroup.com | 19 |
+| `user-experience` | developer.apple.com | 7 |
+| `user-experience` | pypi.org | 7 |
+| `user-experience` | raw.githubusercontent.com | 7 |
 | `user-experience` | developer.gnome.org | 6 |
+| `user-experience` | clig.dev | 5 |
 | `user-experience` | develop.kde.org | 5 |
-| `user-experience` | pypi.org | 5 |
-| `user-experience` | developer.apple.com | 3 |
+| `user-experience` | learn.microsoft.com | 5 |
+| `user-experience` | doc.qt.io | 3 |
 | `user-experience` | docs.gtk.org | 3 |
+| `user-experience` | docs.sentry.io | 3 |
+| `user-experience` | m3.material.io | 3 |
+| `user-experience` | playwright.dev | 3 |
+| `user-experience` | registry.npmjs.org | 3 |
+| `user-experience` | api.nuget.org | 2 |
 | `user-experience` | chernev.com | 2 |
-| `user-experience` | doc.qt.io | 2 |
-| `user-experience` | learn.microsoft.com | 2 |
-| `user-experience` | playwright.dev | 2 |
-| `user-experience` | api.nuget.org | 1 |
+| `user-experience` | design-system.service.gov.uk | 2 |
+| `user-experience` | developer.android.com | 2 |
+| `user-experience` | docs.python.org | 2 |
+| `user-experience` | release.gnome.org | 2 |
+| `user-experience` | bixense.com | 1 |
+| `user-experience` | blogs.gnome.org | 1 |
+| `user-experience` | code.visualstudio.com | 1 |
+| `user-experience` | community.kde.org | 1 |
+| `user-experience` | docs.github.com | 1 |
+| `user-experience` | download.gnome.org | 1 |
+| `user-experience` | eur-lex.europa.eu | 1 |
+| `user-experience` | guide.elm-lang.org | 1 |
+| `user-experience` | kde.org | 1 |
 | `user-experience` | measuringu.com | 1 |
+| `user-experience` | no-color.org | 1 |
+| `user-experience` | proxy.golang.org | 1 |
+| `user-experience` | pubs.opengroup.org | 1 |
+| `user-experience` | react.dev | 1 |
 | `user-experience` | scheibehenne.com | 1 |
+| `user-experience` | services.nvd.nist.gov | 1 |
 | `user-experience` | www.cs.umd.edu | 1 |
+| `user-experience` | www.edpb.europa.eu | 1 |
+| `user-experience` | www.mozilla.org | 1 |
+| `user-experience` | www.viget.com | 1 |
+| `visual-design` | raw.githubusercontent.com | 6 |
+| `visual-design` | registry.npmjs.org | 6 |
+| `visual-design` | www.designtokens.org | 6 |
+| `visual-design` | www.w3.org | 6 |
+| `visual-design` | pypi.org | 4 |
+| `visual-design` | learn.microsoft.com | 2 |
+| `visual-design` | matplotlib.org | 2 |
+| `visual-design` | bids.github.io | 1 |
+| `visual-design` | developer.mozilla.org | 1 |
+| `visual-design` | echarts.apache.org | 1 |
+| `visual-design` | medium.com | 1 |
+| `visual-design` | quarto.org | 1 |
+| `visual-design` | recharts.github.io | 1 |
+| `visual-design` | styledictionary.com | 1 |
+| `visual-design` | www.nature.com | 1 |

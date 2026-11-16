@@ -95,8 +95,8 @@ These come from the standard's own procedure for testing itself, and they still 
 - **Grade the YAML blocks, not the prose.** The prose is the run's own account of itself.
 - **Only the copy under test.** A run could invoke an installed copy of the skill instead of
   reading the one it's given. `.claude/settings.json` keeps the plugin's copies out of sessions
-  on this repository. A copy uploaded as a claude.ai skill loads anyway, so turn it off on the
-  account before a run.
+  on this repository. A copy uploaded to claude.ai as a skill can't be turned off there, only
+  deleted, so delete any uploaded copy before a run.
 
 **Two known limits of this prompt:**
 

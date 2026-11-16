@@ -1,9 +1,9 @@
 ---
 name: coding
-description: "Writes, reviews and fixes code: the contract every change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson. Use when writing, reviewing, debugging or modernizing code in these languages."
+description: "Writes, reviews and fixes code: the contract every change meets; Python, TypeScript, HTML and CSS, C#, PowerShell, Bash and C; and errors, logging, caching, performance and settings in any language. Use when writing, reviewing or debugging code."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-10-27"
+  reviewed: "2026-11-16"
 ---
 
 # Coding
@@ -85,6 +85,13 @@ the fact's row is in whichever module holds it.
 | [`input-handling`](references/input-handling.md) | Validating input at the trust boundary, allow-lists, parsing into types, canonicalizing paths, Unicode and URLs, size limits, and encoding output for HTML, SQL, shells, logs, terminals and CSV |
 | [`configuration`](references/configuration.md) | How a program takes its settings: precedence, one name per setting, validation at startup, typed config, environment variables, secrets from a store, required settings and feature flags |
 | [`config-formats`](references/config-formats.md) | YAML, JSON, TOML and XML: choosing a format, YAML's implicit types and safe loading, duplicate keys, large JSON numbers, schemas in CI, TOML versions, and parsing untrusted XML safely |
+| [`error-handling`](references/error-handling.md) | Any language: what to catch and where, "not found" against "couldn't look", exit codes and a child's exit status, causes in each language, retries with backoff, timeouts, circuit breakers and bulkheads |
+| [`performance-and-concurrency`](references/performance-and-concurrency.md) | Making code faster or concurrent, any language: measuring first, sampling profilers and flame graphs, data-structure defaults, task groups and structured concurrency, cancellation and Go's context, blocking an event loop, race detectors, and free threading in Python libraries |
+| [`logging-and-observability`](references/logging-and-observability.md) | What a program writes to its logs and metrics, any language: structured records, timestamps with offsets, levels, trace IDs from W3C Trace Context, keeping secrets and personal data out, personal data and retention under GDPR, sampling, RED and USE, SLOs and burn-rate alerts, and Prometheus |
+| [`caching`](references/caching.md) | Adding or reviewing a cache, any language: an owner, an invalidation rule and a bound, TTLs with jitter, atomic loaders, stampedes, negative caching, cache keys, hit rates, and cache libraries per language |
+| [`benchmarking`](references/benchmarking.md) | Benchmarking code, any language: harnesses, warm-up and sinks, how many runs, medians and significance tests, baselines, how each harness reports, and catching regressions in CI on noisy runners |
+| [`logging-libraries`](references/logging-libraries.md) | Choosing and configuring a logging library: structlog, pino, Serilog, Logback, Log4j 2, Monolog, semantic_logger and Rust's tracing, their versions, how each attaches trace IDs and redacts values, and OpenTelemetry severity numbers |
+| [`error-responses`](references/error-responses.md) | Errors that reach a client or a person: RFC 9457 problem details, honest status codes, what ASP.NET Core and Spring do by default, contract tests, keeping internals out, and messages that say what happened and what to do |
 
 ## Check before you act
 
@@ -120,12 +127,9 @@ status words are the standard's:
   by the sections named above.
 - **Git, pull requests, workflows and releases:** git-workflows.
 - **Dependencies as a supply chain:** lockfiles, provenance, invented package names and install
-  scripts belong to a security skill's supply-chain-security module, planned in this
-  repository.
-- **Designing tests:** a testing skill, planned. Each module here names its language's test
-  runner and leaves test design there.
-- **Escaping for logs and terminals, in detail:** planned `input-handling` and
-  `logging-and-observability` modules. The contract's third rule applies until they ship.
+  scripts belong to the `security` skill's planned `supply-chain-security` module.
+- **Designing tests:** the `testing` skill. Each module here names its language's test runner
+  and leaves test design there.
 - **Prose and Markdown:** house-style.
 
 ## Where this came from
@@ -133,8 +137,9 @@ status words are the standard's:
 - The owner's earlier language skills, as lists of topics, checks and lessons. Nothing was
   copied from them. What each kept, dropped and why is in this skill's repository, in the
   research results of 2026-10-26.
-- Research runs R09 (Python), R10 (TypeScript and the web), R11 (.NET and PowerShell), R12
-  (C and Meson) and R15 (shell), filed in this skill's repository. They were leads until each
+- Research runs R03 (style and types), R04 (input and configuration), R07 to R07e (errors,
+  logging, performance, caching and benchmarks), R09 (Python), R10 (TypeScript and the web), R11
+  (.NET and PowerShell), R12 (C and Meson) and R15 (shell), filed in this skill's repository. They were leads until each
   claim was checked at its source.
 
 ## When something here is wrong

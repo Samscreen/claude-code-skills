@@ -6,8 +6,9 @@ a window shown before it's ready or left open after its subject is gone, and lon
 progress and notifications.
 
 A heuristic review of a whole interface, and status lines in general, are `usability-review`'s;
-where settings live, `settings-and-options`; testing dialogs, `gui-testing`. Keyboard access
-and screen readers are the `accessibility` module's, in the `visual-design` skill; this module
+where settings live, `settings-and-options`; testing dialogs, `gui-testing`; platform
+components and layout, `interface-patterns`. Keyboard access
+and screen readers are the planned `accessibility` module's, in the `visual-design` skill; this module
 covers only a dialog's focus and keys.
 
 ## Rules

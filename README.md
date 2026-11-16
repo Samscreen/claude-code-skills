@@ -57,18 +57,18 @@ To check another repository's prose against the house style, follow the house-st
 | Skill | Plugin | What it does |
 |---|---|---|
 | `project-bootstrap-and-audit` | `standards` | Sets up a new repository, or audits an existing one, against the PROJECT-BOOTSTRAP-AND-AUDIT standard (v0.49.1) |
-| `agent-engineering` | `engineering` | AI agent sessions reviewing each other's work: closing rounds on evidence, holding the turn, one builder per request, contracts both sides check, AI reviewers' findings, and where agents stop for a person, with the reasons and the research behind each |
-| `coding` | `engineering` | The contract every code change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, and Bash: rules, common mistakes, review checks and the reasons for each, with dated facts |
-| `git-workflows` | `engineering` | Commit messages, pull requests, the merge strategy, branch deletion, GitHub Actions CI, hooks, `.gitignore`, release tags, changelogs and backports, with the reasons for each and what other projects do |
-| `house-style` | `engineering` | One style for prose and Markdown in every repository, with the reasons for each rule, and the Vale style and CI job that check it |
-| `testing` | `engineering` | Tests and checks a pass can be trusted from: proving a test, gate or grader can fail, checking results against an independent reference, scoring by the worst case, and flaky tests, with the reasons for each |
-| `user-experience` | `engineering` | How a desktop or web program behaves for its user: heuristic reviews with severity ratings, status that stays current, windows and dialogs that appear when they should, settings with good defaults and one place each, and GUI tests by machine and with people |
+| `agent-engineering` | `engineering` | Building, securing and running AI agents: AGENTS.md and CLAUDE.md, settings, hooks and Agent Skills, prompt injection and permissions, and agent sessions reviewing each other's work, closing rounds on evidence and stopping for a person |
+| `coding` | `engineering` | The contract every code change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson, plus errors, logging, caching, benchmarking, performance and settings in any language: rules, common mistakes, review checks and the reasons for each, with dated facts |
+| `git-workflows` | `engineering` | Commit messages, pull requests and the agents tending them, the merge strategy, conflicts, GitHub Actions CI and deploys, hooks, leaked secrets, `.gitignore`, release tags, versions, changelogs, backports and support windows, with the reasons for each and what other projects do |
+| `house-style` | `engineering` | One style for prose and Markdown in every repository, and how to write and keep a project's documentation, with the reasons for each rule, and the Vale style and CI job that check it |
+| `testing` | `engineering` | Tests and checks a pass can be trusted from: proving a test, gate or grader can fail, checking results against an independent reference, scoring by the worst case, flaky tests, coverage, doubles and test strategy, tests AI agents write, and unattended acceptance runs on hardware with fault injection, with the reasons for each |
+| `user-experience` | `engineering` | How a desktop, web or command-line program behaves for its user: each platform's current design language and toolkit, heuristic reviews with severity ratings, status that stays current, windows and dialogs that appear when they should, settings with good defaults and one place each, command-line conventions, GUI tests by machine and with people, and the loop from user reports to safe fixes |
+| `visual-design` | `engineering` | How an interface, a chart or a document looks: design tokens built for CSS, charts and documents, dark mode, contrast measured on the shipped color, never color alone, choosing a chart, and charting libraries with their versions and how active each is |
 | `architecture` | `engineering` | Where each file and folder goes: layouts by ecosystem, tests' places, feature or layer folders, naming, one repository or several, and moving files without losing history |
-| `coding` | `engineering` | The contract every code change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, and Bash: rules, common mistakes, review checks and the reasons for each, with dated facts |
-| `git-workflows` | `engineering` | Commit messages, pull requests, the merge strategy, branch deletion, GitHub Actions CI, hooks, `.gitignore`, release tags, changelogs and backports, with the reasons for each and what other projects do |
-| `house-style` | `engineering` | One style for prose and Markdown in every repository, with the reasons for each rule, and the Vale style and CI job that check it |
 | `security` | `engineering` | Threat modeling, authentication, sessions and passwords, authorization, cryptography and randomness, security logging, and security review, against OWASP Top 10:2025, ASVS 5.0.0 and the CWE Top 25 |
-| `operations` | `engineering` | Running, troubleshooting and hardening Windows Server and Active Directory, Linux hosts, Docker images and Compose, and office or home networks, with every change rehearsed or reversible |
+| `operations` | `engineering` | Running, troubleshooting and hardening Windows Server and Active Directory, Linux hosts, Docker images and Compose, and office or home networks, and reading their logs and crash dumps, with every change rehearsed or reversible |
+| `human-factors` | `engineering` | Before a design, an automation or an optimization removes a step people take: finding what it's for, telling a purpose from a bias or a drift, keeping, changing or overriding it, and keeping facts apart from preferences |
+| `optimization-and-scheduling` | `engineering` | Solvers and schedules with the people in them: choosing a solver, modeling rules as constraints, fatigue, fairness and re-planning, lead-time quotes from backlog and capacity, and checking every plan without trusting the solver |
 
 More arrive one at a time, each through the review in
 [docs/authoring-a-skill.md](docs/authoring-a-skill.md). [ROADMAP.md](ROADMAP.md) lists every skill
@@ -76,8 +76,9 @@ that is planned, with its status.
 
 ## Development
 
-You need [uv](https://docs.astral.sh/uv/) 0.12 or later, which installs the Python version named
-in `.python-version`. You also need Node.js, to run Claude Code's own catalog validator.
+You need [uv](https://docs.astral.sh/uv/) 0.13.5 or later, the version CI pins in
+`.github/workflows/ci.yml`. It installs the Python version named in `.python-version`. You also
+need Node.js, to run Claude Code's own catalog validator.
 
 ```sh
 uv sync --locked

@@ -8,7 +8,7 @@ It holds what every typed language shares. Each language's setup, versions and s
 language module's: `python-coding` for mypy, Pyrefly and ty, `javascript-coding` for
 `tsconfig`, `csharp-coding` for nullable and warnings as errors. What to accept from outside,
 and escaping it on the way out, is `input-handling`'s; a configuration file's schema is
-`configuration`'s.
+`config-formats`'.
 
 ## Rules
 

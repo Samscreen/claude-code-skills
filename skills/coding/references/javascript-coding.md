@@ -5,7 +5,7 @@ built-ins, type stripping, promises, and lint and format.
 
 Untrusted input (`eval`, shells, prototype pollution, paths, ReDoS, SQL) is the
 javascript-security module's; HTML and CSS the html-coding module's; browser and DOM security the
-web-security module's; tests the planned testing skill's; packages and lockfiles the planned
+web-security module's; tests the testing skill's; packages and lockfiles the planned
 supply-chain-security module's and the project-bootstrap-and-audit standard's. React isn't
 covered.
 

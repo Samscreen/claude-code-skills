@@ -11,8 +11,9 @@ Designing the tests themselves, and proving a check can fail, belong to the `tes
 
 ## Rules
 
-1. **Never get to green by going around a check.** No skipping or quarantining a failing test,
-   and no `--no-verify`. Fix the cause.
+1. **Never get to green by going around a check.** No skipping or quarantining a failing test
+   to get green, and no `--no-verify`. Fix the cause; a tracked quarantine (an owner, an issue,
+   visible results) is the testing skill's flaky-tests.
 2. **`timeout-minutes` on every job.** Without it, a hung job runs for 360 minutes (fact
    `timeout`).
 3. **Install from the lockfile, in a mode that fails on drift:** `npm ci`, or `uv sync --locked`.
@@ -114,7 +115,7 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 | A required check comes from a path-filtered workflow | The ruleset's required checks, against each workflow's `on:` | `GAP`: pull requests that skip it can't merge | Remove the filter, or stop requiring the check (fact `skipped-pending`) |
 | A required check comes from a job with an `if:` | The required checks, against each job's `if:` | `BLOCKER` where the condition can skip it on a pull request that changes code: it reports success having run nothing (fact `job-if-success`) | Remove the condition, or require a final job that `needs:` the others and fails if any failed |
 | `paths` and `paths-ignore` on one event | Read the `on:` blocks | `DRIFT`: the workflow is invalid | Keep one (fact `paths-both`) |
-| Instructions say `--no-verify`, or to skip or quarantine a failing test | `grep -rn -e '--no-verify' -e quarantin .` | `DRIFT` | Remove them; fix the cause |
+| Instructions say `--no-verify`, or to skip or quarantine a failing test with no owner or issue | `grep -rn -e '--no-verify' -e quarantin .` | `DRIFT` | Remove them; fix the cause, or track the quarantine |
 | A scheduled scan in a public repository last ran over 60 days ago | Its run history | `GAP`: it has stopped (fact `schedule-60`) | Re-enable it; watch the date |
 
 ## Why

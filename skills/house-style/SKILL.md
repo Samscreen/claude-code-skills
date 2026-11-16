@@ -3,7 +3,7 @@ name: house-style
 description: "Writes and checks prose and Markdown in one house style: the answer first, plain words, facts with sources, American spelling. Ships a Vale style. Use for a README, docs, records, changelogs, pull requests and reports."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-10-27"
+  reviewed: "2026-11-16"
 ---
 
 # House style
@@ -82,8 +82,8 @@ as fact `vale-current`, and the fact's row is in whichever module holds it.
   git-workflows.
 - **How code is formatted:** each language's own formatter and linter, which
   project-bootstrap-and-audit sets up.
-- **What goes in an agent's context file,** such as `AGENTS.md`: project-bootstrap-and-audit
-  rules on that. The prose in it follows this style.
+- **What goes in an agent's context file,** such as `AGENTS.md`: agent-engineering's
+  `agent-context-files`, with the budgets from project-bootstrap-and-audit. The prose in it follows this style.
 
 ## When something here is wrong
 

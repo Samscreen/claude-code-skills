@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:2d302df1-3b0d-5e2c-94fd-4eb0fdb61dd7",
+  "serialNumber": "urn:uuid:2a7dd542-f5da-5244-97b5-c840742533b7",
   "version": 1,
   "metadata": {
     "tools": {
@@ -18,7 +18,7 @@
       "type": "application",
       "bom-ref": "claude-code-skills",
       "name": "claude-code-skills",
-      "version": "0.1.25",
+      "version": "0.1.30",
       "licenses": [
         {
           "expression": "Apache-2.0"
@@ -33,11 +33,11 @@
       "properties": [
         {
           "name": "claude-code-skills:language",
-          "value": "Markdown: 135 file(s)"
+          "value": "Markdown: 204 file(s)"
         },
         {
           "name": "claude-code-skills:language",
-          "value": "JSON: 64 file(s)"
+          "value": "JSON: 86 file(s)"
         },
         {
           "name": "claude-code-skills:language",
@@ -466,9 +466,9 @@
     },
     {
       "type": "application",
-      "bom-ref": "plugin:engineering@0.1.25",
+      "bom-ref": "plugin:engineering@0.1.30",
       "name": "engineering",
-      "version": "0.1.25",
+      "version": "0.1.30",
       "description": "A Claude Code plugin from this repository's catalog.",
       "licenses": [
         {
@@ -646,7 +646,7 @@
           "type": "data",
           "bom-ref": "skill:coding",
           "name": "coding",
-          "description": "reviewed 2026-10-27",
+          "description": "reviewed 2026-11-16",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -655,27 +655,31 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 66 fact(s)"
+              "value": "learn.microsoft.com: 80 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "docs.python.org: 25 fact(s)"
+              "value": "docs.python.org: 34 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "nodejs.org: 16 fact(s)"
+              "value": "raw.githubusercontent.com: 25 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "nodejs.org: 19 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "cheatsheetseries.owasp.org: 18 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.w3.org: 17 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
               "value": "tiswww.case.edu: 16 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "www.w3.org: 16 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "cheatsheetseries.owasp.org: 15 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -687,11 +691,15 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "raw.githubusercontent.com: 13 fact(s)"
+              "value": "mesonbuild.com: 12 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "mesonbuild.com: 12 fact(s)"
+              "value": "pypi.org: 12 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pubs.opengroup.org: 11 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -703,11 +711,23 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pubs.opengroup.org: 9 fact(s)"
+              "value": "github.com: 8 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pypi.org: 6 fact(s)"
+              "value": "pkg.go.dev: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.rfc-editor.org: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "go.dev: 6 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "aws.amazon.com: 5 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -727,7 +747,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "opentelemetry.io: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "repo1.maven.org: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "www.typescriptlang.org: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "crates.io: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -751,7 +783,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "registry.npmjs.org: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "typescript-eslint.io: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "doc.rust-lang.org: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.rs: 3 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -763,7 +807,27 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "www.nuget.org: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "api.nuget.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "bencher.dev: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "benchmarkdotnet.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "best.openssf.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "builder.aws.com: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -775,11 +839,27 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "docs.spring.io: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "eslint.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "go.dev: 2 fact(s)"
+              "value": "logging.apache.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "man.freebsd.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "openjdk.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "prometheus.io: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -791,7 +871,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "www.rfc-editor.org: 2 fact(s)"
+              "value": "sre.google: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.brendangregg.com: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -811,7 +895,15 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "bheisler.github.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "biomejs.dev: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "cachetools.readthedocs.io: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -823,7 +915,27 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "csrc.nist.gov: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "curia.europa.eu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "design-system.service.gov.uk: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "developers.cloudflare.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "doc.qt.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.cloud.google.com: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -831,7 +943,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "docs.oracle.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.ruby-lang.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "documentation.ubuntu.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "eur-lex.europa.eu: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -840,6 +964,18 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "gmplib.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "grafana.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "ico.org.uk: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "isaacs.github.io: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -859,7 +995,7 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "man.freebsd.org: 1 fact(s)"
+              "value": "logback.qos.ch: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -875,11 +1011,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "numpy.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "oxc.rs: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
               "value": "packages.debian.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pandas.pydata.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -891,7 +1035,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "registry.npmjs.org: 1 fact(s)"
+              "value": "pytest-benchmark.readthedocs.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "rubygems.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -919,6 +1067,10 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "tc39.es: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "toml.io: 1 fact(s)"
             },
             {
@@ -931,6 +1083,14 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "www.cnil.fr: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.edpb.europa.eu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "www.freedesktop.org: 1 fact(s)"
             },
             {
@@ -939,7 +1099,15 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "www.nngroup.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "www.open-std.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.php.net: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -947,7 +1115,15 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "www.structlog.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "www.unicode.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.vldb.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -963,7 +1139,7 @@
           "type": "data",
           "bom-ref": "skill:git-workflows",
           "name": "git-workflows",
-          "description": "reviewed 2026-11-03",
+          "description": "reviewed 2026-11-16",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -1108,7 +1284,7 @@
           "type": "data",
           "bom-ref": "skill:house-style",
           "name": "house-style",
-          "description": "reviewed 2026-10-27",
+          "description": "reviewed 2026-11-16",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -1191,6 +1367,135 @@
         },
         {
           "type": "data",
+          "bom-ref": "skill:human-factors",
+          "name": "human-factors",
+          "description": "reviewed 2026-11-16",
+          "licenses": [
+            {
+              "expression": "Apache-2.0"
+            }
+          ],
+          "properties": [
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.thefreelibrary.com: 6 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pmc.ncbi.nlm.nih.gov: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "books.hse.gov.uk: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "doi.org: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "ixdf.org: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "journals.sagepub.com: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pubmed.ncbi.nlm.nih.gov: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "arxiv.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "knowledge.lancashire.ac.uk: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "aisel.aisnet.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "ckrybus.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "eric.ed.gov: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "hciengineering.net: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "link.springer.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "mitpress.mit.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "openai.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pages.ucsd.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "papers.ssrn.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "plato.stanford.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "press.uchicago.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pressblog.uchicago.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "repositorio.ispa.pt: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.chesterton.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.csse.canterbury.ac.nz: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.england.nhs.uk: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.konsortswd.de: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.ri.cmu.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.scielo.br: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.sciencedirect.com: 1 fact(s)"
+            }
+          ]
+        },
+        {
+          "type": "data",
           "bom-ref": "skill:operations",
           "name": "operations",
           "description": "reviewed 2026-11-11",
@@ -1202,7 +1507,7 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 16 fact(s)"
+              "value": "learn.microsoft.com: 22 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1210,7 +1515,23 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "raw.githubusercontent.com: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "github.com: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "ubuntu.com: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.freedesktop.org: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.rfc-editor.org: 3 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1222,15 +1543,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "github.com: 2 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
               "value": "man.openbsd.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "raw.githubusercontent.com: 2 fact(s)"
+              "value": "man7.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1247,10 +1564,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "www.debian.org: 2 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "www.freedesktop.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1278,11 +1591,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "man7.org: 1 fact(s)"
+              "value": "grafana.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "jsonlines.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
               "value": "netfilter.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1298,10 +1619,6 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "www.rfc-editor.org: 1 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
               "value": "www.wi-fi.org: 1 fact(s)"
             },
             {
@@ -1310,7 +1627,116 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "yamato-security.github.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "zeek.org: 1 fact(s)"
+            }
+          ]
+        },
+        {
+          "type": "data",
+          "bom-ref": "skill:optimization-and-scheduling",
+          "name": "optimization-and-scheduling",
+          "description": "reviewed 2026-11-16",
+          "licenses": [
+            {
+              "expression": "Apache-2.0"
+            }
+          ],
+          "properties": [
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "github.com: 20 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "doi.org: 8 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.timefold.ai: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "arxiv.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.gurobi.com: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "assets.publishing.service.gov.uk: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "business.columbia.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "d-krupke.github.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "groups.google.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "hub.docker.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "lirias.kuleuven.be: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "mistic.iict-heig-vd.ch: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "people.brunel.ac.uk: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "plato.asu.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pubsonline.informs.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "scipopt.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "support.gurobi.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.coin-or.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.ibm.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.om-db.wi.tum.de: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.schedulingbenchmarks.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.tandfonline.com: 1 fact(s)"
             }
           ]
         },
@@ -1364,7 +1790,19 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "code.claude.com: 6 fact(s)"
+              "value": "arxiv.org: 9 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "code.claude.com: 8 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "gitlab.com: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "testing.googleblog.com: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1372,7 +1810,31 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "testing.googleblog.com: 3 fact(s)"
+              "value": "raw.githubusercontent.com: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.kernelci.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.pytest.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "registry.npmjs.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "research.google.com: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.anthropic.com: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1380,11 +1842,83 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "arxiv.org: 1 fact(s)"
+              "value": "api.nuget.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "research.google.com: 1 fact(s)"
+              "value": "blitiri.com.ar: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "coverage.readthedocs.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "crates.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "developer.apple.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.cypress.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.pact.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "go.dev: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "growing-object-oriented-software.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "jestjs.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "lava.readthedocs.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "learn.microsoft.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "man7.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "open.qa: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pester.dev: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "repo.packagist.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "repo1.maven.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "rubygems.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "testcontainers.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.pantsbuild.org: 1 fact(s)"
             }
           ]
         },
@@ -1392,7 +1926,7 @@
           "type": "data",
           "bom-ref": "skill:user-experience",
           "name": "user-experience",
-          "description": "reviewed 2026-11-11",
+          "description": "reviewed 2026-11-16",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -1401,7 +1935,19 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "www.nngroup.com: 16 fact(s)"
+              "value": "www.nngroup.com: 19 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "developer.apple.com: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "raw.githubusercontent.com: 7 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1409,15 +1955,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "clig.dev: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "develop.kde.org: 5 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pypi.org: 5 fact(s)"
+              "value": "learn.microsoft.com: 5 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "developer.apple.com: 3 fact(s)"
+              "value": "doc.qt.io: 3 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1425,23 +1975,79 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "docs.sentry.io: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "m3.material.io: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "playwright.dev: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "registry.npmjs.org: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "api.nuget.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "chernev.com: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "doc.qt.io: 2 fact(s)"
+              "value": "design-system.service.gov.uk: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 2 fact(s)"
+              "value": "developer.android.com: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "playwright.dev: 2 fact(s)"
+              "value": "docs.python.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "api.nuget.org: 1 fact(s)"
+              "value": "release.gnome.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "bixense.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "blogs.gnome.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "code.visualstudio.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "community.kde.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.github.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "download.gnome.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "eur-lex.europa.eu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "guide.elm-lang.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "kde.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1449,11 +2055,116 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "no-color.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "proxy.golang.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pubs.opengroup.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "react.dev: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "scheibehenne.com: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "services.nvd.nist.gov: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "www.cs.umd.edu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.edpb.europa.eu: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.mozilla.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.viget.com: 1 fact(s)"
+            }
+          ]
+        },
+        {
+          "type": "data",
+          "bom-ref": "skill:visual-design",
+          "name": "visual-design",
+          "description": "reviewed 2026-11-16",
+          "licenses": [
+            {
+              "expression": "Apache-2.0"
+            }
+          ],
+          "properties": [
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "raw.githubusercontent.com: 6 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "registry.npmjs.org: 6 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.designtokens.org: 6 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.w3.org: 6 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "learn.microsoft.com: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "matplotlib.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "bids.github.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "developer.mozilla.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "echarts.apache.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "medium.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "quarto.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "recharts.github.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "styledictionary.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.nature.com: 1 fact(s)"
             }
           ]
         }
@@ -1461,9 +2172,9 @@
     },
     {
       "type": "application",
-      "bom-ref": "plugin:standards@0.1.25",
+      "bom-ref": "plugin:standards@0.1.30",
       "name": "standards",
-      "version": "0.1.25",
+      "version": "0.1.30",
       "description": "A Claude Code plugin from this repository's catalog.",
       "licenses": [
         {
@@ -1684,8 +2395,8 @@
         "pkg:golang/github.com/vale-cli/vale/v3/cmd/vale@v3.26.0",
         "pkg:golang/github.com/zricethezav/gitleaks/v8@v8.30.1",
         "pkg:npm/%40anthropic-ai/claude-code@2.1.319",
-        "plugin:engineering@0.1.25",
-        "plugin:standards@0.1.25",
+        "plugin:engineering@0.1.30",
+        "plugin:standards@0.1.30",
         "project:skillcheck@0.0.0",
         "tool:GitHub-hosted runner@ubuntu-latest",
         "tool:Go@1.27",

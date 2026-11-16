@@ -6,8 +6,104 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Fourteen modules no longer call shipped skills and modules planned, and modules that name a
+  module still to come now say it's planned.
+- Skills and modules that named each other wrongly now agree: a tracked quarantine of a flaky
+  test is `testing`'s `flaky-tests`, a configuration schema is `config-formats`', where an error
+  appears on screen is `interface-patterns`', and an agent's context file is
+  `agent-engineering`'s. The `coding`, `git-workflows`, `operations` and
+  `optimization-and-scheduling` descriptions name what their modules cover.
+- The README, CONTRIBUTING, AGENTS.md, ROADMAP.md, the research index and the unrun prompts
+  agree with the skills and records as they stand.
+
+## [0.1.30] - 2026-11-16
+
 ### Added
 
+- `visual-design`, a new skill: `visual-theme` (design tokens in the DTCG format, dark mode as a
+  second value set, OKLCH, WCAG contrast thresholds, font fallbacks) and `data-visualization`
+  (never color alone, color-blind-safe palettes, a chart's takeaway in words, charting libraries
+  and how active each is).
+- `user-experience` gains `interface-patterns` (each platform's design language and toolkit,
+  layout by window width, forms, loading and empty states), `command-line-interfaces` (POSIX and
+  GNU syntax, output for people and scripts, NO_COLOR, argument parsers) and `feedback-loop`
+  (in-app reports, issue forms, crash symbols, consented usage data, triage, interfaces built to
+  change).
+- `coding` gains `caching`, `benchmarking` (split from `performance-and-concurrency`),
+  `logging-libraries` (split from `logging-and-observability`) and `error-responses` (split from
+  `error-handling`).
+- `human-factors` gains `cognitive-task-analysis`; `optimization-and-scheduling` gains
+  `rosters-and-replanning`.
+- The research R07d, R07e, R20, R23c, R28c, R29 and R30 is filed with its checks.
+
+### Changed
+
+- `logging-and-observability`: personal data in logs, retention with a floor and a ceiling, and
+  sampling that keeps errors; Logback 1.6.7.
+- `performance-and-concurrency`: data-structure defaults, Go's `context`, free threading in
+  Python libraries.
+- `error-handling`: causes in Java, PHP, Ruby and Rust, and bulkheads.
+- `human-factors`: cross-cultural evidence and the difference between a screen change and a
+  whole-system replacement; `plan-checking`: which benchmark sets may be copied.
+- `gui-testing`: Playwright 1.65.
+
+## [0.1.29] - 2026-11-11
+
+### Added
+
+- `coding` gains `logging-and-observability` (structured records, trace IDs, what to keep out of
+  logs, logging libraries, SLOs and alerts) and `performance-and-concurrency` (profiling first,
+  flame graphs, benchmark harnesses, task ownership, cancellation and race detectors).
+- `human-factors` gains `studying-work`: finding what a step is for by watching and asking at
+  the work, goals and plans, and the traps that bend a study.
+- `optimization-and-scheduling` gains `plan-checking`, split from its first module: checking
+  what a solver returns, reproducible CP-SAT tests and published instances as expected answers.
+- The research R07b, R07c, R23b and R28b is filed with its checks.
+
+### Changed
+
+- `optimization-and-scheduling`: CP-SAT has no lexicographic API; Gurobi's licenses in
+  containers; Timefold's Python solver is discontinued; Kingman's formula attributed correctly.
+- `human-factors`: no field study found shows that training or phasing shortens the dip after a
+  tool change, so the module no longer implies it.
+- `coding`, `operations` and `security` no longer call `logging-and-observability` or
+  `input-handling` planned.
+
+## [0.1.28] - 2026-11-11
+
+### Added
+
+- `human-factors`, a new skill: what a habit, workaround or familiar tool in people's work is
+  for before a redesign, an automation or an optimization removes it, and the rule that keeps
+  facts apart from preferences.
+- `optimization-and-scheduling`, a new skill: solvers, schedules, rosters and lead-time quotes,
+  with every plan checked independently of the solver and the people in it modeled.
+- `coding` gains `error-handling`; `operations` gains `log-analysis`.
+- The research R07, R23 and R28 is filed with its checks.
+
+### Changed
+
+- `csharp-coding`: .NET 11 is released (STS), no longer a release candidate.
+
+## [0.1.27] - 2026-11-11
+
+### Added
+
+- `testing` gains `acceptance-runs`: unattended acceptance runs on real hardware (a health
+  check before the run, a device lost mid-run kept apart from a product failure, the evidence a
+  run keeps) and fault injection for ordinary programs on Linux, macOS and Windows.
+- The research R06c (hardware acceptance runs, fault injection, test strategy) is filed with its
+  checks.
+
+## [0.1.26] - 2026-11-11
+
+### Added
+
+- `testing` gains `testing-patterns` (coverage, doubles, contract tests, runner settings that
+  fail open, frameworks per language) and `agent-written-tests` (tests an AI agent writes or
+  changes).
 - `operations`, a new skill: `windows-admin`, `linux`, `docker-containers` and
   `networking-security`.
 - `git-workflows` gains `ci-cd` (environments, OIDC, promotion, rollback) and
@@ -63,10 +159,6 @@ Notable changes to this repository. The format follows
   left unresolved once in the dependency map, and no longer flags an ISO offset as a time.
 
 ### Changed
-
-- `git-workflows`' `pr-stewardship` records a lifted hold where the hold was, names who tends
-  bots' pull requests, and adds four mistakes; `releases-and-versions` checks what consumers
-  install and reads what a failed publish made before retrying.
 
 - `git-workflows`' `ci-speed` times a release's run as well as a pull request's, as standard
   v0.49.0's dimension 6 asks.

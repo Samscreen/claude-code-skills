@@ -1,9 +1,9 @@
 ---
 name: git-workflows
-description: "Sets up and runs Git and GitHub work: commits, branches, pull requests and agents tending them, merges, conflicts, GitHub Actions CI, hooks, leaked secrets, tags, changelogs, versions, releases. Use when writing, fixing or speeding up any of these."
+description: "Sets up and runs Git and GitHub work: commits, branches, pull requests and agents tending them, merges, conflicts, CI and deploys, hooks, leaked secrets, tags, versions, releases, support windows. Use when writing or fixing any of these."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-03"
+  reviewed: "2026-11-16"
 ---
 
 # Git workflows
@@ -23,7 +23,8 @@ run the commands; on claude.ai, give them to the person to run.
    removing personal information at the owner's request (`rebasing-and-recovery`,
    `leaked-data`).
 4. **Never get to green by going around a check.** No `--no-verify`, and no skipping or
-   quarantining a failing test. Fix the cause (`ci-workflows`, `git-hooks`).
+   quarantining a failing test to get green. Fix the cause (`ci-workflows`, `git-hooks`); a
+   tracked quarantine with an owner is `testing`'s `flaky-tests`.
 5. **Write down one commit grammar and check it** (`commits-and-pull-requests`).
 6. **Harden every workflow:** `permissions:` at the top, `timeout-minutes` on every job, actions
    pinned to a full commit SHA, installs that fail on lockfile drift, a run on every change
@@ -139,8 +140,8 @@ Workflows may end in `.yml` or `.yaml`, so every search covers both.
   was copied from it. Where it advised against a lesson here, such as squash-merging feature
   branches, bulk-deleting merged branches, `--no-verify` or a status section in `CLAUDE.md`,
   the advice was dropped.
-- Research runs R08 (Git, GitHub, CI/CD) and R05 (versioning, releases), filed in this skill's
-  repository. They were leads until each claim was checked.
+- Research runs R08 (Git, GitHub, CI/CD), R05 (versioning, releases) and R21 (dependencies and
+  versions), filed in this skill's repository. They were leads until each claim was checked.
 - A cold review by a second reader on 2026-09-30, and the split into modules on 2026-10-16,
   recorded in this skill's repository.
 

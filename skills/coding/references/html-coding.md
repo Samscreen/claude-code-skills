@@ -6,7 +6,7 @@ every page needs, forms, and modern CSS with dark mode and reduced motion.
 Browser-side security, such as escaping output, `innerHTML`, sanitizing, Content Security
 Policy, Trusted Types, Subresource Integrity and `noopener`, is `web-security`'s. JavaScript and
 TypeScript are `javascript-coding`'s. A full accessibility audit with assistive technology
-belongs to a planned accessibility module, and design tokens to a planned visual-design skill.
+belongs to a planned accessibility module, and design tokens to the visual-design skill.
 Pinning versions, lockfiles and CI are the project-bootstrap-and-audit standard's *Language
 toolchains*. HTML email isn't covered.
 

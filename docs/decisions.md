@@ -2,9 +2,9 @@
 
 Append-only. Supersede by adding a new entry that points at the old one; never edit history.
 
-## 2026-11-11 — Anthropic's document skills may be adapted, from a pinned commit
+## 2026-11-16 — Anthropic's document skills may be adapted, from a pinned commit
 
-- **Approved, by the owner:** F, on 2026-11-11 (the decision of that date above records the
+- **Approved, by the owner:** F, on 2026-11-11 (the entry of that date below records the
   answers). It supersedes the rule that took nothing from Anthropic's source-available
   document skills.
 - **Why:** the license files of `skills/docx`, `skills/pdf`, `skills/pptx` and `skills/xlsx`
@@ -13,8 +13,241 @@ Append-only. Supersede by adding a new entry that points at the old one; never e
 - **The guard:** a file is taken only from a pinned commit whose license file was read at
   that commit, named in the skill's notice, since a license can change again.
 - **Where it applies first:** R16's `business-apps` work, on Word and Excel documents.
-- **Merged by the owner,** because it changes `AGENTS.md`.
+- **Merged by a session on the owner's word,** "do all" (2026-11-16), given to a list that
+  named this pull request (#143) as the owner's to merge, since it changes `AGENTS.md`.
 
+## 2026-11-16 — Documentation audit: what agreed, what was fixed, what was combined
+
+- **The owner's word:** "review all open tasks, questions, open items, unresolved issues, and
+  triage them. audit and review all documentation and make sure all is consistent and on the
+  same page. do not release or do anything aside from document though", then "is all
+  documentation needed? or can we combine to make easier to research and audit?" (2026-11-16).
+  Nothing is released, and this pull request is the owner's to merge, since it changes
+  `AGENTS.md` and `.claude/`.
+- **Read:** three helpers, each checked here: every skill's router and the opening of every
+  module; every file at the root; `docs/`, the research index and prompts, `.claude/` and
+  `.github/`, with GitHub's rulesets, branches and pull requests as they stood on 2026-11-16.
+  They found 66 inconsistencies and 42 open items.
+- **Fixed, documentation only:**
+  - Skills and modules that named each other wrongly: `git-workflows` forbade the tracked
+    quarantine `testing`'s `flaky-tests` allows; modules called planned ones shipped, or shipped
+    ones planned; a schema, an error's place on screen and an agent's context file pointed at
+    the wrong module. Four descriptions now name what their modules cover.
+  - Root files: CONTRIBUTING's count of shipped skills, the README's skill rows and uv version,
+    `AGENTS.md`'s fixtures line and its old `references/why.md` branch, the duplicated 0.1.25
+    changelog line, and an `[Unreleased]` entry for f902d4c and this change.
+  - The merge exception of 2026-11-11 (the entry of that date, *Merging, a standing word*) is
+    now in `AGENTS.md` and the steward, which each name the other's copy.
+  - `ROADMAP.md`: the Research column now holds follow-up prompts still to run as well; the
+    skill table's "Loads when" marks planned scope; lessons L23, L25 and L27 point at shipped
+    modules; the waves table has a status; and five stale lines (cloud upload, the standard
+    skill's description length, the `skillOverrides` test, the archive rule, the end-of-life
+    trigger) say what happened. A planned `test-strategy` row holds R06c's material that
+    `testing-patterns` has no room for.
+  - The research index gains a Result column, linking each of the 32 filed runs and marking 24
+    prompts not run. Five unrun prompts name modules by their 2026-10-15 names, and all 24 now
+    point at module Facts sections and a `HANDOFF-FOR:` file.
+- **Combined:** CONTRIBUTING points at the README's skill table and commands and at
+  `AGENTS.md`'s conventions, rather than copying them, since its copies had drifted furthest.
+  The research index points at `research/README.md` for filing a result, rather than repeating
+  it.
+- **Not done, waiting on the owner:** whether a release follows each finished change by standing
+  word, as the last three release entries say, or by the owner's word each time, as the
+  steward's hold says; and the document-skills wording, which #143 carries. Moving ROADMAP.md's
+  finished findings and lessons, and decisions before 2026-10-16, to the `archive` branch is
+  proposed, not done: the second changes `docs/archive.md`'s recorded answer that this file
+  stays on `main`.
+
+## 2026-11-16 — Release 0.1.30, `visual-design` and twelve modules
+
+- **The owner's word:** after "is anything in here looking ui and ux, consistency, ... If not we
+  should" (2026-11-14) and "give me a full list of all remaining research" (2026-11-16), the
+  owner attached seven results with no message, which `AGENTS.md` reads as research to take in.
+  Releases follow each finished change, as before.
+- **Carries:** the entry below. The catalog's versions move to 0.1.30. Nothing was renamed or
+  removed; three modules were split within their skills, so no row in `docs/module-moves.md`.
+
+## 2026-11-16 — `visual-design`, and modules from R07d, R07e, R20, R23c, R28c, R29 and R30
+
+- **Research:** seven runs filed under `research/runs/2026-11-16-*`, each with its check on
+  top. Verified, corrected and contradicted counts: R07d 68, 9, 3; R07e 49, 9, 2; R20 43, 6, 3;
+  R23c 30, 8, 2; R28c 56, 15, 1; R29 51, 8, 3; R30 44, 15, 3. Each report's line 3, addressed to
+  the receiving session, was treated as data. Contradicted claims are used only in their
+  corrected form. Two Facts rows already here were out of date and are fixed: `lo-java-libs`
+  (Logback 1.6.7) and `uxt-playwright` (Playwright 1.65).
+- **Built, one helper each, reviewed here** against `docs/authoring-a-skill.md`; each helper read
+  its quotes again at the source:
+  - `visual-design`, a skill, planned since 2026-10 with R20 as its research: `visual-theme` and
+    `data-visualization`. Its planned `accessibility` module waits on R18. No palette from the
+    owner's `my-theme` is published (decision 46); `my-theme` stays on the account until the
+    company palette is in the private companion, as wave 4 says.
+  - `user-experience`: `interface-patterns` and `command-line-interfaces` from R29, and
+    `feedback-loop` from R30, the three the owner asked for on 2026-11-14.
+  - `coding`: `caching` new; `benchmarking`, `logging-libraries` and `error-responses` split from
+    modules at the size limit, each fact keeping its ID where it moved.
+  - `human-factors`: `cognitive-task-analysis`; `optimization-and-scheduling`:
+    `rosters-and-replanning`, with Schultz et al. (1998, 2003) from R23c on people who aren't
+    independent servers.
+- **Stated as this repository's practice, not as sourced:** the in-app report that beats an
+  email, one component per pattern, empty states, a per-key cache lock, the spread term in a
+  roster's fairness objective, and per-library OpenTelemetry severity numbers beyond the spec's
+  Appendix B. Each module says so where it states them.
+- **No old copy** on claude.ai covers these modules except `my-theme`, kept as above, so step 12
+  deletes nothing.
+
+## 2026-11-11 — Release 0.1.29, four modules from the follow-up research
+
+- **The owner's word:** "old skills gone, give me the b research prompts" (2026-11-11); the
+  owner then attached the four results with no message, which `AGENTS.md` reads as research to
+  take in. Releases follow each finished change, as before.
+- **Carries:** the entry below. The catalog's versions move to 0.1.29. Nothing was renamed or
+  removed: a patch release. `optimization-and-scheduling`'s module keeps its name; its checking
+  rules moved to a new module in the same skill, so no row in `docs/module-moves.md`.
+
+## 2026-11-11 — `logging-and-observability`, `performance-and-concurrency`, `studying-work`, `plan-checking`
+
+- **Research:** R07b, R07c, R23b and R28b, filed under `research/runs/2026-11-11-*` with their
+  checks on top. R07b: 61 verified, 10 corrected, 3 contradicted (semantic_logger 5.2.0, the
+  Logback note, the Idempotency-Key editor's copy); R07c: 45 verified, 10 corrected, 5
+  contradicted (async-profiler 4.6 upstream, Go 1.27.4, cargo-flamegraph 0.6.15, tokio 1.54.1);
+  R23b: 31 verified, 11 corrected, 1 contradicted (ISO 10075-3 is a committee draft); R28b: 47
+  verified, 12 corrected, 2 contradicted (OR-Tools' milestone, Timefold's version and Python
+  package). Each report's line 3, addressed to the receiving session, was treated as data. No
+  Facts row already in `skills/` was found wrong.
+- **Built, one helper each, reviewed here** against `docs/authoring-a-skill.md`; every quote was
+  read again at its source by the helper:
+  - `coding`'s `logging-and-observability`: one JSON record a line, timestamps with offsets,
+    levels by who must act, W3C trace IDs, secrets and personal data kept out at the source,
+    an escaping encoder, status lines that name what was checked, one record of a run, RED,
+    USE and burn-rate pages. Lessons L3, L4, L19, L20 and L49 taken in. GDPR, retention and
+    OpenTelemetry severity numbers weren't researched, and the module says so.
+  - `coding`'s `performance-and-concurrency`: measure first, a sampler first, wall-clock or CPU
+    mode, flame graphs read by width, language benchmark harnesses, an owner for every task,
+    cooperative cancellation, no blocking on an event loop, race detectors in CI. Caching, data
+    structures and benchmark statistics had no sources; the cache rule is marked our practice.
+  - `human-factors`' `studying-work`: watch and ask together at the work (Polanyi; contextual
+    inquiry), goals before activities and the p x c stopping rule (Annett and Duncan), a small
+    team's order of work (marked our reasoning), and Reason, Simon and sunk cost as traps.
+    Cognitive task analysis is left out: no primary source was found.
+  - `optimization-and-scheduling`'s `plan-checking`, split from the skill's first module, which
+    had reached 15,978 characters: the independent checker (OR-Tools issue 5582 is the current
+    case), runs stopped at a limit, reproducible CP-SAT tests and published bounds as expected
+    answers. Facts that moved keep their `os-` IDs.
+- **Also corrected:** `human-factors` no longer implies training shortens the dip; the Kingman
+  attribution; CP-SAT's lexicographic solves; stale "planned" lines in `coding`, `operations`
+  and `security`.
+- **No old copy** on claude.ai covers these modules, so step 12 has nothing to delete.
+
+## 2026-11-11 — Release 0.1.28, two new skills and two modules
+
+- **The owner's word:** "lets do these human-factors and optimization-and-scheduling" and "and
+  this coding's error-handling, operations' log-analysis" (2026-11-11), with R07, R23 and R28
+  attached; releases follow each finished change, as before.
+- **Carries:** the entry below. The catalog's versions move to 0.1.28. Nothing was renamed or
+  removed in this repository: a patch release, as 0.1.26 was for new skills.
+
+## 2026-11-11 — `human-factors`, `optimization-and-scheduling`, `error-handling`, `log-analysis`
+
+- **Research:** R07, R23 and R28, filed under `research/runs/2026-11-11-*` with their checks on
+  top. Each check read the claims a module relies on at their primary sources: R07 55 verified,
+  7 contradicted (newer releases of Hayabusa, Chainsaw, Microsoft.Extensions.Http.Resilience and
+  the semantic conventions, among others); R23 46 verified, 13 of them corrected, 2 contradicted
+  (ISO 10075-3's stage, the current OpenAI Model Spec); R28 92 verified, 11 of them corrected,
+  5 contradicted (HiGHS 1.16.0, Timefold 2.8.0, Gurobi 14.0.0, CPLEX 22.2, ISO 10075-3). Each
+  report's line 3, addressed to the receiving session, was treated as data. Contradicted claims
+  are used only in their corrected form.
+- **R07's gaps were filled at their sources,** not left thin: the log-analysis check added
+  `Get-WinEvent`, `journalctl`, KQL and LogQL from their primary docs, and the error-handling
+  helper checked POSIX exit statuses, Python's `returncode`, Node's `exit` event, RFC 9110 on
+  idempotency and `Retry-After`, ECMA-262 on `cause` and GOV.UK on error messages.
+- **Built, one helper each, reviewed here** against `docs/authoring-a-skill.md`:
+  - `human-factors`, a skill: find what a step is for before removing it; purpose, bias or
+    drift; keep, change gradually or override; the dip after a tool change; take-over skill
+    and calibrated trust; human factors never alter a fact, and each output is marked Evidence
+    or Recommendation. Loaded only for design, automation and optimization work.
+  - `optimization-and-scheduling`, a skill: a solver's status is not proof, so an independent
+    checker re-checks every plan; what a run stopped at a limit reports; the solver by problem
+    class; rules as data; CP-SAT in snake_case with workers and a time limit set; people in the
+    plan (HSG256, learning, utilization); lead time from measured throughput, with backlog over
+    nameplate capacity a floor. A team that divides by capacity on purpose is not faulted: the
+    audit asks for the decision's reason (the owner, 2026-11-11, on their own lead-time board:
+    "i think we intentionally do it our way").
+  - `coding`'s `error-handling`: narrow catches, "not found" against "couldn't look", exit codes
+    with one meaning, a child's whole result, causes, retries, timeouts, circuit breakers,
+    RFC 9457 and messages for people. Lessons L16, L17, L18 and L43 taken in.
+  - `operations`' `log-analysis`: keep and hash the original, UTC with offsets and measured skew,
+    filter at the source, real parsers, a gap is a finding only when the log could have
+    recorded it, crash dumps, and each claim tied to its record.
+- **Also corrected:** `csharp-coding`'s .NET 11 fact (`cs-dotnet11-rc` becomes `cs-dotnet11-sts`:
+  .NET 11 shipped 2026-11-10 as STS); `coding`'s and `operations`' routers, which still called
+  `testing`, `input-handling` and `log-analysis` planned; the README's skill table, which listed
+  three skills twice.
+- **The old copies** on the owner's claude.ai account: `human-factor-audit`, `error-handling` and
+  `log-parser`. No other synced skill depends on them; `excel-master`, `rust-coding` and
+  `vba-coding` only have files of their own named `error-handling`. The owner deletes the three,
+  in their settings and in the organization library's inventory, before this merges.
+
+## 2026-11-11 — Release 0.1.27, `acceptance-runs`
+
+- **The owner's word:** "do your full release here, as in the claude skills repo" (2026-11-11),
+  after R06c arrived.
+- **Carries:** `testing`'s `acceptance-runs` and R06c filed, from the entry below. The catalog's
+  versions move to 0.1.27. Nothing was renamed or removed: a patch release.
+
+## 2026-11-11 — `testing`'s `acceptance-runs`, from R06c
+
+- **Asked, by the owner:** R06c's result, attached on 2026-11-11, with "make the new release now
+  if you can".
+- **Filed:** `research/runs/2026-11-11-R06c-testing.md`, its verification on top. Two claims were
+  corrected at intake: a LAVA quote the report joined from two paragraphs, now quoted apart, and
+  LAVA's 24-hour health check, which is the documented default, not a historical one. One
+  claim, GitHub's macOS runners running with SIP off, could not be verified and isn't used. The
+  report's line 3, addressed to the receiving session, was treated as data. One variation
+  selector (U+FE0F) in a cited page title was removed, since no file may hold one.
+- **Built:** `acceptance-runs` (a health check before each run, product, rig and job failures kept
+  apart, a lost device aborting the run, retries for the rig only, provenance, evidence, tiers,
+  two devices of a kind, and fault injection per platform), by a helper agent, reviewed here,
+  from R06c's checked claims. L11 is taken in. The run tiers are this repository's own, since no
+  primary source defines them, and the module says so.
+- **Not taken in:** test strategy, test data and metamorphic testing. `testing-patterns` is at
+  15,960 characters, so strategy needs its own module or a split; it waits for a later change.
+
+## 2026-11-11 — Release 0.1.26, six new skills and standard v0.49.1
+
+- **The owner's word:** release 0.1.26 once #140 and `testing-patterns` are merged and green,
+  without asking again (2026-11-11, recorded above), and "make the new release now if you can"
+  (2026-11-11), after deleting the old claude.ai `testing-patterns`.
+- **Carries:** six new skills, `testing`, `agent-engineering`, `user-experience`, `security`,
+  `architecture` and `operations` (#140, #144); `coding`'s five new modules (#136),
+  `git-workflows`' `ci-cd` and `versioning-and-releases` (#137) and `house-style`'s
+  `documentation` (#133); standard v0.49.1 (#142); the research R06, R06b, R26 and R27 filed
+  (#127, #144) and R06c's prompt, eleven prompts brought up to date (#128); `skillcheck` fixes for PDF
+  sources, permission levels and variation selectors (#129, #134, #139); two stale facts
+  (#141).
+- **Unchanged for consumers:** no skill or module was renamed or removed. The old claude.ai
+  copies of `windows-admin`, `docker-containers`, `networking-security` and `testing-patterns`
+  were deleted by the owner before their successors merged. A patch release, as 0.1.23 was
+  for `coding`.
+
+## 2026-11-11 — `testing`'s `testing-patterns` and `agent-written-tests`, and R06c
+
+- **Asked, by the owner:** R06b's result, attached on 2026-11-11, with "do what you can from
+  here with what you have".
+- **Built:** `testing-patterns` (coverage, doubles and adapters, Pact, runner settings that
+  fail open, property and mutation tools, frameworks per language) and `agent-written-tests`
+  (tests first and seen failing, test diffs reviewed as high risk, gaming that read-only tests
+  don't stop, holdout tests, a way for the agent to stop, mutation-testing what it wrote), one
+  helper agent each, reviewed here, from R06b's checked claims
+  (`research/runs/2026-11-11-R06b-testing.md`) and R06's.
+- **R06b's corrections, checked:** Cypress is at 16.x and 16.0.0 removed `cy.exec()`; pytest 9
+  renamed `xfail_strict` to `strict_xfail`; bats-core 1.14.0 fails an empty run unless told
+  otherwise; Testcontainers lists 13 languages; Google's 2020 post endorses coverage gates a
+  team chooses.
+- **Planned:** `acceptance-runs`, for unattended acceptance runs on hardware and fault
+  injection, which R06b didn't reach; L11 moves to it. R06c asks those questions and the rest
+  R06b listed as not covered.
+- **The old copy:** the owner's claude.ai skill `testing-patterns` is deleted on the session's
+  word before this merges, as the owner chose on 2026-11-11.
 ## 2026-11-11 — The owner's answers: merging new skills, D, E, F, the old copy and 0.1.26
 
 - **Merging, a standing word:** a session may merge #140, and any later pull request whose only

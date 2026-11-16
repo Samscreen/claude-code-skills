@@ -8,7 +8,9 @@ behind it, fails CI.
 - **Status** (closed set): `shipped`, `building`, `researching`, `planned`.
 - **Coverage:** `core` is the owner's stack, covered deepest and built first. `standard` gets
   full coverage. `on request` is named now and built when a repository needs it.
-- **Research:** the runs in `research/prompts/` whose results the module is built from.
+- **Research:** the prompts in `research/prompts/` whose results the module is built from,
+  then any follow-up prompts still to run. A prompt with no result in `research/runs/`, such
+  as R01b or R13, hasn't been run yet, so a shipped module that cites one waits on it for more.
 
 The PROJECT-BOOTSTRAP-AND-AUDIT standard covers configuration and process, and says it doesn't
 judge code. The other skills cover the code and the work itself, beside the standard rather
@@ -30,8 +32,9 @@ research. These rules are that structure.
 1. **A skill is a trigger.** There is one skill for each kind of situation in which Claude
    should load guidance, and everything needed in that situation is a module of that skill.
    Every installed skill's description is in context all the time: Claude Code gives the
-   listing 1% of the context window, 8,000 characters on a 200,000-token model, and past that
-   descriptions are dropped. A module costs nothing until it's read. So coverage grows by
+   listing 1% of the context window, and past that descriptions are dropped (fact `sb-listing`,
+   checked 2026-11-11). At four characters a token, as `skillcheck` counts, that's 8,000
+   characters on a 200,000-token model. A module costs nothing until it's read. So coverage grows by
    modules, and the skill count stays small.
 2. **A module is the unit of content.** It is one file, `skills/<skill>/references/<module>.md`,
    whose name is unique across the repository and never changes, because research, facts and
@@ -64,16 +67,16 @@ research. These rules are that structure.
 | `house-style` | `engineering` | Writing prose, Markdown, READMEs and documentation | shipped |
 | `coding` | `engineering` | Writing, reviewing or fixing code in any language: the contract every change meets, then the language and the practice at hand | shipped |
 | `testing` | `engineering` | Writing, reviewing or fixing tests, and choosing a test strategy | shipped |
-| `architecture` | `engineering` | Designing systems, APIs, layouts and plans, and modernizing old code | shipped |
+| `architecture` | `engineering` | Laying out a repository: where each file and folder goes (planned: designing systems, APIs and plans, and modernizing old code) | shipped |
 | `data` | `engineering` | SQL, schemas, migrations, indexes and transactions | planned |
-| `security` | `engineering` | Threat models, authentication, cryptography, dependencies and the supply chain, privacy and licenses | shipped |
+| `security` | `engineering` | Threat models, authentication, authorization and cryptography (planned: dependencies and the supply chain, privacy and licenses) | shipped |
 | `agent-engineering` | `engineering` | Building skills and agent context files, agents reviewing each other, and defending agents against injection | shipped |
-| `operations` | `engineering` | Running, troubleshooting or hardening Windows Server, Linux, containers, networks and cloud, and reading their logs and crash dumps | shipped |
+| `operations` | `engineering` | Running, troubleshooting or hardening Windows Server, Linux, containers and networks, and reading their logs and crash dumps (planned: cloud) | shipped |
 | `business-apps` | `engineering` | Automating or extending Excel, Word, Epicor Kinetic and SOLIDWORKS | planned |
-| `visual-design` | `engineering` | Themes, palettes, charts and accessibility | planned |
+| `visual-design` | `engineering` | Themes, palettes, contrast and charts (planned: accessibility) | shipped |
 | `user-experience` | `engineering` | Reviewing, designing or testing how a program behaves for the person using it: status and feedback, windows and dialogs, settings and options, and whether it's easy to learn and to use | shipped |
-| `optimization-and-scheduling` | `engineering` | Solvers, schedules and plans, with the people in them | planned |
-| `human-factors` | `engineering` | Designing or changing what people do: the habits that look wasteful and serve a purpose. It never bends a factual finding | planned |
+| `optimization-and-scheduling` | `engineering` | Solvers, schedules and plans, with the people in them | shipped |
+| `human-factors` | `engineering` | Designing or changing what people do: the habits that look wasteful and serve a purpose. It never bends a factual finding | shipped |
 | `linux-gaming` | `personal` | Proton, Steam and handheld PCs | planned |
 
 ## Modules
@@ -84,56 +87,68 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `keeping-current` | `project-bootstrap-and-audit` | Sweep a repository for versions behind, end-of-life dates, deprecated APIs and stale facts; propose the updates | planned | core | R05, R21 |
+| `keeping-current` | `project-bootstrap-and-audit` | Sweep a repository for versions behind, end-of-life dates, deprecated APIs and stale facts; propose the updates | planned | core | R05, R21, R24, R21b |
 | `skill-builder` | `agent-engineering` | Design, write, test and tune a skill | shipped | core | done |
-| `agent-context-files` | `agent-engineering` | AGENTS.md, CLAUDE.md, rules, settings, hooks, subagents, MCP, other agents' files | shipped | core | R01 |
-| `review-loops` | `agent-engineering` | Agent sessions in two repositories reviewing each other's work: the few rules that end rounds, the ones that cost more than they caught, and where agents have to stop for a person | shipped | core | R26 |
+| `agent-context-files` | `agent-engineering` | AGENTS.md, CLAUDE.md, rules, settings, hooks, subagents, MCP, other agents' files | shipped | core | R01, R01b |
+| `review-loops` | `agent-engineering` | Agent sessions in two repositories reviewing each other's work: the few rules that end rounds, the ones that cost more than they caught, and where agents have to stop for a person | shipped | core | R26, R01b |
 
 ### B. Engineering practice, for every language
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `repo-structure` | `architecture` | Layouts by project type, where each file goes, naming files and folders | shipped | core | R02 |
-| `writing-style` | `house-style` | Prose and Markdown: voice, headings, lists, wrapping, code, tables, links, file names, a README's sections, words to cut, American spelling | shipped | core | R02 |
-| `prose-check` | `house-style` | The Vale check: the HouseStyle package, `.vale.ini`, the CI job with its canary, a repository's vocabulary, files left alone | shipped | core | R02 |
-| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections, records and prose that `writing-style` covers | shipped | core | R02 |
-| `code-style` | `coding` | Naming, formatting, structure, comments and docstrings | shipped | core | R03 |
-| `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03 |
-| `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04 |
-| `secure-coding` | `security` | OWASP Top 10, ASVS, CWE Top 25, authentication, cryptography, threat modeling | shipped | core | R04 |
-| `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24 |
-| `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01 |
-| `error-handling` | `coding` | Failure classes, retries, timeouts, circuit breakers, user messages, RFC 9457 | planned | core | R07 |
-| `testing-patterns` | `testing` | Strategy, test doubles, fixtures, coverage, property-based and mutation testing, each language's frameworks, hardware acceptance runs, fault injection | planned | core | R06, R06b |
+| `repo-structure` | `architecture` | Layouts by project type, where each file goes, naming files and folders | shipped | core | R02, R02b |
+| `writing-style` | `house-style` | Prose and Markdown: voice, headings, lists, wrapping, code, tables, links, file names, a README's sections, words to cut, American spelling | shipped | core | R02, R02b |
+| `prose-check` | `house-style` | The Vale check: the HouseStyle package, `.vale.ini`, the CI job with its canary, a repository's vocabulary, files left alone | shipped | core | R02, R02b |
+| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections, records and prose that `writing-style` covers | shipped | core | R02, R02b |
+| `code-style` | `coding` | Naming, formatting, structure, comments and docstrings | shipped | core | R03, R03b |
+| `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03, R03b |
+| `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04, R04b |
+| `secure-coding` | `security` | OWASP Top 10, ASVS, CWE Top 25, authentication, cryptography, threat modeling | shipped | core | R04, R04b |
+| `supply-chain-security` | `security` | Dependencies, lockfiles, pinning, SBOMs, provenance, malicious and hallucinated packages | planned | core | R05, R21, R24, R21b |
+| `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01, R01b |
+| `error-handling` | `coding` | Failure classes, retries, timeouts, circuit breakers, causes per language, bulkheads | shipped | core | R07, R07b, R07d |
+| `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d, R07f |
+| `testing-patterns` | `testing` | Strategy, test doubles and contract tests, coverage, each framework's settings that fail open, frameworks per language, property-based and mutation tools | shipped | core | R06, R06b |
+| `agent-written-tests` | `testing` | Tests an AI coding agent writes, changes or runs: tests first, high-risk test diffs, gaming, holdout tests, mutation-testing what it wrote | shipped | core | R06b |
+| `acceptance-runs` | `testing` | Unattended acceptance runs on hardware: preconditions, a device lost mid-run, run tiers, evidence; fault injection for ordinary programs | shipped | core | R06c |
 | `test-gates` | `testing` | Proving a test, gate, checker or grader can fail: the parent commit, a planted defect, the couldn't-check path, mutating the checker | shipped | core | R06 |
 | `test-oracles` | `testing` | What a result is checked against: independent references, recorded samples, baselines, scoring by the worst case | shipped | core | R06 |
 | `flaky-tests` | `testing` | A test that passes and fails on the same code: the cause, races in the program, quarantine, keeping a fix | shipped | core | R06 |
+| `test-strategy` | `testing` | Test strategy and test data, and differential and metamorphic testing, from the filed R06c run; `testing-patterns` is at its size limit | planned | core | R06c |
 | `api-patterns` | `architecture` | REST, OpenAPI, GraphQL, gRPC, auth flows, pagination, versioning, webhooks | planned | core | R19 |
 | `sql-craftsman` | `data` | Schema design, migrations, SQL style, indexing, transactions | planned | core | R14 |
-| `commits-and-pull-requests` | `git-workflows` | Commit grammar and messages, trailers, the author's address, branch names, pull requests and review comments | shipped | core | R08 |
-| `branches-and-merging` | `git-workflows` | Branching models, protecting the default branch, merge strategies | shipped | core | R08 |
-| `rebasing-and-recovery` | `git-workflows` | Deleting branches, rebasing, conflicts, recovering lost commits, and reading Git's output | shipped | core | R08 |
-| `ci-workflows` | `git-workflows` | GitHub Actions triggers, timeouts, installs, required checks, proving a gate works | shipped | core | R08, R21 |
-| `ci-speed` | `git-workflows` | How long CI takes, where suites run, caching builds, and slow tests | shipped | core | R08, R21 |
-| `pr-stewardship` | `git-workflows` | A repository's own steward skill: how its sessions drive pull requests, when to merge or hold, re-running a stalled job, what an owner's hold covers, and auditing it | shipped | core | R08 |
-| `actions-security` | `git-workflows` | Workflow permissions, untrusted input, `pull_request_target`, scanning workflows | shipped | core | R08 |
-| `action-pinning` | `git-workflows` | SHA-pinned actions, lockfiles, the pinning policy, Dependabot for actions, Node 20 actions | shipped | core | R08 |
-| `git-hooks` | `git-workflows` | Writing, installing and testing hooks, and where CI is the gate instead | shipped | core | R08 |
-| `releases-and-versions` | `git-workflows` | Release tags and workflows, changelog entries, version numbers, release lines and backports | shipped | core | R05 |
-| `leaked-data` | `git-workflows` | A secret or personal information in a commit: rotating, and rewriting history at the owner's request | shipped | core | R08 |
-| `gitignore` | `git-workflows` | `.gitignore` rules, secret files, lockfiles, untracking a file | shipped | core | R08 |
-| `ci-cd` | `git-workflows` | Environments and deployment, beyond the CI that `ci-workflows` and `ci-speed` cover | shipped | core | R08, R21 |
-| `versioning-and-releases` | `git-workflows` | Release notes and support windows, beyond the tags, changelogs, versions and deprecation that `releases-and-versions` covers | shipped | core | R05 |
+| `commits-and-pull-requests` | `git-workflows` | Commit grammar and messages, trailers, the author's address, branch names, pull requests and review comments | shipped | core | R08, R08b |
+| `branches-and-merging` | `git-workflows` | Branching models, protecting the default branch, merge strategies | shipped | core | R08, R08b |
+| `rebasing-and-recovery` | `git-workflows` | Deleting branches, rebasing, conflicts, recovering lost commits, and reading Git's output | shipped | core | R08, R08b |
+| `ci-workflows` | `git-workflows` | GitHub Actions triggers, timeouts, installs, required checks, proving a gate works | shipped | core | R08, R21, R08b, R21b |
+| `ci-speed` | `git-workflows` | How long CI takes, where suites run, caching builds, and slow tests | shipped | core | R08, R21, R08b, R21b |
+| `pr-stewardship` | `git-workflows` | A repository's own steward skill: how its sessions drive pull requests, when to merge or hold, re-running a stalled job, what an owner's hold covers, and auditing it | shipped | core | R08, R08b |
+| `actions-security` | `git-workflows` | Workflow permissions, untrusted input, `pull_request_target`, scanning workflows | shipped | core | R08, R08b |
+| `action-pinning` | `git-workflows` | SHA-pinned actions, lockfiles, the pinning policy, Dependabot for actions, Node 20 actions | shipped | core | R08, R08b |
+| `git-hooks` | `git-workflows` | Writing, installing and testing hooks, and where CI is the gate instead | shipped | core | R08, R08b |
+| `releases-and-versions` | `git-workflows` | Release tags and workflows, changelog entries, version numbers, release lines and backports; deprecation timelines are `versioning-and-releases`' | shipped | core | R05, R24, R21b |
+| `leaked-data` | `git-workflows` | A secret or personal information in a commit: rotating, and rewriting history at the owner's request | shipped | core | R08, R08b |
+| `gitignore` | `git-workflows` | `.gitignore` rules, secret files, lockfiles, untracking a file | shipped | core | R08, R08b |
+| `ci-cd` | `git-workflows` | Environments and deployment, beyond the CI that `ci-workflows` and `ci-speed` cover | shipped | core | R08, R21, R08b, R21b |
+| `versioning-and-releases` | `git-workflows` | Release notes, support windows, advisories and deprecation timelines, beyond the tags, changelogs and versions that `releases-and-versions` covers | shipped | core | R05, R24, R21b |
 | `legacy-modernization` | `architecture` | Reading legacy code, characterization tests, the strangler fig pattern, migration playbooks | planned | core | R17 |
-| `logging-and-observability` | `coding` | Structured logs, OpenTelemetry, metrics, tracing, what never to log | planned | standard | R07 |
-| `performance-and-concurrency` | `coding` | Profiling, complexity, caching, async and threads | planned | standard | R07 |
-| `configuration` | `coding` | Layered config, environment variables, validation at startup, secret stores | shipped | standard | R04 |
+| `logging-and-observability` | `coding` | Structured logs, OpenTelemetry, metrics, tracing, what never to log | shipped | standard | R07, R07b, R07d |
+| `logging-libraries` | `coding` | Logging libraries per language: versions, trace IDs, redaction and OpenTelemetry severity | shipped | standard | R07b, R07d, R07f |
+| `performance-and-concurrency` | `coding` | Profiling, flame graphs, data structures, async and threads | shipped | standard | R07, R07c, R07e |
+| `caching` | `coding` | In-process and shared caches: expiry and invalidation, stampedes, negative caching, bounds, and cache libraries per language | shipped | standard | R07e, R07f |
+| `benchmarking` | `coding` | Benchmark harnesses and their pitfalls, comparing runs with statistics, and catching regressions in CI | shipped | standard | R07c, R07e, R07f |
+| `configuration` | `coding` | Layered config, environment variables, validation at startup, secret stores | shipped | standard | R04, R04b |
 | `architecture-and-design` | `architecture` | Principles, boundaries, decision records, diagrams, planning, refactoring | planned | standard | R19 |
-| `human-factors` | `human-factors` | The habits, notions and mindsets common to people that look odd or wasteful from outside but serve a purpose: what each is for, how to spot one before a design, an automation or an optimization removes it, and how to design with it. Loaded only by the few agents that design or change what people do; it never bends a factual finding | planned | standard | R23 |
-| `usability-review` | `user-experience` | A heuristic review of a program's interface: status that's current, consistency, error prevention and recovery, recognition over recall, severity ratings | shipped | standard | R27 |
-| `windows-and-dialogs` | `user-experience` | When a window or dialog appears, modality, focus and stacking, nothing shown before it's ready or hidden behind another, long operations and notifications | shipped | standard | R27 |
-| `settings-and-options` | `user-experience` | Defaults, presets, progressive disclosure, each setting in one place, and how many choices is too many | shipped | standard | R27 |
-| `gui-testing` | `user-experience` | Testing a GUI by machine, through accessibility interfaces and toolkit helpers, and with people, by task-based tests | shipped | standard | R27 |
+| `human-factors` | `human-factors` | The habits, notions and mindsets common to people that look odd or wasteful from outside but serve a purpose: what each is for, how to spot one before a design, an automation or an optimization removes it, and how to design with it. Loaded only by the few agents that design or change what people do; it never bends a factual finding | shipped | standard | R23, R23b, R23c |
+| `studying-work` | `human-factors` | Finding what a step is for: watching and interviewing people at their work, goals and plans, how deep to go, and the traps that bend a study | shipped | standard | R23b, R23c, R23d |
+| `cognitive-task-analysis` | `human-factors` | Finding the judgment and cues behind expert work: the Critical Decision Method, ACTA, what each produces and costs, and when it beats task analysis or a visit | shipped | standard | R23c, R23d |
+| `usability-review` | `user-experience` | A heuristic review of a program's interface: status that's current, consistency, error prevention and recovery, recognition over recall, severity ratings | shipped | standard | R27, R27b |
+| `windows-and-dialogs` | `user-experience` | When a window or dialog appears, modality, focus and stacking, nothing shown before it's ready or hidden behind another, long operations and notifications | shipped | standard | R27, R27b |
+| `settings-and-options` | `user-experience` | Defaults, presets, progressive disclosure, each setting in one place, and how many choices is too many | shipped | standard | R27, R27b |
+| `gui-testing` | `user-experience` | Testing a GUI by machine, through accessibility interfaces and toolkit helpers, and with people, by task-based tests | shipped | standard | R27, R27b |
+| `interface-patterns` | `user-experience` | What a current interface is built from on each platform: design languages, stock components, one component per pattern, layout and window sizes, dense screens, forms, and loading, empty and failed states | shipped | standard | R29, R29b |
+| `command-line-interfaces` | `user-experience` | Command-line programs for people and scripts: option syntax and help, output for people against scripts, color, prompts, dry runs, secrets off flags, and argument parsers; exit codes are `error-handling`'s | shipped | standard | R29, R29b |
+| `feedback-loop` | `user-experience` | From user issues to fixes: feedback in the product, crash reports and consented usage data, triage, interfaces built to change, visual regression tests | shipped | standard | R30, R30b |
 | `accessibility` | `visual-design` | WCAG 2.2, ARIA, contrast, testing tools | planned | standard | R18 |
 | `internationalization` | `coding` | Unicode, locales, time zones, formats, right-to-left text | planned | standard | R18 |
 | `privacy-and-compliance` | `security` | Personal data, retention, licenses and notices, obligations on software publishers | planned | standard | R18 |
@@ -142,21 +157,21 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `python-coding` | `coding` | Python 3, its toolchain and idioms | shipped | core | R09 |
-| `python-security` | `coding` | Python's untrusted-input calls: shells, `eval`, deserialization, SQL, archives, paths, tokens | shipped | core | R09 |
-| `javascript-coding` | `coding` | TypeScript, JavaScript, Node.js | shipped | core | R10 |
-| `javascript-security` | `coding` | Node.js input handling: shells, `eval`, prototype pollution, paths, ReDoS, SQL | shipped | core | R10 |
-| `html-coding` | `coding` | HTML, CSS, accessibility basics, forms | shipped | core | R10 |
-| `web-security` | `coding` | Browser-side security: output encoding, sanitizing, Trusted Types, CSP, SRI, `noopener` | shipped | core | R10 |
-| `csharp-coding` | `coding` | C# and .NET | shipped | core | R11 |
-| `csharp-security` | `coding` | C# deserialization, SQL, processes, batch files, paths, DLL search paths, analyzers | shipped | core | R11 |
-| `powershell-scripts` | `coding` | PowerShell 7 and Windows PowerShell 5.1 | shipped | core | R11 |
-| `powershell-security` | `coding` | PowerShell credentials, `Invoke-Expression`, batch-file arguments, execution policy, signing | shipped | core | R11 |
+| `python-coding` | `coding` | Python 3, its toolchain and idioms | shipped | core | R09, R09b |
+| `python-security` | `coding` | Python's untrusted-input calls: shells, `eval`, deserialization, SQL, archives, paths, tokens | shipped | core | R09, R09b |
+| `javascript-coding` | `coding` | TypeScript, JavaScript, Node.js | shipped | core | R10, R10b |
+| `javascript-security` | `coding` | Node.js input handling: shells, `eval`, prototype pollution, paths, ReDoS, SQL | shipped | core | R10, R10b |
+| `html-coding` | `coding` | HTML, CSS, accessibility basics, forms | shipped | core | R10, R10b |
+| `web-security` | `coding` | Browser-side security: output encoding, sanitizing, Trusted Types, CSP, SRI, `noopener` | shipped | core | R10, R10b |
+| `csharp-coding` | `coding` | C# and .NET | shipped | core | R11, R11b |
+| `csharp-security` | `coding` | C# deserialization, SQL, processes, batch files, paths, DLL search paths, analyzers | shipped | core | R11, R11b |
+| `powershell-scripts` | `coding` | PowerShell 7 and Windows PowerShell 5.1 | shipped | core | R11, R11b |
+| `powershell-security` | `coding` | PowerShell credentials, `Invoke-Expression`, batch-file arguments, execution policy, signing | shipped | core | R11, R11b |
 | `bash-coding` | `coding` | Bash and POSIX sh | shipped | core | R15 |
 | `bash-security` | `coding` | Bash and POSIX sh: guarded deletes, `eval`, arithmetic on input, secrets, input checks | shipped | core | R15 |
-| `c-coding` | `coding` | C: standards and compilers, undefined behavior, ownership, bounds, checked I/O, porting | shipped | core | R12 |
-| `c-build` | `coding` | C built with Meson: options, the warning gate, hardening, sanitizers, analyzers, fuzzing | shipped | core | R12 |
-| `c-security` | `coding` | C handling outside data: strings and buffers, format strings, overflow, paths, processes, output | shipped | core | R12 |
+| `c-coding` | `coding` | C: standards and compilers, undefined behavior, ownership, bounds, checked I/O, porting | shipped | core | R12, R12b |
+| `c-build` | `coding` | C built with Meson: options, the warning gate, hardening, sanitizers, analyzers, fuzzing | shipped | core | R12, R12b |
+| `c-security` | `coding` | C handling outside data: strings and buffers, format strings, overflow, paths, processes, output | shipped | core | R12, R12b |
 | `vba-coding` | `coding` | VBA in Office applications | planned | core | R16 |
 | `go-coding` | `coding` | Go | planned | standard | R25 |
 | `rust-coding` | `coding` | Rust | planned | standard | R25 |
@@ -177,7 +192,7 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11 |
+| `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11, R11b |
 | `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
 | `word-documents` | `business-apps` | Generating and filling Word templates | planned | core | R16 |
 | `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
@@ -185,8 +200,10 @@ Grouped by subject; the Skill column is each module's one home.
 | `linux` | `operations` | Administration and troubleshooting across distributions | shipped | standard | R15 |
 | `networking-security` | `operations` | Firewalls, segmentation, IDS, VPN, Wi-Fi, DNS | shipped | standard | R15 |
 | `docker-containers` | `operations` | Dockerfiles, Compose, hardening, registries | shipped | standard | R15 |
-| `log-analysis` | `operations` | Event logs, crash dumps, journals, application logs | planned | standard | R07 |
-| `optimization-and-scheduling` | `optimization-and-scheduling` | Solvers, business rules as constraints, the human factors in plans, with `human-factors` | planned | standard | R19, R23 |
+| `log-analysis` | `operations` | Event logs, crash dumps, journals, application logs | shipped | standard | R07 |
+| `optimization-and-scheduling` | `optimization-and-scheduling` | Solvers, business rules as constraints, the human factors in plans, with `human-factors` | shipped | standard | R28, R23, R28b, R28c |
+| `plan-checking` | `optimization-and-scheduling` | Checking what a solver returns and testing a planner: an independent checker, runs stopped at a limit, reproducible runs, published instances as oracles | shipped | standard | R28, R28b, R28c, R23d |
+| `rosters-and-replanning` | `optimization-and-scheduling` | Rosters and plans people work to: fairness across people, skills and cross-training, worker-dependent setups, objective weights, and re-planning without churn | shipped | standard | R28c, R23d |
 | `linux-gaming` | `linux-gaming` | Proton, Steam, handhelds | planned | on request | R15 |
 | `kubernetes` | `operations` | Clusters, workloads, the Gateway API | planned | on request | R15 |
 | `cloud` | `operations` | Azure, AWS and Google Cloud baselines | planned | on request | R15 |
@@ -196,8 +213,8 @@ Grouped by subject; the Skill column is each module's one home.
 
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
-| `visual-theme` | `visual-design` | Design tokens, palettes, typography, dark mode | planned | standard | R20 |
-| `data-visualization` | `visual-design` | Choosing charts, accessible charts, charting libraries | planned | standard | R20 |
+| `visual-theme` | `visual-design` | Design tokens, palettes, typography, dark mode | shipped | standard | R20, R20b |
+| `data-visualization` | `visual-design` | Choosing charts, accessible charts, charting libraries | shipped | standard | R20, R20b |
 
 ## Rebuilding the owner's older skills
 
@@ -206,7 +223,7 @@ here as modules of the skills above, 3 are already replaced (`git-workflows`,
 `project-bootstrap-and-audit`, and `markdown-standards` by `house-style`), and 3 retire into
 shared tools (`skill-orchestrator`, `skill-stress-tester`, `code-planner`). Nothing is copied:
 none of their examples has ever been run, none of their facts has a source, and five hold
-company detail. The owner approved rebuilding them on 2026-10-15 (decisions 44 to 49), and on
+company detail. The owner approved rebuilding them in answers 44 to 49 of 2026-10-15, and on
 2026-10-16 left their division to this repository.
 
 | Old skill | Its new home |
@@ -236,7 +253,8 @@ palettes in `visual-design`, not in `excel-master`.
 1. **Shared tools first, each its own pull request:**
    - the intake, filed as a dated research result with company detail and repository names
      taken out, listing for each old skill what its successor must cover, its lessons, and its
-     defects not to repeat;
+     defects not to repeat. Wave 1's was filed on 2026-10-26, in
+     [research/runs/2026-10-26-intake-wave-1.md](research/runs/2026-10-26-intake-wave-1.md);
    - the module template, and `skillcheck` checks for modules: unique names, one home each,
      the template's sections, and facts read from inside each module, with `git-workflows` and
      `house-style` converted to modules. Shipped 2026-10-16;
@@ -247,24 +265,31 @@ palettes in `visual-design`, not in `excel-master`.
      and that the skill read the right module; on claude.ai the owner tries the same requests
      by hand, from a list the session gives them. Shipped 2026-10-21 as `skillcheck --triggers`
      and `--tries`. Its first run, on `gitignore`, found none of its four requests loading
-     `git-workflows`, so the descriptions get tuned against it before the rebuilds;
+     `git-workflows`, so the descriptions were to be tuned against it before the rebuilds.
+     That's still open: `docs/decisions.md` records no such tuning as of 2026-11-16, though the
+     rebuilds went ahead;
    - `skillcheck --move` and its record of moves, renames and removals. Shipped 2026-10-16;
    - `skill-builder`, from `skill-creator`'s method under its license, and the stress tester's
-     two good checks: content safety, and compiling every code block.
+     two good checks: content safety, and compiling every code block. Shipped 2026-11-11 as
+     `agent-engineering`'s module.
 
-   The pairing map (decision 33) shrinks to the pairs between skills, such as `coding` with
-   `testing`, which each router names; pairs within a skill are its router's table.
+   The pairing map (answer 33 of 2026-10-13) shrinks to the pairs between skills, such as
+   `coding` with `testing`, which each router names; pairs within a skill are its router's
+   table.
 2. **Research, in waves:** the owner runs each wave's prompts, and each result is checked
    against its sources before it's used.
 3. **Rebuilds, one pull request per skill and wave:**
 
-   | Wave | Research | Skills and modules | Old copies deleted when it ships |
-   |---|---|---|---|
-   | 1 | R15, R09, R11, R10 | `coding` with its contract, `bash-coding`, `python-coding`, `powershell-scripts`, `csharp-coding`, `javascript-coding`, `html-coding` | the six old language skills |
-   | 2 | R06, R06b, R07, R14, R19, R23 | `testing`; `coding`'s `error-handling`; `operations`' `log-analysis`; `data`; `architecture`'s `api-patterns`; `human-factors`; `optimization-and-scheduling` | `testing-patterns`, `error-handling`, `log-parser`, `sql-craftsman`, `api-patterns`, `human-factor-audit` |
-   | 3 | R16, R11 | `coding`'s `vba-coding`; `business-apps`; `operations`' `windows-admin` | `vba-coding`, `excel-master`, `epicor-bpm`, `solidworks-automation`, `procedure-generator`, `windows-admin` |
-   | 4 | R25, R13, R15, R20 | `coding`'s `go-coding`, `rust-coding`, `php-coding`, `ruby-coding`; `operations`' `docker-containers`, `linux`, `networking-security`; `visual-design` | those seven, `linux-troubleshooting`, `my-theme` once the company palette is in the private companion, and last `code-standards` |
-   | When needed | R15 | `linux-gaming` | `linux-gaming` |
+   | Wave | Research | Skills and modules | Old copies deleted when it ships | Status |
+   |---|---|---|---|---|
+   | 1 | R15, R09, R11, R10 | `coding` with its contract, `bash-coding`, `python-coding`, `powershell-scripts`, `csharp-coding`, `javascript-coding`, `html-coding` | the six old language skills | Shipped 2026-10-26 in release 0.1.22. The six old copies are deleted |
+   | 2 | R06, R06b, R07, R14, R19, R23, R28 | `testing`; `coding`'s `error-handling`; `operations`' `log-analysis`; `data`; `architecture`'s `api-patterns`; `human-factors`; `optimization-and-scheduling` | `testing-patterns`, `error-handling`, `log-parser`, `sql-craftsman`, `api-patterns`, `human-factor-audit` | Shipped 2026-11-11, except `data` and `api-patterns`, still planned. Deleted: `testing-patterns`, `error-handling`, `log-parser` and `human-factor-audit`. `sql-craftsman` and `api-patterns` wait for their successors |
+   | 3 | R16, R11 | `coding`'s `vba-coding`; `business-apps`; `operations`' `windows-admin` | `vba-coding`, `excel-master`, `epicor-bpm`, `solidworks-automation`, `procedure-generator`, `windows-admin` | `windows-admin` shipped early, on 2026-11-11, and its old copy is deleted. The rest is planned |
+   | 4 | R25, R13, R15, R20 | `coding`'s `go-coding`, `rust-coding`, `php-coding`, `ruby-coding`; `operations`' `docker-containers`, `linux`, `networking-security`; `visual-design` | those seven, `linux-troubleshooting`, `my-theme` once the company palette is in the private companion, and last `code-standards` | Shipped early: `docker-containers`, `linux` and `networking-security` on 2026-11-11, and `visual-design` on 2026-11-16. Deleted: `docker-containers` and `networking-security`. No deletion of `linux-troubleshooting` is recorded, and `my-theme` stays. The four language modules are planned |
+   | When needed | R15 | `linux-gaming` | `linux-gaming` | Planned |
+
+   The Status column is as of 2026-11-16, with each deletion as `docs/decisions.md` records it
+   (2026-10-26 and 2026-11-11).
 
    Each rebuild takes the old skill's topics from the intake, writes from primary sources with
    dated facts, makes every example pass the checker, and gets a fresh review and its trigger
@@ -274,11 +299,13 @@ palettes in `visual-design`, not in `excel-master`.
    the merge, and the release then reaches cloud sessions through the release's hook. `code-standards` goes last because the old
    language skills, `docker-containers` and `networking-security` say they must read it first.
 
-4. **Colleagues:** the organization's library installs all 28 of the owner's old skills still
-   on claude.ai for everyone in the organization, where colleagues use claude.ai and Claude
-   Code (2026-10-16). Deleting an old copy takes it from them too. The owner chose to keep
-   deleting each old copy as its successor ships, and to have colleagues add this
-   repository's plugins themselves (2026-10-16).
+4. **Colleagues:** as of 2026-10-16, the organization's library installed all 28 of the
+   owner's old skills then on claude.ai for everyone in the organization, where colleagues use
+   claude.ai and Claude Code. Since then the owner has deleted 13 old copies as their
+   successors shipped, on 2026-10-26 and 2026-11-11 (`docs/decisions.md`), so fewer remain.
+   The waves table names them. Deleting an old copy takes it from colleagues too. The owner
+   chose to keep deleting each old copy as its successor ships, and to have colleagues add
+   this repository's plugins themselves (2026-10-16).
 
 **What the owner decided:**
 - **Examples CI can't run** (VBA, SOLIDWORKS, Epicor, Power Query, DAX): CI checks what it can
@@ -309,8 +336,9 @@ palettes in `visual-design`, not in `excel-master`.
 
 ## Lessons waiting for their module
 
-What live repositories taught that belongs to a module not built yet. Each module takes its
-lessons in when it's built, and its reasons cite them. A lesson taken in stays here, marked
+What live repositories taught that belongs to a module not built yet, or to a shipped module
+that hasn't taken it in, marked "waiting, module shipped". Each module takes its lessons in
+when it's built, and its reasons cite them. A lesson taken in stays here, marked
 with the module that took it, so its number still resolves, until the next split of this file
 moves it to the archive.
 
@@ -323,10 +351,10 @@ moves it to the archive.
   names the fixture it expects, and says so when the fixture is the cause. The same rig made
   three acceptance runs in 40 minutes, on two inputs the catalog didn't know. Each one read as
   a failed step, not as the wrong input.
-- **L3, `logging-and-observability`:** every timestamp carries its offset. The same app logged
+- **L3, `logging-and-observability`, taken in:** every timestamp carries its offset. The same app logged
   in local time and wrote its evidence bundle in UTC, so one event sat four hours apart in the
   two.
-- **L4, `logging-and-observability`:** an evidence bundle lists what it left out, and the raw
+- **L4, `logging-and-observability`, taken in:** an evidence bundle lists what it left out, and the raw
   facts each verdict was computed from. That bundle did both, so "nothing was missing" could be
   told from "nothing was collected", and a wrong label could be checked against its inputs.
 - **L5, `test-gates`, taken in:** a regression test for a wiring bug goes through the production entry
@@ -344,7 +372,7 @@ moves it to the archive.
   verification" was whichever file the directory listed last.
 - **L10, `test-gates`, taken in:** a scripted edit with several parts asserts each part landed. One assert
   covered one replacement while the others silently did nothing.
-- **L11, `testing-patterns`:** a stand-in for hardware can be a fault-injection shim. An `LD_PRELOAD`
+- **L11, `acceptance-runs`, taken in:** a stand-in for hardware can be a fault-injection shim. An `LD_PRELOAD`
   shim that fails reads found a hang no drive run had, and reproduced a damaged disc on demand.
 - **L12, `test-oracles`, taken in:** a parser that offline tests never reach is tested against a recorded
   response. Tests that all ran offline left a network parser at 27% branch coverage, hiding
@@ -355,32 +383,34 @@ moves it to the archive.
   logs both sides had filed and nobody had read.
 - **L15, `test-oracles`, taken in:** a check is independent of another by the time between them, not the
   date. Two checks on consecutive dates were 26 minutes apart.
-- **L16, `error-handling`:** a broad `try` around a whole validator fails open. One field of
+- **L16, `error-handling`, taken in:** a broad `try` around a whole validator fails open. One field of
   the wrong type made the validator return no errors, and a path-traversal template was saved.
-- **L17, `error-handling`:** an exit code carries one meaning. One program exited 1 for both a
+- **L17, `error-handling`, taken in:** an exit code carries one meaning. One program exited 1 for both a
   failed read and a stopped search, and its consumer couldn't step its retry ladder down.
-- **L18, `error-handling`:** a captured child process records a tri-state exit code, null for a
+- **L18, `error-handling`, taken in:** a captured child process records a tri-state exit code, null for a
   child never reaped, its arguments as run, and long output as head and tail with a count of
   what was cut.
-- **L19, `logging-and-observability`:** a program that writes two records of one run makes them
+- **L19, `logging-and-observability`, taken in:** a program that writes two records of one run makes them
   agree. The machine-readable record and the archival log disagreed, and the archival one was
   wrong.
-- **L20, `logging-and-observability`:** a population is recorded once, as data, and never
+- **L20, `logging-and-observability`, taken in:** a population is recorded once, as data, and never
   derived again. One total was re-derived, and fixed, in four files.
 - **L21, `api-patterns`:** a contract derived from format strings can't see a change of meaning.
   An error count began to include encoder failures, and the contract diff showed one row of
   303. A contract records every argument as used, declined with a reason, or not yet examined.
 - **L22, `api-patterns`:** when a provider rewords a line its consumer parses, the consumer's
   release that reads both wordings ships first.
-- **L23, `c-coding`:** gate on the count of warnings under the shipped flags rather than `-Werror`,
-  which fails on a new compiler's new warnings. Ask the binary whether it's instrumented: a
-  test log looked sanitized while the binary wasn't. Argument shape is a probe axis of its
-  own, and it found an overread both sanitizers missed.
+- **L23, `c-build`, taken in apart from the argument-shape probe:** gate on the count of warnings
+  under the shipped flags rather than `-Werror`, which fails on a new compiler's new warnings.
+  Ask the binary whether it's instrumented: a test log looked sanitized while the binary
+  wasn't. `c-build` carries both, in its rules 3 and 5 and its Why. Argument shape is a probe
+  axis of its own, and it found an overread both sanitizers missed. That part still waits:
+  no C module names it yet.
 - **L24, `versioning-and-releases`, taken in:** a fork whose advancing part is SemVer build metadata
   can't order its releases by version, since the specification ignores build metadata for
   precedence. Order by a release sequence.
-- **L25, `house-style`:** a claim takes the strongest verb its evidence supports and no
-  stronger, names the artifact, and says what an absence means.
+- **L25, `writing-style`, waiting, module shipped:** a claim takes the strongest verb its
+  evidence supports and no stronger, names the artifact, and says what an absence means.
 - **L26, `review-loops`, taken in:** what one loop of two repositories learned over 31 rounds and eight
   protocol versions, as a starting set:
   - **What worked:**
@@ -413,11 +443,11 @@ moves it to the archive.
     flag upstream had dropped, a filtered message list and one-word parser misses. Nearly all
     came from reading the other side's committed artifacts or a run on real hardware, rarely
     from a lap's argument.
-- **L27, `house-style`:** instructions for a reader who isn't a programmer never put an
-  application's name where it could be taken for something to type. One owner typed `Konsole`
-  at a prompt after reading "open Konsole". Say what the screen looks like instead, such as
-  "you're in the terminal when you see a `$`". Each command goes in its own block, with what
-  its output should look like.
+- **L27, `writing-style`, waiting, module shipped:** instructions for a reader who isn't a
+  programmer never put an application's name where it could be taken for something to type.
+  One owner typed `Konsole` at a prompt after reading "open Konsole". Say what the screen looks
+  like instead, such as "you're in the terminal when you see a `$`". Each command goes in its
+  own block, with what its output should look like.
 - **L28, `review-loops`, taken in:** a change both sides must make is agreed word for word, and then each
   side runs its checker against the other's tree from a fresh clone. After a history rewrite,
   a stale local branch made one checker read an old map and report 13 false refusals.
@@ -495,7 +525,7 @@ moves it to the archive.
   one entry, most likely from the same user and a read with the same fault, while over a
   thousand entries disagreed. Show a match's weight beside the dissent, and never show a
   minority match as verified when the primary check rejects.
-- **L43, `error-handling`:** "not found" and "couldn't look" are different results, and a
+- **L43, `error-handling`, taken in:** "not found" and "couldn't look" are different results, and a
   check that infers absence from "nothing matched" can't tell them apart. One app skipped its
   extra verification pass when nothing matched a database, a rule meant for inputs the
   database lacks. It also fired when the lookup failed and when every item misread, the two
@@ -518,7 +548,7 @@ moves it to the archive.
 - **L48, `documentation`, taken in:** figures cited from a tool come from the implementation in use, at
   a named commit. One project's table of a scoring program's deductions came partly from an
   unmaintained reimplementation, and the program in use differed on four rows.
-- **L49, `logging-and-observability`:** a status line names the outcome that was checked, not
+- **L49, `logging-and-observability`, taken in:** a status line names the outcome that was checked, not
   that a step finished. "Copy OK", "confirmed across 3 re-reads" and "read successfully" were
   printed over tracks whose audio a checksum database showed was wrong, and readers took each
   as a verdict.
@@ -1331,8 +1361,11 @@ before it's built:
   existing repository it reads the repository first, drafts the Phase 3 answers with where it
   found each, and asks only what no repository shows. In a new or nearly empty one it
   interviews the owner and recommends a language, runtime and shape. Every run still stops
-  for approval before it writes anything. The skill reaches cloud sessions by upload to the
-  owner's claude.ai account, with the pinned link as a fallback. R22's result came in two
+  for approval before it writes anything. The plan had the skill reach cloud sessions by upload
+  to the owner's claude.ai account, with the pinned link as a fallback. That's overtaken: since
+  release 0.1.15 (2026-10-16), the release's `cloud-setup.sh` hook installs every skill into
+  cloud sessions, checking the release's signature from 0.1.21, and claude.ai takes the
+  plugins from the sync of `main`. R22's result came in two
   passes, both filed and checked:
   [the first](research/runs/2026-09-27-R22-one-command-front-door.md) and
   [a deeper one](research/runs/2026-09-27-R22-deeper-pass.md). It goes into piece 1, with F18,
@@ -1365,7 +1398,8 @@ before it's built:
   - **When it loads:** a description narrowed to runs that name it, since an uploaded skill
     can't carry `disable-model-invocation`. That needs the trigger evaluations the authoring
     review asks for. The Help Center gives an uploaded skill's description 200 characters at
-    most, where the specification allows 1,024. This skill's is 446.
+    most, where the specification allows 1,024. This skill's is 217 on 2026-11-16, within this
+    repository's cap of 250 but still over the 200 for an upload.
   - **Enforcing the waits:** a committed project skill can carry `disable-model-invocation`
     and hooks, and a PreToolUse hook that exits with code 2 blocks the call. The deeper pass
     has Phase 8 offer each repository such a skill after its first approved run, with a hook
@@ -1387,8 +1421,8 @@ before it's built:
   - **Tests in the owner's browser** settle what's left. Three are in the first pass's section
     10: what refreshes claude.ai's copy, with Check for updates tried before any version
     change; what a same-name upload does; and whether `skillOverrides` reaches a synced skill
-    (F37). A fourth comes with the first upload: whether a description over 200 characters
-    is accepted.
+    (F37). That last one is done: it does, tested here on 2026-10-15. A fourth comes with the
+    first upload: whether a description over 200 characters is accepted.
 
 | Piece | What moves | Status |
 |---|---|---|
@@ -1408,11 +1442,11 @@ trigger.
 | Item | What it is | Status | Trigger |
 |---|---|---|---|
 | Weekly currency check | The Freshness workflow, each Monday: facts due or whose quote is gone (`--due`, `--verify`), and dependencies behind their newest release (`--outdated`), each kept as one open issue | shipped | done, 2026-10-20 |
-| End-of-life warning | A runtime or dependency whose support ends within six months, which the weekly check doesn't yet name | planned | the first category skill ships |
+| End-of-life warning | A runtime or dependency whose support ends within six months, which the weekly check doesn't yet name | planned | the first category skill ships: met when `coding` shipped in release 0.1.22 on 2026-10-26, so the item is open |
 | `copier` template | The standard's starter files, so a new repository is set up without a session | planned | the first repository set up from this one |
 | A repository's own skills | `skillcheck` on a consuming repository's `.claude/skills/`, without this catalog's checks, with a marker for a draft and a check of a skill's scripts and tests beside it. Both audited repositories' steward skills asked for it; `--verify` there also needs to tell a source that wants credentials from a quote that's gone | planned | the next audit of either repository |
 | Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI |
 | `upstream-defects.md` | The standard's register of upstream defects shared across repositories | planned | the first upstream defect found |
 | Map refresh on dependency updates | Dependabot's pull requests change the lockfiles but not `bom.json` or `docs/dependencies.md`. CI's `--bom-check` fails such a pull request until a session regenerates the map in its branch before merging, as the owner chose on 2026-10-13 | shipped | done |
 | Fewest dependencies here | This repository's own dependencies and pins, in `pyproject.toml`, `package.json` and CI, held to the R21 rule | planned | the rule is in the standard |
-| One archive rule for every repository | Every repository keeps what is finished but worth keeping in a consistent way, tagged by version, release or date. Identical where that serves, with an archive branch beside any `evidence` branch as one candidate form; where a repository does otherwise, the difference is deliberate, recorded with its reason, and obvious to a reader of that repository. Today each does it differently: one audited repository keeps a `docs/archive/` folder in its main branch, another deletes finished work and keeps it in history, this repository deletes it too, and the audit kit sits in ignored `scratch/`. The rule is in the standard from v0.49.0, in dimension 10, approved on 2026-11-03; this repository, the audit kit and the repositories the standard audits are brought into line next, by audit | planned | before the next skills release, on the owner's word of 2026-10-29 |
+| One archive rule for every repository | Every repository keeps what is finished but worth keeping in a consistent way, tagged by version, release or date. Identical where that serves, with an archive branch beside any `evidence` branch as one candidate form; where a repository does otherwise, the difference is deliberate, recorded with its reason, and obvious to a reader of that repository. Before the rule, each did it differently: one audited repository keeps a `docs/archive/` folder in its main branch, another deletes finished work and keeps it in history, and this repository deleted it too. The rule is in the standard from v0.49.0, in dimension 10, approved on 2026-11-03. This repository is done: on 2026-11-03 it moved finished work to an orphan `archive` branch, indexed in [docs/archive.md](docs/archive.md) (`docs/decisions.md`, 2026-11-03). The audit kit and the repositories the standard audits are still to be brought into line, by audit | planned | this repository: done, 2026-11-03. The audit kit and the audited repositories: their next audit. The owner asked on 2026-10-29 for it before the next skills release |

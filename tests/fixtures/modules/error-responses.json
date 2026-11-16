@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Our Spring Boot 4 API still sends the old timestamp/status/error/path JSON when something fails. How do I get RFC 9457 problem details instead?",
+    "should_trigger": true
+  },
+  {
+    "query": "When the payment provider is down, our checkout endpoint returns 400 with {\"error\": \"failed\"}. What should the response be?",
+    "should_trigger": true
+  },
+  {
+    "query": "In ASP.NET Core, validation errors come back as problem+json but unhandled exceptions give an empty 500. How do I make them consistent?",
+    "should_trigger": true
+  },
+  {
+    "query": "After upgrading to Spring Framework 7, our contract tests fail because the error body no longer has a type field.",
+    "should_trigger": true
+  },
+  {
+    "query": "Rewrite these messages from our desktop app: 'Error 0x80070057', 'Invalid input!', 'You entered the date wrong. Please fix it.'",
+    "should_trigger": true
+  },
+  {
+    "query": "Is it OK to put the exception message and stack trace in the JSON we return, so the frontend team can debug faster?",
+    "should_trigger": true
+  },
+  {
+    "query": "Add retries with backoff to the client that calls the payment provider; it times out now and then.",
+    "should_trigger": false
+  },
+  {
+    "query": "On our signup form, should the email error show while the person is still typing, and where on the page should it go?",
+    "should_trigger": false
+  }
+]

@@ -26,8 +26,8 @@ and dependencies. A second version of a published rule drifts from the first.
 2. **Sources.** Every fact comes from a primary source: official documentation, a standard, or
    the project's own release notes. Each one carries its URL and the date it was checked. Put
    facts that can go stale (versions, support dates, defaults, and what other projects do) in
-   each module's Facts section, or in `references/facts.md` in a skill not yet made of modules,
-   in tables with the columns ID, Fact, Source, Quote, Checked and Check by:
+   each module's Facts section, in tables with the columns ID, Fact, Source, Quote, Checked and
+   Check by:
    - the source is an https link, or the `git ls-remote --tags <https URL>` command that shows
      the fact;
    - the quote is the source's own words in double quotes, or a command's output in backticks.

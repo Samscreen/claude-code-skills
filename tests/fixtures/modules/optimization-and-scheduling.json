@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Help me build a nurse roster for 40 staff over four weeks: nobody does more than three nights in a row, and people's weekend preferences count but aren't mandatory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our sales team quotes ship dates by dividing open orders by the plant's daily capacity, and we're always late. What should the formula be?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which solver should I use for a lot-sizing MIP in Python now that PuLP stopped finding CBC after the upgrade?",
+    "should_trigger": true
+  },
+  {
+    "query": "Cost matters most, then on-time delivery, then fewer changeovers. How do I make CP-SAT respect that order instead of trading them off?",
+    "should_trigger": true
+  },
+  {
+    "query": "We run Gurobi in Docker on our build server. How should the licence get into the container?",
+    "should_trigger": true
+  },
+  {
+    "query": "The planner hit its time limit and reported FEASIBLE. What should the run report say about the gap and the bound?",
+    "should_trigger": false
+  },
+  {
+    "query": "We want to automate the supervisors' manual whiteboard schedule. Before we replace it, what is the whiteboard actually doing for them?",
+    "should_trigger": false
+  },
+  {
+    "query": "Write pytest property-based tests for my date-parsing helper with Hypothesis.",
+    "should_trigger": false
+  }
+]

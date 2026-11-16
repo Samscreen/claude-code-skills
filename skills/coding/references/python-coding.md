@@ -5,9 +5,9 @@ checker, type hints, idioms, encodings, time zones, and which Python versions to
 
 Untrusted input, from shells to paths and secrets, is `python-security`'s. Releases, lockfiles and
 CI are the project-bootstrap-and-audit standard's *Language toolchains*; test design is the testing
-skill's. Retries are `error-handling`, pinning dependencies `supply-chain-security`, async
-`performance-and-concurrency`, and time zone policy beyond Python's API `internationalization`.
-pandas and NumPy belong to a planned data skill, and Python 2 to `legacy-languages`.
+skill's. Retries are `error-handling`, pinning dependencies the planned `supply-chain-security`, async
+`performance-and-concurrency`, and time zone policy beyond Python's API the planned `internationalization`.
+pandas and NumPy have no home yet, and Python 2 belongs to the planned `legacy-languages`.
 
 ## Rules
 

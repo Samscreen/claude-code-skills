@@ -6,7 +6,7 @@ close, test exit codes, and moving old code to C17 or C23.
 
 Meson, warnings, hardening, sanitizers, static analysis and fuzzing are c-build's. Outside data
 is c-security's: strings, format strings, integer overflow, paths, temporary files, running
-programs and escaping output. Test design is the planned testing skill's. The standard's
+programs and escaping output. Test design is the testing skill's. The standard's
 *Language toolchains* names no C compiler, so take versions from the project's own pins.
 
 ## Rules

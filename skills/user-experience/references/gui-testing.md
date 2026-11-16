@@ -7,8 +7,8 @@ for testing with people: task-based sessions, think-aloud and the System Usabili
 
 A review against heuristics is `usability-review`. What a window or dialog should do is
 `windows-and-dialogs`, and settings are `settings-and-options`; this module tests that the program
-does it. General test design (doubles, flaky tests, gates) belongs to the planned testing skill,
-and accessibility itself to the accessibility module of the planned visual-design skill: here the
+does it. A screenshot test that guards a fix is `feedback-loop`'s. General test design (doubles, flaky tests, gates) belongs to the testing skill,
+and accessibility itself to the planned accessibility module of the visual-design skill: here the
 accessibility interfaces are a way in.
 
 ## Rules
@@ -193,7 +193,7 @@ Versions, defaults and figures, each named elsewhere in this module by its ID.
 | `uxt-gtk3-click` | GTK 3's click helper is deprecated since 3.20, in favor of reftests | [gtk_test_widget_click](https://docs.gtk.org/gtk3/func.test_widget_click.html) | "Deprecated since: 3.20" and "This testing infrastructure is phased out in favor of reftests." | 2026-11-10 | 2027-02-10 |
 | `uxt-gtk4-test-init` | `gtk_test_init` makes the test environment deterministic | [gtk_test_init](https://docs.gtk.org/gtk4/func.test_init.html) | "This is done to make test program environments as deterministic as possible." | 2026-11-10 | 2027-02-10 |
 | `uxt-dogtail` | dogtail 2.1.2, 2026-10-26, drives applications through AT-SPI on Xorg and Wayland GNOME | [PyPI](https://pypi.org/pypi/dogtail/json) | "uses Accessibility (AT-SPI) technologies" and "Dogtail supports both **Xorg** and **Wayland GNOME** environments." and "2026-10-26T13:40:27" | 2026-11-10 | 2027-02-10 |
-| `uxt-playwright` | Playwright 1.65.0; the Python package came out 2026-11-09 | [PyPI](https://pypi.org/pypi/playwright/json) | "1.65.0" and "2026-11-09T21:09:30" | 2026-11-10 | 2027-02-10 |
+| `uxt-playwright` | Playwright 1.65.2 for Python, out 2026-11-14; `@playwright/test` 1.65.1 on npm | [PyPI](https://pypi.org/pypi/playwright/json), [npm](https://registry.npmjs.org/@playwright/test) | "1.65.2" and "2026-11-14T00:28:39" and "1.65.1" | 2026-11-16 | 2027-02-16 |
 | `uxt-playwright-wait` | Playwright's web assertions wait until their condition holds | [Assertions](https://playwright.dev/docs/test-assertions) | "Playwright also includes web-specific async matchers that will wait until the expected condition is met." | 2026-11-10 | 2027-02-10 |
 | `uxt-playwright-electron` | Playwright's Electron support is experimental, and doesn't intercept native dialogs | [Electron](https://playwright.dev/docs/api/class-electron) | "Playwright has experimental support for Electron automation." and "Playwright does not intercept the native Electron dialog API" | 2026-11-10 | 2027-02-10 |
 | `uxt-pywinauto` | pywinauto 0.6.9 (2025-01-06) is stable; 1.0.0b1 (2026-10-15) is a pre-release | [PyPI](https://pypi.org/pypi/pywinauto/json) | "A set of Python modules to automate the Microsoft Windows GUI" and "2025-01-06T11:29:55" and "2026-10-15T16:32:42" | 2026-11-10 | 2027-02-10 |

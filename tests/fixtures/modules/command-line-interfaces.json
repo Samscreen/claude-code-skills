@@ -1,0 +1,34 @@
+[
+  {
+    "query": "My Python tool prints colored output, and when I pipe it into grep the escape codes end up in the file. How should a CLI decide when to use color?",
+    "should_trigger": true
+  },
+  {
+    "query": "Review the flags and help text of this command-line utility: does it follow the usual conventions for -h, --version and long options?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our deploy script hangs in CI because the tool asks 'Are you sure? [y/N]'. How should the tool handle confirmation when nobody is at the keyboard?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which argument parser should I use for a new .NET 10 console app, and why does the code Copilot gave me call SetHandler?",
+    "should_trigger": true
+  },
+  {
+    "query": "I want my sync command to have a --json mode for scripts, a quiet mode and a dry run. What should each one print, and where?",
+    "should_trigger": true
+  },
+  {
+    "query": "Is it okay for my utility to take the API token as --token on the command line?",
+    "should_trigger": true
+  },
+  {
+    "query": "What exit codes should my backup program return when a file can't be read versus when nothing needed backing up?",
+    "should_trigger": false
+  },
+  {
+    "query": "Our app has a --out-dir flag and a 'Destination' field in the preferences dialog that don't share a default. How do we fix that?",
+    "should_trigger": false
+  }
+]
