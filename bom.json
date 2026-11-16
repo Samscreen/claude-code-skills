@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:b15c8650-aa52-5589-a01a-29b7bd5aa5a7",
+  "serialNumber": "urn:uuid:4f279df0-3ff6-59f8-837d-9e5ef663d5e2",
   "version": 1,
   "metadata": {
     "tools": {
@@ -663,7 +663,7 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "raw.githubusercontent.com: 25 fact(s)"
+              "value": "raw.githubusercontent.com: 26 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -715,7 +715,7 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pkg.go.dev: 7 fact(s)"
+              "value": "pkg.go.dev: 8 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -735,11 +735,19 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "crates.io: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "cwe.mitre.org: 5 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
               "value": "devblogs.microsoft.com: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "docs.rs: 5 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -756,10 +764,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "www.typescriptlang.org: 5 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "crates.io: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -792,10 +796,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "doc.rust-lang.org: 3 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "docs.rs: 3 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -959,6 +959,14 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "expressjs.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "fastapi.tiangolo.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "git.kernel.org: 1 fact(s)"
             },
             {
@@ -1060,6 +1068,10 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "src.fedoraproject.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "starlette.dev: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",

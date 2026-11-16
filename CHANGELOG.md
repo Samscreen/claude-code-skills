@@ -40,6 +40,12 @@ Notable changes to this repository. The format follows
 - The README and the withdrawal runbook say what reaches Claude Code plugin installs: the merge
   that changes the catalog's version, not the release.
 - A test runs ShellCheck on every tracked shell script.
+- `error-responses` says what FastAPI, Express and Go send when a request fails, and
+  `logging-libraries` what Serilog and Rust's `tracing` offer for trace IDs and redaction, each
+  from the project's own documentation, where both said "not checked".
+- `git-workflows` sends release questions to `releases-and-versions` and
+  `versioning-and-releases` rather than answering them in its top-level rules, names changelogs
+  and backports in its description, and asks for a module to be read whole.
 
 ### Fixed
 

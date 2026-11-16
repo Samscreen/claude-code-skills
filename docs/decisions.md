@@ -6,6 +6,71 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — Cells marked "not checked" in `error-responses` and `logging-libraries`, answered
+
+- **Asked, by the owner:** "do all" to the triage list (2026-11-16), which named these cells.
+- **`error-responses`:** the FastAPI, Express and Go row said R07d had found no primary
+  documentation. Each project's own docs settle it, read 2026-11-16: FastAPI's default handlers
+  send its own JSON, not problem details, and a handler goes on Starlette's `HTTPException`
+  (fact `er-fastapi`, with Starlette's page for `Exception`); Express's built-in handler sends
+  HTML in production and `err.stack` otherwise (fact `er-express`), so an Express app run
+  without `NODE_ENV=production` now counts as showing internals; Go's `http.Error` writes plain
+  text, and a panicking handler's request ends with no response (fact `er-go-http`). R07d's
+  Sources row is replaced by the three projects' docs.
+- **`logging-libraries`:** Serilog's redaction cell is "None found; a community enricher
+  masks": Serilog's wiki shows `Destructure.ByTransforming` keeping chosen properties and lists
+  `Serilog.Enrichers.Sensitive`, a community package (fact `ll-serilog-destructure`). Rust's
+  trace-ID cell names `opentelemetry-appender-tracing` 0.33.1, which attaches the IDs to records
+  bridged to the logs SDK, with spans from `tracing-opentelemetry` (fact `ll-rust-otel`). Rust's
+  redaction cell is "None found": `tracing`'s source has no redaction, and `#[instrument(skip(...))]`
+  keeps an argument out of a span (fact `ll-rust-skip`). "None found" is what was read, not a
+  claim that none exists.
+- **Checked:** the six quotes with `skillcheck`'s own `verify`, 0 failures. Serilog's wiki is
+  cited by its raw URL, as `caching` does, because github.com's wiki pages refused this session.
+- **Size:** `error-responses` 15,165 to 15,730 characters, `logging-libraries` 15,161 to 15,803,
+  under the limit and over the 15,000 target. Wording was tightened and facts are named by ID
+  where text repeated them; no rule was cut. Spring Framework 7.1's row is unchanged until
+  2026-11-30.
+
+## 2026-11-16 — `releases-and-versions`' routing: why its requests missed, and the router's rules
+
+- **The miss (2026-11-03):** 3 or 4 of the module's 7 trigger requests loaded `git-workflows`
+  but didn't read the module. Measured again on 2026-11-16 with Claude Code 2.1.325 and
+  claude-opus-5-5, with a runner that also logs searches, the 5 requests that should reach it,
+  3 times each on `main`'s router: 3 of 15 read the module; 10 of 15 loaded the skill.
+- **Three causes:**
+  - **The description named neither changelogs nor backports.** The backport request loaded no
+    skill in 3 of 3 tries, the changelog one in 2 of 3. The description now names both, at 249
+    characters.
+  - **The router's rules 7 and 9 answered the commonest questions.** Rule 7 said "an annotated
+    tag on the release commit's SHA", so "annotated or lightweight?" was answered from it, as
+    the 2026-11-03 entry found; rule 9 answered "is an LTS line worth it?" the same way.
+  - **When the model went on, it often searched the module (`Grep`, with context) instead of
+    reading it,** which `skillcheck --triggers` doesn't count: on `main`, 3 more of 15 reached
+    the module that way. A search finds a line and misses the exception or trap beside it.
+- **The open question, answered here:** a router rule that holds a module's answer takes away
+  the reason to read the module. So rule 7 now says which release module to read for what,
+  "even for a question you think you can answer", and rule 9 is folded into it; the answers
+  stay in the modules' own rules. The Modules section asks for a module whole, not a search of
+  it. The router rows for `releases-and-versions` and `versioning-and-releases` say what each
+  takes, and the second says what it doesn't.
+- **Fixtures:** two requests pointed at "this fix" and "this change". The runner's project has
+  no repository, so the model stopped to ask for the change before reading any guidance; that
+  measures the empty project, not routing. They now carry the change. No request belonged to a
+  neighbor. With the reworded fixtures, `main`'s router still read the module 3 times in 15.
+- **After:** on the final router the module was read in 29 of 35 tries (runs of 2 and 4
+  repeats, and the official `skillcheck --triggers releases-and-versions`, which failed 2 of 7;
+  one router earlier, before the whole-module sentence, it failed 3 of 7). Most misses were
+  searches of the module. `versioning-and-releases` read its module in 10 of 12 tries, as on
+  `main`; on both, "which release is latest" was answered from a search. Every `git-workflows`
+  near miss, run once, passed.
+- **Not changed:** `skillcheck --triggers` counts only `Read`. Counting a `Grep` whose path is
+  the module file, in content mode, would credit a search that reached it; that is a change to
+  `src/skillcheck/triggers.py`, outside this task.
+- **For the owner, on claude.ai after the merge:** "Should our release tags be annotated or
+  lightweight?" should load `git-workflows` and read `references/releases-and-versions.md`; the
+  near miss "Protect our main branch so nobody can force-push or delete it." shouldn't read it.
+
 ## 2026-11-16 — This repository re-checked against standard v0.49.1, for release 0.1.30
 
 - **Asked:** the owner's "do all" (2026-11-16), to a list that named the re-check the README's

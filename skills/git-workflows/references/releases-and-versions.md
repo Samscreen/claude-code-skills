@@ -1,8 +1,9 @@
 # Releases and versions
 
-Read this for cutting a release, making or protecting a release tag, writing or fixing a release
-workflow, writing a changelog entry, choosing a version number, or keeping and backporting to a
-release line.
+Read this for cutting and publishing a release; making a release tag, annotated or lightweight,
+or protecting it; writing or fixing a release workflow, such as a publish workflow that never
+runs after the tag; writing a changelog entry; choosing the next version number; or keeping a
+release branch and backporting a fix to it.
 
 The commits it releases are `commits-and-pull-requests`; the checks that must pass first are
 `ci-workflows`; deploys, `ci-cd`; support windows, advisories and deprecation timelines,
