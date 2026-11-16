@@ -26,7 +26,7 @@ freshness run and the release workflow both run it.
 | `engineering` | 0.1.30 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
 | `engineering` | 0.1.30 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `security` | reviewed 2026-11-11 |
-| `engineering` | 0.1.30 | Apache-2.0 | `testing` | reviewed 2026-11-11 |
+| `engineering` | 0.1.30 | Apache-2.0 | `testing` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
 | `engineering` | 0.1.30 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
 
@@ -425,38 +425,47 @@ again.
 | `security` | go.dev | 1 |
 | `security` | pages.nist.gov | 1 |
 | `security` | www.threatmodelingmanifesto.org | 1 |
-| `testing` | arxiv.org | 9 |
+| `testing` | arxiv.org | 10 |
 | `testing` | code.claude.com | 8 |
 | `testing` | gitlab.com | 4 |
+| `testing` | pypi.org | 4 |
 | `testing` | testing.googleblog.com | 4 |
+| `testing` | abseil.io | 3 |
+| `testing` | docs.pytest.org | 3 |
 | `testing` | github.blog | 3 |
 | `testing` | raw.githubusercontent.com | 3 |
+| `testing` | registry.npmjs.org | 3 |
+| `testing` | api.nuget.org | 2 |
 | `testing` | docs.kernelci.org | 2 |
-| `testing` | docs.pytest.org | 2 |
-| `testing` | pypi.org | 2 |
-| `testing` | registry.npmjs.org | 2 |
+| `testing` | eprints.whiterose.ac.uk | 2 |
+| `testing` | martinfowler.com | 2 |
+| `testing` | repo1.maven.org | 2 |
 | `testing` | research.google.com | 2 |
 | `testing` | www.anthropic.com | 2 |
 | `testing` | www.microsoft.com | 2 |
-| `testing` | api.nuget.org | 1 |
 | `testing` | blitiri.com.ar | 1 |
 | `testing` | coverage.readthedocs.io | 1 |
 | `testing` | crates.io | 1 |
 | `testing` | developer.apple.com | 1 |
 | `testing` | docs.cypress.io | 1 |
 | `testing` | docs.pact.io | 1 |
+| `testing` | factoryboy.readthedocs.io | 1 |
+| `testing` | github.com | 1 |
 | `testing` | go.dev | 1 |
 | `testing` | growing-object-oriented-software.com | 1 |
 | `testing` | jestjs.io | 1 |
+| `testing` | kentcdodds.com | 1 |
 | `testing` | lava.readthedocs.io | 1 |
 | `testing` | learn.microsoft.com | 1 |
 | `testing` | man7.org | 1 |
 | `testing` | open.qa | 1 |
 | `testing` | pester.dev | 1 |
+| `testing` | pkg.go.dev | 1 |
+| `testing` | proxy.golang.org | 1 |
 | `testing` | repo.packagist.org | 1 |
-| `testing` | repo1.maven.org | 1 |
 | `testing` | rubygems.org | 1 |
 | `testing` | testcontainers.com | 1 |
+| `testing` | users.cs.utah.edu | 1 |
 | `testing` | www.pantsbuild.org | 1 |
 | `user-experience` | www.nngroup.com | 19 |
 | `user-experience` | developer.apple.com | 7 |
