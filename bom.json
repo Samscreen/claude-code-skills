@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:2246e0d7-d144-523d-8043-0b1c71866527",
+  "serialNumber": "urn:uuid:a83a068f-fd6d-5e9c-aca2-896f94cf1ccf",
   "version": 1,
   "metadata": {
     "tools": {
@@ -1810,6 +1810,10 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "abseil.io: 4 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "gitlab.com: 4 fact(s)"
             },
             {
@@ -1819,10 +1823,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "testing.googleblog.com: 4 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "abseil.io: 3 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",

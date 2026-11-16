@@ -52,6 +52,9 @@ Notable changes to this repository. The format follows
   and backports in its description, and asks for a module to be read whole.
 - The standard is v0.49.2: *Language toolchains* says PowerShell 7.4 and 7.5 and .NET 8 and 9
   ended on 2026-11-10, and names .NET 11, an STS, beside 10, the LTS for new work.
+- `testing-patterns` gives *Software Engineering at Google*'s advice to measure coverage from
+  small tests only as rule 2's trade-off: what coverage inflation is, what each choice costs,
+  and when counting small tests alone is the better choice.
 - The standard is v0.50.0: dimension 8 judges a dependency by the tree it brings, checks a new
   name exists on its registry, rates an unused dependency `OVER` and an unsupported runtime
   `GAP`, and offers a package manager's age gate, with npm's, uv's and pnpm's recorded.
