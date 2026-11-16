@@ -6,6 +6,21 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — The owner's settings: required checks, a pull request rule, `archive`, branches
+
+- **Done by the owner,** answers 13 to 16 of 2026-11-16, and checked here through GitHub's API
+  the same day:
+  - `protect-main` requires `subjects` and `hold` beside `checks`, `catalog`, `secret-scan` and
+    `prose`, as asked on 2026-11-03. It also requires a pull request, with no approvals and the
+    merge method only, and still blocks deletion and force-pushes, with no one on its bypass
+    list. So nothing reaches `main` but a merged pull request that passed all six.
+  - A new ruleset, `protect-archive`, blocks deletion and force-pushes on `archive`. Sessions
+    still add to it with ordinary pushes.
+  - The nine stale branches are deleted: seven merged `claude/` branches, `claude/uv-0.13.7` and
+    an old Dependabot branch. Left are `main`, `archive` and draft #73's branch.
+- **What it unlocks:** the steward lets a session turn on auto-merge for a pull request it may
+  merge itself only once the ruleset requires `hold` and `subjects`, which it now does.
+
 ## 2026-11-16 — Mutation tests of all of `src/skillcheck/core/`, for release 0.1.31
 
 - **Released as 0.1.31,** with every change merged since 0.1.30, by the owner's standing word of
