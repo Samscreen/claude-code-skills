@@ -25,6 +25,8 @@ Notable changes to this repository. The format follows
   `ROADMAP.md` cites and `HEAD` doesn't reach, as a squash or rebase-merge leaves a branch's
   commits, and a hash there that names no commit unless `.github/foreign-hashes.txt` lists it.
   In a shallow clone it checks nothing and says so in the summary line.
+- `project-bootstrap-and-audit` checks which copy is running, against a hash of its files, and
+  carries the run report's skeleton and schema, with a script that checks a report against it.
 
 ### Changed
 
@@ -58,6 +60,12 @@ Notable changes to this repository. The format follows
 - The standard is v0.50.0: dimension 8 judges a dependency by the tree it brings, checks a new
   name exists on its registry, rates an unused dependency `OVER` and an unsupported runtime
   `GAP`, and offers a package manager's age gate, with npm's, uv's and pnpm's recorded.
+- The standard is v0.51.0: piece 1 of its rebuild moves the procedure into the skill's
+  `SKILL.md`, and the standing rules, vocabularies, environment, assumptions and limitations and
+  conformance self-check into references of their own, with a new one on other tools. Nothing
+  moved changes meaning.
+- The release's `KICKSTART.md` carries the skill's procedure and references before the standard
+  file.
 
 ### Fixed
 
