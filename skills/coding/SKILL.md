@@ -3,7 +3,7 @@ name: coding
 description: "Writes, reviews and fixes code: the contract every change meets, then Python, TypeScript and JavaScript, HTML and CSS, C# and .NET, PowerShell, Bash, and C with Meson. Use when writing, reviewing, debugging or modernizing code in these languages."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-10-27"
+  reviewed: "2026-11-16"
 ---
 
 # Coding
@@ -85,9 +85,13 @@ the fact's row is in whichever module holds it.
 | [`input-handling`](references/input-handling.md) | Validating input at the trust boundary, allow-lists, parsing into types, canonicalizing paths, Unicode and URLs, size limits, and encoding output for HTML, SQL, shells, logs, terminals and CSV |
 | [`configuration`](references/configuration.md) | How a program takes its settings: precedence, one name per setting, validation at startup, typed config, environment variables, secrets from a store, required settings and feature flags |
 | [`config-formats`](references/config-formats.md) | YAML, JSON, TOML and XML: choosing a format, YAML's implicit types and safe loading, duplicate keys, large JSON numbers, schemas in CI, TOML versions, and parsing untrusted XML safely |
-| [`error-handling`](references/error-handling.md) | Any language: what to catch and where, "not found" against "couldn't look", exit codes and a child's exit status, causes, retries with backoff, timeouts, circuit breakers, RFC 9457 problem details, and messages people read |
-| [`performance-and-concurrency`](references/performance-and-concurrency.md) | Making code faster or concurrent, any language: measuring first, sampling profilers and flame graphs, benchmark harnesses and their pitfalls, task groups and structured concurrency, cancellation, blocking an event loop, race detectors, and caches |
-| [`logging-and-observability`](references/logging-and-observability.md) | What a program writes to its logs and metrics, any language: structured records, timestamps with offsets, levels, trace IDs from W3C Trace Context, keeping secrets and personal data out, logging libraries and their versions, OpenTelemetry, RED and USE, SLOs and burn-rate alerts, and Prometheus |
+| [`error-handling`](references/error-handling.md) | Any language: what to catch and where, "not found" against "couldn't look", exit codes and a child's exit status, causes in each language, retries with backoff, timeouts, circuit breakers and bulkheads |
+| [`performance-and-concurrency`](references/performance-and-concurrency.md) | Making code faster or concurrent, any language: measuring first, sampling profilers and flame graphs, data-structure defaults, task groups and structured concurrency, cancellation and Go's context, blocking an event loop, race detectors, and free threading in Python libraries |
+| [`logging-and-observability`](references/logging-and-observability.md) | What a program writes to its logs and metrics, any language: structured records, timestamps with offsets, levels, trace IDs from W3C Trace Context, keeping secrets and personal data out, personal data and retention under GDPR, sampling, RED and USE, SLOs and burn-rate alerts, and Prometheus |
+| [`caching`](references/caching.md) | Adding or reviewing a cache, any language: an owner, an invalidation rule and a bound, TTLs with jitter, atomic loaders, stampedes, negative caching, cache keys, hit rates, and cache libraries per language |
+| [`benchmarking`](references/benchmarking.md) | Benchmarking code, any language: harnesses, warm-up and sinks, how many runs, medians and significance tests, baselines, how each harness reports, and catching regressions in CI on noisy runners |
+| [`logging-libraries`](references/logging-libraries.md) | Choosing and configuring a logging library: structlog, pino, Serilog, Logback, Log4j 2, Monolog, semantic_logger and Rust's tracing, their versions, how each attaches trace IDs and redacts values, and OpenTelemetry severity numbers |
+| [`error-responses`](references/error-responses.md) | Errors that reach a client or a person: RFC 9457 problem details, honest status codes, what ASP.NET Core and Spring do by default, contract tests, keeping internals out, and messages that say what happened and what to do |
 
 ## Check before you act
 

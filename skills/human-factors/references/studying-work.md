@@ -8,7 +8,8 @@ watched, and the decision traps that bend what a study finds.
 What to do with a purpose once found is the `human-factors` module's: purpose, bias or drift;
 keep, change gradually or override; the dip after a tool change; automation. Interfaces are the
 `user-experience` skill's. Checking a result against its source is the `testing` skill's.
-Cognitive task analysis is left out: the research found no primary source for it.
+The judgment and cues behind expert work that watching doesn't show, found by interviewing
+about real incidents, are the `cognitive-task-analysis` module's.
 
 ## Rules
 

@@ -1,16 +1,18 @@
 ---
 name: user-experience
-description: "Reviews, designs and tests how a desktop or web program behaves for its user: status and feedback, windows and dialogs that appear when they should, settings and options, and GUI tests. Use when building, reviewing or testing an interface."
+description: "Reviews, designs and tests how a desktop, web or command-line program behaves for its user: platform patterns, status, dialogs, settings, GUI tests, and fixing what users report. Use when building, reviewing or testing an interface."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-11"
+  reviewed: "2026-11-16"
 ---
 
 # User experience
 
-How a program behaves for the person using it: whether its status is current, whether its
-windows and dialogs appear when they should and nowhere else, whether its settings are easy to
-find and mean one thing each, and how to test all of that. It serves power-user programs as well
+How a program behaves for the person using it: what a current interface on its platform is
+built from, whether its status is current, whether its windows and dialogs appear when they
+should and nowhere else, whether its settings are easy to find and mean one thing each, how a
+command-line program serves people and scripts, how to test all of that, and how to learn what's
+wrong once people use it. It serves power-user programs as well
 as simple ones: it never trades away a useful option to make a screen shorter. How the interface
 looks (themes, palettes, charts) and accessibility belong to `visual-design`, and what people do
 at work around a program to `human-factors`; the code itself to `coding`, and general test
@@ -45,6 +47,9 @@ mistakes, audit checks, reasons, dated facts and sources.
 | [`windows-and-dialogs`](references/windows-and-dialogs.md) | When a window or dialog should appear; modality, parents and focus; default buttons; one dialog at a time (Qt, GTK, WinUI's ContentDialog, Apple); nothing hidden behind another or shown before it's ready; reviewing dialog code; long operations |
 | [`settings-and-options`](references/settings-and-options.md) | Defaults and presets, progressive disclosure, hiding or graying out an option that doesn't apply, each setting in one place with one meaning, an inventory of every setting, how many choices is too many, and power users' options |
 | [`gui-testing`](references/gui-testing.md) | Driving a GUI from tests per toolkit (Qt, GTK, web, Windows), catching windows that appear wrongly or status that goes stale, and testing with people |
+| [`feedback-loop`](references/feedback-loop.md) | Learning what's wrong once people use a program, and fixing it safely: in-app reports, GitHub issue forms filled from the app, crash reports and symbols, usage data only with consent, severity apart from priority, views apart from state, screenshot tests, and internal tools on a local network |
+| [`interface-patterns`](references/interface-patterns.md) | What a current interface is built from: each platform's design language and toolkit at a supported release, stock components first, one component per pattern, layout by window width, dense power-user screens, forms and their errors, and loading, empty and failed states |
+| [`command-line-interfaces`](references/command-line-interfaces.md) | Command-line programs for people and scripts: POSIX and GNU option syntax, help and version, stdout against stderr, machine-readable output, color and NO_COLOR, prompts only on a terminal, dry runs and quiet mode, secrets kept off flags, and argument parsers per language |
 
 ## When something here is wrong
 

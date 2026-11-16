@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Our nurse rostering model scores well overall, but the same two nurses keep getting every weekend and night. How do I make the solver share the bad shifts out?",
+    "should_trigger": true
+  },
+  {
+    "query": "Every time we rerun the weekly shift planner, half of next week's shifts move and people are furious. How do I keep the published schedule mostly as it was in CP-SAT?",
+    "should_trigger": true
+  },
+  {
+    "query": "I bumped the penalty weight on back-to-back closing shifts to 1000 and now the roster breaks more of the other rules. What should I do instead?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which operators should we cross-train so the line still runs when someone is off sick, and how do I put the skills matrix into the scheduler?",
+    "should_trigger": true
+  },
+  {
+    "query": "A changeover takes our senior operator 10 minutes and a new starter 30. How do I model that in the machine scheduling problem?",
+    "should_trigger": true
+  },
+  {
+    "query": "Is there an official OR-Tools, Gurobi or Timefold employee scheduling example I can start from, and can I copy it into our repo?",
+    "should_trigger": true
+  },
+  {
+    "query": "Can I commit the PSPLIB and Taillard instance files into our test fixtures so the planner's tests don't need the network?",
+    "should_trigger": false
+  },
+  {
+    "query": "How many consecutive night shifts should our roster model allow, and should that be a hard constraint or a soft penalty?",
+    "should_trigger": false
+  }
+]

@@ -27,8 +27,11 @@ flaky-tests module.
 4. **Use benchmark instances with published bounds as the expected answer.** Assert that the
    objective lies between the published lower and upper bounds, plus a stated tolerance, and
    record each bound's source and date: bounds move (facts `pck-taillard`, `pck-taillard-ta33`,
-   `pck-psplib-open`, `pck-nrp-bounds`). Cite the figures; copy no instance file into the
-   repository until someone has asked the owner and recorded the answer.
+   `pck-psplib-open`, `pck-nrp-bounds`). Copy an instance file in only under a license that
+   allows it, keeping its notice: OR-Library's MIT does (fact `pck-orlib-mit`). PSPLIB, Taillard
+   and schedulingbenchmarks.org state none (fact `pck-psplib-use`): cite their figures, fetch
+   their files at test time, and copy none until someone has asked the owner and recorded the
+   answer.
 
 ### What the checker reports
 
@@ -62,6 +65,10 @@ a new best or a missed constraint: run the checker before celebrating.
 - **Golden schedules compared field by field.** Any equal-cost answer fails them.
 - **A best-known value asserted as the optimum, with no date.** It goes stale when the
   literature improves it (fact `pck-taillard-ta33`).
+- **Taking benchmark licenses as all alike.** OR-Library isn't research-only: it's MIT. PSPLIB's
+  welcome to researchers isn't a license (facts `pck-orlib-mit`, `pck-psplib-use`).
+- **Following `rcpsp_sat.py`'s PSPLIB link.** Its `data.html` returns 404; the site serves
+  `data.php` (checked 2026-11-16).
 - **What AI assistants get wrong,** inferred from version history, not a study: OPTIMAL
   reported unchecked, and `max_time_in_seconds` in tests.
 
@@ -77,7 +84,7 @@ Severity uses the standard's status words.
 | Tests that can't repeat | Several workers without `interleave_search`; `max_time_in_seconds` in tests | `DRIFT` | One worker or interleaved, seed, deterministic time |
 | Exact-assignment tests | Golden schedules compared field by field | `GAP` | Assert the checker's verdict and bounds |
 | A bound without its date | Expected objectives with no source or date | `GAP` | Record both; recheck on the check-by date |
-| Benchmark files copied in | Instance files committed with no license recorded | `GAP` | Ask the owner; fetch at test time meanwhile |
+| Benchmark files copied in | Instance files committed without their license and notice | `GAP` | OR-Library: keep the MIT notice; others: ask the owner, fetch at test time meanwhile |
 
 ## Why
 
@@ -124,7 +131,9 @@ Severity uses the standard's status words.
   `pck-nrp-bounds`). An open instance has a gap, so assert a range, not a value.
 - **What others do:** the literature reports new bounds before the libraries post them.
 - **What it costs:** fetching instances at test time needs the network and a cache; asking
-  for permission takes time. None of these sites states a license.
+  for permission takes time. PSPLIB, Taillard and the nurse-rostering site state no license,
+  while OR-Library applies MIT to all its material (fact `pck-orlib-mit`), so its job-shop,
+  flow-shop and open-shop sets can be committed with the notice and run offline.
 - **When to choose differently:** a problem no benchmark resembles: use small instances solved
   by hand or by exhaustive search instead.
 
@@ -143,6 +152,8 @@ Versions, dates and findings, each named elsewhere in this module by its ID.
 | `pck-taillard` | Taillard publishes best-known bounds; the job-shop summary's last update is 2013-06-17 | [Taillard](https://mistic.iict-heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/ordonnancement.html), [job-shop bounds](https://mistic.iict-heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/jobshop.dir/best_lb_up.txt) | "Summary of best known lower and upper bounds of Taillard's instances" and "Update 17.06.2013" | 2026-11-11 | 2027-05-11 |
 | `pck-taillard-ta33` | Taillard's ta33 was closed in 2025, with OR-Tools | [arXiv 2504.16106](https://arxiv.org/abs/2504.16106) | "We find new numerical lower bounds for multiple benchmark instances, up to closing the Taillard's ta33 instance." | 2026-11-11 | 2027-05-11 |
 | `pck-psplib-open` | In 2019, 215 PSPLIB instances were still open | [arXiv 1909.02737](https://arxiv.org/abs/1909.02737) | "we found that 215 of the PSPLIB instances, 2842 of the MMLIB instances, and 27 of the MISTA instances, were still open" | 2026-11-11 | 2027-05-11 |
+| `pck-orlib-mit` | OR-Library's material is MIT; its notice names J E Beasley | [OR-Library legal](https://people.brunel.ac.uk/~mastjjb/jeb/orlib/legal.html) | "All of the material available from OR-Library is freely available for use. As such the MIT licence, reproduced below, applies:" and "Copyright (c) (2010) (J E Beasley}" | 2026-11-16 | 2027-05-16 |
+| `pck-psplib-use` | PSPLIB invites research use; its page states no license | [PSPLIB](https://www.om-db.wi.tum.de/psplib/library.php) | "Researchers may download the benchmark sets to evaluate their algorithms, and they may send their results to be added to the library." | 2026-11-16 | 2027-05-16 |
 | `pck-nrp-bounds` | The nurse-rostering site dates its bounds: BCV-3.46.1's best, 3275, on 2026-10-16 | [Bounds](https://www.schedulingbenchmarks.org/nrp/bounds.html) | "3275" and "16-Oct-2026" | 2026-11-11 | 2027-05-11 |
 
 ## Sources
@@ -151,5 +162,6 @@ Versions, dates and findings, each named elsewhere in this module by its ID.
 |---|---|---|
 | [OR-Tools](https://github.com/google/or-tools): `sat_parameters.proto`, issues #5582 and #5141 | Parameters, defects | Apache-2.0 code; issues their authors': brief quotes |
 | [or-tools-discuss](https://groups.google.com/g/or-tools-discuss/c/lPb1FzhTMt0) | Cost of deterministic search | Authors' copyright: brief quotes with a link |
-| [Taillard](https://mistic.iict-heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/ordonnancement.html), [schedulingbenchmarks.org](https://www.schedulingbenchmarks.org/nrp/), PSPLIB | Benchmark bounds | None stated: cite figures; don't copy the data |
+| [Taillard](https://mistic.iict-heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/ordonnancement.html), [schedulingbenchmarks.org](https://www.schedulingbenchmarks.org/nrp/), [PSPLIB](https://www.om-db.wi.tum.de/psplib/library.php) | Benchmark bounds | None stated (checked 2026-11-16): cite figures; don't copy the data |
+| [OR-Library](https://people.brunel.ac.uk/~mastjjb/jeb/info.html) | Benchmark license | MIT: copy files keeping the notice |
 | [arXiv 2504.16106](https://arxiv.org/abs/2504.16106), [arXiv 1909.02737](https://arxiv.org/abs/1909.02737) | Bounds that moved | Per-paper arXiv license, not checked: brief quotes, cited |

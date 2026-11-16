@@ -3,7 +3,7 @@ name: human-factors
 description: "Finds what a habit, workaround, double check or familiar tool in people's work is for before a redesign, automation or optimization removes it, and plans the change. Use when changing what people do; never to bend a factual finding."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-11"
+  reviewed: "2026-11-16"
 ---
 
 # Human factors
@@ -42,6 +42,7 @@ mistakes, audit checks, reasons, dated facts and sources.
 |---|---|
 | [`human-factors`](references/human-factors.md) | Removing, automating or redesigning a step people take: what a habit, workaround, double check or familiar tool is for, purpose versus bias or drift, keep or change or override, the dip after a tool change, take-over skill and trust in automation, and keeping facts apart from preferences |
 | [`studying-work`](references/studying-work.md) | Finding out what a step is for: watching and interviewing people at their work, breaking a task into goals and plans and how deep to go, why asking alone misses purposes, a check that caught nothing while watched, and the traps that bend a study |
+| [`cognitive-task-analysis`](references/cognitive-task-analysis.md) | Finding the judgment, cues and decisions behind expert work that watching can't show: the Critical Decision Method, ACTA, interviewing about one real incident without leading, coding the interviews, and what each method costs |
 
 ## When something here is wrong
 

@@ -1,0 +1,34 @@
+[
+  {
+    "query": "I changed our JSON encoder and the Go benchmark went from 410 ns/op to 380 ns/op on one run. Is that a real improvement or noise?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I run criterion on a feature branch so it compares against main's numbers without clobbering them?",
+    "should_trigger": true
+  },
+  {
+    "query": "BenchmarkDotNet shows Mean 1.2 ms, Error 0.05 ms, StdDev 0.04 ms. What does the Error column actually mean?",
+    "should_trigger": true
+  },
+  {
+    "query": "We want CI to fail a pull request if it makes our parser slower. We only have GitHub-hosted runners. How should we set that up?",
+    "should_trigger": true
+  },
+  {
+    "query": "pytest-benchmark keeps flagging a 6% regression on PRs that don't touch that code at all. What's going on?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our Django endpoint takes three seconds to respond. How do I find out which part of it is slow?",
+    "should_trigger": false
+  },
+  {
+    "query": "Put an LRU cache with a five-minute expiry in front of this exchange-rate lookup.",
+    "should_trigger": false
+  },
+  {
+    "query": "Our test suite takes 25 minutes in CI. How do we make it faster without skipping tests?",
+    "should_trigger": false
+  }
+]

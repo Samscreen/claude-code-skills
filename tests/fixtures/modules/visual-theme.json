@@ -1,0 +1,36 @@
+[
+  {
+    "query": "We have colors copied into our CSS, our chart configs and our PowerPoint template, and they keep drifting. How should we set up design tokens so they come from one place?",
+    "should_trigger": true
+  },
+  {
+    "query": "Add dark mode to this web app. Right now every component has its own hex codes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Is light-dark() safe to use yet, or do I still need the prefers-color-scheme media query?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our contrast checker says 4.48:1 for the gray text on white. That rounds to 4.5, so it passes, right?",
+    "should_trigger": true
+  },
+  {
+    "query": "I want a blue color ramp from 50 to 900 where the steps look even. Should I build it in OKLCH or HSL?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which font stack should our reports use so they look right on machines that don't have Aptos?",
+    "should_trigger": true
+  },
+  {
+    "query": "What chart type should I use to compare monthly sales across five regions, and which colors are colorblind-safe for the series?",
+    "should_trigger": false,
+    "note": "data-visualization"
+  },
+  {
+    "query": "Review this HTML form for accessibility: labels, focus order and button types.",
+    "should_trigger": false,
+    "note": "coding's html-coding"
+  }
+]
