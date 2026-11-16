@@ -28,7 +28,7 @@ each difference deliberate, recorded and obvious.
 |---|---|---|---|
 | 2026-11-03 | `README.md` | What the branch is for | Created |
 | 2026-11-16 | `2026-11-16/roadmap-standard-findings.md` | The standard's findings F1 to F167, each applied by v0.49.1, less F165 | `ROADMAP.md` |
-| 2026-11-16 | `2026-11-16/roadmap-lessons-taken-in.md` | The 49 of lessons L1 to L57 that their modules took in | `ROADMAP.md` |
+| 2026-11-16 | `2026-11-16/roadmap-lessons-taken-in.md` | The 52 of lessons L1 to L57 that their modules took in | `ROADMAP.md` |
 | 2026-11-16 | `2026-11-16/roadmap-r22-front-door-choices.md` | The front door's choices of 2026-10-13 | `ROADMAP.md` |
 | 2026-11-16 | `2026-11-16/decisions-2026-09-23-to-2026-10-15.md` | Every decision entry dated before 2026-10-16 | `docs/decisions.md` |
 | 2026-11-16 | `2026-11-16/decisions-releases.md` | The entries for releases 0.1.17, 0.1.18, 0.1.21 and 0.1.23 to 0.1.30, which only record a release | `docs/decisions.md` |

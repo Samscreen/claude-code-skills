@@ -97,9 +97,10 @@ Grouped by subject; the Skill column is each module's one home.
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
 | `repo-structure` | `architecture` | Layouts by project type, where each file goes, naming files and folders | shipped | core | R02, R02b |
-| `writing-style` | `house-style` | Prose and Markdown: voice, headings, lists, wrapping, code, tables, links, file names, a README's sections, words to cut, American spelling | shipped | core | R02, R02b |
+| `writing-style` | `house-style` | What prose says: voice, claims and their evidence, instructions for a reader who isn't a programmer, words to cut, American spelling, dates and records | shipped | core | R02, R02b |
+| `markdown-format` | `house-style` | How Markdown is laid out: headings, wrapping, lists, code blocks, tables, links, file names, a README's sections | shipped | core | R02, R02b |
 | `prose-check` | `house-style` | The Vale check: the HouseStyle package, `.vale.ini`, the CI job with its canary, a repository's vocabulary, files left alone | shipped | core | R02, R02b |
-| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections, records and prose that `writing-style` covers | shipped | core | R02, R02b |
+| `documentation` | `house-style` | Docs sites, diagrams, file size and splitting, beyond the README sections `markdown-format` covers and the records and prose `writing-style` covers | shipped | core | R02, R02b |
 | `code-style` | `coding` | Naming, formatting, structure, comments and docstrings | shipped | core | R03, R03b |
 | `types` | `coding` | Static and gradual typing, strictness, type checkers, types at trust boundaries | shipped | core | R03, R03b |
 | `input-handling` | `coding` | Validation, sanitization and output encoding by context | shipped | core | R04, R04b |
@@ -108,13 +109,13 @@ Grouped by subject; the Skill column is each module's one home.
 | `ai-agent-security` | `agent-engineering` | Prompt injection, permission design, secret exposure, MCP, skills as a supply chain, hidden Unicode | shipped | core | R01, R01b |
 | `error-handling` | `coding` | Failure classes, retries, timeouts, circuit breakers, causes per language, bulkheads | shipped | core | R07, R07b, R07d |
 | `error-responses` | `coding` | Errors that reach a person or a client: RFC 9457 problem details and each framework's defaults, honest status codes, and messages that say what happened and what to do | shipped | core | R07, R07d, R07f |
-| `testing-patterns` | `testing` | Strategy, test doubles and contract tests, coverage, each framework's settings that fail open, frameworks per language, property-based and mutation tools | shipped | core | R06, R06b |
+| `testing-patterns` | `testing` | Test doubles and contract tests, coverage, each framework's settings that fail open, frameworks per language, property-based and mutation tools | shipped | core | R06, R06b |
 | `agent-written-tests` | `testing` | Tests an AI coding agent writes, changes or runs: tests first, high-risk test diffs, gaming, holdout tests, mutation-testing what it wrote | shipped | core | R06b |
 | `acceptance-runs` | `testing` | Unattended acceptance runs on hardware: preconditions, a device lost mid-run, run tiers, evidence; fault injection for ordinary programs | shipped | core | R06c |
 | `test-gates` | `testing` | Proving a test, gate, checker or grader can fail: the parent commit, a planted defect, the couldn't-check path, mutating the checker | shipped | core | R06 |
 | `test-oracles` | `testing` | What a result is checked against: independent references, recorded samples, baselines, scoring by the worst case | shipped | core | R06 |
 | `flaky-tests` | `testing` | A test that passes and fails on the same code: the cause, races in the program, quarantine, keeping a fix | shipped | core | R06 |
-| `test-strategy` | `testing` | Test strategy and test data, and differential and metamorphic testing, from the filed R06c run; `testing-patterns` is at its size limit | planned | core | R06c |
+| `test-strategy` | `testing` | The mix of tests by size and scope, a command-line program's tests, test data and factories, what no test covers, skipped tests, metamorphic and differential testing | shipped | core | R06c |
 | `api-patterns` | `architecture` | REST, OpenAPI, GraphQL, gRPC, auth flows, pagination, versioning, webhooks | planned | core | R19 |
 | `sql-craftsman` | `data` | Schema design, migrations, SQL style, indexing, transactions | planned | core | R14 |
 | `commits-and-pull-requests` | `git-workflows` | Commit grammar and messages, trailers, the author's address, branch names, pull requests and review comments | shipped | core | R08, R08b |
@@ -339,7 +340,7 @@ palettes in `visual-design`, not in `excel-master`.
 What live repositories taught that belongs to a module not built yet, or to a shipped module
 that hasn't taken it in, marked "waiting, module shipped". Each module takes its lessons in
 when it's built, and its reasons cite them. A lesson taken in moves to the archive, where its
-number still resolves: the 49 of L1 to L57 taken in by 2026-11-16 are on the `archive`
+number still resolves: the 52 of L1 to L57 taken in by 2026-11-16 are on the `archive`
 branch at `archive:2026-11-16/roadmap-lessons-taken-in.md`.
 
 - **L21, `api-patterns`:** a contract derived from format strings can't see a change of meaning.
@@ -347,19 +348,6 @@ branch at `archive:2026-11-16/roadmap-lessons-taken-in.md`.
   303. A contract records every argument as used, declined with a reason, or not yet examined.
 - **L22, `api-patterns`:** when a provider rewords a line its consumer parses, the consumer's
   release that reads both wordings ships first.
-- **L23, `c-build`, taken in apart from the argument-shape probe:** gate on the count of warnings
-  under the shipped flags rather than `-Werror`, which fails on a new compiler's new warnings.
-  Ask the binary whether it's instrumented: a test log looked sanitized while the binary
-  wasn't. `c-build` carries both, in its rules 3 and 5 and its Why. Argument shape is a probe
-  axis of its own, and it found an overread both sanitizers missed. That part still waits:
-  no C module names it yet.
-- **L25, `writing-style`, waiting, module shipped:** a claim takes the strongest verb its
-  evidence supports and no stronger, names the artifact, and says what an absence means.
-- **L27, `writing-style`, waiting, module shipped:** instructions for a reader who isn't a
-  programmer never put an application's name where it could be taken for something to type.
-  One owner typed `Konsole` at a prompt after reading "open Konsole". Say what the screen looks
-  like instead, such as "you're in the terminal when you see a `$`". Each command goes in its
-  own block, with what its output should look like.
 - **L33, `api-patterns`:** between two tools, the consumer takes a value only from output that
   carries it, knows every name the producer may give a file, names the light mode where the
   default action is heavy, sends an optional flag only to builds that declare it, and ships
@@ -489,7 +477,7 @@ trigger.
 | Item | What it is | Status | Trigger |
 |---|---|---|---|
 | Weekly currency check | The Freshness workflow, each Monday: facts due or whose quote is gone (`--due`, `--verify`), and dependencies behind their newest release (`--outdated`), each kept as one open issue | shipped | done, 2026-10-20 |
-| End-of-life warning | A runtime or dependency whose support ends within six months, which the weekly check doesn't yet name | planned | the first category skill ships: met when `coding` shipped in release 0.1.22 on 2026-10-26, so the item is open |
+| End-of-life warning | A runtime or dependency whose support ends within six months. `--due` counts a fact due when its own words date an end of support, after a word such as "ends", "ended", "to" or "until", that falls within six months or has passed since the fact was checked, so the weekly check names it | shipped | done, 2026-11-16 |
 | `copier` template | The standard's starter files, so a new repository is set up without a session | planned | the first repository set up from this one |
 | A repository's own skills | `skillcheck` on a consuming repository's `.claude/skills/`, without this catalog's checks, with a marker for a draft and a check of a skill's scripts and tests beside it. Both audited repositories' steward skills asked for it; `--verify` there also needs to tell a source that wants credentials from a quote that's gone | planned | the next audit of either repository |
 | Reusable workflows | This repository's CI gates, callable from other repositories | planned | a second repository wants this CI |

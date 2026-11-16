@@ -20,8 +20,9 @@ def row(
     quote: str = '"a quote"',
     checked: str = "2026-01-01",
     check_by: str = "2026-06-30",
+    text: str = "A fact",
 ) -> str:
-    return f"| {ident} | A fact | {source} | {quote} | {checked} | {check_by} |\n"
+    return f"| {ident} | {text} | {source} | {quote} | {checked} | {check_by} |\n"
 
 
 def facts_skill(repo, table: str, body: str = "Body.\n"):
@@ -58,7 +59,14 @@ def test_well_formed_facts_pass_and_are_counted(repo):
     by_id = {fact.id: fact for fact in facts.collect(repo.root)}
     assert list(by_id) == ["one", "two-links", "escaped", "tag-sha", "by-hand", "later"]
     assert by_id["one"] == facts.Fact(
-        FACTS_MD, FIRST_ROW, "one", ("https://example.com/docs",), ("a quote",), date(2026, 6, 30)
+        FACTS_MD,
+        FIRST_ROW,
+        "one",
+        ("https://example.com/docs",),
+        ("a quote",),
+        date(2026, 6, 30),
+        date(2026, 1, 1),
+        (),
     )
     assert by_id["two-links"].sources == ("https://example.com/a", "https://example.com/b")
     assert by_id["escaped"].quotes == ('the "area: " prefix',)
@@ -185,7 +193,7 @@ def test_a_rationale_link_to_a_missing_file_is_a_broken_link(repo):
 
 
 def fact(ident: str, *sources: str, quotes: tuple[str, ...] = ("a quote",)) -> facts.Fact:
-    return facts.Fact(FACTS_MD, 1, ident, sources, quotes, date(2026, 6, 30))
+    return facts.Fact(FACTS_MD, 1, ident, sources, quotes, date(2026, 6, 30), date(2026, 1, 1), ())
 
 
 def test_verify_finds_quotes_however_the_page_sets_them():
@@ -421,6 +429,86 @@ def test_due_refuses_a_date_it_cannot_read(repo, capsys):
         main([str(repo.root), "--due", "30/09/2026"])
     assert exited.value.code == 2
     assert "'30/09/2026' is not a YYYY-MM-DD date" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(
+    ("text", "ends"),
+    [
+        (".NET 8 and 9 ended on 2026-11-10, at 8.0.34", [("2026-11-10", date(2026, 11, 10))]),
+        (".NET 10 is LTS, to 2028-11-14", [("2028-11-14", date(2028, 11, 14))]),
+        ("3.11 gets security fixes until 2027-10", [("2027-10", date(2027, 10, 1))]),
+        ("Reaches end of life on 2027-05-05", [("2027-05-05", date(2027, 5, 5))]),
+        ("Version 9 is EOL 2026-08-06", [("2026-08-06", date(2026, 8, 6))]),
+        (
+            "Stable 2.6.5 (2026-11-02); 2.0 serviced to 2027-04-29; 1.8's ended 2026-09-24",
+            [("2027-04-29", date(2027, 4, 29)), ("2026-09-24", date(2026, 9, 24))],
+        ),
+        ("Released 2026-11-02, from 2026-06-16", []),  # a release or a start, not an end
+        ("Ends 2026-02-30, or ends 2027-13", []),  # no such day, no such month
+        ("Ends early 2027", []),  # no date to count from
+    ],
+)
+def test_a_fact_dates_an_end_of_support_after_a_word_that_ends_it(repo, text, ends):
+    facts_skill(repo, HEADER + row(text=text))
+    [found] = facts.collect(repo.root)
+    assert list(found.ends) == ends
+
+
+def ending(end: str, checked: str) -> facts.Fact:
+    day = date.fromisoformat
+    return facts.Fact(
+        FACTS_MD, 1, "eol", (), (), day("2030-01-01"), day(checked), ((end, day(end)),)
+    )
+
+
+@pytest.mark.parametrize(
+    ("end", "checked", "reasons"),
+    [
+        (
+            "2026-11-10",
+            "2026-10-26",
+            [
+                "names support ending 2026-11-10, which has passed since "
+                "it was checked on 2026-10-26"
+            ],
+        ),
+        ("2026-11-10", "2026-11-11", []),  # checked since it passed
+        (
+            "2026-11-16",
+            "2026-01-01",
+            [
+                "names support ending 2026-11-16, which has passed since "
+                "it was checked on 2026-01-01"
+            ],
+        ),
+        (
+            "2027-05-18",
+            "2026-01-01",
+            ["names support ending 2027-05-18, within six months of 2026-11-16"],
+        ),
+        ("2027-05-17", "2026-11-15", []),  # checked inside the six months
+        ("2027-05-19", "2026-01-01", []),  # 184 days away
+    ],
+)
+def test_an_end_of_support_makes_its_fact_due_once_ahead_and_once_after(end, checked, reasons):
+    assert facts.support_ending(ending(end, checked), date(2026, 11, 16)) == reasons
+
+
+def test_due_counts_a_fact_due_both_ways_once(repo, capsys):
+    table = HEADER + row(
+        "`eol`", checked="2026-01-01", check_by="2026-06-30", text="Version 1 ends 2026-12-01"
+    )
+    table += row("`ended`", checked="2026-01-01", check_by="2027-01-01", text="Ended 2026-03-01")
+    facts_skill(repo, table)
+    assert main([str(repo.root), "--due", "2026-07-01"]) == 1
+    assert capsys.readouterr().out == (
+        f"{FACTS_MD}:{FIRST_ROW}: due: `eol` was to be checked again by 2026-06-30\n"
+        f"{FACTS_MD}:{FIRST_ROW}: due: `eol` names support ending 2026-12-01, within six months "
+        "of 2026-07-01\n"
+        f"{FACTS_MD}:{FIRST_ROW + 1}: due: `ended` names support ending 2026-03-01, which has "
+        "passed since it was checked on 2026-01-01\n"
+        "skillcheck: 2 fact(s), 2 due by 2026-07-01\n"
+    )
 
 
 def test_verify_prints_each_fact_it_could_not_confirm(repo, capsys, monkeypatch):

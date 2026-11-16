@@ -6,6 +6,142 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-16 — `markdown-format` split from `writing-style`; L23, L25 and L27 taken in
+
+- **Why now:** `writing-style` (15,925 characters) and `prose-check` (15,996) sat at the
+  16,000-character limit, as the 2026-10-27 entry warned, and L25 and L27 waited for
+  `writing-style`, which had no room.
+- **The seam:** what prose says against how a Markdown file is laid out. `writing-style` keeps
+  rules 1 to 7 and 11 to 13: voice, words to cut, plain words, American spelling, dates and
+  records. The new `markdown-format` takes rules 8 to 10: headings, wrapping, lists, code
+  blocks, tables, links and emphasis, file names and a README's sections, with their Why
+  sections. Both stay in `house-style`, so no row in `docs/module-moves.md`. Every fact keeps
+  its ID: `google-sentence-case` and `ms-sentence-case` move to `markdown-format`.
+- **`prose-check` trimmed to 14,869 characters,** with no rule lost: the spelling rule's list of
+  patterns moved to `writing-style`'s American spelling section, and the `heading-colon` fact,
+  a style guides' fact, to `markdown-format`. `prose-check` names both.
+- **Lessons taken in:**
+  - L25, in `writing-style`'s *Claims and their evidence*: the strongest verb the evidence
+    supports and no stronger, the artifact named, and what an absence means. Its Why cites L25,
+    with L5 and L4 as the cases.
+  - L27, in `writing-style`'s *Instructions for a reader who isn't a programmer*: no
+    application name where it could be typed, the screen described, one command per block
+    with its expected output. `markdown-format`'s code rule and Why carry its formatting half.
+  - The rest of L23, in `coding`'s `c-build`: argument shape is a probe axis of its own (rule
+    8, the Fuzzing section, an audit row and the Why, which now cites L23 three times). Room
+    came from tighter wording and shorter quotes that stay exact substrings of the checked
+    ones, with no rule, mistake, audit row or example cut: 15,970 characters, so its next
+    addition splits it first.
+- **One new fact,** `google-code-font`: Google keeps code font for text entered verbatim, and
+  bold, not code font, for a named element on screen. Read at the source on 2026-11-16.
+- **Pointers moved:** the router, `documentation`'s and `prose-check`'s openings, the
+  `prose-check` trigger test's note, and `architecture`'s `repo-structure`, which sent Markdown
+  file names to `writing-style`, now name `markdown-format`.
+- **Reviewed against `docs/authoring-a-skill.md`, for `markdown-format`:**
+  1. Whose work: the owner's own, moved from `writing-style`; nothing work-owned.
+  2. Sources: three facts moved with their IDs and dates; one new, checked today.
+  3. Licenses: Google's guide is CC BY 4.0 (fact `google-license`), Microsoft's short quotes
+     for facts, as before.
+  4. No secrets, company detail or audited repository: the L27 case is "one owner".
+  5. Fits both surfaces: no tool names, no network.
+  6. Frontmatter: `house-style`'s description already covers Markdown; unchanged.
+  7. Shape: Rules, Mistakes, Audit, Why, Facts, Sources; 9,924 characters; other modules named
+     in words.
+  8. No code blocks added.
+  9. Trigger evaluations: five should-trigger requests and three near misses
+     (`writing-style`, `prose-check`, `documentation`). `writing-style`'s set gains a claims
+     request and a non-programmer request, and its heading near miss now names
+     `markdown-format`.
+  10. Catalog unchanged, since the skill isn't new; a shipped `ROADMAP.md` row; the README's
+      `house-style` row still fits.
+  11. CHANGELOG lines below; `metadata.reviewed` was already 2026-11-16.
+  12. No old copy on claude.ai covers this module, so nothing to delete.
+- **Requests for the owner to try on claude.ai,** from `uv run skillcheck --tries
+  markdown-format writing-style`: "Are headings in sentence case or title case here?" should
+  read `markdown-format`, not `writing-style`; "Rewrite this README so it reads plainly and
+  drops the marketing fluff." should read `writing-style`, not `markdown-format`.
+
+## 2026-11-16 — `testing`'s `test-strategy`, from R06c
+
+- **Asked, by the owner:** "do all" to the triage list (2026-11-16), which included the
+  planned `test-strategy` row.
+- **Built:** `test-strategy`: tests sorted by size and by scope, the mix set by what broad
+  tests cost rather than by a shape, a command-line program's logic tested in process and its
+  binary in a temporary directory, real dependencies kept where quick and hermetic, test data
+  built per test from factories, an inventory of the program's commands and settings matched
+  against tests, skipped tests counted, and metamorphic and differential testing where no
+  oracle exists. 13 facts, prefix `ts-`, each quote read at its source on 2026-11-16.
+- **Sources:** R06c's checked claims (Fowler's TestPyramid and test-shapes article, Dodds'
+  trophy, *Software Engineering at Google* ch. 11, the Tetragon pull request, Testcontainers'
+  versions, with Go at v0.45.0 as R06c's verification corrected). R06c doesn't cover
+  metamorphic or differential testing, and R06b names them only as unchecked leads. Those were
+  checked today against the primary sources, as `research/README.md` allows when a skill relies
+  on a claim: Chen, Cheung and Yiu's 1998 report (arXiv 2002.12543), Segura and others' 2016
+  survey (White Rose eprint), and Yang and others' Csmith paper (PLDI 2011). Test data adds
+  pytest's `tmp_path`, Go's `t.TempDir()` and factory_boy 3.3.3, read today from their docs
+  and PyPI. R06c's factory_boy and Bogus lines were unchecked; Bogus isn't used.
+- **Moved:** `testing-patterns`' "Strategy, still being checked" paragraph is gone (15,960 to
+  15,734 characters); it held no facts, so no ID moved. Its ROADMAP row drops "Strategy".
+- **Neighbours:** `test-oracles` no longer says differential and metamorphic testing wait for
+  R06c; `acceptance-runs`, `flaky-tests` and `test-gates` send test strategy to
+  `test-strategy`. The router gains its row, the description gains "strategy, test data"
+  (249 characters), and `metadata.reviewed` is 2026-11-16. The README's `testing` row names
+  test data and metamorphic and differential testing.
+- **The review in `docs/authoring-a-skill.md`:**
+  1. Whose work: this repository's own; nothing work-owned.
+  2. Sources: each fact from a primary source with its link, exact quote, checked 2026-11-16,
+     and a check-by date (six months for guidance, three for versions). Three PDFs are checked
+     by hand when due.
+  3. Licenses: SWE at Google CC BY-NC-ND 4.0 and Fowler's pages quoted, never adapted; Dodds,
+     the papers and Tetragon (Apache-2.0) as short quotes; pytest, Go and factory_boy docs as
+     short quotes. Nothing adapted, so no notice file.
+  4. No secrets, company detail or audited repository names; the one named project, Cilium
+     Tetragon, is a research source.
+  5. Fits Claude Code and claude.ai: no commands to run, no tool names.
+  6. Frontmatter: spec fields only; description at 249 characters.
+  7. Shape: Rules, Mistakes, Audit (status words only), Why, Facts, Sources; 15,511
+     characters; names other modules in words.
+  8. No code examples.
+  9. Trigger evaluations: six requests that should reach it and two near misses (a mutation
+     tool's version, `testing-patterns`; a test passing one run in ten, `flaky-tests`).
+  10. ROADMAP row shipped; README row updated; `skillcheck` 0 findings.
+  11. CHANGELOG lines below; `metadata.reviewed` set.
+  12. Old copy: none; a new module of a shipped skill.
+- **Found, not changed:** SWE at Google ch. 11 recommends "only measuring coverage from small
+  tests to avoid coverage inflation", while `testing-patterns` rule 2 says to count
+  integration and system tests' coverage too. The two need reconciling in `testing-patterns`,
+  with that quote as a fact, in a later change.
+- **Not taken in:** snapshot and approval-testing rules, transaction rollback per test, and
+  idioms per language, which R06c lists as not covered.
+
+## 2026-11-16 — The end-of-life warning, in `--due`
+
+- **What:** the roadmap's end-of-life warning, planned since its trigger was met in 0.1.22,
+  is built into `skillcheck --due`. A fact whose own text dates an end of support makes it due
+  once when that end comes within six months (183 days) and again once the end has passed,
+  each unless the fact was checked inside that span. The Freshness workflow names it in the
+  existing "Due to be checked again" section, and `--due`'s exit code opens the issue, so the
+  workflow is unchanged.
+- **The signal:** an ISO date (`YYYY-MM-DD`, or `YYYY-MM` counted from the month's first day)
+  straight after a word that ends support: "end", "ends", "ended", "EOL", "end of life", "end of
+  support", "removed", "retired", "discontinued", "halted", "to", "until" or "through", with an
+  optional "on" or "in". Only the Fact column counts: the quote is the source's wording, and a
+  date alone is most often a release's. Tested against all 1,111 facts on 2026-11-16: it finds
+  16 facts and 21 dates, all of them ends of support or of a runtime, and none of the 98 facts
+  with only release or start dates. No marker on fact rows was needed.
+- **Why not list every end in the window or past:** a fact that records an end already past,
+  such as `py-eol-310`, would keep the weekly issue open for good. Counting the end only when it
+  has come since the fact's Checked date makes the warning one an author clears by checking the
+  fact again, as with a check-by date.
+- **What it misses:** three facts date an end in words the pattern doesn't read.
+  `win-server-support` lists its dates after "ends:" ("2016, 2027-01-12"), and Windows Server
+  2016's end, 2027-01-12, is inside six months now; `linux-ubuntu` says "22.04 ends May 2027";
+  `os-timefold-editions` says "1.x ends early 2027", which has no day. The first two are reworded here,
+  and step 2 of `docs/authoring-a-skill.md` now says to write an end of support that way.
+  PowerShell 7.4 and 7.5's fact was read again at its source and now says they ended.
+- **First run, 2026-11-16:** `ps-lifecycle-74-75` (PowerShell 7.4 and 7.5 end 2026-11-10,
+  checked 2026-10-26) is due.
+
 ## 2026-11-16 — Anthropic's document skills may be adapted, from a pinned commit
 
 - **Approved, by the owner:** F, on 2026-11-11 (the entry of that date below records the

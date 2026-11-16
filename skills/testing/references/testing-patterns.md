@@ -5,7 +5,8 @@ at its current version; gating on coverage; mocking a library you don't own; con
 between services; and runner settings that let an empty run go green.
 
 Proving a check can fail is `test-gates`; what output is checked against, `test-oracles`;
-intermittent failures, `flaky-tests`; tests an AI agent writes, `agent-written-tests`. CI is
+intermittent failures, `flaky-tests`; tests an AI agent writes, `agent-written-tests`; the mix
+of tests, test data and metamorphic testing, `test-strategy`. CI is
 git-workflows' `ci-workflows` and `ci-speed`; GUI tests, user-experience's `gui-testing`. The
 standard's dimension 5, *Testing and verification*, says when to add a coverage threshold and
 mutation testing.
@@ -61,12 +62,6 @@ bats' `--abort`, which stops at the first failure, suits local runs, not CI's fu
 A dash is a tool not checked yet. Idioms such as fixtures, parameters and async tests are in
 `coding`'s `python-coding`, `javascript-coding`, `csharp-coding`, `powershell-scripts`,
 `bash-coding` and `c-build` modules.
-
-### Strategy, still being checked
-
-The test pyramid, the trophy and Google's test sizes disagree on the mix of tests. Their
-sources, test-data patterns and metamorphic testing are in research run R06c, not yet here.
-Hardware acceptance runs and fault injection are the `acceptance-runs` module.
 
 ## Mistakes
 

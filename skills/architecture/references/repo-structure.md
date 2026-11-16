@@ -7,7 +7,7 @@ and folders, one repository or several, and moving files without losing history.
 The standard's *Project shapes and layout* gives each shape's source root, test root, entry
 point and auxiliary files; this module covers what it leaves open. Each language's tooling is
 its module in the `coding` skill, such as `python-coding`; ignore files are `gitignore`;
-grouping commits is `commits-and-pull-requests`; Markdown file names are `writing-style`.
+grouping commits is `commits-and-pull-requests`; Markdown file names are `markdown-format`.
 
 ## Rules
 

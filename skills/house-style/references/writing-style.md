@@ -1,87 +1,39 @@
 # Writing style
 
-Read this for writing or reviewing prose or Markdown: headings, lists, wrapping, code, tables,
-links, file names, a README's sections, word choice and spelling, and why each rule is what it is.
+Read this for writing or reviewing what prose says: a claim and the evidence behind it,
+instructions a reader who isn't a programmer can follow, words to cut, plain words, American
+spelling, dates and records, and why each rule is what it is.
 
-It details the thirteen rules in this skill's `SKILL.md`, numbered as there. Running the check
-is `prose-check`; commits and the changelog, git-workflows.
+It details this skill's rules 1 to 7 and 11 to 13, numbered as in `SKILL.md`. Headings, lists,
+wrapping, code blocks, tables, links, file names and a README's sections are `markdown-format`;
+running the check is `prose-check`; commits and the changelog, git-workflows.
 
 ## Rules
 
-### Headings
+### Claims and their evidence
 
-- **Sentence case:** the first word and proper nouns capitalized, nothing else: "Where new
-  content goes", not "Where New Content Goes".
-- **One `#` heading per file,** as its title, then `##` and `###` in order, none skipped and
-  none deeper than `####`. A file that needs a fifth level wants splitting.
-- **A heading names what follows,** with no trailing full stop, and is never used for emphasis.
-- **A colon, not a dash, joins a label to its title,** and the word after it is capitalized:
-  "Decision 30: Choose a database". Words after a dash continue the heading, in lowercase.
-- **A name lowercase by nature,** such as a repository or a command, goes in code formatting or
-  the repository's vocabulary, so the check accepts it.
+A report, a pull request or a status line makes claims (rule 4):
 
-### Paragraphs and line length
+- **A claim takes the strongest verb its evidence supports, and no stronger.** "Fixed" and
+  "passes" need a run that shows it; what was only read is "the code reads as if"; what wasn't
+  run is "untested". A run that showed it is stated plainly, not hedged.
+- **A claim names its artifact:** the commit, file and line, test, log or run it rests on, so a
+  reader can check it. "Tests pass" becomes "`uv run pytest` passed at commit `a1b2c3d`, 412
+  tests".
+- **An absence says what it means.** "No errors" says what was searched, over what span, and
+  whether that source would have shown an error at all. Nothing found isn't nothing looked for.
 
-- **Wrap prose at 100 characters.** A table row, a URL or a code line can run longer, and so
-  can a line a program parses, such as a skill's frontmatter.
-- **One idea per paragraph,** led by its point (rule 1).
-- **A rule or a list item may open with its point in bold,** then the detail, as here.
-- **Blank lines surround each heading, list, table and code block.** No line ends in spaces,
-  and the file ends in one newline, both kept by a repository's `.editorconfig`.
+### Instructions for a reader who isn't a programmer
 
-### Lists
+A person following steps they can't judge does exactly what the text seems to say (rule 7):
 
-- **`-` for bullets.** Numbers only for steps done in order, or items the text cites by number.
-- **A sentence introduces each list,** ending in a colon where the list completes it.
-- **Items in one list share a form:** all sentences, or all fragments.
-- **Continuation lines indent** under the item's text: two spaces under `- `, three under `1. `.
-- **Two levels of nesting at most.** Deeper reads better as a table or as sections.
-
-### Code
-
-- **Fenced code blocks name their language:** `sh`, `python`, `yaml`, `json`, `ini`, or `text`
-  for output and plain text.
-- **Inline code** holds commands, paths, file names, identifiers, keys, and values to type
-  (rule 9), never emphasis.
-- **A destructive command** shows its dry run or its confirmation first.
-
-### Tables
-
-- **A table compares things on the same points,** or holds reference data looked up by a key.
-  Anything read in order is a list.
-- **Every table has a header row,** and a cell holds one fact.
-
-### Links and emphasis
-
-- **Link text says where it goes:** "the setup reference", not "here".
-- **Links inside a repository are relative,** so they work on a fork, a clone and a branch.
-- **Bold** opens a paragraph or list item with its key phrase, and *italics* name a section
-  being cited. Neither does anything else.
-
-### File names
-
-- **Lowercase with hyphens,** such as `authoring-a-skill.md` (rule 9), apart from the usual
-  capitalized root files: `README.md`, `LICENSE`, `CHANGELOG.md`, `SECURITY.md`,
-  `CONTRIBUTING.md`, `AGENTS.md`, `CLAUDE.md`, and others a tool expects by name.
-
-### A README's sections
-
-Every README has at least these, in this order, under these headings (rule 10); others go where
-they fit. project-bootstrap-and-audit's README template adds Requirements before Install, and
-Configuration after Usage.
-
-| Section | Holds |
-|---|---|
-| The opening paragraph | Under the title: what the project does, and for whom |
-| Install | The commands, from nothing to installed |
-| Usage | The first thing to do with it, and where the rest is documented |
-| Development | How to build, test and check it, and release it if it releases |
-| Operations | How to run it, and roll back or withdraw something gone wrong |
-| Security | How to report a vulnerability, or a link to `SECURITY.md` |
-| License | Its license, by name, linked to the file |
-
-A section a program generates from another file is fixed in that file, and generated again. A
-comment says where the output starts and ends, and what writes it.
+- **An application's name never sits where it could be read as something to type,** such as
+  in code formatting or beside a command. Say where to find it, "open the program named
+  Konsole from the applications menu", and keep code formatting for what's typed.
+- **Say what the screen looks like** at each step: "you're in the terminal when the line ends
+  in a `$`".
+- **One command per block,** each followed by what its output should look like, so the reader
+  can tell success from failure before the next step.
 
 ### Words to cut, and what to use instead
 
@@ -116,8 +68,13 @@ Rule 2: a common word where one exists, and one term for each thing.
 ### American spelling
 
 HouseStyle's `Spelling` rule finds common British forms, such as -ise, -our and -re, and gives
-the American (rule 12); `prose-check` lists the patterns. Names, such as the Open Government
-Licence, and quotes keep their own spelling.
+the American (rule 12). Most of its words follow a pattern: -ise and -isation to -ize and
+-ization (organize, organization, recognize); -our to -or (behavior, color, favor); -re to -er
+(center); -ogue to -og (catalog); -ence to -ense in some nouns (license, defense, offense); a
+doubled `l` to one before -ed and -ing (labeled, canceled, modeling); and -ement after -dg to
+-ment (judgment, acknowledgment). It leaves alone -ise words the same in both, such as advise,
+exercise, promise, otherwise and expertise. Names, such as the Open Government Licence, and
+quotes keep their own spelling.
 
 A label or value the code defines, such as a button's text, is written as the code spells it,
 in code formatting, which the check skips. In the project's own code, fix the spelling there
@@ -139,11 +96,13 @@ first, and the documentation follows.
 
 ## Mistakes
 
-- **Title Case headings,** copied from a template or another guide (rule 8).
-- **A capital after a dash in a heading:** use a colon (rule 8).
 - **"Just", "simply" and the rest of the six,** in any sense: the check flags `just` meaning
   "only" too (rule 3).
 - **A hedge where the fact can be checked,** such as "should work" (rule 4).
+- **"Fixed" or "verified" with no run behind it,** or "no errors" with no word on what was
+  searched (rule 4).
+- **"Open Konsole" to a reader who isn't a programmer,** or three commands in one block with
+  no expected output (rule 7).
 - **Three names for one thing,** such as "the record", "the log" and "the history" (rule 2).
 - **Session detail,** such as "as we discussed" or "the earlier run", which a reader who wasn't
   there can't follow (rule 7).
@@ -151,7 +110,6 @@ first, and the documentation follows.
   output, and an append-only record's past entries or their order.
 - **Converting a quote to American spelling,** or an app's label in the documentation only
   (rule 12).
-- **Link text that says "here"** or "this link".
 
 ## Audit
 
@@ -163,9 +121,8 @@ Severity uses the standard's status words: `BLOCKER`, `DRIFT`, `GAP`, `OVER`, `M
 | The checked rules pass | `git ls-files -z '*.md' \| xargs -0 vale`, where `prose-check` is set up | `GAP` per file that fails | Fix the text, or add a flagged name to the vocabulary |
 | The answer comes first | The first paragraph of each README, report and pull request description | `GAP` where it opens with background | Move the result to the top |
 | Facts carry sources and dates | Versions, dates and support windows in the prose | `GAP` per stale-prone fact lacking either | Check it and add both, or say it wasn't checked |
-| The README's sections | Each README's headings, against rule 10's order | `GAP` per missing section | Add it; short is fine |
-| Lines wrap at 100 | `prose-check`'s wrap check, which skips frontmatter, code and tables, and doesn't count URLs | `DRIFT` | Rewrap the paragraph |
-| File names | `git ls-files` for capitals or underscores outside the usual root files | `DRIFT` | Rename, and fix the links |
+| Claims match their evidence | Each "fixed", "verified", "passes" or "no errors" in a report or pull request | `GAP` per claim with no named run or artifact | Name it, or weaken the verb to what was done |
+| Steps a non-programmer can follow | An application's name in code formatting; several commands in one block; no expected output | `GAP` | Name where to find it, one command per block, and its output |
 
 ## Why
 
@@ -203,6 +160,14 @@ skips.
 tells the next reader when to doubt it. Saying what wasn't checked costs a sentence, and stops a
 guess passing for a finding. **Cost:** time at writing, and a date to check again by.
 
+A claim's verb is a fact about its evidence, and a reader acts on the verb (L25). Four
+releases once claimed a fix that no test through the app had shown (L5). An evidence bundle
+that listed what it left out let "nothing was missing" be told from "nothing was collected"
+(L4). Naming the artifact turns a claim into something checked in a minute. This is the
+repository's own lesson; the guides cited here don't state it. **Cost:** longer sentences, and
+saying what wasn't run. A verb weaker than the evidence costs the reader a check they needn't
+make, so the rule cuts both ways.
+
 ### 5. Short sentences in the active voice
 
 **Why:** a long sentence holds its reader's memory until its verb arrives. The active voice names
@@ -220,30 +185,12 @@ one is kept forever, or broken on a guess. A status that names who it waits on g
 **Why:** repositories outlive the conversations that changed them. A reader a year on, or a new
 agent, has only the text.
 
-### 8. Markdown's form
-
-**Why:** sentence case is Google's and Microsoft's choice (facts `google-sentence-case`,
-`ms-sentence-case`). It's quicker to read, with no doubt over which small words to capitalize.
-Both capitalize after a colon in a heading. Google puts a colon, not a dash, after a label, and
-Microsoft's em dash sets off a remark (fact `heading-colon`). Those pages don't say what follows
-a dash in a heading, so lowercase there is this style's own choice, and the check flags a
-capital. Wrapped lines make a diff show the sentence that changed, and spare a reviewer
-scrolling sideways. Fenced code with a language gets highlighted.
-**Others:** some guides use title case. The check takes one side, so a repository mixing the two
-is flagged. **Cost:** rewrapping a paragraph changes every line after the edit. Wrapping at
-sentence ends would avoid that, at the price of ragged files, so this style wraps by length.
-
-### 9. Code formatting and file names
-
-**Why:** code formatting tells a reader what to type exactly. Lowercase names avoid clashes
-between file systems that do and don't care about case, and hyphens read as word breaks in a
-URL.
-
-### 10. One README layout
-
-**Why:** a reader who knows one repository can find the install steps in all of them. **Cost:**
-a small repository has some short sections. Short is fine; missing makes a reader hunt. A fix
-made in generated output is undone by the next run, so it goes to the source.
+A reader who isn't a programmer can't tell a program's name from a command. One owner typed
+`Konsole` at a prompt after reading "open Konsole" (L27). Describing the screen lets them
+check where they are, and an expected output per command lets them stop at the first failure
+rather than three steps on. Google keeps code font for what's typed and bold for what's on
+screen (fact `google-code-font`). **Cost:** longer instructions. **Choose differently:** for a
+reader who runs commands daily, a block of several commands is fine.
 
 ### 11. Commits, changelogs and decisions
 
@@ -270,8 +217,6 @@ What other style guides say, each named elsewhere by its ID.
 
 | ID | Fact | Source | Quote | Checked | Check by |
 |---|---|---|---|---|---|
-| `google-sentence-case` | Google puts headings in sentence case | [Headings and titles](https://developers.google.com/style/headings) | "Use sentence case for headings and titles." | 2026-10-05 | 2027-04-05 |
-| `ms-sentence-case` | Microsoft uses sentence-style capitalization | [Capitalization](https://learn.microsoft.com/en-us/style-guide/capitalization) | "Microsoft style uses sentence-style capitalization." | 2026-10-05 | 2027-04-05 |
 | `google-just` | Google calls "just" usually filler, and suggests cutting "simply" | [Word list](https://developers.google.com/style/word-list) | "Usually, just is a filler word" and "Try eliminating this word" | 2026-10-05 | 2027-04-05 |
 | `google-leverage` | Google avoids "leverage" meaning "use" | [Word list](https://developers.google.com/style/word-list) | "Avoid using if you mean use." | 2026-10-05 | 2027-04-05 |
 | `google-license` | Google's style guide is under CC BY 4.0 | [Style guide](https://developers.google.com/style) | "licensed under the Creative Commons Attribution 4.0 License" | 2026-10-05 | 2027-04-05 |
@@ -283,6 +228,5 @@ Rules here are in this skill's own words, and each brief, attributed quote is a 
 
 | Source | Used for | License |
 |---|---|---|
-| [Google developer documentation style guide](https://developers.google.com/style) | Sentence case and colons in headings; "just", "simply", "leverage" | CC BY 4.0 (fact `google-license`): short quotes, attributed |
-| [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) | Sentence-style capitalization, colons and em dashes | Microsoft's terms of use: short quotes, for facts |
+| [Google developer documentation style guide](https://developers.google.com/style) | "just", "simply", "leverage" | CC BY 4.0 (fact `google-license`): short quotes, attributed |
 | [GOV.UK style guide](https://www.gov.uk/guidance/style-guide/a-to-z) | Plain English; "leverage", "robust" | Open Government Licence v3.0: short quotes, attributed |
