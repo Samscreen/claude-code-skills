@@ -62,7 +62,7 @@ research. These rules are that structure.
 
 | Skill | Plugin | Loads when | Status |
 |---|---|---|---|
-| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.49.2 | shipped |
+| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.50.0 | shipped |
 | `git-workflows` | `engineering` | Commits, branches, pull requests, CI, hooks, tags, changelogs and releases | shipped |
 | `house-style` | `engineering` | Writing prose, Markdown, READMEs and documentation | shipped |
 | `coding` | `engineering` | Writing, reviewing or fixing code in any language: the contract every change meets, then the language and the practice at hand | shipped |
@@ -414,6 +414,8 @@ Applied since the archive was cut:
 
 - **F168, in v0.49.2:** *Language toolchains* says PowerShell 7.4 and 7.5 and .NET 8 and 9
   ended on 2026-11-10, and names .NET 11 as an STS beside 10, the LTS; approved 2026-11-16.
+- **F169, in v0.50.0:** dimension 8 takes R21's verified claims, below, as rules on dependency
+  trees, names, unused ones, support and age gates; approved 2026-11-16.
 
 The owner asked for one more rule, researched before it's written:
 
@@ -422,7 +424,8 @@ The owner asked for one more rule, researched before it's written:
   and less for CI and dependency tools to check. R21 tests the aim against the evidence, and
   asks where it needs a limit. Its checked result goes into the standard as a change of its
   own, in dimensions 2, 6 and 8 and in what a new project starts with, so the pieces move text
-  that already carries it.
+  that already carries it. Dimension 8's part is in, as F169; the rest waits on claims R21
+  didn't verify, which R21b asks again.
 
 The owner also asked for one command that starts the standard from any repository, researched
 before it's built:

@@ -28,6 +28,27 @@ the last section lists each that still stands or is cited.
 - **Not changed:** `test-strategy`'s pointer already sends coverage to `testing-patterns`, and
   needs no new words.
 
+## 2026-11-16 — Standard v0.50.0: fewest dependencies, newest versions
+
+- **Asked:** the owner's "do all recommended" (2026-11-16), approving proposal S1 of the
+  self-audit, as F169, a minor applied on its own after v0.49.2. The owner asked for the rule
+  on 2026-09-24, and it waited on R21's checked result.
+- **Changed, dimension 8:** fewer dependencies is judged by the tree each one brings; each new
+  direct dependency is asked whether the runtime already does it, how many packages it adds,
+  and whether that exact name exists on its registry past the cooldown; a declared dependency
+  nothing uses is `OVER`, and a runtime or dependency past its end of support is `GAP`; a
+  package manager's age gate that's off is an `optional` amendment. Every claim used is one
+  R21's verification marks verified.
+- **Changed, *Platform capability*:** three rows, each quote read again at its source on
+  2026-11-16: npm's `min-release-age`, "Default: null", in days; uv's `exclude-newer` taking a
+  duration as a cooldown; pnpm's `minimumReleaseAge`, "This defaults to 1440 (1 day)". The
+  draft's npm and pnpm rows gave no quote; they carry one now.
+- **Left for R21b:** dimensions 2 and 6 and what a new project starts with get nothing from R21
+  yet, since R21 didn't verify the claims they'd need. `ROADMAP.md` says so.
+- **Cost:** about 30 lines every audit reads in dimension 8, three facts to recheck, and new
+  findings for audited repositories. No parity run: Tests B and C's answer keys may need a row
+  for an unused dependency before the next release.
+
 ## 2026-11-16 — Standard v0.49.2: the toolchain rows past 2026-11-10
 
 - **Asked:** the owner's "do all recommended" (2026-11-16), approving it as F168, a patch
