@@ -132,7 +132,9 @@ as required too, whether or not the ruleset lists them yet.
 - **Messages to another repository** go through the owner, as text or a file they send, and go
   out only after their pull request here is merged and green. Each carries the condition it
   depends on, such as "if the pull request is still open". Findings about another repository go
-  to `audit-reports`, never here.
+  where its owner keeps them, never here: a work repository's to `audit-reports`, a personal
+  repository's into that repository, by its own rules for records, or kept in the session. Never
+  file a personal project's findings in `audit-reports` (the owner, 2026-11-17).
 
 ## When unsure, and when to stop
 

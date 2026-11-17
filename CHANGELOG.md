@@ -6,6 +6,11 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- The standard is v0.52.0: where a run's report is kept follows who owns the audited repository,
+  and a personal project's findings never go into a company's report repository.
+  `usability-review` and the steward say the same.
 
 ## [0.1.31] - 2026-11-16
 

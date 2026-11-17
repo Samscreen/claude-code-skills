@@ -2,9 +2,9 @@
 name: project-bootstrap-and-audit
 description: "Re-runnable configuration standard for one maintainer. A skill whose procedure is its SKILL.md, with this file and the other references read in ranges rather than end to end, that proposes changes to itself at the approval gate. Chooses a language and a shape for something new, sets up the repository, retrofits an existing one, or audits configuration that already exists — against a two-axis stakes model and ten dimensions, then sequences what is left. Emits a fixed schema so two runs on the same repository produce comparable output. Folds in file governance, the release and deploy currency gate, secret handling, licensing, and cross-repository contracts. Stops at a hard approval gate before changing anything."
 metadata:
-  version: "0.51.0"
-  updated: "2026-11-16"
-  supersedes: "0.50.0"
+  version: "0.52.0"
+  updated: "2026-11-17"
+  supersedes: "0.51.0"
   reading: "Read in ranges. Start at the skill's SKILL.md, whose routing table names the sections each job takes."
   absorbs: "REPO-RECON.md, TEST-PROCEDURE.md, the standalone test procedure for this file — all deleted, their content is below"
   standards_repo: "<asked at the Phase 3 wait, recorded in the Phase 0 block — none is a valid answer>"
@@ -4691,6 +4691,14 @@ development is for. Versions 1.0.0 through 1.12.1 are the same content as 0.1.0 
 records are append-only and are not edited for this.
 
 ## Entries
+
+**0.52.0**: **one change**, F170, which the owner asked for on 2026-11-17: where a run's report
+is kept follows who owns the audited repository. A personal repository's report stays in that
+repository, by its own rules for records, or in the session; a company's goes where the company
+keeps its reports; never one owner's findings in the other's repository. *The report* in
+`SKILL.md` says so beside the rule on writing outside the repository. A session had filed two
+personal projects' reviews in a company's private report repository, following this
+repository's own steward, which named one place for every audit.
 
 **0.51.0**: **piece 1 of the rebuild**, which the owner started on 2026-11-16. The procedure
 moves out of this file into the skill's `SKILL.md`: *How to read this file* and its routing

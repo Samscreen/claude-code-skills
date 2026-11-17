@@ -62,7 +62,7 @@ research. These rules are that structure.
 
 | Skill | Plugin | Loads when | Status |
 |---|---|---|---|
-| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.51.0 | shipped |
+| `project-bootstrap-and-audit` | `standards` | Setting up, retrofitting, auditing or re-checking a repository against the standard, v0.52.0 | shipped |
 | `git-workflows` | `engineering` | Commits, branches, pull requests, CI, hooks, tags, changelogs and releases | shipped |
 | `house-style` | `engineering` | Writing prose, Markdown, READMEs and documentation | shipped |
 | `coding` | `engineering` | Writing, reviewing or fixing code in any language: the contract every change meets, then the language and the practice at hand | shipped |
@@ -492,6 +492,9 @@ Applied since the archive was cut:
   ended on 2026-11-10, and names .NET 11 as an STS beside 10, the LTS; approved 2026-11-16.
 - **F169, in v0.50.0:** dimension 8 takes R21's verified claims, below, as rules on dependency
   trees, names, unused ones, support and age gates; approved 2026-11-16.
+- **F170, in v0.52.0:** where a report is kept follows who owns the audited repository: a
+  personal one's stays in it or the session, never in a company's report repository, or the
+  reverse; asked for by the owner 2026-11-17.
 
 The owner asked for one more rule, researched before it's written:
 
