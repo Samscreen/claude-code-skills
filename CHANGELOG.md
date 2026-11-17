@@ -6,6 +6,8 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.32] - 2026-11-17
+
 ### Changed
 
 - The standard is v0.52.0: where a run's report is kept follows who owns the audited repository,
