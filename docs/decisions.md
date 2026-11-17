@@ -6,6 +6,38 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-17 — Two personal projects' records moved out of `audit-reports`, history next
+
+- **The owner's choices,** 2026-11-17, on the question the entry below left open: "Move, then
+  purge history", with the records kept "In each repository"; then "merge all that you can, and
+  release into the main branch what you need, without me doing the purge yet".
+- **Moved:** every file in `audit-reports` that named either personal project, 186 in all: both
+  projects' audit and review folders on `main`, and every file on `audit-log` whose content or
+  name mentioned either, in any commit. Each went unedited to a branch in its own repository,
+  with a draft pull request asking that repository's session to file it by its own rules, and
+  each copy was checked byte for byte first. Then `audit-reports` pull request 2 removed them from
+  `main`, a commit removed them from `audit-log`, and both READMEs now say only the company's
+  repositories' records are kept there.
+- **Not merged, on purpose:** the two import pull requests. Raw records fail each repository's
+  documentation gates (version footers, banned words, links to the peer's folders), and one's
+  commit subjects break its rules and can't be rewritten without a force push. Filing them, and
+  their evidence through each repository's own tool, is that repository's session's work.
+- **Waiting on the owner:** the history purge. This session's git proxy can't force-push. The
+  owner has a script that follows `git-workflows`' `leaked-data` step 5: the pinned tool checked
+  by hash, `--sensitive-data-removal`, checks that nothing names either project and that both
+  branches' files are exactly today's, a typed `YES`, one atomic push leased to the checked
+  commits, then `ls-remote` compared and a result to paste back. It was rehearsed against a local
+  bare copy, including "no" and a stale lease. Pull request refs keep the old commits until GitHub
+  Support removes them.
+- **What went wrong, and the lessons (L75 to L77):**
+  - The first list of files was built from the tip, and missed two files.
+  - The first rehearsal ran on stale, then shallow, local branches.
+  - The first script ignored this repository's own `leaked-data` module, read only after it was
+    written.
+  - The three lessons are in `ROADMAP.md`.
+- **Released as 0.1.32,** with the change below. `src/` is unchanged since 0.1.31, so that
+  release's mutation run stands.
+
 ## 2026-11-17 — Where a report is kept follows who owns the audited repository (standard v0.52.0)
 
 - **The owner's word,** 2026-11-17: `audit-reports` "is private and sits in the org. If you

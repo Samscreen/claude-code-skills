@@ -438,6 +438,18 @@ desktop GUI and a command-line tool, each run and screenshotted as a first-time 
   directory redirected and outside commands refused, grab every window as it changes, and script
   answers to its dialogs. It found a first-launch bug that one audited suite, which stubs every
   dialog, could not see.
+- **L75, `leaked-data`, waiting, module shipped:** a purge's file list comes from every version
+  of every file in history, matched by content and by path, never from the tip alone, and a
+  rehearsal runs on a fresh full clone of the remote's current refs. Here the tip-built list
+  missed two files, and the first rehearsal ran on stale, then shallow, local branches.
+- **L76, `leaked-data`, waiting, module shipped:** a file that stays at a purged path, such as a
+  README rewritten clean, is removed from history by blob ID (`--strip-blobs-with-ids`), not by
+  path, or the purge deletes the clean copy too. When the tip is cleaned first, the rewritten
+  tip's tree must equal today's: one exact check for the whole job.
+- **L77, `usability-review`, waiting, module shipped:** records moved into another repository
+  meet that repository's gates. Hand them to its session to file by its own rules, its evidence
+  tooling included, rather than merging them raw: the raw records here failed both destinations'
+  documentation tests.
 
 ## Rebuilding `project-bootstrap-and-audit`
 
