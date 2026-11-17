@@ -148,6 +148,7 @@ Grouped by subject; the Skill column is each module's one home.
 | `settings-and-options` | `user-experience` | Defaults, presets, progressive disclosure, each setting in one place, and how many choices is too many | shipped | standard | R27, R27b |
 | `gui-testing` | `user-experience` | Testing a GUI by machine, through accessibility interfaces and toolkit helpers, and with people, by task-based tests | shipped | standard | R27, R27b |
 | `interface-patterns` | `user-experience` | What a current interface is built from on each platform: design languages, stock components, one component per pattern, layout and window sizes, dense screens, forms, and loading, empty and failed states | shipped | standard | R29, R29b |
+| `wall-displays` | `user-experience` | Screens nobody touches: text sized by viewing distance, fitting every likely resolution without scrolling, no hover-only meaning, calm status, a key for every coded mark, coming back after a reboot | planned | core | R29b |
 | `command-line-interfaces` | `user-experience` | Command-line programs for people and scripts: option syntax and help, output for people against scripts, color, prompts, dry runs, secrets off flags, and argument parsers; exit codes are `error-handling`'s | shipped | standard | R29, R29b |
 | `feedback-loop` | `user-experience` | From user issues to fixes: feedback in the product, crash reports and consented usage data, triage, interfaces built to change, visual regression tests | shipped | standard | R30, R30b |
 | `accessibility` | `visual-design` | WCAG 2.2, ARIA, contrast, testing tools | planned | standard | R18 |
@@ -362,6 +363,81 @@ branch at `archive:2026-11-16/roadmap-lessons-taken-in.md`.
   built a dependency at a 7-character prefix, never compared the full commit, and only warned
   on a dirty tree. An update is verified by provenance, not by a checksum published beside it,
   which anyone who can replace the file can replace too, and a downgrade is refused.
+
+Taken from three end-user reviews of audited products on 2026-11-17: a wall-display web app, a
+desktop GUI and a command-line tool, each run and screenshotted as a first-time user meets it.
+
+- **L58, `wall-displays`:** a screen nobody touches sizes every element that changes a decision
+  by viewing distance, not only the headline number; fits without scrolling at 1280x720,
+  1366x768, 1920x1080 and 3840x2160, operating-system scaling included; carries no meaning in a
+  hover tooltip; shows no seconds or countdowns in the periphery; keys every coded mark on the
+  same screen; and comes back by itself after a reboot. One audited display showed 5 of its 10
+  rows at 1366x768, put its unit only in a tooltip, and needed a password typed after every
+  reboot.
+- **L59, `usability-review`, waiting, module shipped:** status for scheduled work outside its
+  hours measures age in the work's own hours, gives the next check as a clock time rather than
+  "in 577m", and an empty state says when data arrives and who can fetch it now. One audited
+  display went red with "do not quote" every night and weekend, and opened empty and red on a
+  first start after 6 pm in a mode with no data source to wait for.
+- **L60, `gui-testing`, waiting, module shipped:** screenshot tests run at fixed times of day
+  (start of day, after each cutoff, after hours, a weekend) and across a restart. A restart is
+  not a clock change: one display said its clock had moved, beside "updated 1s ago", after a
+  reboot.
+- **L61, `visual-theme`, waiting, module shipped:** "never color alone" holds only when the second
+  signal is visible at the size and distance of the text it marks, and when categories differ in
+  lightness as well as hue (check pairwise luminance and a color-blindness simulation, not only
+  contrast with the background). The names in settings match the colors drawn. One display's
+  second signal was a 3 px border style, about 1.4 arc minutes at its reading distance.
+- **L62, `interface-patterns`, waiting, module shipped:** a form reports every error in one pass,
+  beside each box: submit with every field wrong and count the messages. Range checks run with
+  parsing, in the user's words. One audited form reported one layer of errors per save, the
+  second only in its top bar.
+- **L63, `html-coding`, waiting, module shipped:** a sticky footer or save bar can hide the
+  focused field (WCAG 2.2, 2.4.11), as a sticky header can. `scroll-padding` on `html` fixes it;
+  a browser test checks the focused element's box against every fixed or sticky element.
+- **L64, `writing-style`, waiting, module shipped:** interface text keeps one noun for one thing,
+  a unit beside every number, one date and one time format across screens, messages and file
+  names, the users' spelling, no first-person option labels ("I type the days"), no "(s)"
+  plurals, no exclamation marks in errors, and routine conditions said as status, not as errors.
+  One audited product used seven date formats and three names for one product.
+- **L65, `writing-style`, waiting, module shipped:** a README's first screen holds what the
+  program does, for whom and how to start, in about 150 words before the first heading after the
+  title, with no release history or internal decision numbers above the install steps. Two
+  audited READMEs opened with over 300 words of project history.
+- **L66, `windows-and-dialogs`, waiting, module shipped:** at launch, at most one dialog; the
+  rest wait as a banner. A declined offer stays declined for that launch. One audited desktop app
+  opened four dialogs within 10 seconds after the user answered No, one reporting failures of a
+  setup that never ran.
+- **L67, `usability-review`, waiting, module shipped:** user-facing strings are searched for the
+  project's internal terms (process rounds, decision numbers, library names); no verdict word
+  such as "Done." sits over a warning; and a result a non-expert reads says what to do next.
+- **L68, `error-responses`, waiting, module shipped:** a desktop or command-line message never
+  shows exception text (`[Errno 2]`, a language's repr); it maps the known causes and offers the
+  log. An argument error names the option as typed, never an internal variable or type, and ends
+  by pointing to `--help`.
+- **L69, `command-line-interfaces`, waiting, module shipped:** when another program parses the
+  human output, that output is a contract: add hint lines rather than reword, and give the
+  consumer a machine channel before changing the text. Moving errors to stderr, as the module's
+  rule 3 says, would have hidden them from one audited tool's only consumer.
+- **L70, `command-line-interfaces`, waiting, module shipped:** progress redraws a few times a
+  second at most, never as `\r` animation when not a terminal, and labels a whole-job estimate as
+  such; help opens with a usage line and an example, fits 80 columns and prints defaults as typed;
+  a re-run that silently replaces earlier output is destructive; a linked library's messages go
+  to the program's log, not raw to the terminal. One audited tool redrew per frame into files, a
+  4-second track making one 15 KB line.
+- **L71, `visual-theme`, waiting, module shipped:** on the desktop, colors chosen at start-up are
+  chosen again on a live theme change (Qt's `PaletteChange`, GTK's `notify::dark`), and a test
+  flips the palette. One audited app measured both themes' colors and still kept the old ones
+  after a switch.
+- **L72, `settings-and-options`, waiting, module shipped:** a value from a known list of any length
+  is chosen, never typed (a time zone, a product group); list items follow the labels' case; a
+  preset marks the rows it changes.
+- **L73, `interface-patterns`, waiting, module shipped:** one list per subject: the same items in
+  two tables with different status words confuse. Add columns after an operation instead.
+- **L74, `gui-testing`, waiting, module shipped:** run the real program offscreen with its home
+  directory redirected and outside commands refused, grab every window as it changes, and script
+  answers to its dialogs. It found a first-launch bug that one audited suite, which stubs every
+  dialog, could not see.
 
 ## Rebuilding `project-bootstrap-and-audit`
 
