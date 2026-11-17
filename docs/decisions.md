@@ -6,6 +6,23 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-17 — Seventeen lessons from three end-user reviews, and a planned `wall-displays`
+
+- **Asked:** the owner, 2026-11-17: review the audited products for "ease of end user, ui, ux,
+  consistency of formatting, modernizing screens and layout", "and keep all things you find that
+  you can do better for yourself as well".
+- **How:** three helpers ran each product as a first-time user meets it (a wall-display web app
+  at four TV sizes and a phone, a desktop GUI offscreen with its dialogs scripted, a
+  command-line tool built and run on fixtures), measured them against this repository's
+  `user-experience`, `visual-design`, `coding` and `house-style` modules, and listed where those
+  modules missed a problem, said it vaguely, or gave no rule. The recommendations went to the
+  owner, not here; the products go unnamed.
+- **Kept here:** lessons L58 to L74 in `ROADMAP.md`, each naming the module that takes it in.
+  Sixteen go to shipped modules; L58 goes to a new planned `user-experience` module,
+  `wall-displays`, since no module covers a screen nobody touches.
+- **Found in our own work:** this session's review brief named a `platform-design` module that
+  doesn't exist; two helpers reported it. Briefs name modules from `ls`, not memory.
+
 ## 2026-11-16 — The owner's settings: required checks, a pull request rule, `archive`, branches
 
 - **Done by the owner,** answers 13 to 16 of 2026-11-16, and checked here through GitHub's API
