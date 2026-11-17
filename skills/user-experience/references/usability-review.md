@@ -77,6 +77,9 @@ first four come from one audited desktop application.
   summary verdict apart from its detail. Build every state from one result.
 - **Removing options to simplify a power-user tool.** Default, group or disclose them instead.
 - **"Five evaluators find 75%," quoted as Nielsen's.** NN/g's page says three to five.
+- **A review of a personal project filed in a company's report repository.** A review holds the
+  product's internals; keep it in the reviewed repository or the session, where its owner keeps
+  records, never across a personal and company line.
 
 ## Audit
 

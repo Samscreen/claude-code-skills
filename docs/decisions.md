@@ -6,6 +6,28 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-17 — Where a report is kept follows who owns the audited repository (standard v0.52.0)
+
+- **The owner's word,** 2026-11-17: `audit-reports` "is private and sits in the org. If you
+  audit [a personal project] with the org's standard and the findings land in that repo, you've
+  put your personal project's internals into a company repo … when auditing a personal repo,
+  have the findings written into that repo or kept in the session, not into audit-reports.
+  Worth adding a line to the skill itself saying where reports go, so it doesn't depend on
+  remembering."
+- **What went wrong:** this session filed end-user reviews of two personal projects in
+  `audit-reports` that day, following the steward's line that findings about another
+  repository go there, with no exception; the October audits of the same two are there too.
+- **Changed:**
+  - The standard, v0.52.0 (F170): *The report* in the skill's `SKILL.md` says where a report is
+    kept follows who owns the audited repository, never one owner's findings in the other's
+    repository, and to ask when the owner isn't clear.
+  - `user-experience`'s `usability-review`: the same, as a mistake to avoid.
+  - The steward: a work repository's findings go to `audit-reports`; a personal repository's go
+    into that repository or stay in the session.
+- **Waiting on the owner:** what to do with the personal projects' material already in
+  `audit-reports` (2026-10-27 and 2026-11-17): removing it in a new commit leaves it in the
+  history, and removing it from the history means rewriting that repository's `main`.
+
 ## 2026-11-17 — Seventeen lessons from three end-user reviews, and a planned `wall-displays`
 
 - **Asked:** the owner, 2026-11-17: review the audited products for "ease of end user, ui, ux,

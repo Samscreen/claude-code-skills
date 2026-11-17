@@ -3,15 +3,15 @@ name: project-bootstrap-and-audit
 description: "Sets up, retrofits or audits a repository against the PROJECT-BOOTSTRAP-AND-AUDIT standard: structure, CI, agent files, secrets, dependencies, licensing, release readiness. Stops for approval before changing anything."
 license: CC0-1.0
 metadata:
-  standard-version: "0.51.0"
-  files-sha256: "9b3e035369dd2173899213bef92c8388b27d9515c6f41688f8d3b8510413554a"
+  standard-version: "0.52.0"
+  files-sha256: "c83afe9cf7f13c1afa457bf94b5c5d3d8283686cb5a3395a61814310b8f7b376"
 ---
 
 # Project bootstrap and audit
 
 This is the standard's procedure: the jobs, what each reads, the two stops and the report. The
 rules it runs by are in `references/`, and
-[the standard file](references/PROJECT-BOOTSTRAP-AND-AUDIT-v0.51.0.md) holds the phases, the
+[the standard file](references/PROJECT-BOOTSTRAP-AND-AUDIT-v0.52.0.md) holds the phases, the
 dimensions and the rest.
 
 Run this to set up a repository, retrofit one, or check whether existing configuration
@@ -108,7 +108,7 @@ reads everything has paid for attention it did not use and diluted the rules it 
 and it is authoritative where a line number would only be a hint:
 
 ```
-grep -n '^# \|^## ' references/PROJECT-BOOTSTRAP-AND-AUDIT-v0.51.0.md
+grep -n '^# \|^## ' references/PROJECT-BOOTSTRAP-AND-AUDIT-v0.52.0.md
 ```
 
 Some of those matches are **inside template code blocks, not sections:** `# <project name>`
@@ -227,6 +227,14 @@ one artifact with no copy anywhere else.
 **Emit the run report as a markdown file outside the repository**, named
 `RUN-REPORT-<repo>-<YYYY-MM-DD>.md`, with `lifecycle: transient` and a concrete `expires:`.
 The prohibition is on writing **to the repository**.
+
+**Where it's kept follows who owns the audited repository.** The report holds the repository's
+internals, open security findings included, and its owner chose where those live. A personal
+repository's report stays in that repository, by its own rules for records, or in the session;
+a company's goes where the company keeps its reports. **Never file one owner's findings in the
+other's repository**, a personal project's in a company's report repository or the reverse,
+however convenient that repository is. When the owner of the audited repository isn't clear,
+ask before filing.
 
 **Open with a reconciliation header**, the skeleton's first block, so any reader — human or
 another model — can triage without reading the body and can diff two runs mechanically.
