@@ -450,6 +450,12 @@ desktop GUI and a command-line tool, each run and screenshotted as a first-time 
   meet that repository's gates. Hand them to its session to file by its own rules, its evidence
   tooling included, rather than merging them raw: the raw records here failed both destinations'
   documentation tests.
+- **L78, `releases-and-versions`, waiting, module shipped:** a check of a release's provenance
+  knows the repository by the ID GitHub gives it, read from the signing certificate
+  (`sourceRepositoryIdentifier`), never by its name alone, which changes when the repository
+  moves to another owner. Here the move broke every verifying install, and nothing showed it
+  until a release was built after the move; a release test should run the installed hook against
+  the release it has published.
 
 ## Rebuilding `project-bootstrap-and-audit`
 

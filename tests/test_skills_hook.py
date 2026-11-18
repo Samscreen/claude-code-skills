@@ -15,7 +15,11 @@ import pytest
 from skillcheck import skills_hook
 from skillcheck.skills_hook import ATTESTATION, LEDGER, MANIFEST, main
 
-WORKFLOW = {"repository": "https://github.com/REPOSITORY", "path": ".github/workflows/release.yml"}
+WORKFLOW = {
+    "repository": "https://github.com/owner/skills",
+    "path": ".github/workflows/release.yml",
+}
+GITHUB = {"repository_id": skills_hook.GITHUB_ID}
 
 
 @pytest.fixture(autouse=True)
@@ -24,12 +28,17 @@ def no_gh(monkeypatch):
     monkeypatch.setattr(skills_hook.shutil, "which", lambda name: None)
 
 
-def attest(data: bytes, name: str = "skills.zip", workflow: dict | None = None) -> bytes:
+def attest(
+    data: bytes, name: str = "skills.zip", workflow: dict | None = None, github: dict | None = None
+) -> bytes:
     """A release's Sigstore bundle as the release workflow writes it, unsigned for the test."""
     statement = {
         "subject": [{"name": name, "digest": {"sha256": hashlib.sha256(data).hexdigest()}}],
         "predicate": {
-            "buildDefinition": {"externalParameters": {"workflow": workflow or WORKFLOW}}
+            "buildDefinition": {
+                "externalParameters": {"workflow": workflow or WORKFLOW},
+                "internalParameters": {"github": GITHUB if github is None else github},
+            }
         },
     }
     payload = base64.b64encode(json.dumps(statement).encode()).decode()
@@ -194,9 +203,15 @@ def test_a_missing_attestation_keeps_the_installed_skills(tmp_path, capsys):
         attest(b"another archive"),
         attest(archive("1.0.0", {"alpha": skill()}), name="other.zip"),
         attest(archive("1.0.0", {"alpha": skill()}), workflow={**WORKFLOW, "path": "x.yml"}),
+        attest(archive("1.0.0", {"alpha": skill()}), github={"repository_id": "1"}),
+        attest(archive("1.0.0", {"alpha": skill()}), github={}),
         attest(
             archive("1.0.0", {"alpha": skill()}),
-            workflow={**WORKFLOW, "repository": "https://github.com/someone/else"},
+            workflow={**WORKFLOW, "repository": "https://example.com/owner/skills"},
+        ),
+        attest(
+            archive("1.0.0", {"alpha": skill()}),
+            workflow={**WORKFLOW, "repository": "https://github.com/-owner/skills"},
         ),
         b"\n",
     ],
@@ -218,26 +233,65 @@ def test_without_gh_it_says_the_signature_went_unchecked(tmp_path, capsys):
     assert "signature isn't checked without gh" in capsys.readouterr().err
 
 
-def test_with_gh_the_signature_must_check_out(tmp_path, monkeypatch):
+def verified(*ids: str) -> str:
+    """What `gh attestation verify --format json` prints: one result per attestation it checked."""
+    certificates = [{"sourceRepositoryIdentifier": i} for i in ids]
+    return json.dumps(
+        [{"verificationResult": {"signature": {"certificate": c}}} for c in certificates]
+    )
+
+
+@pytest.mark.parametrize("address", ["owner/skills", "new-owner/skills.renamed"])
+def test_with_gh_the_signature_must_check_out(tmp_path, monkeypatch, address):
+    """A repository moved to another owner keeps its ID, and its releases keep installing."""
     monkeypatch.setattr(skills_hook.shutil, "which", lambda name: "/usr/bin/gh")
     asked = []
 
     def gh(command, **kwargs):
         asked.append(command)
         assert Path(command[3]).read_bytes() == data
-        return subprocess.CompletedProcess(command, 0, "", "")
+        return subprocess.CompletedProcess(command, 0, verified(skills_hook.GITHUB_ID), "")
 
     monkeypatch.setattr(subprocess, "run", gh)
     data = archive("1.0.0", {"alpha": skill()})
-    install(data, tmp_path / "skills")
+    workflow = {**WORKFLOW, "repository": f"https://github.com/{address}"}
+    install(data, tmp_path / "skills", attest(data, workflow=workflow))
     assert (tmp_path / "skills/alpha/SKILL.md").is_file()
     assert asked[0][:3] == ["/usr/bin/gh", "attestation", "verify"]
-    assert asked[0][-4:] == [
+    assert asked[0][-6:] == [
         "--repo",
-        "REPOSITORY",
+        address,
         "--signer-workflow",
-        "REPOSITORY/.github/workflows/release.yml",
+        f"{address}/.github/workflows/release.yml",
+        "--format",
+        "json",
     ]
+
+
+@pytest.mark.parametrize(
+    ("printed", "message"),
+    [
+        (verified("1"), r"signed for repository \['1'\], not "),
+        (verified(skills_hook.GITHUB_ID, "1"), r"signed for repository \['1', '"),
+        (verified(), r"signed for repository \[\], not "),
+        ("not json", "named no certificate: JSONDecodeError"),
+        ("[{}]", "named no certificate: KeyError"),
+        ("[1]", "named no certificate: TypeError"),
+    ],
+)
+def test_a_signature_from_another_repository_installs_nothing(
+    tmp_path, monkeypatch, printed, message
+):
+    """gh checks the signature against the name; the certificate must also carry this ID."""
+    monkeypatch.setattr(skills_hook.shutil, "which", lambda name: "/usr/bin/gh")
+    monkeypatch.setattr(
+        subprocess,
+        "run",
+        lambda command, **kwargs: subprocess.CompletedProcess(command, 0, printed, ""),
+    )
+    with pytest.raises(ValueError, match=message):
+        install(archive("1.0.0", {"alpha": skill()}), tmp_path / "skills")
+    assert not (tmp_path / "skills").exists()
 
 
 @pytest.mark.parametrize(
