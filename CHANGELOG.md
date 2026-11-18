@@ -6,6 +6,17 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.33] - 2026-11-18
+
+### Fixed
+
+- The cloud hook installs releases again. It knew this repository by its name, and the
+  repository moved to another owner, so the hook refused 0.1.32, whose signature names the new
+  owner, and a new cloud session started with no skills. It now knows the repository by the ID
+  GitHub gives it, which a move or rename keeps, and checks that ID on the signing certificate.
+  An environment set up from 0.1.32 or earlier needs its setup script replaced with this
+  release's `cloud-setup.sh`.
+
 ## [0.1.32] - 2026-11-17
 
 ### Changed
