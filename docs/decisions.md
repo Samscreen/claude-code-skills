@@ -45,6 +45,7 @@ the last section lists each that still stands or is cited.
   Testing `@synced` in the terminal and VS Code follows.
 - `src/skillcheck/core/facts.py` changes only a module constant, which mutmut doesn't mutate, so
   no mutation run is due.
+- **Released as 0.1.35.**
 
 ## 2026-11-18 — Each plugin installs `skills/` alone, and how an organization installs them
 
