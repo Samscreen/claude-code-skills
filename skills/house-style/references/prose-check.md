@@ -52,7 +52,7 @@ run, with no change there. Each release's notes say what changed.
 ```ini
 StylesPath = .vale/styles
 MinAlertLevel = suggestion
-Packages = https://github.com/rmccann-hub/claude-code-skills/releases/latest/download/HouseStyle.zip
+Packages = https://github.com/Samscreen/claude-code-skills/releases/latest/download/HouseStyle.zip
 ```
 
 The package's own configuration runs HouseStyle on every Markdown file and skips words in

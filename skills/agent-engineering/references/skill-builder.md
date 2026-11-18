@@ -60,7 +60,7 @@ standard's *4. Agent configuration* rates installed skills in an audit.
   tool called, a file made, or a rubric a judge model scores. Grade the result and the steps.
 - **In a plugin,** `claude plugin eval` runs both against a no-plugin arm, and a `tool_used:
   Skill` grader shows whether the skill was chosen (fact `sb-eval-arms`).
-- **A worked example:** this catalog's repository, rmccann-hub/claude-code-skills, runs each
+- **A worked example:** this catalog's repository, Samscreen/claude-code-skills, runs each
   step with `skillcheck`. `--new` and `--new-module` scaffold, marking each unwritten part, and
   the check fails until it's written; `--examples` runs every code block; `--verify` finds each
   fact's quote at its source; `--triggers` asks Claude Code each trigger evaluation and checks

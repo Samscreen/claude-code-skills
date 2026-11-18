@@ -424,7 +424,7 @@ desktop GUI and a command-line tool, each run and screenshotted as a first-time 
   such; help opens with a usage line and an example, fits 80 columns and prints defaults as typed;
   a re-run that silently replaces earlier output is destructive; a linked library's messages go
   to the program's log, not raw to the terminal. One audited tool redrew per frame into files, a
-  4-second track making one 15 KB line.
+  4-second job making one 15 KB line.
 - **L71, `visual-theme`, waiting, module shipped:** on the desktop, colors chosen at start-up are
   chosen again on a live theme change (Qt's `PaletteChange`, GTK's `notify::dark`), and a test
   flips the palette. One audited app measured both themes' colors and still kept the old ones

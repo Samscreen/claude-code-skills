@@ -33,7 +33,7 @@ from skillcheck import bom
 
 COOLDOWN_DAYS = 3
 TIMEOUT_SECONDS = 30
-USER_AGENT = "skillcheck (https://github.com/rmccann-hub/claude-code-skills)"
+USER_AGENT = "skillcheck (https://github.com/Samscreen/claude-code-skills)"
 
 # A runtime set by a setup action or `.python-version`, and its product on endoflife.date.
 RUNTIMES = {"Python": "python", "Go": "go", "Node.js": "nodejs"}

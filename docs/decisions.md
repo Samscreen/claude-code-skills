@@ -6,6 +6,46 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-18 — The owner's eight answers: the company's address, one route, plain records
+
+- **Asked, by the owner,** 2026-11-18: "what decisions, if any, do you need from me? ask them
+  and give me a recommendation". Eight questions, each with a recommendation; the answers:
+  1. **Merge #180 and release 0.1.34:** yes, as recommended. Released.
+  2. **Lift the company's name from `.github/private-names.sha256` and switch every link:** yes,
+     as recommended. The repository's address names the company anyway since the move.
+  3. **claude.ai's app and Cowork:** a private mirror, synced, against the recommendation to
+     skip them for now.
+  4. **The `personal` plugin and `linux-gaming`:** kept planned here, against the recommendation
+     to move them out.
+  5. **One route for Claude Code too:** claude.ai's organization sync everywhere, as recommended,
+     once tested; no managed-settings marketplace beside it.
+  6. **The mirror follows each release,** as recommended, so members get only released, signed
+     versions.
+  7. **Older records naming an audited project's domain:** reworded now, against the
+     recommendation to keep them; this overrides, for these passages, the convention that past
+     entries stay as written. Git history keeps the old words.
+  8. **The old session branch:** compare, then the owner deletes, as recommended.
+- **Changed here:**
+  - Every current link, the catalog's owner and authors, `skillcheck`'s user agent and the
+    security-report link name the address in the company's organization. The headers of files
+    the owner attaches (`ANSWERS-FOR:`, `RESULT-FOR:`, `HANDOFF-FOR:`) keep the old name: they
+    are an agreed form, not a link. The steward's and CONTRIBUTING's `rmccann-hub` name the owner,
+    and stay.
+  - The README's section for an organization leads with the synced private copy.
+  - Six passages reworded: three entries below, lesson L70, `coding`'s list of untrusted sources,
+    and `bash-coding`'s example, now of CSV files. The standard's lessons on review loops name no
+    domain and stay; changing them would be a standard change of its own.
+- **The old branch,** `claude/brave-pasteur-40a2fq`: 11 of its 17 commits reached `main` with the
+  same subjects, and the rules of the 2 on `review-loops` are in `main`'s module. Its other 2,
+  `security: start supply-chain-security as a draft` and R21's checked facts for it, are the only
+  draft of the planned `supply-chain-security` module. **Keep it until that module is built.**
+- **Waiting on the owner for the mirror:** move the private copy into the organization, add a
+  deploy key with write access to it and the key's private half as a secret here, and merge the
+  release workflow's change that pushes each release to it; then add it under Plugins & skills.
+  Testing `@synced` in the terminal and VS Code follows.
+- `src/skillcheck/core/facts.py` changes only a module constant, which mutmut doesn't mutate, so
+  no mutation run is due.
+
 ## 2026-11-18 — Each plugin installs `skills/` alone, and how an organization installs them
 
 - **Asked, by the owner,** 2026-11-18: "do all you can, but then tell me how i cna get this
@@ -1097,7 +1137,7 @@ the last section lists each that still stands or is cited.
   `user-experience`, in R06's form. The owner runs R06, R26 and R27; each result is checked
   before a rule rests on it.
 - **Evidence already in hand for `user-experience`, from an audited GUI application:** a status
-  line that kept the last rip's result through the next rip; a drive shown after it was gone; a
+  line that kept the last job's result through the next job; a device shown after it was gone; a
   hidden modal dialog left behind by each update offer; a picker that opened by itself under the
   next dialog; and a console with two file pickers of different meaning.
 
@@ -1259,7 +1299,7 @@ the last section lists each that still stands or is cited.
 
 - **Asked, by the owner:** "Do all you recommend" (2026-11-03), after this session recommended
   teaching the 2026-11-03 Full run's main lesson: a green run whose graders couldn't fail.
-- **What it found:** an audited repository's acceptance step counted a post-rip check as done
+- **What it found:** an audited repository's acceptance step counted a post-run check as done
   when it had run, whatever it found, so a failed integrity check passed. Rule 5 already said to
   prove a gate against the state it exists to catch; nothing named this case, and no audit row
   checked the rule at all.
@@ -1432,7 +1472,7 @@ the last section lists each that still stands or is cited.
   is a reason to do it otherwise, it should be compelling, and documented." Work that is
   finished but worth keeping goes on an archive branch, tagged by version, release or date.
 - **Now:** nothing changes. Each repository keeps such work differently: in the main branch, in
-  history only, or in an `evidence` branch for rip runs. This session's audit kit is in ignored
+  history only, or in an `evidence` branch for run evidence. This session's audit kit is in ignored
   `scratch/`.
 - **Next:** before the next skills release, the rule is proposed to the standard for the
   owner's approval. Then this repository, the audit kit and the audited repositories are

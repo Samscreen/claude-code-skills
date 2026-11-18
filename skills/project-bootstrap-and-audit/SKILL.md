@@ -54,7 +54,7 @@ skill's folder. It hashes every file of the skill but this one and compares the 
 - No shell to run it: record `standard_sha256` as `unknown`, and say why in Phase 0's `degraded`.
 
 Then check that this copy is current. With `curl`, not a web-fetch tool, read `standard-version`
-from https://raw.githubusercontent.com/rmccann-hub/claude-code-skills/main/skills/project-bootstrap-and-audit/SKILL.md
+from https://raw.githubusercontent.com/Samscreen/claude-code-skills/main/skills/project-bootstrap-and-audit/SKILL.md
 If it's newer than this file's, say so in one line, record it in Phase 0's `notes`, and go on:
 it's a warning, never a stop. If the fetch fails, say "could not check" and go on.
 
@@ -292,7 +292,7 @@ fact past its check-by date, an example that fails, two rules that disagree, or 
 doesn't cover. If the fault is elsewhere, such as their setup, say that instead.
 
 When the fault is the skill's own, draft a full report they can paste as a new issue at
-https://github.com/rmccann-hub/claude-code-skills/issues.
+https://github.com/Samscreen/claude-code-skills/issues.
 Give the skill and module, the plugin's version or the skill's date in its frontmatter, their
 request word for word, the line of the skill that misled, what happened, what's right with its
 source, and the fix you'd suggest. Leave out their private data, company detail and repository

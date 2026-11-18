@@ -68,7 +68,7 @@ PLAIN = str.maketrans(
 )
 BLOCKS = frozenset({"br", "dd", "div", "dt", "h1", "h2", "h3", "h4", "li", "p", "pre", "td", "th"})
 # Some sites refuse a request that names no browser or tool.
-USER_AGENT = "skillcheck (+https://github.com/rmccann-hub/claude-code-skills)"
+USER_AGENT = "skillcheck (+https://github.com/Samscreen/claude-code-skills)"
 TIMEOUT_SECONDS = 30
 
 Add = Callable[[str, str, str], None]
