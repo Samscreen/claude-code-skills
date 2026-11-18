@@ -44,8 +44,9 @@ skills run in sessions there, some reaching production, so a change here changes
   skill's `name`. Only a new kind of situation gets a new skill; new coverage is a module.
 - **A module:** `skills/<skill>/references/<module>.md`, its trigger evaluations in
   `tests/fixtures/modules/<module>.json`, and its moves in `docs/module-moves.md`.
-- **Plugin grouping:** `.claude-plugin/marketplace.json`, one entry per plugin, `source: "./"`,
-  `strict: false`, listing `./skills/<name>` paths. Regrouping edits this file only.
+- **Plugin grouping:** `.claude-plugin/marketplace.json`, one entry per plugin,
+  `source: "./skills"`, `strict: false`, listing `./<name>` paths, so an install copies `skills/`
+  alone, not the root's npm tools. Regrouping edits this file only.
 - **Research:** prompts in `research/prompts/`, results in `research/runs/<date>-<run>.md`.
 - **Fixtures:** parity runs' samples, answer keys and baselines in `tests/fixtures/standard/`;
   a skill's own trigger evaluations, where it has them, in `tests/fixtures/skills/`.

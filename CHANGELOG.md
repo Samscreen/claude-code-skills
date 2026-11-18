@@ -6,6 +6,19 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Installing a plugin copies about 2 MB, where it copied 692 MB. Each plugin's source was the
+  repository's root, so every install copied the whole root, and Claude Code also installed the
+  root's npm tools there: Claude Code itself, which only this repository's checks use. Both
+  plugins now take their skills from `skills/`. `skillcheck`'s catalog check reads either
+  layout, and fails a plugin sourced at a root that holds a `package.json` and a lockfile.
+
+### Added
+
+- The README says how an organization installs both plugins for every member, with managed
+  settings, and why claude.ai's organization sync can't take this public repository.
+
 ## [0.1.33] - 2026-11-18
 
 ### Fixed

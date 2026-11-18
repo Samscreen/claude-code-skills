@@ -36,6 +36,41 @@ automatically, and install both plugins. The sync reads this repository's `main`
 its releases, so a change reaches the account at the next sync after it merges. That was seen
 on 2026-10-26, when `coding` loaded on claude.ai before any release carried it.
 
+### For an organization
+
+An organization's Owner can install both plugins for every member who signs in to Claude Code,
+in the terminal, VS Code and the desktop app. In claude.ai's **Organization settings > Claude
+Code > Managed settings**, or in a `managed-settings.json` that IT deploys, set:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "claude-code-skills": {
+      "source": { "source": "github", "repo": "rmccann-hub/claude-code-skills" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "standards@claude-code-skills": true,
+    "engineering@claude-code-skills": true
+  }
+}
+```
+
+`autoUpdate` brings each release, since each moves the plugins' version; it's off by default
+for a marketplace like this one. `true` in managed settings installs and turns a plugin on, and
+`false` blocks it at every scope. Set this in managed settings, not a repository's
+`.claude/settings.json`: there it only turns a plugin on, and each person still installs it.
+Each install copies only `skills/`, about 2 MB per plugin. ([Claude Code's plugin
+docs](https://code.claude.com/docs/en/plugins/org.md), read 2026-11-18.)
+
+claude.ai's own **Plugins & skills** page reaches the app, Cowork and cloud sessions, but its
+**Sync from GitHub** takes only a private or internal repository
+([hosting a marketplace](https://code.claude.com/docs/en/plugins/host-marketplace.md), read
+2026-11-18). For this public one, each person adds it as above, or the organization syncs a
+private copy. Use one route per surface: a plugin turned on for the account also loads in
+Claude Code as `<name>@synced`, beside a copy from the marketplace.
+
 ## Usage
 
 Once the plugins are installed, Claude Code loads a skill when a request matches what its
