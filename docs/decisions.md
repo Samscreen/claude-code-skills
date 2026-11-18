@@ -28,7 +28,11 @@ the last section lists each that still stands or is cited.
   organization sync takes only a private or internal repository; this one is public. Sources:
   Claude Code's plugin pages for organizations and for hosting a marketplace, and claude.ai's
   plugin admin page, read 2026-11-18. Lesson L79.
-- **Mutation test of the changed check:** see the line added when it finishes.
+- **Mutation test of the changed check,** mutmut 3.8.1 as the 0.1.31 entry sets it up, on
+  `core/checks.py`'s catalog check: 174 mutants, 172 killed. The 2 survivors spell the catalog's
+  encoding another way (`"UTF-8"`, or the default, UTF-8 here), a line this change didn't touch
+  and a class 0.1.31's run already records as changing nothing a run can see. Every mutant in the
+  new code was killed.
 
 ## 2026-11-18 — Who owns what, and the cloud hook knows this repository by its ID
 
