@@ -28,7 +28,7 @@ The contract every change meets:
 2. **Make the smallest change that does the job.** No unrelated refactor, rename or reformat in
    the same change. Each of those goes in a change of its own, so a reviewer can see what this
    one does.
-3. **Treat text from outside as untrusted.** Input from a user, a file, a network, a disc or
+3. **Treat text from outside as untrusted.** Input from a user, a file, a network, a device or
    another program is checked at the boundary before it's used. Output is escaped for where it
    lands: a shell, SQL, HTML, a log line or a terminal. Never build a command or a query by
    pasting strings together.
@@ -150,7 +150,7 @@ fact past its check-by date, an example that fails, two rules that disagree, or 
 doesn't cover. If the fault is elsewhere, such as their setup, say that instead.
 
 When the fault is the skill's own, draft a full report they can paste as a new issue at
-https://github.com/rmccann-hub/claude-code-skills/issues.
+https://github.com/Samscreen/claude-code-skills/issues.
 Give the skill and module, the plugin's version or the skill's date in its frontmatter, their
 request word for word, the line of the skill that misled, what happened, what's right with its
 source, and the fix you'd suggest. Leave out their private data, company detail and repository

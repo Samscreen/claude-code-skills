@@ -111,8 +111,8 @@ package.json
 
 | Service | Provider | What for | Address |
 |---|---|---|---|
-| GitHub | GitHub | Hosts the repository, its pull requests, its rulesets and its releases. | https://github.com/rmccann-hub/claude-code-skills |
-| GitHub Actions | GitHub | Runs the workflows: ci, commit-subjects, freshness, hold, prose, release. | https://github.com/rmccann-hub/claude-code-skills/actions |
+| GitHub | GitHub | Hosts the repository, its pull requests, its rulesets and its releases. | https://github.com/Samscreen/claude-code-skills |
+| GitHub Actions | GitHub | Runs the workflows: ci, commit-subjects, freshness, hold, prose, release. | https://github.com/Samscreen/claude-code-skills/actions |
 | Dependabot | GitHub | Opens pull requests that update dependencies: github-actions, npm, uv. | documented at https://docs.github.com/en/code-security/dependabot |
 | PyPI | Python Software Foundation | Serves the Python packages in `uv.lock`. | https://pypi.org/simple |
 | npm registry | GitHub | Serves the packages in `package-lock.json`. | https://registry.npmjs.org |

@@ -47,7 +47,7 @@ fact past its check-by date, an example that fails, two rules that disagree, or 
 doesn't cover. If the fault is elsewhere, such as their setup, say that instead.
 
 When the fault is the skill's own, draft a full report they can paste as a new issue at
-https://github.com/rmccann-hub/claude-code-skills/issues.
+https://github.com/Samscreen/claude-code-skills/issues.
 Give the skill and module, the plugin's version or the skill's date in its frontmatter, their
 request word for word, the line of the skill that misled, what happened, what's right with its
 source, and the fix you'd suggest. Leave out their private data, company detail and repository

@@ -105,8 +105,8 @@ maybe-empty list as `${args[@]+"${args[@]}"}`.
   variables. Feed it with `done < <(cmd)`.
 - **Names hold spaces, newlines and dashes.** `-print0` and `xargs -0` are POSIX since 2024
   (fact `sh-posix-print0`); `find -exec … {} +` works everywhere.
-- **git quotes a name with a byte over 0x80,** as `"Bj\303\266rk.flac"`, in `ls-files`,
-  `diff --name-only` and `status` (fact `sh-git-quotepath`): `'\.flac$'` misses it. Use `-z`.
+- **git quotes a name with a byte over 0x80,** as `"Gr\303\266\303\237e.csv"`, in `ls-files`,
+  `diff --name-only` and `status` (fact `sh-git-quotepath`): `'\.csv$'` misses it. Use `-z`.
 
 ```bash
 while IFS= read -r line || [[ -n $line ]]; do
@@ -119,7 +119,7 @@ while IFS= read -r -d '' path; do
   printf 'found: %s\n' "$path"
 done < <(find . -type f -name '*.log' -print0)
 
-git diff -z --name-only main -- '*.flac' | xargs -0 -r flac --test --
+git diff -z --name-only main -- '*.csv' | xargs -0 -r wc -l --
 ```
 
 ### Temporary files and cleanup

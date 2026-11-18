@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:39513f28-72a5-5dea-b85d-dcbb5d9c5d06",
+  "serialNumber": "urn:uuid:f6977a8b-d935-5497-8e9a-5765388c7799",
   "version": 1,
   "metadata": {
     "tools": {
@@ -27,7 +27,7 @@
       "externalReferences": [
         {
           "type": "vcs",
-          "url": "https://github.com/rmccann-hub/claude-code-skills"
+          "url": "https://github.com/Samscreen/claude-code-skills"
         }
       ],
       "properties": [
@@ -2341,7 +2341,7 @@
       "name": "GitHub",
       "description": "Hosts the repository, its pull requests, its rulesets and its releases.",
       "endpoints": [
-        "https://github.com/rmccann-hub/claude-code-skills"
+        "https://github.com/Samscreen/claude-code-skills"
       ]
     },
     {
@@ -2352,7 +2352,7 @@
       "name": "GitHub Actions",
       "description": "Runs the workflows: ci, commit-subjects, freshness, hold, prose, release.",
       "endpoints": [
-        "https://github.com/rmccann-hub/claude-code-skills/actions"
+        "https://github.com/Samscreen/claude-code-skills/actions"
       ]
     },
     {

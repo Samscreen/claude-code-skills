@@ -6,6 +6,17 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Every link names the repository's address in the company's organization, where it moved:
+  the catalog, the README, each skill's section on reporting a problem, the standard's version
+  check, the house style's Vale package, the security-report link, and `skillcheck`'s user
+  agent. The cloud hook downloads from there. The company's name is no longer withheld.
+- The README's section for an organization leads with claude.ai's organization sync from a
+  private copy, which reaches every surface, and keeps managed settings for Claude Code alone.
+- Older records and lessons no longer describe an audited project's domain, and the `bash-coding`
+  module's example uses CSV files.
+
 ## [0.1.34] - 2026-11-18
 
 ### Fixed

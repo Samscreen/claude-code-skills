@@ -12,7 +12,7 @@ can and can't do, how to try them on purpose, how to report a problem, and how t
 In Claude Code:
 
 ```text
-/plugin marketplace add rmccann-hub/claude-code-skills
+/plugin marketplace add Samscreen/claude-code-skills
 /plugin install standards@claude-code-skills
 /plugin install engineering@claude-code-skills
 ```
@@ -22,7 +22,7 @@ run `/plugin marketplace remove rmccann-skills`, then add it again as above.
 
 In Claude Code's cloud sessions, which don't install a repository's plugins, add the lines in
 the latest release's
-[`cloud-setup.sh`](https://github.com/rmccann-hub/claude-code-skills/releases/latest/download/cloud-setup.sh)
+[`cloud-setup.sh`](https://github.com/Samscreen/claude-code-skills/releases/latest/download/cloud-setup.sh)
 to the end of the environment's setup script. They install a hook that copies the newest
 release's skills into `~/.claude/skills` as each session starts, so no upload is needed. From
 0.1.21, the hook installs a release only when its signed attestation names the archive and this
@@ -38,15 +38,24 @@ on 2026-10-26, when `coding` loaded on claude.ai before any release carried it.
 
 ### For an organization
 
-An organization's Owner can install both plugins for every member who signs in to Claude Code,
-in the terminal, VS Code and the desktop app. In claude.ai's **Organization settings > Claude
-Code > Managed settings**, or in a `managed-settings.json` that IT deploys, set:
+The one route that reaches every surface is claude.ai's: an Owner adds the marketplace under
+**Organization settings > Plugins & skills > Add > Sync from GitHub** and sets each plugin's
+**Default access** to **Installed by default** or **Required**. Members then have both plugins
+in the claude.ai app, in Cowork, in cloud sessions, and in Claude Code signed in to claude.ai,
+where they load as `<name>@synced`. That sync takes only a private or internal repository
+([hosting a marketplace](https://code.claude.com/docs/en/plugins/host-marketplace.md), read
+2026-11-18), so the organization syncs a private copy that the release workflow keeps at the
+newest release, and members get only released, signed versions.
+
+For Claude Code alone, an Owner can instead set managed settings, in claude.ai's
+**Organization settings > Claude Code > Managed settings** or a `managed-settings.json` that IT
+deploys:
 
 ```json
 {
   "extraKnownMarketplaces": {
     "claude-code-skills": {
-      "source": { "source": "github", "repo": "rmccann-hub/claude-code-skills" },
+      "source": { "source": "github", "repo": "Samscreen/claude-code-skills" },
       "autoUpdate": true
     }
   },
@@ -57,19 +66,11 @@ Code > Managed settings**, or in a `managed-settings.json` that IT deploys, set:
 }
 ```
 
-`autoUpdate` brings each release, since each moves the plugins' version; it's off by default
-for a marketplace like this one. `true` in managed settings installs and turns a plugin on, and
-`false` blocks it at every scope. Set this in managed settings, not a repository's
-`.claude/settings.json`: there it only turns a plugin on, and each person still installs it.
-Each install copies only `skills/`, about 2 MB per plugin. ([Claude Code's plugin
-docs](https://code.claude.com/docs/en/plugins/org.md), read 2026-11-18.)
-
-claude.ai's own **Plugins & skills** page reaches the app, Cowork and cloud sessions, but its
-**Sync from GitHub** takes only a private or internal repository
-([hosting a marketplace](https://code.claude.com/docs/en/plugins/host-marketplace.md), read
-2026-11-18). For this public one, each person adds it as above, or the organization syncs a
-private copy. Use one route per surface: a plugin turned on for the account also loads in
-Claude Code as `<name>@synced`, beside a copy from the marketplace.
+`true` installs and turns a plugin on for every member, and `autoUpdate`, off by default for a
+marketplace like this one, brings each release ([Claude Code's plugin
+docs](https://code.claude.com/docs/en/plugins/org.md), read 2026-11-18). Each install copies
+only `skills/`, about 2 MB per plugin. Choose one route: a plugin turned on for the account also
+loads in Claude Code as `<name>@synced`, beside a copy from the marketplace.
 
 ## Usage
 
@@ -77,7 +78,7 @@ Once the plugins are installed, Claude Code loads a skill when a request matches
 description says it's for. The skills are listed below.
 
 To start another repository, attach the latest release's
-[`KICKSTART.md`](https://github.com/rmccann-hub/claude-code-skills/releases/latest/download/KICKSTART.md)
+[`KICKSTART.md`](https://github.com/Samscreen/claude-code-skills/releases/latest/download/KICKSTART.md)
 to a Claude Code session in that repository, with no message. It reads the repository, asks
 only what it can't find out, and stops twice for answers before it changes anything. It also
 reads the repository's GitHub settings, and lists each one to change with where it is. The
