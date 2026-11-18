@@ -275,6 +275,74 @@ def test_catalog_path_outside_skills_fires(repo):
     ]
 
 
+@pytest.mark.parametrize("source", ["./skills", "./skills/"])
+def test_a_plugin_sourced_at_skills_lists_its_skills_by_name(repo, source):
+    repo.skill("example-skill")
+    repo.skill("other-skill")
+    repo.catalog(
+        repo.plugin("one", "./example-skill", source=source),
+        repo.plugin("rest", "./other-skill/", source=source),
+    )
+    assert check_repository(repo.root).findings == []
+
+
+def test_a_whole_folder_entry_under_a_skills_source_lists_every_skill(repo):
+    repo.skill("example-skill")
+    repo.catalog(repo.plugin("everything", "./", source="./skills"))
+    assert check_repository(repo.root).findings == []
+
+
+@pytest.mark.parametrize(
+    ("path", "message"),
+    [
+        ("./skills/example-skill", "one: './skills/example-skill' is not ./<name>"),
+        ("./typo-skill", "one: './typo-skill' has no SKILL.md"),
+        ("example-skill", "one: 'example-skill' is not ./<name>"),
+    ],
+)
+def test_a_path_under_a_skills_source_is_read_from_skills(repo, path, message):
+    repo.skill("example-skill")
+    repo.catalog(
+        repo.plugin("one", path, source="./skills"),
+        repo.plugin("rest", "./example-skill", source="./skills"),
+    )
+    findings = [(f.path, f.rule, f.message) for f in check_repository(repo.root).findings]
+    assert (CATALOG, "catalog", message) in findings
+
+
+@pytest.mark.parametrize("lockfile", ["package-lock.json", "npm-shrinkwrap.json", "bun.lock"])
+def test_a_root_source_beside_npm_dependencies_fires(repo, lockfile):
+    """Claude Code installs a source's npm dependencies into every copy it installs."""
+    repo.skill("example-skill")
+    repo.catalog(repo.plugin("example", "./skills/example-skill"))
+    (repo.root / "package.json").write_text("{}", encoding="utf-8")
+    (repo.root / lockfile).write_text("{}", encoding="utf-8")
+    assert [(f.path, f.rule, f.message) for f in check_repository(repo.root).findings] == [
+        (
+            CATALOG,
+            "catalog",
+            "example: source './' copies the root, and its npm dependencies install into every "
+            "copy; use './skills'",
+        )
+    ]
+
+
+def test_a_package_json_without_a_lockfile_installs_nothing(repo):
+    repo.skill("example-skill")
+    repo.catalog(repo.plugin("example", "./skills/example-skill"))
+    (repo.root / "package.json").write_text("{}", encoding="utf-8")
+    assert check_repository(repo.root).findings == []
+
+
+def test_a_plugin_from_another_source_is_left_alone(repo):
+    repo.skill("example-skill")
+    repo.catalog(
+        {"name": "elsewhere", "source": {"source": "github", "repo": "o/r"}, "skills": [1]},
+        repo.plugin("example", "./example-skill", source="./skills"),
+    )
+    assert check_repository(repo.root).findings == []
+
+
 def test_skill_in_two_plugins_fires(repo):
     repo.skill("shared-skill")
     repo.catalog(

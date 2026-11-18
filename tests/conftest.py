@@ -116,8 +116,8 @@ class RepoBuilder:
         ]
         (self.root / "ROADMAP.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    def plugin(self, name: str, *paths: str) -> dict:
-        return {"name": name, "source": "./", "strict": False, "skills": list(paths)}
+    def plugin(self, name: str, *paths: str, source: str = "./") -> dict:
+        return {"name": name, "source": source, "strict": False, "skills": list(paths)}
 
     def catalog(self, *plugins: dict) -> None:
         self.catalog_text(

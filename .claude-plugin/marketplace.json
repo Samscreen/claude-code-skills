@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "standards",
-      "source": "./",
+      "source": "./skills",
       "strict": false,
       "description": "Repository setup and audit: the PROJECT-BOOTSTRAP-AND-AUDIT standard as a skill.",
       "version": "0.1.33",
@@ -17,12 +17,12 @@
       "repository": "https://github.com/rmccann-hub/claude-code-skills",
       "license": "CC0-1.0",
       "skills": [
-        "./skills/project-bootstrap-and-audit"
+        "./project-bootstrap-and-audit"
       ]
     },
     {
       "name": "engineering",
-      "source": "./",
+      "source": "./skills",
       "strict": false,
       "description": "Engineering practice: writing, testing and securing code, laying out projects, Git, pull requests, CI and releases, running systems and reading their logs, interfaces people use, how interfaces and charts look, the people in a plan and its solver, agents that review each other, and the house style for prose and Markdown.",
       "version": "0.1.33",
@@ -32,18 +32,18 @@
       "repository": "https://github.com/rmccann-hub/claude-code-skills",
       "license": "Apache-2.0",
       "skills": [
-        "./skills/agent-engineering",
-        "./skills/architecture",
-        "./skills/coding",
-        "./skills/git-workflows",
-        "./skills/house-style",
-        "./skills/human-factors",
-        "./skills/operations",
-        "./skills/optimization-and-scheduling",
-        "./skills/security",
-        "./skills/testing",
-        "./skills/user-experience",
-        "./skills/visual-design"
+        "./agent-engineering",
+        "./architecture",
+        "./coding",
+        "./git-workflows",
+        "./house-style",
+        "./human-factors",
+        "./operations",
+        "./optimization-and-scheduling",
+        "./security",
+        "./testing",
+        "./user-experience",
+        "./visual-design"
       ]
     }
   ]

@@ -70,6 +70,13 @@ MAX_CONTEXT_BYTES = 32 * 1024
 # exist, so a typo does not fail at install time: it quietly ships the whole folder.
 SKILL_PATH = re.compile(r"\./skills/([^/]+)/?")
 WHOLE_FOLDER = {"./skills", "./skills/"}
+# An entry's paths are relative to its source: the root's list ./skills/<name>, skills/'s list
+# ./<name>. Each install copies the whole source, and Claude Code installs a source's npm
+# dependencies into the copy when it holds a package.json and one of these lockfiles, with no
+# way to turn that off (Claude Code's plugin-loading page, read 2026-11-18). This repository's
+# root holds Claude Code itself for its validator: 637 MB in every install of every plugin.
+SOURCES = {"./": "./", "./skills": "./skills/", "./skills/": "./skills/"}
+NODE_LOCKFILES = ("package-lock.json", "npm-shrinkwrap.json", "bun.lock")
 
 # Only explicit Markdown links are checked. A bare path such as scripts/build.sh in a skill's
 # advice usually means the reader's repository, not a file bundled with the skill.
@@ -618,11 +625,22 @@ def _check_catalog(root: Path, skills: list[Path], report: Report) -> None:
     report.catalog_plugins = len(plugins)
 
     listed_by: dict[str, list[str]] = {skill.name: [] for skill in skills}
+    npm = (root / "package.json").is_file() and any((root / f).is_file() for f in NODE_LOCKFILES)
     for plugin in plugins:
-        # Only entries whose source is this repository's root serve skills from skills/.
-        if not isinstance(plugin, dict) or plugin.get("source") != "./":
+        # Only entries whose source is this repository's root or skills/ serve skills from it.
+        source = plugin.get("source") if isinstance(plugin, dict) else None
+        if not isinstance(source, str) or source not in SOURCES:
             continue
         plugin_name = str(plugin.get("name", "<unnamed>"))
+        if source == "./" and npm:
+            report.add(
+                CATALOG,
+                "catalog",
+                f"{plugin_name}: source './' copies the root, and its npm dependencies install "
+                "into every copy; use './skills'",
+            )
+        prefix = SOURCES[source]
+        form = "./skills/<name>" if prefix == "./" else "./<name>"
         paths = plugin.get("skills", [])
         if isinstance(paths, str):
             paths = [paths]
@@ -630,13 +648,15 @@ def _check_catalog(root: Path, skills: list[Path], report: Report) -> None:
             report.add(CATALOG, "catalog", f"{plugin_name}: 'skills' is not a list of paths")
             continue
         for raw in paths:
-            if isinstance(raw, str) and raw in WHOLE_FOLDER:
+            # The path as it reads from the root, whatever the source.
+            full = prefix + raw[2:] if isinstance(raw, str) and raw.startswith("./") else raw
+            if isinstance(full, str) and full in WHOLE_FOLDER:
                 for owners in listed_by.values():
                     owners.append(plugin_name)
                 continue
-            match = SKILL_PATH.fullmatch(raw) if isinstance(raw, str) else None
+            match = SKILL_PATH.fullmatch(full) if isinstance(full, str) else None
             if match is None:
-                report.add(CATALOG, "catalog", f"{plugin_name}: {raw!r} is not ./skills/<name>")
+                report.add(CATALOG, "catalog", f"{plugin_name}: {raw!r} is not {form}")
             elif match.group(1) not in listed_by:
                 report.add(CATALOG, "catalog", f"{plugin_name}: {raw!r} has no SKILL.md")
             else:
