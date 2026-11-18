@@ -6,6 +6,8 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.35] - 2026-11-18
+
 ### Changed
 
 - Every link names the repository's address in the company's organization, where it moved:
