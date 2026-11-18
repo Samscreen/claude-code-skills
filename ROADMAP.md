@@ -450,6 +450,11 @@ desktop GUI and a command-line tool, each run and screenshotted as a first-time 
   meet that repository's gates. Hand them to its session to file by its own rules, its evidence
   tooling included, rather than merging them raw: the raw records here failed both destinations'
   documentation tests.
+- **L79, `skill-builder`, waiting, module shipped:** a plugin's source is the narrowest folder
+  that holds its skills, never a repository root that holds the repository's own tools. Every
+  install copies the whole source, and Claude Code installs a source's npm dependencies when it
+  holds a `package.json` and a lockfile. Here each install of a 2 MB skills plugin was 692 MB.
+  Install the plugins as a colleague would, from a new home folder, and measure the copy.
 - **L78, `releases-and-versions`, waiting, module shipped:** a check of a release's provenance
   knows the repository by the ID GitHub gives it, read from the signing certificate
   (`sourceRepositoryIdentifier`), never by its name alone, which changes when the repository

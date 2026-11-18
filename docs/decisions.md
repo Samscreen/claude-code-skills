@@ -6,6 +6,30 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-18 — Each plugin installs `skills/` alone, and how an organization installs them
+
+- **Asked, by the owner,** 2026-11-18: "do all you can, but then tell me how i cna get this
+  plugin working correctly for the company".
+- **Tried as a colleague would,** from a new home folder with Claude Code's own CLI: the
+  marketplace adds and both plugins install, from either the old or the new address, at 0.1.33.
+  But each install was 692 MB: each plugin's source was the root, every install copies its whole
+  source, and Claude Code installs a source's npm dependencies there when it holds a
+  `package.json` and a lockfile, which can't be turned off (Claude Code's plugin-loading page,
+  read 2026-11-18). The root holds Claude Code itself, 637 MB, for this repository's validator.
+- **Changed:** both plugins' source is `skills/`, and their paths are `./<name>`. Installed the
+  same way: 2.1 MB a plugin, the same 1 and 12 skills (`claude plugin details`), and
+  `claude plugin validate --strict` passes. `skillcheck`'s catalog check reads either layout,
+  and fails a plugin sourced at a root holding a `package.json` and a lockfile; it fired on the
+  old catalog alone. `AGENTS.md`'s plugin-grouping line says the same, so the owner merges this.
+- **How an organization installs them,** now in the README: managed settings, set by an Owner
+  at claude.ai's Organization settings > Claude Code > Managed settings, or in a deployed
+  `managed-settings.json`, with `extraKnownMarketplaces` (`autoUpdate: true`) and
+  `enabledPlugins`, which installs and turns both on for every member. claude.ai's own
+  organization sync takes only a private or internal repository; this one is public. Sources:
+  Claude Code's plugin pages for organizations and for hosting a marketplace, and claude.ai's
+  plugin admin page, read 2026-11-18. Lesson L79.
+- **Mutation test of the changed check:** see the line added when it finishes.
+
 ## 2026-11-18 — Who owns what, and the cloud hook knows this repository by its ID
 
 - **The owner's word,** 2026-11-18: of the repositories this session works with, the two the
