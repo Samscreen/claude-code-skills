@@ -33,6 +33,7 @@ the last section lists each that still stands or is cited.
   encoding another way (`"UTF-8"`, or the default, UTF-8 here), a line this change didn't touch
   and a class 0.1.31's run already records as changing nothing a run can see. Every mutant in the
   new code was killed.
+- **Released as 0.1.34.**
 
 ## 2026-11-18 — Who owns what, and the cloud hook knows this repository by its ID
 

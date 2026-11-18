@@ -6,6 +6,8 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.34] - 2026-11-18
+
 ### Fixed
 
 - Installing a plugin copies about 2 MB, where it copied 692 MB. Each plugin's source was the
