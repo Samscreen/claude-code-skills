@@ -7,12 +7,14 @@ It runs on whatever ``python3`` the machine has, so it uses only the standard li
 It never stops a session: on any failure it keeps the skills already installed and says why on
 stderr. It installs a release only once the release's signed build attestation names the
 archive's digest and this repository's release workflow, and only when the attestation's
-signature checks out with ``gh attestation verify``, where ``gh`` is installed; with no ``gh``, it
-checks the digest and the claims, not the signature, and says so. It refuses an older release
-than the one installed. It replaces and removes only the skills its ledger says it installed,
-and leaves alone a skill of the same name that someone else put there. When the claude.ai account
-still has its own copy of one, which loads beside it under another name, it tells the session,
-on stdout, to have the user delete that copy.
+signature checks out with ``gh attestation verify``, where ``gh`` is installed, from a signing
+certificate that names this repository's ID; with no ``gh``, it checks the digest and the claims,
+not the signature, and says so. The repository is known by the ID GitHub gives it, never by its
+name: a move to another owner or a rename keeps the ID and changes the name. It refuses an older
+release than the one installed. It replaces and removes only the skills its ledger says it
+installed, and leaves alone a skill of the same name that someone else put there. When the
+claude.ai account still has its own copy of one, which loads beside it under another name, it
+tells the session, on stdout, to have the user delete that copy.
 """
 
 import base64
@@ -32,7 +34,13 @@ URL = "https://github.com/REPOSITORY/releases/latest/download/skills.zip"
 # The release's Sigstore bundle, beside the archive: an in-toto statement, signed in the
 # release workflow, that names each file's SHA-256 and the workflow that built it.
 ATTESTATION = "attestation.sigstore.json"
-WORKFLOW = "https://github.com/REPOSITORY", ".github/workflows/release.yml"
+WORKFLOW = ".github/workflows/release.yml"
+# This repository's ID on GitHub, which every release's attestation and signing certificate
+# carry (`repository_id`, `sourceRepositoryIdentifier`). Releases 0.1.31 and 0.1.32, built before
+# and after the repository moved to another owner, carry the same one under different names.
+GITHUB_ID = "1382583321"
+# A repository's address as an attestation names it; the name then goes to gh as an argument.
+ADDRESS = re.compile(r"https://github\.com/([A-Za-z0-9][A-Za-z0-9-]*/[A-Za-z0-9._-]+)")
 # The release's own list of what it holds: {"version": "1.4.0", "skills": ["name", ...]}.
 MANIFEST = "release.json"
 LEDGER = ".claude-code-skills.json"
@@ -132,17 +140,19 @@ def _attested(data: bytes, bundle: bytes) -> None:
         envelope = json.loads(line).get("dsseEnvelope", {})
         statement = json.loads(base64.b64decode(envelope.get("payload", "")))
         subjects = {s.get("name"): s.get("digest", {}).get("sha256") for s in statement["subject"]}
-        workflow = (
-            statement.get("predicate", {})
-            .get("buildDefinition", {})
-            .get("externalParameters", {})
-            .get("workflow", {})
-        )
-        claimed = workflow.get("repository"), workflow.get("path")
-        if subjects.get("skills.zip") == digest and claimed == WORKFLOW:
+        build = statement.get("predicate", {}).get("buildDefinition", {})
+        workflow = build.get("externalParameters", {}).get("workflow", {})
+        github = build.get("internalParameters", {}).get("github", {})
+        address = ADDRESS.fullmatch(str(workflow.get("repository", "")))
+        if (
+            subjects.get("skills.zip") == digest
+            and workflow.get("path") == WORKFLOW
+            and github.get("repository_id") == GITHUB_ID
+            and address
+        ):
             break
     else:
-        raise ValueError(f"no attestation from {WORKFLOW[1]} names this skills.zip, {digest}")
+        raise ValueError(f"no attestation from {WORKFLOW} names this skills.zip, {digest}")
     gh = shutil.which("gh")
     if gh is None:
         print(
@@ -155,14 +165,26 @@ def _attested(data: bytes, bundle: bytes) -> None:
         archive, signed = Path(folder, "skills.zip"), Path(folder, ATTESTATION)
         archive.write_bytes(data)
         signed.write_bytes(bundle)
-        repository = WORKFLOW[0].removeprefix("https://github.com/")
+        # The name the attestation gives, checked by gh against the certificate, whose ID is then
+        # checked below: a name alone could be anyone's after a move.
+        repository = address[1]
         command = [gh, "attestation", "verify", str(archive), "--bundle", str(signed)]
-        command += ["--repo", repository, "--signer-workflow", f"{repository}/{WORKFLOW[1]}"]
+        command += ["--repo", repository, "--signer-workflow", f"{repository}/{WORKFLOW}"]
+        command += ["--format", "json"]
         done = subprocess.run(command, capture_output=True, text=True, timeout=60, check=False)
     if done.returncode != 0:
         # gh's own words, escaped by !r: they can quote what the bundle holds.
         said = (done.stderr or done.stdout).strip().splitlines() or [f"exit {done.returncode}"]
         raise ValueError(f"gh attestation verify refused it: {said[-1]!r}")
+    try:
+        ids = {
+            result["verificationResult"]["signature"]["certificate"]["sourceRepositoryIdentifier"]
+            for result in json.loads(done.stdout)
+        }
+    except (ValueError, KeyError, TypeError) as error:
+        raise ValueError(f"gh attestation verify named no certificate: {error!r}") from None
+    if ids != {GITHUB_ID}:
+        raise ValueError(f"signed for repository {sorted(map(str, ids))!r}, not {GITHUB_ID}")
 
 
 def _manifest(archive: zipfile.ZipFile) -> tuple[str, list[str]]:

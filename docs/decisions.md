@@ -6,6 +6,31 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-18 — Who owns what, and the cloud hook knows this repository by its ID
+
+- **The owner's word,** 2026-11-18: of the repositories this session works with, the two the
+  owner keeps as personal projects are the owner's; "all the rest are company. even the public
+  skills repo is company." This repository is the company's, as is `audit-reports`.
+- **Checked against that, on 2026-11-18:**
+  - This repository has never named either personal project, in any file or commit; both names
+    are in `.github/private-names.sha256`. Some older records and lessons describe what audits of
+    them found, unnamed. Past entries stay as written; the owner decides whether to keep them.
+  - Neither personal repository names the company, or carries a company email address in any
+    commit of its full history, evidence branches included. One names `audit-reports` and a
+    company project by name; each personal repository's session decides what to do with that.
+  - `ROADMAP.md` plans a `personal` plugin, with one planned skill, in this company repository.
+    That waits on the owner.
+- **Broken, and fixed here:** the repository moved to another owner before 0.1.32 was built,
+  so 0.1.32's signature names the new owner. The cloud hook, from release 0.1.2x on, checked
+  the old name, so it refused 0.1.32 and a new cloud session started with no skills; the
+  owner's own environment ran an October hook that checks no signature, and so missed it. The
+  hook now knows this repository by the ID GitHub gives it, which a move keeps, and checks that
+  ID on the signing certificate that `gh attestation verify` reports. Proven against the real
+  0.1.32 release: it installs, and a tampered copy doesn't. Lesson L78.
+- **Waiting on the owner:** every cloud environment's setup script, the owner's included, needs
+  replacing with 0.1.33's `cloud-setup.sh`; a hook already installed can't be fixed remotely.
+- **Released as 0.1.33.** `src/skillcheck/core/` is unchanged, so 0.1.31's mutation run stands.
+
 ## 2026-11-17 — Two personal projects' records moved out of `audit-reports`, history next
 
 - **The owner's choices,** 2026-11-17, on the question the entry below left open: "Move, then

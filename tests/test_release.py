@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from skillcheck import bom, release
+from skillcheck import bom, release, skills_hook
 from skillcheck.cli import main
 from skillcheck.core import skill_parts
 
@@ -351,7 +351,12 @@ def test_the_cloud_setup_lines_install_the_hook_once_and_keep_other_settings(tmp
     digest = hashlib.sha256((out / "skills.zip").read_bytes()).hexdigest()
     statement = {
         "subject": [{"name": "skills.zip", "digest": {"sha256": digest}}],
-        "predicate": {"buildDefinition": {"externalParameters": {"workflow": workflow}}},
+        "predicate": {
+            "buildDefinition": {
+                "externalParameters": {"workflow": workflow},
+                "internalParameters": {"github": {"repository_id": skills_hook.GITHUB_ID}},
+            }
+        },
     }
     payload = base64.b64encode(json.dumps(statement).encode()).decode()
     envelope = json.dumps({"dsseEnvelope": {"payload": payload}})
