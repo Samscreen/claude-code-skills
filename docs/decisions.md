@@ -44,6 +44,14 @@ the last section lists each that still stands or is cited.
   rule.
 - **Checked:** every new or changed fact's quote was found at its source on 2026-11-24, by
   `skillcheck`'s own verify. Each touched module's trigger evaluations gained a request.
+- **Routing:** `skillcheck --triggers` on the nine modules asked 85 requests, and 41 missed.
+  Of the nine new requests, `error-responses`' and `configuration`'s reached their modules.
+  Five of the others loaded the right skill, or none, and answered without opening the module.
+  Two went to another skill: the holiday-calendar save to `optimization-and-scheduling`, and the
+  report stamps to `user-experience`. The older requests missed the same way. Run on main's
+  files, `python-coding` and `visual-theme` missed 9 of 19, the same requests, so those misses
+  predate this change. They wait on the owner's call on how routers send a request on to a
+  module.
 
 - **Asked, by the owner:** "have we moved over the procedure generating skill into here yet?",
   then "lets do this properly" (2026-11-24). The roadmap splits the old `procedure-generator`
