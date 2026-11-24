@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:0fcf52fa-aa1b-5894-9c82-7b9e33b9d7b3",
+  "serialNumber": "urn:uuid:8bbe0d63-db6e-5204-b6a7-2378ffeb139b",
   "version": 1,
   "metadata": {
     "tools": {
@@ -41,7 +41,7 @@
         },
         {
           "name": "claude-code-skills:language",
-          "value": "Python: 61 file(s)"
+          "value": "Python: 63 file(s)"
         },
         {
           "name": "claude-code-skills:language",
@@ -692,11 +692,11 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 81 fact(s)"
+              "value": "learn.microsoft.com: 80 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "docs.python.org: 37 fact(s)"
+              "value": "docs.python.org: 34 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -720,11 +720,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "developer.mozilla.org: 15 fact(s)"
+              "value": "man7.org: 15 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "man7.org: 15 fact(s)"
+              "value": "developer.mozilla.org: 13 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -893,10 +893,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "openjdk.org: 2 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "peps.python.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1076,6 +1072,10 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "peps.python.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "pester.dev: 1 fact(s)"
             },
             {
@@ -1188,7 +1188,7 @@
           "type": "data",
           "bom-ref": "skill:git-workflows",
           "name": "git-workflows",
-          "description": "reviewed 2026-11-16",
+          "description": "reviewed 2026-11-24",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -1197,7 +1197,7 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "docs.github.com: 64 fact(s)"
+              "value": "docs.github.com: 67 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2193,10 +2193,6 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "www.w3.org: 8 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
               "value": "raw.githubusercontent.com: 6 fact(s)"
             },
             {
@@ -2209,11 +2205,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pypi.org: 4 fact(s)"
+              "value": "www.w3.org: 6 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "developer.mozilla.org: 2 fact(s)"
+              "value": "pypi.org: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2226,6 +2222,10 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "bids.github.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "developer.mozilla.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",

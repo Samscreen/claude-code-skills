@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "Our agent sessions misread CI before merging: they read one line of a failed log and miss other failing tests, and wait forever on a required check that never reports. How should our steward have them read a PR's checks?",
+    "should_trigger": true
+  },
+  {
     "query": "Should we squash-merge or use merge commits on main, and how do we enforce it?",
     "should_trigger": false,
     "note": "branches-and-merging"

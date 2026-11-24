@@ -3,7 +3,7 @@ name: git-workflows
 description: "Sets up and runs Git and GitHub work: commits, branches, pull requests and agents tending them, merges, conflicts, CI and deploys, hooks, leaked secrets, releases, tags, changelogs, versions, backports, support windows. Use when doing or fixing any."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-16"
+  reviewed: "2026-11-24"
 ---
 
 # Git workflows
@@ -63,7 +63,7 @@ as fact `node20`, and the fact's row is in whichever module holds it.
 | [`releases-and-versions`](references/releases-and-versions.md) | cutting and publishing a release; release tags, annotated or lightweight, and protecting them; a release or publish workflow that didn't run; writing a changelog entry; choosing the next version number; release branches and backporting a fix to one |
 | [`leaked-data`](references/leaked-data.md) | a secret or personal information that reached a commit, and rewriting history to remove it |
 | [`gitignore`](references/gitignore.md) | writing or debugging `.gitignore`, ignoring secrets, committing lockfiles, or untracking a file |
-| [`pr-stewardship`](references/pr-stewardship.md) | writing or auditing a repository's steward skill, the file that tells agent sessions when to merge or hold a pull request, what to do about red or stalled CI, how to answer review, and what an owner's hold covers |
+| [`pr-stewardship`](references/pr-stewardship.md) | writing or auditing a repository's steward skill, the file that tells agent sessions when to merge or hold a pull request, what to do about red or stalled CI, how to answer review, and what an owner's hold covers; a session reading whether a commit's checks are green, and why not |
 | [`ci-cd`](references/ci-cd.md) | Deploying from GitHub Actions: environments and their gates, which refs may deploy, required reviewers, OIDC instead of cloud keys, one artifact promoted, one deploy at a time, smoke tests and rollback |
 | [`versioning-and-releases`](references/versioning-and-releases.md) | release notes for people upgrading, a published support window, whether to keep a long-term support line, security advisories and CVEs, deprecation timelines, and which release is marked latest; not tags, changelog entries or backports |
 
@@ -79,6 +79,9 @@ Tested examples to copy, each described in its module:
   `releases-and-versions`.
 - [assets/rulesets/default-branch.json](assets/rulesets/default-branch.json), in
   `branches-and-merging`.
+- [scripts/pr_verdict.py](scripts/pr_verdict.py), which says whether a commit's checks are
+  green and why not, in `pr-stewardship`. Read that module before running it: it says what
+  each verdict asks of a session.
 
 ## Check before you act
 
