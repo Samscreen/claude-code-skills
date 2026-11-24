@@ -6,6 +6,8 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.36] - 2026-11-24
+
 ### Added
 
 - `business-apps`, a new skill, with its first module, `word-documents`: filling a Word template

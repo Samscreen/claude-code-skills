@@ -35,6 +35,8 @@ the last section lists each that still stands or is cited.
   answering, as `operations` does, and names the stale-PDF symptom. Two runs since: 7 of 7.
 - **Merged by a session,** on the rule of 2026-11-11: its only `.claude/` change is the new
   skill's `skillOverrides` line.
+- **Released as 0.1.36.** `src/skillcheck/` is unchanged since 0.1.35, so that release's
+  mutation run stands.
 
 ## 2026-11-18 — The owner's eight answers: the company's address, one route, plain records
 
