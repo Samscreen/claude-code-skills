@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:7eaae70d-8a7f-50d8-81f4-7de810649de2",
+  "serialNumber": "urn:uuid:0fcf52fa-aa1b-5894-9c82-7b9e33b9d7b3",
   "version": 1,
   "metadata": {
     "tools": {
@@ -692,11 +692,11 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 80 fact(s)"
+              "value": "learn.microsoft.com: 81 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "docs.python.org: 34 fact(s)"
+              "value": "docs.python.org: 37 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -720,11 +720,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "man7.org: 15 fact(s)"
+              "value": "developer.mozilla.org: 15 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "developer.mozilla.org: 13 fact(s)"
+              "value": "man7.org: 15 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -893,6 +893,10 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "openjdk.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "peps.python.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1069,10 +1073,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "pandas.pydata.org: 1 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "peps.python.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2193,6 +2193,10 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
+              "value": "www.w3.org: 8 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "raw.githubusercontent.com: 6 fact(s)"
             },
             {
@@ -2205,11 +2209,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "www.w3.org: 6 fact(s)"
+              "value": "pypi.org: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pypi.org: 4 fact(s)"
+              "value": "developer.mozilla.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2222,10 +2226,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "bids.github.io: 1 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "developer.mozilla.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
