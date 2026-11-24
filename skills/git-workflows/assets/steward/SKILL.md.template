@@ -42,7 +42,8 @@ label is on>. Read them again at the moment of merging, releasing or sending any
   `python3 pr_verdict.py --repo <OWNER/NAME> --pr <N> --logs`. Its exit status is the verdict:
   0 green; 1 failed, so fix it; 2 pending, so wait and run it again; 3 blocked, a required
   check that will never report, so report it to the owner; 4 canceled, so judge the newest
-  head; 5 no verdict, never green.
+  head; 5 no verdict, never green. Where it can never reach the API, as behind a cloud
+  session's proxy, read the checks through the session's GitHub tools by the same verdicts.
 - This pull request's own failure: find the cause and push a fix.
 - A failure on the base branch too: <port the fix, and comment once>.
 - Re-run a failed job once when the failure isn't this pull request's code: the runner died

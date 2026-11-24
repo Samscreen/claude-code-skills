@@ -53,8 +53,7 @@ branch moves into a conflict (fact `autofix-conflicts`).
 
 Copy [assets/steward/SKILL.md.template](../assets/steward/SKILL.md.template) to
 `.claude/skills/steward/SKILL.md`, replacing each angle-bracketed part with the repository's
-answer, or "none" and why. It covers merging, holds, conflicts and stale branches, red or
-stalled CI, review, releases and other repositories, and when to stop.
+answer, or "none" and why.
 
 ### The mechanical half: reading the checks
 
@@ -73,7 +72,7 @@ required checks (fact `branch-rules`) and the commit's check and workflow runs (
 
 `--logs` prints every line of a failed job's log naming a failure (fact `job-logs`). Rules are
 read as they are now, so an older commit can read `BLOCKED`: judge the newest. Copy the script
-into the repository, or run it from this skill.
+into the repository, or run it from this skill; where it can't reach the API, see Why.
 
 ## Mistakes
 
@@ -175,7 +174,8 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
   required job that no longer runs looks pending forever.
 - **What others do, and why:** auto-merge waits on required checks alone (fact `auto-merge`).
 - **What it costs:** a script to keep in step with GitHub's API.
-- **When to choose differently:** trusted auto-merge needs no verdict.
+- **When to choose differently:** where the session can't reach the API, so every run exits 5
+  (as behind a cloud session's proxy), apply these verdicts to the checks its GitHub tools read.
 
 ## Facts
 
