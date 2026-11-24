@@ -11,7 +11,7 @@ own, or any>, into <branches>. Changes to it are merged by the owner.
 ## Merging
 
 - Method: <merge commit, squash or rebase>, matching the repository's settings.
-- A session may merge <its own pull requests / none> when every required check passed on the
+- A session may merge <its own pull requests / none> when `pr_verdict.py` reads GREEN on the
   head commit, no blocking thread is open, there's no conflict, and no hold covers it.
 - Drafts are never merged; <who> marks one ready.
 - Pull requests the session didn't open: <comment only, or push with the author's word>.
@@ -37,6 +37,12 @@ label is on>. Read them again at the moment of merging, releasing or sending any
 
 ## Red or stalled CI
 
+- Read the head commit's checks with `pr_verdict.py`, from the git-workflows skill's
+  `scripts/` (copied to <path, or "run from the skill">), never from a page or printed output:
+  `python3 pr_verdict.py --repo <OWNER/NAME> --pr <N> --logs`. Its exit status is the verdict:
+  0 green; 1 failed, so fix it; 2 pending, so wait and run it again; 3 blocked, a required
+  check that will never report, so report it to the owner; 4 canceled, so judge the newest
+  head; 5 no verdict, never green.
 - This pull request's own failure: find the cause and push a fix.
 - A failure on the base branch too: <port the fix, and comment once>.
 - Re-run a failed job once when the failure isn't this pull request's code: the runner died

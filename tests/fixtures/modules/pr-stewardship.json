@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "Before our agent merges a PR it needs to know from the API whether the head commit's checks are green, and if not, every failing test in the logs. Is there a script for that?",
+    "should_trigger": true
+  },
+  {
     "query": "Should we squash-merge or use merge commits on main, and how do we enforce it?",
     "should_trigger": false,
     "note": "branches-and-merging"
