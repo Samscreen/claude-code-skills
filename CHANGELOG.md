@@ -21,6 +21,12 @@ Notable changes to this repository. The format follows
 - `pr-stewardship`: a steward skill is checked in CI with `skillcheck --project`, its scripts
   tested in the repository's suite, and a draft marked in `metadata`. The steward template
   starts as a draft.
+- `git-workflows` ships `scripts/pr_verdict.py`, which tells a session driving a pull request
+  whether a commit's checks are green, and if not, why: failed, blocked by a required check
+  that will never report, canceled, or pending, each with what to do, and an exit status for
+  each. It reads the branch's rules and the commit's check and workflow runs from GitHub's REST
+  API, and `--logs` prints every failing line of each failed job. `pr-stewardship` and the
+  steward template name it as the mechanical half of a steward.
 
 ## [0.1.36] - 2026-11-24
 

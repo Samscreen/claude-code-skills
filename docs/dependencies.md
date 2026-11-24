@@ -21,7 +21,7 @@ freshness run and the release workflow both run it.
 | `engineering` | 0.1.36 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
 | `engineering` | 0.1.36 | Apache-2.0 | `business-apps` | reviewed 2026-11-24 |
 | `engineering` | 0.1.36 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `git-workflows` | reviewed 2026-11-16 |
+| `engineering` | 0.1.36 | Apache-2.0 | `git-workflows` | reviewed 2026-11-24 |
 | `engineering` | 0.1.36 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
 | `engineering` | 0.1.36 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
 | `engineering` | 0.1.36 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
@@ -37,7 +37,7 @@ freshness run and the release workflow both run it.
 |---|---|
 | Markdown | 219 |
 | JSON | 90 |
-| Python | 64 |
+| Python | 63 |
 | YAML | 25 |
 | Shell | 4 |
 | TOML | 2 |
@@ -294,7 +294,7 @@ again.
 | `coding` | www.vldb.org | 1 |
 | `coding` | yamllint.readthedocs.io | 1 |
 | `coding` | zod.dev | 1 |
-| `git-workflows` | docs.github.com | 64 |
+| `git-workflows` | docs.github.com | 67 |
 | `git-workflows` | git-scm.com | 18 |
 | `git-workflows` | raw.githubusercontent.com | 10 |
 | `git-workflows` | github.blog | 7 |

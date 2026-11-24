@@ -49,6 +49,39 @@ the last section lists each that still stands or is cited.
   The change touches `AGENTS.md` and a workflow, so the owner merges it.
 
 ## 2026-11-24 — `business-apps`, with `word-documents`
+## 2026-11-24 — `pr_verdict.py`: the mechanical half of a steward
+
+- **Asked, by the owner,** 2026-11-24: fold a design for reading a commit's checks into
+  `git-workflows`, as a tested script that `pr-stewardship` and the steward template point to.
+  The design came from a GPL-3.0 script elsewhere. The script here was written new from the
+  design's description alone: usage, the endpoints, newest-run-wins, the verdicts and their
+  order, the exit statuses, and the log lines to print. No code was read or copied, so the
+  skill stays Apache-2.0 and carries no notice for it.
+- **Built:** `skills/git-workflows/scripts/pr_verdict.py`, standard library only, and
+  `tests/test_git_workflows_pr_verdict.py`, 63 tests on canned API answers with no network:
+  every verdict, their order, newest-run-wins, pagination, each unreadable answer, the token
+  kept off a log's redirect, and log-line extraction. Beyond the design: a workflow run that
+  failed to start reads `FAILED`; one waiting for approval, and a commit nothing has reported
+  on, read `PENDING`, never `GREEN`; a usage error exits 5, since argparse's own 2 would read
+  as `PENDING`; and classic branch protection's contexts count as required beside the rules.
+- **Limits, stated in the script and the module:** a commit is judged against today's rules,
+  so an old one reads `BLOCKED` for a job added since; only check runs are read, so a required
+  check reported only as a commit status reads as missing.
+- **Review, against `docs/authoring-a-skill.md`:** sources are GitHub's REST docs (CC BY 4.0),
+  three new facts (`branch-rules`, `run-pages`, `job-logs`) with quotes found on their pages on
+  2026-11-24, and `rerun-window` trimmed to the quotes the module still uses. The module stays
+  within 16,000 characters with its six sections, trimmed in Rules, Mistakes, Audit and Why to
+  make room; one trigger evaluation added for the script. No repository it was tested on or
+  drawn from is named.
+- **Not run live:** this session's proxy refused GitHub's API for every repository (HTTP 403),
+  so the script was exercised only on canned answers, and its unreadable path on the refusal.
+- **Routing:** the first `skillcheck --triggers pr-stewardship` run missed 2 of 13: an existing
+  audit request invoked no skill, and the new request, which asked for "a script", loaded
+  `git-workflows` without reading the module. The router's line for the script now says to read
+  the module first, and the new request asks how a steward should read checks rather than for a
+  script. Second run: 12 of 13, the script request still missing; third, after rewording: 13
+  of 13. `skillcheck --verify` found the three new facts' quotes; `project-skills`, whose quote
+  this change didn't touch, no longer matched its page, and is left for the freshness issue.
 
 - **Asked, by the owner:** "have we moved over the procedure generating skill into here yet?",
   then "lets do this properly" (2026-11-24). The roadmap splits the old `procedure-generator`
