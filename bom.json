@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:c7b9175b-71ca-5f58-80df-e610d40175bf",
+  "serialNumber": "urn:uuid:5eb8599c-f96e-5e6d-ad92-8e8a81ae4fb1",
   "version": 1,
   "metadata": {
     "tools": {
@@ -639,6 +639,43 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "pnpm.io: 1 fact(s)"
+            }
+          ]
+        },
+        {
+          "type": "data",
+          "bom-ref": "skill:business-apps",
+          "name": "business-apps",
+          "description": "reviewed 2026-11-24",
+          "licenses": [
+            {
+              "expression": "Apache-2.0"
+            }
+          ],
+          "properties": [
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "learn.microsoft.com: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "support.microsoft.com: 3 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "raw.githubusercontent.com: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "api.libreoffice.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "committee.iso.org: 1 fact(s)"
             }
           ]
         },

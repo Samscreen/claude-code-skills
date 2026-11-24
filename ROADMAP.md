@@ -72,7 +72,7 @@ research. These rules are that structure.
 | `security` | `engineering` | Threat models, authentication, authorization and cryptography (planned: dependencies and the supply chain, privacy and licenses) | shipped |
 | `agent-engineering` | `engineering` | Building skills and agent context files, agents reviewing each other, and defending agents against injection | shipped |
 | `operations` | `engineering` | Running, troubleshooting or hardening Windows Server, Linux, containers and networks, and reading their logs and crash dumps (planned: cloud) | shipped |
-| `business-apps` | `engineering` | Automating or extending Excel, Word, Epicor Kinetic and SOLIDWORKS | planned |
+| `business-apps` | `engineering` | Automating or extending Excel, Word, Epicor Kinetic and SOLIDWORKS (shipped: Word; planned: Excel, Epicor Kinetic, SOLIDWORKS) | shipped |
 | `visual-design` | `engineering` | Themes, palettes, contrast and charts (planned: accessibility) | shipped |
 | `user-experience` | `engineering` | Reviewing, designing or testing how a program behaves for the person using it: status and feedback, windows and dialogs, settings and options, and whether it's easy to learn and to use | shipped |
 | `optimization-and-scheduling` | `engineering` | Solvers, schedules and plans, with the people in them | shipped |
@@ -196,7 +196,7 @@ Grouped by subject; the Skill column is each module's one home.
 |---|---|---|---|---|---|
 | `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11, R11b |
 | `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
-| `word-documents` | `business-apps` | Generating and filling Word templates | planned | core | R16, R16b |
+| `word-documents` | `business-apps` | Generating and filling Word templates | shipped | core | R16, R16b |
 | `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
 | `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | planned | core | R16 |
 | `linux` | `operations` | Administration and troubleshooting across distributions | shipped | standard | R15 |

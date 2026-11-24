@@ -1,0 +1,30 @@
+[
+  {
+    "query": "My python-docx script crashes with 'is not a Word file' when I open our company .dotx template. How do I fill it in from code?",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm replacing {{customer}} in a Word document with python-docx but some placeholders never get found, and when they do the bold formatting disappears",
+    "should_trigger": true
+  },
+  {
+    "query": "Our generated procedure documents show 'a., b., c.' for step 1 but step 6 starts at 'e.' instead of 'a.' again. How do I restart the lettering for each step?",
+    "should_trigger": true
+  },
+  {
+    "query": "The table of contents in the .docx my script builds is right in Word but shows the template's sample entries in the PDF we make with LibreOffice",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a generator that makes the next revision of a Word procedure and keeps the change record from the previous revision",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a Python function that parses ISO dates from a CSV and reports the bad rows with their line numbers",
+    "should_trigger": false
+  },
+  {
+    "query": "Pick a color palette for our company's PowerPoint and Word theme that passes contrast checks",
+    "should_trigger": false
+  }
+]

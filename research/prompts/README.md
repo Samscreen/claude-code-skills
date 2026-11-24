@@ -1,7 +1,7 @@
 # Research runs
 
-Fifty-seven prompts, one file each. Of those, 24 are still to run and are marked `not run`; the
-other 33 link their filed result in the Result column. Run R24 and R21b first, since
+Fifty-seven prompts, one file each. Of those, 23 are still to run and are marked `not run`; the
+other 34 link their filed result in the Result column. Run R24 and R21b first, since
 together they unblock `supply-chain-security`, then the rest of priority 1, several at a time in
 separate chats (the owner, 2026-11-16). Each file is the whole prompt: paste all of it into a new
 claude.ai chat with Research turned on (or Web search, if Research isn't offered).
@@ -42,7 +42,7 @@ How to save a report and send it back is in [Taking in a result](../README.md#ta
 | R14 | 2 | [R14-data-sql.md](R14-data-sql.md) | Data and SQL | sql-craftsman, epicor-kinetic (SQL Server), excel-master (data connections) | not run |
 | R15 | 3 | [R15-shell-config-containers-linux-cloud.md](R15-shell-config-containers-linux-cloud.md) | Shell, configuration formats, containers, Kubernetes, infrastructure as code, Linux, networking and cloud | shell, config-formats, containers, kubernetes, infrastructure-as-code, cloud, linux, networking-security, linux-gaming | [2026-10-26](../runs/2026-10-26-R15-shell-config-containers-linux-cloud.md) |
 | R16 | 2 | [R16-office-epicor-solidworks.md](R16-office-epicor-solidworks.md) | Office (Excel, Word, VBA), Epicor Kinetic and SOLIDWORKS | excel-master, vba-coding, word-documents, epicor-kinetic, solidworks-automation, legacy-languages (VBA, VBScript) | [2026-11-24](../runs/2026-11-24-R16-office-epicor-solidworks.md) |
-| R16b | 2 | [R16b-word-documents.md](R16b-word-documents.md) | Word templates and generated documents, what R16 didn't reach | word-documents | not run |
+| R16b | 2 | [R16b-word-documents.md](R16b-word-documents.md) | Word templates and generated documents, what R16 didn't reach | word-documents | [2026-11-24](../runs/2026-11-24-R16b-word-documents.md) |
 | R17 | 3 | [R17-legacy-modernization.md](R17-legacy-modernization.md) | Legacy languages and modernization | legacy-languages, legacy-modernization | not run |
 | R18 | 2 | [R18-accessibility-i18n-privacy-licensing.md](R18-accessibility-i18n-privacy-licensing.md) | Accessibility, internationalization, privacy and licensing compliance | accessibility, internationalization, privacy-and-compliance, documentation (licenses and notices) | not run |
 | R19 | 3 | [R19-architecture-api-planning-optimization.md](R19-architecture-api-planning-optimization.md) | Architecture, API design and planning (optimization and scheduling moved to R28) | architecture-and-design, api-patterns | not run |
