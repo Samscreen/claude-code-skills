@@ -32,6 +32,13 @@ the last section lists each that still stands or is cited.
   drawn from is named.
 - **Not run live:** this session's proxy refused GitHub's API for every repository (HTTP 403),
   so the script was exercised only on canned answers, and its unreadable path on the refusal.
+- **Routing:** the first `skillcheck --triggers pr-stewardship` run missed 2 of 13: an existing
+  audit request invoked no skill, and the new request, which asked for "a script", loaded
+  `git-workflows` without reading the module. The router's line for the script now says to read
+  the module first, and the new request asks how a steward should read checks rather than for a
+  script. Second run: 12 of 13, the script request still missing; third, after rewording: 13
+  of 13. `skillcheck --verify` found the three new facts' quotes; `project-skills`, whose quote
+  this change didn't touch, no longer matched its page, and is left for the freshness issue.
 
 - **Asked, by the owner:** "have we moved over the procedure generating skill into here yet?",
   then "lets do this properly" (2026-11-24). The roadmap splits the old `procedure-generator`

@@ -80,7 +80,8 @@ Tested examples to copy, each described in its module:
 - [assets/rulesets/default-branch.json](assets/rulesets/default-branch.json), in
   `branches-and-merging`.
 - [scripts/pr_verdict.py](scripts/pr_verdict.py), which says whether a commit's checks are
-  green and why not, in `pr-stewardship`.
+  green and why not, in `pr-stewardship`. Read that module before running it: it says what
+  each verdict asks of a session.
 
 ## Check before you act
 

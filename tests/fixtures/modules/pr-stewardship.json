@@ -24,7 +24,7 @@
     "should_trigger": true
   },
   {
-    "query": "Before our agent merges a PR it needs to know from the API whether the head commit's checks are green, and if not, every failing test in the logs. Is there a script for that?",
+    "query": "Our agent sessions misread CI before merging: they read one line of a failed log and miss other failing tests, and wait forever on a required check that never reports. How should our steward have them read a PR's checks?",
     "should_trigger": true
   },
   {
