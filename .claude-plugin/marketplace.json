@@ -10,7 +10,7 @@
       "source": "./skills",
       "strict": false,
       "description": "Repository setup and audit: the PROJECT-BOOTSTRAP-AND-AUDIT standard as a skill.",
-      "version": "0.1.35",
+      "version": "0.1.36",
       "author": {
         "name": "Samscreen"
       },
@@ -24,8 +24,8 @@
       "name": "engineering",
       "source": "./skills",
       "strict": false,
-      "description": "Engineering practice: writing, testing and securing code, laying out projects, Git, pull requests, CI and releases, running systems and reading their logs, interfaces people use, how interfaces and charts look, the people in a plan and its solver, agents that review each other, and the house style for prose and Markdown.",
-      "version": "0.1.35",
+      "description": "Engineering practice: writing, testing and securing code, laying out projects, Git, pull requests, CI and releases, running systems and reading their logs, interfaces people use, how interfaces and charts look, business documents written from code, the people in a plan and its solver, agents that review each other, and the house style for prose and Markdown.",
+      "version": "0.1.36",
       "author": {
         "name": "Samscreen"
       },
