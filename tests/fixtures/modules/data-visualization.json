@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "Our generated PDF report and the weekly schedule printout get compared side by side, and nobody can tell which is newer or how fresh the data was. What should each one show?",
+    "should_trigger": true
+  },
+  {
     "query": "Set up design tokens for our brand colors with a dark mode variant, built to CSS variables",
     "should_trigger": false
   },

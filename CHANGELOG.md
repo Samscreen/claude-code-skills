@@ -6,6 +6,19 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Lessons from a production web application's audit, as general rules in nine modules:
+  `python-coding` keeps printed text alive when Windows redirects it to a file or pipe;
+  `visual-theme` defines large text and keeps meaning through Windows contrast themes (forced
+  colors); `html-coding` bounds every number in the page and on the server, keeps focus through
+  a re-render and clears a sticky header with `scroll-padding-top`; `error-responses` reads an
+  error body by its real shape, FastAPI's 422 list among them; `interface-patterns` writes a
+  corrected value back to its field; `settings-and-options` confirms a save with wide effects;
+  `usability-review` asks each count to say what it counts; `data-visualization` stamps a
+  generated report or schedule with when it was made and when its data was loaded; and
+  `configuration` keeps domain values out of code.
+
 ## [0.1.36] - 2026-11-24
 
 ### Added

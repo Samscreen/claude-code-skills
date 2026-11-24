@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "Our status badges are colored pills with 11px bold white text. Users on Windows high contrast mode say they can't tell the statuses apart. What should change?",
+    "should_trigger": true
+  },
+  {
     "query": "What chart type should I use to compare monthly sales across five regions, and which colors are colorblind-safe for the series?",
     "should_trigger": false,
     "note": "data-visualization"

@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "Our front end shows 'undefined' whenever the FastAPI backend returns a 422. How should the client read the error and what should the user see?",
+    "should_trigger": true
+  },
+  {
     "query": "Add retries with backoff to the client that calls the payment provider; it times out now and then.",
     "should_trigger": false
   },

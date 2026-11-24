@@ -20,6 +20,10 @@
     "should_trigger": true
   },
   {
+    "query": "My Python CLI prints fine in the terminal, but when Task Scheduler runs it with output redirected to a log file on Windows it dies with UnicodeEncodeError: 'charmap' codec can't encode character '\\u2192'. How do I fix it and keep it fixed?",
+    "should_trigger": true
+  },
+  {
     "query": "Review this Python function that runs subprocess.run(f\"convert {name}\", shell=True) on an uploaded file name.",
     "should_trigger": false,
     "note": "python-security: shells and subprocess on input"

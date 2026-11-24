@@ -20,6 +20,10 @@
     "should_trigger": true
   },
   {
+    "query": "Review this dashboard: the header shows '12/40' next to the job list, and nobody can tell me what the two numbers mean.",
+    "should_trigger": true
+  },
+  {
     "query": "My file picker opens behind the main window and blocks input. How should dialogs be parented and stacked?",
     "should_trigger": false,
     "note": "windows-and-dialogs"

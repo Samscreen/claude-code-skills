@@ -2,7 +2,8 @@
 
 Read this for how a program takes its settings: the order of defaults, files, environment and
 flags, naming environment variables, loading settings once into a typed object, checking them at
-startup with errors that name the setting, getting secrets in, and feature flags.
+startup with errors that name the setting, domain values kept out of code, getting secrets in,
+and feature flags.
 
 The syntax and parsing of YAML, JSON, TOML and XML files is config-formats'. Checking text from
 users and networks is input-handling's, and typed objects in general are types'. Language modules
@@ -98,6 +99,9 @@ release flag goes once the rollout ends, and tests cover both paths meanwhile (f
   `if env == "production"` in the code. Set each setting on its own, per deployment (fact
   `config-12factor`).
 - **Two names for one setting,** such as `DB_URL` and `DATABASE_URL`.
+- **A domain value in code:** a shift's length, a limit or a holiday list as a constant, a
+  default argument or a formatter's fallback. A second copy drifts: a total hard-coded in one
+  report once made two reports disagree. Read it from the settings, and fail if it's missing.
 - **What AI assistants get wrong:** reading a variable the project never sets, adding a settings
   library or `.env` loader the project already has, writing a default from memory, and putting a
   realistic-looking key in `.env.example` instead of `CHANGEME`.
@@ -113,6 +117,7 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 | A secret in a tracked file or a default | Dimension 7's scan, and the defaults in the settings module | `BLOCKER` for a real secret | Dimension 7's remedy, then rotate it |
 | A secret taken as a flag | `--password`, `--token` or `--key` in the argument parser | `GAP`; `BLOCKER` where a script or unit passes a real one | A variable or a file path |
 | Settings or the environment logged | Log calls given the settings object or the environment | `BLOCKER` where a secret reaches the log | Redact secrets in the type's printed form |
+| Domain values in code | Limits, timings or calendars as literals or default arguments outside the settings module | `DRIFT` | One setting, passed down |
 | Flags past their removal date | Flags with no owner or date, or a date passed | `DRIFT` | Remove the flag and its dead path |
 
 ## Why
@@ -131,7 +136,8 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
   the rest of the program.
 - **The reason:** a value checked at first use fails late, far from the change that broke it,
   and a string read in ten places is parsed ten ways. Code that reads its own environment can't
-  be tested without setting it (the standard's Wiring).
+  be tested without setting it (the standard's Wiring). A domain value also written in the code
+  is a second source, and a fallback in a formatter hides that the first was never read.
 - **What others do:** .NET checks options at first use unless told to at startup (fact
   `config-validate-on-start`).
 - **When to choose differently:** a check that needs a service which may not be up yet belongs in
