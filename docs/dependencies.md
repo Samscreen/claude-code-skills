@@ -35,8 +35,8 @@ freshness run and the release workflow both run it.
 
 | Language | Tracked files |
 |---|---|
-| Markdown | 216 |
-| JSON | 89 |
+| Markdown | 219 |
+| JSON | 90 |
 | Python | 61 |
 | YAML | 25 |
 | Shell | 4 |
