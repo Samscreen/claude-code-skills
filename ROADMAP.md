@@ -196,7 +196,7 @@ Grouped by subject; the Skill column is each module's one home.
 |---|---|---|---|---|---|
 | `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11, R11b |
 | `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
-| `word-documents` | `business-apps` | Generating and filling Word templates | planned | core | R16 |
+| `word-documents` | `business-apps` | Generating and filling Word templates | planned | core | R16, R16b |
 | `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
 | `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | planned | core | R16 |
 | `linux` | `operations` | Administration and troubleshooting across distributions | shipped | standard | R15 |
