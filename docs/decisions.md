@@ -6,6 +6,36 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-24 — `business-apps`, with `word-documents`
+
+- **Asked, by the owner:** "have we moved over the procedure generating skill into here yet?",
+  then "lets do this properly" (2026-11-24). The roadmap splits the old `procedure-generator`
+  in two: the general mechanics into this module, the company's template and format into the
+  private companion's `samscreen-documents`.
+- **Built:** the skill `business-apps`, with its first module, `word-documents`, from R16b's
+  checked claims (`research/runs/2026-11-24-R16b-word-documents.md`; R16 itself had no Word
+  findings) and a test of the old generator and two company templates. Written and reviewed
+  here, against `docs/authoring-a-skill.md`.
+- **Checked before writing:** every example runs against both templates (a `.dotx` loads and
+  saves as a `.docx`, text split across runs is replaced in body, cells and header, `DATE` and
+  `FILENAME` fields become text, and lettered lists restart, seen in a PDF render), and every
+  fact's quote was found at its source on 2026-11-24.
+- **What R16b and the test changed from the old skill:** a `.dotx` is opened by changing its
+  content type, not rejected; field results are written, since `updateFields` reaches Word
+  alone; `DATE` is never a revision date; python-docx's own list helpers replace hand-built
+  numbering XML; a revision keeps its change record's earlier rows.
+- **Sources:** python-docx (MIT, short quotes; the examples are our own), Microsoft's Open XML
+  SDK reference and Support pages, the LibreOffice API reference, ISO/TC 176/SC 2's news page,
+  and PyPI. Facts in our own words, with short quotes. Nothing adapted.
+- **The old copy:** `procedure-generator` stays on the owner's claude.ai account until
+  `samscreen-documents` ships, since this module doesn't hold the company's template. Synced
+  skills that name it: `my-theme`, which only excludes it, so nothing breaks when it goes.
+- **Routing:** `skillcheck --triggers` missed one request in each of two runs; Claude loaded the
+  skill and answered without opening the module. The router now says to read the module before
+  answering, as `operations` does, and names the stale-PDF symptom. Two runs since: 7 of 7.
+- **Merged by a session,** on the rule of 2026-11-11: its only `.claude/` change is the new
+  skill's `skillOverrides` line.
+
 ## 2026-11-18 — The owner's eight answers: the company's address, one route, plain records
 
 - **Asked, by the owner,** 2026-11-18: "what decisions, if any, do you need from me? ask them

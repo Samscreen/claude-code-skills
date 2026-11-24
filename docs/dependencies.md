@@ -19,6 +19,7 @@ freshness run and the release workflow both run it.
 | `standards` | 0.1.35 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.52.0 |
 | `engineering` | 0.1.35 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
 | `engineering` | 0.1.35 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
+| `engineering` | 0.1.35 | Apache-2.0 | `business-apps` | reviewed 2026-11-24 |
 | `engineering` | 0.1.35 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
 | `engineering` | 0.1.35 | Apache-2.0 | `git-workflows` | reviewed 2026-11-16 |
 | `engineering` | 0.1.35 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
@@ -34,8 +35,8 @@ freshness run and the release workflow both run it.
 
 | Language | Tracked files |
 |---|---|
-| Markdown | 216 |
-| JSON | 89 |
+| Markdown | 219 |
+| JSON | 90 |
 | Python | 61 |
 | YAML | 25 |
 | Shell | 4 |
@@ -164,6 +165,12 @@ again.
 | `architecture` | peps.python.org | 1 |
 | `architecture` | pkg.go.dev | 1 |
 | `architecture` | pnpm.io | 1 |
+| `business-apps` | learn.microsoft.com | 7 |
+| `business-apps` | support.microsoft.com | 3 |
+| `business-apps` | pypi.org | 2 |
+| `business-apps` | raw.githubusercontent.com | 2 |
+| `business-apps` | api.libreoffice.org | 1 |
+| `business-apps` | committee.iso.org | 1 |
 | `coding` | learn.microsoft.com | 80 |
 | `coding` | docs.python.org | 34 |
 | `coding` | raw.githubusercontent.com | 26 |

@@ -6,6 +6,14 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `business-apps`, a new skill, with its first module, `word-documents`: filling a Word template
+  from code. It opens a `.dotx` as a new document, replaces text Word split across runs, turns
+  `DATE` and `FILENAME` fields into text, writes the table of contents, restarts lettered lists,
+  and keeps a change record's earlier rows, with each example tried on real templates.
+- R16 and R16b filed; R16b asked the Word question R16 didn't reach.
+
 ## [0.1.35] - 2026-11-18
 
 ### Changed
