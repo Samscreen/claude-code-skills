@@ -2,8 +2,8 @@
 
 Read this for what an HTTP API sends when a request fails: RFC 9457 problem details, which
 status code, what ASP.NET Core, Spring, FastAPI, Express and Go send by default and how to
-change it, and contract tests for error bodies. Read it too for an error message a person reads, in a dialog, a page or
-a terminal: what it says, its tone, and what stays out of it.
+change it, contract tests for error bodies, and a client reading them. Read it too for an
+error message a person reads, in a dialog, a page or a terminal: what it says and its tone.
 
 What to catch, causes, exit codes, retries and timeouts are `error-handling`'s; each language's
 syntax is its own module's. What goes into the log is logging-and-observability's. Where an
@@ -71,6 +71,10 @@ copies its status, or a client's mistake reads as a server failure; 11 keeps it 
   sound optional (fact `er-win32-questions`); Style and Tone allows it where the person is
   inconvenienced (fact `er-ms-please`). Our choice: never in an instruction; "Please wait" is
   fine.
+- **The client reads the body by its real shape.** FastAPI's 422 sends `detail` as a list of
+  errors, each with `loc` and `msg` (fact `er-fastapi`); read as a string, it shows `undefined`
+  or `[object Object]`. Put each message by its field; when the body can't be read, say what
+  failed in a sentence of your own.
 
 ## Mistakes
 
@@ -101,7 +105,7 @@ Severity uses the standard's status words.
 | Support left off | Spring Boot without the property; ASP.NET Core without `AddProblemDetails()` | `GAP` | Rule 3 and the table |
 | Internals shown | A stack trace, exception text, SQL or path in a response or dialog | `GAP` | Message and ID; detail to the log |
 | Tests pin defaults | `about:blank` or a generated `instance` asserted | `DRIFT` | Rule 4 |
-| A message with no way out | No cause or next step; a bare code; blame | `GAP` | Rule 6 |
+| A message with no way out | No cause or next step; a bare code; blame; `undefined` or `[object Object]` on screen | `GAP` | Rule 6; parse the body's shape |
 
 ## Why
 
@@ -122,8 +126,6 @@ Severity uses the standard's status words.
   setting `type` and 7.1 stops setting `instance` (facts `er-spring-type`, `er-spring-71`), so a
   test pinned to either breaks on an upgrade that clients don't notice.
 - **What it costs:** a setting or a middleware, and a look at the bodies after each upgrade.
-- **When to choose differently:** for a framework not in the table, look for its own problem
-  details support before writing middleware.
 
 ### Internals out of the response
 
@@ -131,7 +133,7 @@ Severity uses the standard's status words.
 - **The reason:** exception text tells an attacker the stack, the queries and the paths, and
   the person nothing. Microsoft calls serving it a security risk (fact `er-aspnet-sensitive`);
   Spring 7.1's opt-in never exposes the message (fact `er-spring-71`).
-- **What it costs:** an ID in every error response and every matching log record.
+- **What it costs:** an ID in every error response and its log record.
 
 ### Messages for people
 
@@ -139,7 +141,7 @@ Severity uses the standard's status words.
 - **The reason:** a person can act on "The file is over 10 MB. Choose a smaller one", not on
   `Error 0x80070057`. NN/g, GOV.UK and Microsoft agree (facts `er-nng-h9`, `eh-govuk`,
   `er-win32-questions`, `er-ms-blame`).
-- **What it costs:** a message per cause a person can fix, and keeping each one current.
+- **What it costs:** a message per cause a person can fix, kept current.
 - **When to choose differently:** for developers, add the code and the cause after the
   sentence; they will search for it.
 
@@ -160,7 +162,7 @@ Each named elsewhere by its ID. `eh-` rows moved here from `error-handling` with
 | `er-spring-boot-off` | Spring Boot 4.1.2: both properties default to false | [Properties](https://docs.spring.io/spring-boot/appendix/application-properties/index.html) | "Whether RFC 9457 Problem Details support should be enabled." | 2026-11-16 | 2027-02-16 |
 | `er-spring-type` | Spring Framework 7.0.10: `type` unset by default | [ProblemDetail](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ProblemDetail.html) | "By default, this is not set. According to the spec, when not present, the type is assumed to be "about:blank"" | 2026-11-16 | 2027-02-16 |
 | `er-spring-71` | Spring Framework 7.1: preview (RC2); `instance` not set; unhandled exceptions opt-in, message never exposed | [7.1 Release Notes](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-7.1-Release-Notes) | "This is a preview page for Spring Framework 7.1.0, scheduled for November 2026." and "The instance field of ProblemDetail is no longer set automatically" and "This is opt-in through WebMvcConfigurer" and "The exception message is never exposed." | 2026-11-16 | 2027-02-16 |
-| `er-fastapi` | FastAPI's own JSON by default; handle Starlette's `HTTPException`, and `Exception` | [Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/), [Starlette](https://starlette.dev/exceptions/) | "These handlers are in charge of returning the default JSON responses when you raise an HTTPException and when the request has invalid data." and "you should register it for Starlette's HTTPException" and "Both keys 500 and Exception can be used." | 2026-11-16 | 2027-05-16 |
+| `er-fastapi` | FastAPI's own JSON by default, a 422's `detail` a list; handle Starlette's `HTTPException`, and `Exception` | [Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/), [Starlette](https://starlette.dev/exceptions/) | "These handlers are in charge of returning the default JSON responses when you raise an HTTPException and when the request has invalid data." and "you should register it for Starlette's HTTPException" and "Both keys 500 and Exception can be used." and "\"detail\": [ { \"loc\": [" | 2026-11-24 | 2027-05-24 |
 | `er-express` | HTML in production, else the stack; a handler takes four arguments, last | [Error handling](https://expressjs.com/en/guide/error-handling.html) | "The body will be the HTML of the status code message when in production environment, otherwise will be err.stack." and "error-handling functions have four arguments instead of three" and "You define error-handling middleware last" | 2026-11-16 | 2027-05-16 |
 | `er-go-http` | `http.Error` writes plain text; a panic ends the request unanswered | [net/http](https://pkg.go.dev/net/http) | "The error message should be plain text." and "It recovers the panic, ... either closes the network connection or sends an HTTP/2 RST_STREAM" | 2026-11-16 | 2027-05-16 |
 | `er-win32-questions` | Three questions; avoid "please" | [Win32](https://learn.microsoft.com/windows/win32/debug/error-message-guidelines) | "What happened and why?" and "What can the user do to prevent it from happening again?" and "Avoid the word "please". It can be interpreted to mean that a required action is optional." | 2026-11-16 | 2027-05-16 |
@@ -177,6 +179,6 @@ Rules are in our own words; each quote is a dated fact above.
 | RFC 9457, RFC 9110 | Problem details, status | IETF Trust: short quotes, cited |
 | Microsoft Learn: ASP.NET Core, Win32, Windows apps | Defaults; messages | CC BY 4.0: quoted, attributed |
 | Spring Boot and Spring Framework docs, wiki | Defaults | Apache-2.0 projects; docs license not re-checked: short quotes, cited |
-| Nielsen Norman Group | Heuristic 9 | All rights reserved: short quotes, our own words otherwise |
+| Nielsen Norman Group | Heuristic 9 | All rights reserved: short quotes |
 | GOV.UK Design System | Messages | Open Government Licence v3.0: quoted, attributed |
 | FastAPI, Starlette, Express and Go docs | Their defaults | MIT, BSD-3-Clause, CC BY 4.0 and BSD-3-Clause: short quotes, cited |

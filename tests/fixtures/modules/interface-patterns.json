@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "When someone types 500 in the quantity field our form quietly saves 100, the maximum, but the field still shows 500. What should the form do instead?",
+    "should_trigger": true
+  },
+  {
     "query": "Pick a color palette and design tokens for our app's dark mode.",
     "should_trigger": false
   },

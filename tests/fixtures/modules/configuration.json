@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "The shift length is 480 in one function's default argument and 450 in a formatter's fallback, and two reports disagree. Where should values like that live?",
+    "should_trigger": true
+  },
+  {
     "query": "My YAML file breaks when a value is 'no' or a version like 3.10. How do I quote it so the parser reads it right?",
     "should_trigger": false
   },

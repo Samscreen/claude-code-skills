@@ -39,8 +39,8 @@ mistakes, audit checks, reasons, dated facts and sources.
 
 | Module | Read it for |
 |---|---|
-| [`visual-theme`](references/visual-theme.md) | Theming an interface or a document: design tokens in the DTCG format and building them with Style Dictionary, naming tokens by role, dark mode as a second value set, OKLCH and `light-dark()`, WCAG contrast thresholds, Office's color scheme, and font fallbacks |
-| [`data-visualization`](references/data-visualization.md) | Building a chart: never color alone, color-blind-safe palettes from the tokens, the takeaway in words with the data on offer, contrast of marks, the chart type for the comparison, choosing a charting library by where the chart lands and how active it is, and figures computed in one run |
+| [`visual-theme`](references/visual-theme.md) | Theming an interface or a document: design tokens in the DTCG format and building them with Style Dictionary, naming tokens by role, dark mode as a second value set, OKLCH and `light-dark()`, WCAG contrast thresholds and large text, Windows contrast themes (forced colors), Office's color scheme, and font fallbacks |
+| [`data-visualization`](references/data-visualization.md) | Building a chart: never color alone, color-blind-safe palettes from the tokens, the takeaway in words with the data on offer, contrast of marks, the chart type for the comparison, choosing a charting library by where the chart lands and how active it is, and figures computed in one run, stamped with when they were made |
 
 ## When something here is wrong
 

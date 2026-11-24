@@ -2,13 +2,12 @@
 
 Read this for designing or reviewing a program's settings: defaults, presets, advanced options
 a step away, each setting in one place under one name, the control for a choice, whether a page
-has too many options, and an inventory of every setting.
+has too many options, confirming a save with wide effects, and an inventory of every setting.
 
-A heuristic review of a whole interface is `usability-review`'s; a settings dialog's behavior as
-a window is `windows-and-dialogs`'; automated tests are `gui-testing`'s;
-a flag's syntax on the command line is `command-line-interfaces`'. Contrast, screen-reader
-labels and keyboard reach are the planned `accessibility` module of the `visual-design` skill; this
-module asks only that a disabled control says why.
+A heuristic review is `usability-review`'s; a settings dialog as a window `windows-and-dialogs`';
+tests `gui-testing`'s; a flag's syntax `command-line-interfaces`'. Accessibility is the planned
+`accessibility` module of the `visual-design` skill; this module asks only that a disabled
+control says why.
 
 ## Rules
 
@@ -37,6 +36,8 @@ module asks only that a disabled control says why.
 9. **A setting the CLI and the GUI both expose is one setting:** one name, one default, one
    stored value, with the flag named in the GUI's help. This repository's practice.
 10. **Review a settings surface from an inventory of every setting,** below.
+11. **Confirm a save whose effect reaches past the page, naming what will change,** such as
+    "Saving re-plans 42 open jobs". A save that changes only what the page shows needs none.
 
 ### Controls, by KDE's guidelines
 
@@ -68,6 +69,8 @@ one another, a blank default, an option that silently does nothing, and an optio
 - **An "Advanced" page as a drawer for everything,** far from what each option qualifies, or
   options cut because a dialog "has too many". Group them, with defaults, the rare ones a step
   away.
+- **A holiday list saved with one click that silently re-plans every schedule.** Name the
+  effect, and ask.
 - **A preset that keeps its name after a change,** or overwrites custom values unannounced.
 - **One setting as `--out-dir`, "Destination" and `target`** in the CLI, the GUI and the config
   file, or a toolbar toggle with a stored value of its own. One name, one value.
@@ -89,6 +92,7 @@ Severity uses the standard's status words.
 | A control that doesn't fit its setting | Switches applied on OK; over 3 radio buttons; combo boxes over 10 items | `GAP` | The control from the table above |
 | A CLI flag and its GUI setting differ in name or default | Help output beside the dialog | `GAP` | One name and default |
 | A setting no test sets | The inventory's tests | `GAP` | A test per setting that changes behavior |
+| A wide save unannounced | A save that recomputes, resends or rewrites data beyond the page | `GAP` | A confirmation naming the effect |
 | All of the above hold | The inventory and the checks | `OK` | Nothing |
 
 ## Why
@@ -154,6 +158,14 @@ Severity uses the standard's status words.
 - **What it costs:** a larger surface to group, document and test.
 - **When to choose differently:** an option the inventory shows has no caller and no test can
   go, with the removal recorded.
+
+### Confirming a wide save
+
+- **The reason:** a person changing a setting sees the setting, not the work it sets off. NN/g's
+  first heuristic asks that no action with consequences be taken without informing them (fact
+  `uxr-h1-consequences`), and naming the count lets them catch a mistake before it spreads.
+- **What it costs:** a dialog, and code that counts what will change.
+- **When to choose differently:** where the change can be undone in one step, offer undo instead.
 
 ### Controls and the inventory
 

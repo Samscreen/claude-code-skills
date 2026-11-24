@@ -1,9 +1,9 @@
 # Usability review
 
 Read this for a heuristic review or UX audit of a program's interface, desktop or web: a status
-line or progress display that misleads, labels that don't agree, a destructive action with no
-way back, errors that don't say what to do, shortcuts for power users, rating how bad each
-problem is, and what a review of the code alone can and can't judge.
+line or progress display that misleads, labels and counts that don't say what they mean, a
+destructive action with no way back, errors that don't say what to do, shortcuts for power
+users, rating how bad each problem is, and what a review of the code alone can and can't judge.
 
 When a window or dialog appears, modality, focus and stacking are `windows-and-dialogs`.
 Defaults, presets, how many options and where each setting lives are `settings-and-options`.
@@ -27,7 +27,8 @@ planned `accessibility` module of the `visual-design` skill.
    Constraints and good defaults stop slips; undo beats a confirmation people click through.
    An error says what happened and what to do next, beside the thing it's about.
 5. **Show, don't make people remember.** Current values stay visible, recent choices are
-   offered, icons carry labels, and a value chosen on one screen carries to the next.
+   offered, icons carry labels, and a value chosen on one screen carries to the next. A count
+   says what it counts: "12 of 40 jobs scheduled", never a bare "12/40".
 6. **Serve the expert, and take nothing away.** Give frequent actions shortcuts that novices
    needn't see (fact `uxr-h7-shortcuts`), shown beside their menu items. Never remove a useful
    option to tidy the screen: give it a default, group it, or put it in an advanced section.
@@ -93,7 +94,7 @@ Severity uses the standard's status words.
 | Attached things go stale | Device, file or connection lists filled only at start-up | `GAP` | Listen for changes |
 | Long work shows nothing | An operation that can take seconds, with no progress or cancel | `GAP` | Progress, the current step, a cancel |
 | An unguarded destructive action | Delete, overwrite or format with neither undo nor confirmation | `BLOCKER` | Undo; else confirm with a button naming the action |
-| Labels disagree | One action under two names, or two under near-identical ones | `GAP` | One word per thing |
+| Labels disagree | One action under two names, or two under near-identical ones; a bare "N/M" | `GAP` | One word per thing; name what's counted |
 | An error leaves the user stuck | No cause or next step; a dialog for one field's validation | `GAP` | What happened and what to do, beside the field |
 | Experts slowed | Frequent actions without shortcuts, or shortcuts hidden from menus | `GAP` in a power-user program | Add them and show them |
 | Timing or look judged from code | A finding on delay, flicker, layout or stacking, unrun | `UNVERIFIABLE-HERE` | Run the program |
@@ -116,7 +117,8 @@ Severity uses the standard's status words.
 ### Consistency
 
 - **The reason:** people shouldn't wonder whether two words mean one thing (fact
-  `uxr-h4-consistency`). Two pickers with near labels send a file to the wrong place.
+  `uxr-h4-consistency`). Two pickers with near labels send a file to the wrong place, and a
+  bare "12/40" is read as done of total by one person and failed of run by the next.
 - **What it costs:** renaming retrains current users. **Choose differently** only to follow the
   platform, which the same heuristic asks for.
 
