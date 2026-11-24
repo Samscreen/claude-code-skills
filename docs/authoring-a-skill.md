@@ -158,3 +158,33 @@ and dependencies. A second version of a published rule drifts from the first.
     deleting their own copy left the library's installed for everyone, and colleagues get the
     successor from this repository's plugins. The merge waits for their word. Otherwise the old copy
     loads beside the new one under a prefix, in chat and in cloud sessions.
+13. **Scripts.** A script the skill runs lives in its `scripts/`, and its tests in `tests/`,
+    which CI runs. Each test names the script's file, as `tests/test_check_report.py` names
+    `check_report.py`, or imports it. `skillcheck` warns of a script no test names or imports.
+    The warning fails nothing, since a test can reach a script in ways a search can't see.
+14. **Drafts.** A skill its owner hasn't accepted yet carries `status: "draft"` under
+    `metadata` in its frontmatter, never the word DRAFT in its description or title, which
+    `skillcheck` fails, as it fails any other status. `metadata` is the spec's own map of
+    strings, which claude.ai accepts, as it accepts `metadata.reviewed`. `skillcheck` names
+    each draft in its summary and fails none. A draft stops being one when all three hold:
+    `skillcheck` reports nothing on it, its trigger tests have passed (`--triggers <name>`),
+    and its owner says so. The commit that removes the mark quotes the owner's word with its
+    date. Here, merging ships a skill (item 5), so the mark comes off before the merge.
+
+**A repository's own skills,** under its `.claude/skills/`, ship in no catalog.
+`skillcheck --project` checks them from the repository's root, by every rule above but four:
+no catalog, roadmap or README lists them; the reporting section is optional, since a session
+using one is in the repository that fixes it, and fails only while it holds the placeholder
+`--new` writes; the rationale file is optional, since such a skill points to its repository's
+own records for its reasons; and cited commits go unchecked. Its trigger tests live in
+`.claude/tests/fixtures/`, its scripts' tests in the repository's `tests/` or `test/`, and the
+paths it prints start from `.claude/`. It also works with `--due`, `--verify`, `--examples`,
+`--triggers` and `--tries`. It's a flag, not detected, for the reason in `docs/decisions.md`
+(2026-11-24). A repository runs it in CI from a release that has it, with no finding
+expected:
+
+```sh
+uvx --from "git+https://github.com/<owner>/claude-code-skills@<tag>" skillcheck --project
+```
+
+This repository's CI runs it on its own steward skill.

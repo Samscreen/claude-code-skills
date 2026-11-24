@@ -55,19 +55,35 @@ def section(issues: str | None) -> str:
     return f"## {HEADING}\n\n{TEXT.format(issues=issues or UNKNOWN)}"
 
 
-def check(root: Path, skill_dir: Path, issues: str | None, add: Add) -> None:
+def check(root: Path, skill_dir: Path, issues: str | None, add: Add, required: bool = True) -> None:
+    """Hold the skill's section to the shared text.
+
+    A repository's own skill (``required`` false) needn't carry the section: the session using it
+    is in the repository that owns it, and fixes it there. One that does carry it names where to
+    report, so it fails while it still holds the placeholder `--new` writes.
+    """
     where = skill_dir.relative_to(root).as_posix() + "/SKILL.md"
     lines = modules.sections((skill_dir / "SKILL.md").read_text(encoding="utf-8")).get(HEADING)
     if lines is None:
-        add(
-            where,
-            "reporting",
-            f"no '{HEADING}' section, so a problem with the skill goes unreported",
-        )
+        if required:
+            add(
+                where,
+                "reporting",
+                f"no '{HEADING}' section, so a problem with the skill goes unreported",
+            )
+        return
+    found = "\n".join(line for _, line in lines).strip()
+    if not required:
+        if UNKNOWN in found:
+            add(
+                where,
+                "reporting",
+                f"the '{HEADING}' section reports to {UNKNOWN}; name the repository's own "
+                "issues page, or remove the section",
+            )
         return
     if issues is None:
         return
-    found = "\n".join(line for _, line in lines).strip()
     if found != TEXT.format(issues=issues).strip():
         add(
             where,

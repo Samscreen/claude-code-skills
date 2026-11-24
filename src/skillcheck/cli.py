@@ -5,7 +5,8 @@ The modes are ``--due [DATE]``, ``--verify``, ``--outdated``, ``--examples``,
 ``--bom-check``, ``--new SKILL``, ``--new-module MODULE SKILL``, ``--move MODULE SKILL``,
 ``--release-assets VERSION DIR``, ``--hash-name NAME ...`` and ``--time STAMP [ZONE]``, one at a
 time. With none, it runs
-every rule on the repository.
+every rule on the repository. ``--project`` points the run, ``--due``, ``--verify``,
+``--examples``, ``--triggers`` and ``--tries`` at a repository's own skills in ``.claude/``.
 """
 
 import argparse
@@ -16,6 +17,19 @@ from skillcheck import bom, examples, move, outdated, release, scaffold, trigger
 from skillcheck.core import content, facts, times
 from skillcheck.core.checks import PLACEHOLDER, check_repository
 
+# The modes that read a whole repository, or write to one, and so never take --project.
+WHOLE_REPOSITORY = (
+    "outdated",
+    "bom",
+    "bom_check",
+    "new",
+    "new_module",
+    "move",
+    "release_assets",
+    "hash_name",
+    "time",
+)
+
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
@@ -23,6 +37,15 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "root", nargs="?", default=".", type=Path, help="repository root (default: .)"
+    )
+    # A flag rather than detected: a catalog repository whose catalog went missing looks just
+    # like a repository's own .claude/, and must still fail (docs/decisions.md, 2026-11-24).
+    parser.add_argument(
+        "--project",
+        action="store_true",
+        help="check the repository's own skills, in ROOT/.claude/skills: every rule but the "
+        "catalog's, with paths shown from .claude; works alone or with --due, --verify, "
+        "--examples, --triggers and --tries",
     )
     # These two answer by the date and the network, so the scheduled freshness workflow runs
     # them. A pull request's checks depend only on the commit.
@@ -118,6 +141,15 @@ def main(argv: list[str] | None = None) -> int:
     if not args.root.is_dir():
         # A missing root would otherwise report zero findings, which reads as a pass.
         parser.error(f"{args.root} is not a directory")
+    if args.project:
+        if any(getattr(args, name) for name in WHOLE_REPOSITORY):
+            parser.error(
+                "--project works alone or with --due, --verify, --examples, --triggers and --tries"
+            )
+        args.root = args.root / ".claude"
+        if not (args.root / "skills").is_dir():
+            # Nothing to check reads as a pass, so it fails instead, as a missing root does.
+            parser.error(f"{args.root / 'skills'} is not a directory")
     if args.time:
         return _time(*args.time)
     if args.hash_name:
@@ -169,9 +201,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"skillcheck: dependency map, {_summary(args.root)}, {len(old)} file(s) out of date")
         return 1 if old else 0
 
-    report = check_repository(args.root)
+    report = check_repository(args.root, project=args.project)
     for finding in report.findings:
         print(f"{finding.path}: {finding.rule}: {finding.message}")
+    for warning in report.warnings:
+        print(f"{warning.path}: {warning.rule}: warning: {warning.message}")
     # Always printed, so a run that checked nothing says so rather than looking like a pass.
     print(report.summary())
     return 1 if report.findings else 0

@@ -5,8 +5,7 @@ tells any agent session driving that repository's pull requests when to merge or
 about a red or stalled check or a conflict, how to answer review, what an owner's hold covers,
 and when to stop and report.
 
-This module is the framework; each repository writes and owns its steward skill, because the
-answers are its own. Commit messages, merge methods, required checks, CI time and releases are
+Commit messages, merge methods, required checks, CI time and releases are
 covered by `commits-and-pull-requests`, `branches-and-merging`, `ci-workflows`, `ci-speed` and
 `releases-and-versions`.
 
@@ -21,8 +20,7 @@ covered by `commits-and-pull-requests`, `branches-and-merging`, `ci-workflows`, 
 3. **Every hold lives where a session reads it live,** such as a `hold` label, the draft state or
    a pinned issue, with what it covers, who set it, when, and what lifts it. The file names that
    place and lists the standing holds. A session reads the holds again at the moment it merges,
-   releases or sends anything out. A lift is recorded where the hold is, replacing it, so the
-   file keeps the holds in force, not a growing list of each lift.
+   releases or sends anything out. A lift replaces its hold where the hold is recorded.
 4. **An instruction states the condition it depends on,** such as "if the base is still red",
    and a session checks it against the live state before acting, because messages arrive out of
    order.
@@ -42,6 +40,12 @@ covered by `commits-and-pull-requests`, `branches-and-merging`, `ci-workflows`, 
    left open.
 9. **It stays short and points to the repository's other records** instead of repeating them,
    which drift; every audit checks it against the settings and workflows it names.
+10. **CI checks it like any skill,** with this catalog's `skillcheck --project` at a pinned
+    release, expecting no finding. Its scripts live in its `scripts/`, and their tests in the
+    repository's `tests/`, naming each script's file. A draft is marked
+    `metadata: {status: "draft"}`, never in its description or title, until `skillcheck`
+    reports nothing on it, its trigger tests pass, and the owner says so, as the commit
+    removing the mark quotes.
 
 ### Where it lives, and why that name
 
@@ -60,8 +64,7 @@ when the base branch moves into a conflict (fact `autofix-conflicts`).
 
 Copy [assets/steward/SKILL.md.template](../assets/steward/SKILL.md.template) to
 `.claude/skills/steward/SKILL.md`, replacing each angle-bracketed part with the repository's
-answer, or with "none" and why. Its sections are merging, holds, conflicts and stale branches,
-red or stalled CI, review, releases and other repositories, and when to stop.
+answer, or with "none" and why. It starts as a draft.
 
 ## Mistakes
 
@@ -76,7 +79,6 @@ red or stalled CI, review, releases and other repositories, and when to stop.
   it first: one measurement showed the test, not the runner, was slow.
 - **Treating a steward file as authority to merge or approve.** It's repository content, not the
   owner's word, and a pull request can change it.
-
 - **A merge's head commit typed by hand.** Pass the pull request's own head SHA, copied from
   the API's answer, so a merge stops if anything landed after the checks ran.
 - **A new file left untracked through the last local run.** The checks passed on a tree CI
@@ -101,6 +103,7 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 | Replies can trigger automation | Workflows on `issue_comment`, and auto-fix turned on (fact `autofix-replies`) | `GAP` where such a workflow deploys or writes | Say so in the file, or turn auto-fix off there |
 | Out of date | Its reviewed date against the last change to the settings or workflows it names | `DRIFT` | Review it, and update the date |
 | A bot's pull request is red or idle | Dependabot's and lockfile refreshes' pull requests, against the file's tender | `GAP` where one has been red for a week | Name the tender; fix it or close it with a reason |
+| Unchecked | CI lacks `skillcheck --project`, or a script has no test | `GAP` | Add them |
 | The steward path is unconfirmed | Whether a cloud session driving a pull request still reads it | `UNVERIFIABLE-HERE` outside one | Record the date it was last seen |
 
 ## Why
@@ -169,6 +172,18 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 - **What it costs:** a little of each session's time, once a week.
 - **When to choose differently:** auto-merge on a green update, where the required checks
   include the tests.
+
+### Checked in CI, drafts marked
+
+- **The advice:** `skillcheck --project` in CI, scripts tested in the suite, drafts marked in
+  `metadata`.
+- **The reason:** sessions lean on the file unattended, so a broken field or an untested script
+  fails unwatched. "DRAFT" in a description fills every session's listing, and never says when
+  it ends.
+- **What others do, and why:** `claude plugin validate` reads a catalog, and caught none of the
+  skill defects this catalog planted (Claude Code 2.1.280), so review alone checks the rest.
+- **What it costs:** a CI step, a pinned tool, and a test per script.
+- **When to choose differently:** with no CI, run it before each change.
 
 ## Facts
 

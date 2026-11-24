@@ -6,6 +6,48 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-24 — A repository's own skills: `--project`, drafts, scripts' tests
+
+- **Asked:** three requests from other repositories' sessions on 2026-11-03, for their steward
+  skills, planned in `ROADMAP.md`'s *Repository* rows. The owner asked on 2026-11-24 to fold in
+  anything useful and to decide where.
+- **1. `skillcheck --project`, a flag rather than detected.** It checks `ROOT/.claude` by every
+  rule but the catalog's, with paths shown from `.claude/`, and works with `--due`, `--verify`,
+  `--examples`, `--triggers` and `--tries`. Detection, by a `.claude` directory holding
+  `skills/` and no catalog, was rejected: that is also what a catalog repository looks like
+  once its catalog goes missing, which must still fail, and a check that turns itself down
+  without being asked can't be read from the command CI runs. A run with no `.claude/skills/`
+  fails rather than passing on nothing. The CI command, from a release that has it:
+  `uvx --from "git+https://github.com/<owner>/claude-code-skills@<tag>" skillcheck --project`.
+- **The reporting section, for a project skill:** optional. The shared text sends a report to
+  the catalog that shipped the skill; a project skill's session is in the repository that owns
+  it and fixes it there, and the address would need that repository's URL, which a fork or a
+  mirror changes. A section it does carry fails while it holds the placeholder `--new` writes,
+  `OWNER/REPO`, so a report is never drafted for an address that doesn't exist.
+- **The rationale file, for a project skill:** optional too. `pr-stewardship` asks a steward to
+  point to its repository's own records rather than repeat them, and its template writes no
+  rationale file, so the rule would have failed every steward written from it. Modules still
+  need their Why sections. Cited commits go unchecked, since `.claude/` holds no records.
+- **2. A draft is `metadata: {status: "draft"}`.** `metadata` is the spec's own map of strings,
+  and claude.ai already accepts each skill's `metadata.reviewed`. `skillcheck` names drafts in
+  its summary and fails none; it fails another status, and the word DRAFT in a description or
+  title, which every session reads while choosing a skill. A draft ends when `skillcheck`
+  reports nothing on it, its trigger tests have passed, and its owner says so, quoted in the
+  commit that removes the mark. Written in `docs/authoring-a-skill.md` (item 14) for skills
+  here, where the mark comes off before a merge since merging ships, and in `pr-stewardship`
+  (rule 10) for a repository's own, since sessions there read the skill, not this repository's
+  docs. The steward template now starts as a draft.
+- **3. A skill's scripts and their tests.** The script lives in the skill's `scripts/`, its
+  tests in the repository's `tests/`, run by CI, naming the script's file or importing it
+  (`docs/authoring-a-skill.md` item 13, and `pr-stewardship` rule 10). `skillcheck` warns of a
+  script no file under `tests/` or `test/` names or imports, and the warning fails nothing: a
+  test can reach a script in ways a search can't see, and some repositories keep tests
+  elsewhere, which would leave a project an expected finding forever.
+- **Not done:** `--verify` telling a source that wants credentials from a quote that's gone,
+  now its own `ROADMAP.md` row. `pr-stewardship` grew to 15,775 characters, within its limit.
+- **This repository:** CI runs `skillcheck --project` on its own steward skill, which passes.
+  The change touches `AGENTS.md` and a workflow, so the owner merges it.
+
 ## 2026-11-24 — `business-apps`, with `word-documents`
 
 - **Asked, by the owner:** "have we moved over the procedure generating skill into here yet?",
