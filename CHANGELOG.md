@@ -6,6 +6,8 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+## [0.1.37] - 2026-11-25
+
 ### Changed
 
 - Every skill's description but the standard's now says to read it before answering any

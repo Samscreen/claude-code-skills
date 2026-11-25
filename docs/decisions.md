@@ -33,6 +33,8 @@ the last section lists each that still stands or is cited.
   neighboring skill, against 11 before. `skill-builder` now gives the description and router
   forms with these numbers, so the next change measures against them.
 - **Cost:** 1,824 model calls, about $330, on Claude Code 2.1.331.
+- **Released as 0.1.37,** with the verdict script and the audit's lessons. `src/skillcheck/core/`
+  is unchanged since 0.1.36, so that release's mutation run stands.
 
 ## 2026-11-24 — Lessons from a production audit, in nine modules
 
