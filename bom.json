@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:6b5cd6d6-c73a-5487-be3e-00a266d493d9",
+  "serialNumber": "urn:uuid:958d2342-1a73-5b2b-bb53-98fcc4d973a3",
   "version": 1,
   "metadata": {
     "tools": {
@@ -18,7 +18,7 @@
       "type": "application",
       "bom-ref": "claude-code-skills",
       "name": "claude-code-skills",
-      "version": "0.1.36",
+      "version": "0.1.37",
       "licenses": [
         {
           "expression": "Apache-2.0"
@@ -466,9 +466,9 @@
     },
     {
       "type": "application",
-      "bom-ref": "plugin:engineering@0.1.36",
+      "bom-ref": "plugin:engineering@0.1.37",
       "name": "engineering",
-      "version": "0.1.36",
+      "version": "0.1.37",
       "description": "A Claude Code plugin from this repository's catalog.",
       "licenses": [
         {
@@ -692,11 +692,11 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 80 fact(s)"
+              "value": "learn.microsoft.com: 81 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "docs.python.org: 34 fact(s)"
+              "value": "docs.python.org: 37 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -720,11 +720,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "man7.org: 15 fact(s)"
+              "value": "developer.mozilla.org: 15 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "developer.mozilla.org: 13 fact(s)"
+              "value": "man7.org: 15 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -893,6 +893,10 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "openjdk.org: 2 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "peps.python.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1069,10 +1073,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "pandas.pydata.org: 1 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "peps.python.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2193,6 +2193,10 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
+              "value": "www.w3.org: 8 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "raw.githubusercontent.com: 6 fact(s)"
             },
             {
@@ -2205,11 +2209,11 @@
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "www.w3.org: 6 fact(s)"
+              "value": "pypi.org: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pypi.org: 4 fact(s)"
+              "value": "developer.mozilla.org: 2 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2222,10 +2226,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "bids.github.io: 1 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "developer.mozilla.org: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -2257,9 +2257,9 @@
     },
     {
       "type": "application",
-      "bom-ref": "plugin:standards@0.1.36",
+      "bom-ref": "plugin:standards@0.1.37",
       "name": "standards",
-      "version": "0.1.36",
+      "version": "0.1.37",
       "description": "A Claude Code plugin from this repository's catalog.",
       "licenses": [
         {
@@ -2480,8 +2480,8 @@
         "pkg:golang/github.com/vale-cli/vale/v3/cmd/vale@v3.27.0",
         "pkg:golang/github.com/zricethezav/gitleaks/v8@v8.30.1",
         "pkg:npm/%40anthropic-ai/claude-code@2.1.325",
-        "plugin:engineering@0.1.36",
-        "plugin:standards@0.1.36",
+        "plugin:engineering@0.1.37",
+        "plugin:standards@0.1.37",
         "project:skillcheck@0.0.0",
         "tool:GitHub-hosted runner@ubuntu-latest",
         "tool:Go@1.27",

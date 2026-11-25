@@ -1,6 +1,6 @@
 # Dependency map
 
-What `claude-code-skills` 0.1.36 is built from, runs on and relies on: the
+What `claude-code-skills` 0.1.37 is built from, runs on and relies on: the
 plugins it ships, the languages it's written in, its runtimes and tools, every package
 at its exact version, the GitHub Actions it pins, the services it uses, and the sources
 its skills' facts cite.
@@ -16,20 +16,20 @@ freshness run and the release workflow both run it.
 
 | Plugin | Version | License | Skill | What it carries |
 |---|---|---|---|---|
-| `standards` | 0.1.36 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.52.0 |
-| `engineering` | 0.1.36 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
-| `engineering` | 0.1.36 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
-| `engineering` | 0.1.36 | Apache-2.0 | `business-apps` | reviewed 2026-11-24 |
-| `engineering` | 0.1.36 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `git-workflows` | reviewed 2026-11-24 |
-| `engineering` | 0.1.36 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
-| `engineering` | 0.1.36 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `security` | reviewed 2026-11-11 |
-| `engineering` | 0.1.36 | Apache-2.0 | `testing` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
-| `engineering` | 0.1.36 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
+| `standards` | 0.1.37 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.52.0 |
+| `engineering` | 0.1.37 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
+| `engineering` | 0.1.37 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
+| `engineering` | 0.1.37 | Apache-2.0 | `business-apps` | reviewed 2026-11-24 |
+| `engineering` | 0.1.37 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `git-workflows` | reviewed 2026-11-24 |
+| `engineering` | 0.1.37 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `operations` | reviewed 2026-11-11 |
+| `engineering` | 0.1.37 | Apache-2.0 | `optimization-and-scheduling` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `security` | reviewed 2026-11-11 |
+| `engineering` | 0.1.37 | Apache-2.0 | `testing` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `user-experience` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `visual-design` | reviewed 2026-11-16 |
 
 ## Languages
 
@@ -171,15 +171,15 @@ again.
 | `business-apps` | raw.githubusercontent.com | 2 |
 | `business-apps` | api.libreoffice.org | 1 |
 | `business-apps` | committee.iso.org | 1 |
-| `coding` | learn.microsoft.com | 80 |
-| `coding` | docs.python.org | 34 |
+| `coding` | learn.microsoft.com | 81 |
+| `coding` | docs.python.org | 37 |
 | `coding` | raw.githubusercontent.com | 26 |
 | `coding` | nodejs.org | 19 |
 | `coding` | cheatsheetseries.owasp.org | 18 |
 | `coding` | www.w3.org | 17 |
 | `coding` | tiswww.case.edu | 16 |
+| `coding` | developer.mozilla.org | 15 |
 | `coding` | man7.org | 15 |
-| `coding` | developer.mozilla.org | 13 |
 | `coding` | mesonbuild.com | 12 |
 | `coding` | pypi.org | 12 |
 | `coding` | pubs.opengroup.org | 11 |
@@ -222,6 +222,7 @@ again.
 | `coding` | logging.apache.org | 2 |
 | `coding` | man.freebsd.org | 2 |
 | `coding` | openjdk.org | 2 |
+| `coding` | peps.python.org | 2 |
 | `coding` | prometheus.io | 2 |
 | `coding` | pyyaml.org | 2 |
 | `coding` | rust-lang.github.io | 2 |
@@ -266,7 +267,6 @@ again.
 | `coding` | oxc.rs | 1 |
 | `coding` | packages.debian.org | 1 |
 | `coding` | pandas.pydata.org | 1 |
-| `coding` | peps.python.org | 1 |
 | `coding` | pester.dev | 1 |
 | `coding` | pytest-benchmark.readthedocs.io | 1 |
 | `coding` | rubygems.org | 1 |
@@ -517,15 +517,15 @@ again.
 | `user-experience` | www.edpb.europa.eu | 1 |
 | `user-experience` | www.mozilla.org | 1 |
 | `user-experience` | www.viget.com | 1 |
+| `visual-design` | www.w3.org | 8 |
 | `visual-design` | raw.githubusercontent.com | 6 |
 | `visual-design` | registry.npmjs.org | 6 |
 | `visual-design` | www.designtokens.org | 6 |
-| `visual-design` | www.w3.org | 6 |
 | `visual-design` | pypi.org | 4 |
+| `visual-design` | developer.mozilla.org | 2 |
 | `visual-design` | learn.microsoft.com | 2 |
 | `visual-design` | matplotlib.org | 2 |
 | `visual-design` | bids.github.io | 1 |
-| `visual-design` | developer.mozilla.org | 1 |
 | `visual-design` | echarts.apache.org | 1 |
 | `visual-design` | medium.com | 1 |
 | `visual-design` | quarto.org | 1 |

@@ -1,12 +1,14 @@
 ---
 name: human-factors
-description: "Finds what a habit, workaround, double check or familiar tool in people's work is for before a redesign, automation or optimization removes it, and plans the change. Use when changing what people do; never to bend a factual finding."
+description: "What a habit, workaround, double check or familiar tool in people's work is for, before a redesign, automation or optimization removes it. Read it before changing what people do, and before any question about it; never to bend a factual finding."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Human factors
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 For an agent about to change what people do: redesigning a process, automating a manual step,
 optimizing a workflow or replacing a tool. People keep habits that look odd or wasteful from

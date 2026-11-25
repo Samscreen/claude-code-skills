@@ -21,6 +21,28 @@ Notable changes to this repository. The format follows
 - `pr-stewardship`: a steward skill is checked in CI with `skillcheck --project`, its scripts
   tested in the repository's suite, and a draft marked in `metadata`. The steward template
   starts as a draft.
+
+## [0.1.37] - 2026-11-25
+
+### Changed
+
+- Every skill's description but the standard's now says to read it before answering any
+  question about what it covers, not only before tasks, and each router opens by calling itself
+  an index and naming the Read tool. In 716 trigger requests, module reads rose from 131 to 268
+  of 443. `skill-builder` gives the new forms and the measurements.
+
+### Added
+
+- Lessons from a production web application's audit, as general rules in nine modules:
+  `python-coding` keeps printed text alive when Windows redirects it to a file or pipe;
+  `visual-theme` defines large text and keeps meaning through Windows contrast themes (forced
+  colors); `html-coding` bounds every number in the page and on the server, keeps focus through
+  a re-render and clears a sticky header with `scroll-padding-top`; `error-responses` reads an
+  error body by its real shape, FastAPI's 422 list among them; `interface-patterns` writes a
+  corrected value back to its field; `settings-and-options` confirms a save with wide effects;
+  `usability-review` asks each count to say what it counts; `data-visualization` stamps a
+  generated report or schedule with when it was made and when its data was loaded; and
+  `configuration` keeps domain values out of code.
 - `git-workflows` ships `scripts/pr_verdict.py`, which tells a session driving a pull request
   whether a commit's checks are green, and if not, why: failed, blocked by a required check
   that will never report, canceled, or pending, each with what to do, and an exit status for

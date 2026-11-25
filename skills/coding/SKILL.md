@@ -1,12 +1,14 @@
 ---
 name: coding
-description: "Writes, reviews and fixes code: the contract every change meets; Python, TypeScript, HTML and CSS, C#, PowerShell, Bash and C; and errors, logging, caching, performance and settings in any language. Use when writing, reviewing or debugging code."
+description: "Code in Python, TypeScript, HTML/CSS, C#, PowerShell, Bash and C; errors, logging, caching, performance, settings, naming. Read it before writing, reviewing or debugging code, and before answering any question about code, even a quick one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Coding
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to write, review and fix code so that it does what it says, fails loudly when it can't, and
 can be read and changed by the next person. Every change meets the contract below, whatever the
@@ -65,11 +67,11 @@ the fact's row is in whichever module holds it.
 
 | Module | Read it for |
 |---|---|
-| [`python-coding`](references/python-coding.md) | Python 3: `pyproject.toml`, uv, Ruff and a strict type checker, type hints and idioms, explicit encodings, time zones with `zoneinfo`, and `requires-python` |
+| [`python-coding`](references/python-coding.md) | Python 3: `pyproject.toml`, uv, Ruff and a strict type checker, type hints and idioms, explicit encodings and Windows console output, time zones with `zoneinfo`, and `requires-python` |
 | [`python-security`](references/python-security.md) | Python code that takes outside input: `subprocess` and shells, `eval`, `pickle` and `yaml.load`, SQL placeholders, archive extraction, temporary files, confining paths, `assert` as a check, and `secrets` for tokens |
 | [`javascript-coding`](references/javascript-coding.md) | TypeScript and JavaScript on Node.js: `tsconfig` strictness, ES modules, Node versions and the built-ins that replace packages, type stripping, promise mistakes, and lint setup |
 | [`javascript-security`](references/javascript-security.md) | Untrusted input in Node.js code: `eval` and `new Function`, `exec` and `shell: true`, prototype pollution, path traversal, ReDoS, and SQL placeholders |
-| [`html-coding`](references/html-coding.md) | HTML and CSS: semantic markup and ARIA, the WCAG 2.2 basics (labels, alt text, headings, focus, contrast, target size), forms and where they need CSRF protection, and modern CSS with dark mode and reduced motion |
+| [`html-coding`](references/html-coding.md) | HTML and CSS: semantic markup and ARIA, the WCAG 2.2 basics (labels, alt text, headings, focus, contrast, target size), forms, their bounds and where they need CSRF protection, focus kept through a re-render, sticky headers, and modern CSS with dark mode and reduced motion |
 | [`web-security`](references/web-security.md) | Browser-side security: untrusted data in pages, attributes and URLs, `innerHTML` against `setHTML()` and DOMPurify, Trusted Types, Content Security Policy, Subresource Integrity, and `noopener` |
 | [`csharp-coding`](references/csharp-coding.md) | C# on modern .NET: the target framework and its support dates, nullable and warnings as errors, `Directory.Build.props` and central packages, analyzers and `dotnet format`, async and disposal, `HttpClient`, System.Text.Json, NativeAOT, trimming and P/Invoke |
 | [`csharp-security`](references/csharp-security.md) | C# handling outside data: `BinaryFormatter` and `TypeNameHandling`, SQL parameters, processes without a shell and batch files, paths from input, DLL search paths, and turning on the security analyzers |
@@ -83,7 +85,7 @@ the fact's row is in whichever module holds it.
 | [`code-style`](references/code-style.md) | Naming, formatting by the formatter, function size and structure, comments that say why, doc comments per ecosystem, dead code, and matching the code around a change |
 | [`types`](references/types.md) | Adding types to untyped code behind a ratchet, what strict mode turns on, escape hatches such as any and casts, and parsing data from outside at the boundary |
 | [`input-handling`](references/input-handling.md) | Validating input at the trust boundary, allow-lists, parsing into types, canonicalizing paths, Unicode and URLs, size limits, and encoding output for HTML, SQL, shells, logs, terminals and CSV |
-| [`configuration`](references/configuration.md) | How a program takes its settings: precedence, one name per setting, validation at startup, typed config, environment variables, secrets from a store, required settings and feature flags |
+| [`configuration`](references/configuration.md) | How a program takes its settings: precedence, one name per setting, validation at startup, typed config, domain values kept out of code, environment variables, secrets from a store, required settings and feature flags |
 | [`config-formats`](references/config-formats.md) | YAML, JSON, TOML and XML: choosing a format, YAML's implicit types and safe loading, duplicate keys, large JSON numbers, schemas in CI, TOML versions, and parsing untrusted XML safely |
 | [`error-handling`](references/error-handling.md) | Any language: what to catch and where, "not found" against "couldn't look", exit codes and a child's exit status, causes in each language, retries with backoff, timeouts, circuit breakers and bulkheads |
 | [`performance-and-concurrency`](references/performance-and-concurrency.md) | Making code faster or concurrent, any language: measuring first, sampling profilers and flame graphs, data-structure defaults, task groups and structured concurrency, cancellation and Go's context, blocking an event loop, race detectors, and free threading in Python libraries |
@@ -91,7 +93,7 @@ the fact's row is in whichever module holds it.
 | [`caching`](references/caching.md) | Adding or reviewing a cache, any language: an owner, an invalidation rule and a bound, TTLs with jitter, atomic loaders, stampedes, negative caching, cache keys, hit rates, and cache libraries per language |
 | [`benchmarking`](references/benchmarking.md) | Benchmarking code, any language: harnesses, warm-up and sinks, how many runs, medians and significance tests, baselines, how each harness reports, and catching regressions in CI on noisy runners |
 | [`logging-libraries`](references/logging-libraries.md) | Choosing and configuring a logging library: structlog, pino, Serilog, Logback, Log4j 2, Monolog, semantic_logger and Rust's tracing, their versions, how each attaches trace IDs and redacts values, and OpenTelemetry severity numbers |
-| [`error-responses`](references/error-responses.md) | Errors that reach a client or a person: RFC 9457 problem details, honest status codes, what ASP.NET Core and Spring do by default, contract tests, keeping internals out, and messages that say what happened and what to do |
+| [`error-responses`](references/error-responses.md) | Errors that reach a client or a person: RFC 9457 problem details, honest status codes, what ASP.NET Core and Spring do by default, contract tests, a client reading error bodies, keeping internals out, and messages that say what happened and what to do |
 
 ## Check before you act
 

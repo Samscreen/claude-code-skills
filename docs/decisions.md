@@ -6,6 +6,36 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-25 — Descriptions name questions, and routers open as an index
+
+- **Asked, by the owner:** "do it", for the routing investigation proposed on 2026-11-24, after
+  a trigger run on nine modules missed 41 of 85 requests.
+- **Measured on main:** all 716 trigger requests, run in parallel with every answer kept. Module
+  requests reached their module 131 of 443 times. Of 312 misses, 257 loaded no skill at all:
+  questions ("is 4.48:1 close enough?", "should we adopt it?") were answered from general
+  knowledge, while tasks ("set up the build") loaded the skill. Every description named tasks
+  only. 44 loaded the skill and answered from the router; 11 chose the wrong skill.
+- **Tried on 97 requests from `coding`, `visual-design` and `operations`,** with the near
+  misses: questions added to the "Use when" clause, 17 of 70 reached (15 before); "Read it
+  before ..., and before answering any question about them, even a quick one", 22, with
+  no-skill misses down from 49 to 6; that plus a first line in the router saying modules hold
+  the facts, 27; that with the line calling the page an index and naming the Read tool, 35.
+  Near misses held at one or two of 27 throughout.
+- **Applied to every skill but the standard,** each description within 250 characters, and
+  the index line under each router's title. The full rerun reached 268 of 443 module requests
+  and 27 of 31 skill requests (17 before); near misses kept clear in 213 of 223 (220 before).
+  By skill, module requests before and after: agent-engineering 9 to 18 of 23, architecture 2
+  to 3 of 6, business-apps 5 to 4 of 5, coding 19 to 71 of 158, git-workflows 26 to 55 of 67,
+  house-style 10 to 12 of 20, human-factors 13 to 14 of 15, operations 8 to 14 of 29,
+  optimization-and-scheduling 4 to 10 of 16, security 1 to 2 of 6, testing 20 to 31 of 41,
+  user-experience 12 to 29 of 43, visual-design 2 to 5 of 14.
+- **Left:** 99 requests still load a skill and answer from its router, and 42 now choose a
+  neighboring skill, against 11 before. `skill-builder` now gives the description and router
+  forms with these numbers, so the next change measures against them.
+- **Cost:** 1,824 model calls, about $330, on Claude Code 2.1.331.
+- **Released as 0.1.37,** with the verdict script and the audit's lessons. `src/skillcheck/core/`
+  is unchanged since 0.1.36, so that release's mutation run stands.
+
 ## 2026-11-24 — A repository's own skills: `--project`, drafts, scripts' tests
 
 - **Asked:** three requests from other repositories' sessions on 2026-11-03, for their steward
@@ -48,7 +78,52 @@ the last section lists each that still stands or is cited.
 - **This repository:** CI runs `skillcheck --project` on its own steward skill, which passes.
   The change touches `AGENTS.md` and a workflow, so the owner merges it.
 
-## 2026-11-24 — `business-apps`, with `word-documents`
+## 2026-11-24 — Lessons from a production audit, in nine modules
+
+- **Asked, by the owner:** fold in anything useful from one of the owner's repositories, by the
+  owner's word of 2026-11-24. Each lesson was found broken in a real audit there. The source
+  stays unnamed; each lesson is written as a general rule.
+- **Checked first:** each lesson was looked for under `skills/` before anything was added, and
+  only what was missing went in, in the module's own style, with a Why entry.
+- **Added, by lesson:**
+  - Windows console output: `python-coding`, a rule, a mistake, an audit row and three facts
+    (`py-utf8-mode`, `py-win-stdio`, `py-reconfigure`): output redirected on Windows is in the
+    ANSI code page before 3.15, whose UTF-8 mode, from PEP 686, ends that. A test under
+    `PYTHONIOENCODING=cp1252` pins the fix on any system.
+  - Forced colors: `visual-theme`, fact `vt-forced-colors`, from MDN and the CSS Color
+    Adjustment spec.
+  - Large text: `visual-theme`, fact `vt-wcag-large`. 4.5:1 for text was already there.
+  - Numbers bounded on both sides, in the page and the server's model: `html-coding`. Server
+    validation itself was already in `html-coding`, `interface-patterns` and `input-handling`.
+  - A corrected value written back and announced: `interface-patterns`, citing usability-review's
+    fact `uxr-h1-consequences`.
+  - A save with wide effects confirmed, naming what changes: `settings-and-options`, rule 11.
+  - Focus kept through a re-render: `html-coding`, fact `web-rerender-focus`.
+  - Error bodies read by their shape, FastAPI's 422 list, never `undefined`: `error-responses`,
+    with a quote added to fact `er-fastapi`. Saying what went wrong was already rule 6.
+  - Provenance on generated reports and schedules: `data-visualization`, rule 7. No source
+    was found to cite; it's recorded as practice from the audit.
+  - `scroll-padding-top` under a sticky header: `html-coding`, fact `web-scroll-padding`.
+    2.4.11 was already named there.
+  - A count that says what it counts: `usability-review`, rule 5.
+  - Domain values out of code: `configuration`, a mistake, an audit row and a Why sentence.
+    One name and one place per setting, and no default from memory, were already there.
+- **Already covered, left as it was:** color never the only channel (`visual-theme` rule 5 and
+  its audit row, `data-visualization` rule 1); the audit row now names fills, shadows and
+  border styles too.
+- **Left out:** nothing. Every module stays within 16,000 characters: each was trimmed
+  elsewhere, in introductions, repeated mistakes, long quotes and Why text, without dropping a
+  rule.
+- **Checked:** every new or changed fact's quote was found at its source on 2026-11-24, by
+  `skillcheck`'s own verify. Each touched module's trigger evaluations gained a request.
+- **Routing:** `skillcheck --triggers` on the nine modules asked 85 requests, and 41 missed.
+  Of the nine new requests, `error-responses`' and `configuration`'s reached their modules.
+  Five of the others loaded the right skill, or none, and answered without opening the module.
+  Two went to another skill: the holiday-calendar save to `optimization-and-scheduling`, and the
+  report stamps to `user-experience`. The older requests missed the same way. Run on main's
+  files, `python-coding` and `visual-theme` missed 9 of 19, the same requests, so those misses
+  predate this change. They wait on the owner's call on how routers send a request on to a
+  module.
 ## 2026-11-24 — `pr_verdict.py`: the mechanical half of a steward
 
 - **Asked, by the owner,** 2026-11-24: fold a design for reading a commit's checks into

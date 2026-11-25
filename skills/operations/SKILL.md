@@ -1,12 +1,14 @@
 ---
 name: operations
-description: "Runs, troubleshoots and hardens systems: Windows Server and Active Directory, Linux hosts, Docker and Compose, networks, and reading logs and crash dumps. Use when administering, fixing or securing servers, containers or networks."
+description: "Windows Server and Active Directory, Linux hosts, Docker and Compose, networks, logs and crash dumps. Read it before administering, fixing or securing them, and before answering any question about them, even a quick one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-11"
 ---
 
 # Operations
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to run, troubleshoot and harden the systems code runs on: Windows Server and Active
 Directory, Linux hosts, containers, and the networks between them. Scripting itself is

@@ -1,12 +1,14 @@
 ---
 name: visual-design
-description: "Designs how an interface, a chart or a document looks: design tokens, palettes, OKLCH and dark mode, fonts, contrast, chart choice and charting libraries. Use when choosing colors, theming, styling or building a chart."
+description: "How interfaces, charts and documents look: tokens, palettes, OKLCH, dark mode, fonts, contrast, chart choice, charting libraries. Read it before choosing colors, styling or charting, and before answering any question about them, even a quick one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Visual design
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How a program, a chart or a document looks: its colors, spacing and type kept as design tokens
 and built for every place they land, dark mode, contrast, and choosing and building charts.
@@ -39,8 +41,8 @@ mistakes, audit checks, reasons, dated facts and sources.
 
 | Module | Read it for |
 |---|---|
-| [`visual-theme`](references/visual-theme.md) | Theming an interface or a document: design tokens in the DTCG format and building them with Style Dictionary, naming tokens by role, dark mode as a second value set, OKLCH and `light-dark()`, WCAG contrast thresholds, Office's color scheme, and font fallbacks |
-| [`data-visualization`](references/data-visualization.md) | Building a chart: never color alone, color-blind-safe palettes from the tokens, the takeaway in words with the data on offer, contrast of marks, the chart type for the comparison, choosing a charting library by where the chart lands and how active it is, and figures computed in one run |
+| [`visual-theme`](references/visual-theme.md) | Theming an interface or a document: design tokens in the DTCG format and building them with Style Dictionary, naming tokens by role, dark mode as a second value set, OKLCH and `light-dark()`, WCAG contrast thresholds and large text, Windows contrast themes (forced colors), Office's color scheme, and font fallbacks |
+| [`data-visualization`](references/data-visualization.md) | Building a chart: never color alone, color-blind-safe palettes from the tokens, the takeaway in words with the data on offer, contrast of marks, the chart type for the comparison, choosing a charting library by where the chart lands and how active it is, and figures computed in one run, stamped with when they were made |
 
 ## When something here is wrong
 

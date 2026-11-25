@@ -19,15 +19,16 @@ standard's *4. Agent configuration* rates installed skills in an audit.
    `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`. A claude.ai
    upload fails on any other (fact `sb-upload-fields`), so Claude Code's own fields, such as
    `disable-model-invocation`, stay out of a skill meant for both.
-3. **The description decides whether the skill loads.** Main use first, then when to use it, in
-   the third person, in the words people use for the situations it covers (facts
-   `sb-desc-burden`, `sb-third-person`). Keep it short: listings cut and drop descriptions
-   (fact `sb-listing`).
+3. **The description decides whether the skill loads.** What it covers first, then when to
+   read it, naming questions as well as tasks: "Read it before writing, reviewing or debugging
+   code, and before answering any question about code." In the words people use, never first or
+   second person about the reader (facts `sb-desc-burden`, `sb-third-person`). Keep it short:
+   listings cut and drop descriptions (fact `sb-listing`).
 4. **Keep `SKILL.md` a router, with modules one level deep** (fact `sb-spec-disclosure`). It
    holds what applies everywhere and a table of which module to read for which request; each
    module stands alone and sends the reader to no other file.
-5. **Say in the router that its rules summarize the modules,** and that the model reads the one
-   that fits before answering.
+5. **Open the router with what it is:** "This page is an index. Before you answer, use the Read
+   tool on the module file below that fits the request." Its rules summarize the modules.
 6. **Every fact that can go stale carries its source, a quote, the date checked and a date to
    check again,** and the text names it by an ID instead of restating it.
 7. **Every code example runs** under its language's own tool in CI; one wrong on purpose is
@@ -70,9 +71,9 @@ standard's *4. Agent configuration* rates installed skills in an audit.
 
 | What happened | Fix |
 |---|---|
-| The skill didn't load | Description: name the situation the request stands for |
+| The skill didn't load | Description: name the situation, and questions as well as tasks |
 | It loaded for a near miss | Description: say what it covers, and name the neighbor |
-| It answered from the router | Router: say its rules summarize, and to read the module |
+| It answered from the router | Router: open by calling itself an index, naming the Read tool |
 | It read the wrong module | Router: the table row's request words |
 | Same score with and without | Content: cut what the model knows, add what it got wrong |
 
@@ -108,7 +109,7 @@ Severity uses the standard's status words.
 |---|---|---|---|
 | A field outside the spec, in a skill for claude.ai or other agents | Frontmatter keys | `BLOCKER` | Remove it, or keep a Claude Code-only copy |
 | `name` breaks the spec or differs from its directory | Fact `sb-spec-fields` | `BLOCKER` | Rename, as a breaking change |
-| The description says what but not when, or isn't third person | The description | `GAP` | Main use, then when |
+| The description says what but not when, names tasks but not questions, or isn't third person | The description | `GAP` | What, then when, questions too |
 | `SKILL.md` over 500 lines, or a file that sends the reader on | `wc -l`; links in `references/` | `DRIFT` | Split into modules that name, not link |
 | No trigger evaluations, or no near misses | The evaluation files | `GAP` | Add both kinds |
 | Scores with no baseline | No without-skill score | `GAP` | Run both arms (fact `sb-eval-arms`) |
@@ -131,10 +132,17 @@ down. **Choose differently** for a skill that only packages a script or a templa
 repository's first trigger run found none of four requests loading the skill they belonged to,
 and descriptions were tuned before any rebuild.
 
+**Measured here, 2026-11-25:** in 716 trigger requests, descriptions that named only tasks
+("Use when writing code") loaded no skill for 257 of 312 misses, mostly questions answered from
+general knowledge. Adding "and before answering any question about them", with routers that
+open by calling themselves an index, took module reads from 131 to 268 of 443, while near
+misses kept clear in 213 of 223.
+
 **What others do.** The agentskills.io guide phrases it as an instruction, "Use this skill
 when", and urges it to be pushy, as `skill-creator` does, since models tend to under-use
 skills. Anthropic's platform guide asks for the third person, because it goes into the system
-prompt (fact `sb-third-person`). Both fit: "Does X. Use when Y."
+prompt (fact `sb-third-person`). Both fit: "X and Y. Read it before doing Z, and before answering
+any question about Z."
 
 **Cost.** A pushy one loads for near misses, and a long one is cut or dropped (fact
 `sb-listing`). This repository caps each at 250 characters, its own choice, so about 20 skills

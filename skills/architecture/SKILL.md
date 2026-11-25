@@ -1,12 +1,14 @@
 ---
 name: architecture
-description: "Lays out and structures software projects: where each file and folder goes, layouts by ecosystem, naming, tests' places, monorepo or several repositories, and moving files safely. Use when starting, reorganizing or splitting a codebase."
+description: "Project layout: where files and folders go, layouts by ecosystem, naming, where tests live, monorepo or several repositories, moving files. Read it before starting, reorganizing or splitting a codebase, and before answering any question about one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-11"
 ---
 
 # Architecture
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How a codebase is arranged so the next person can find things and change them: its layout,
 where each kind of file goes, and when to split or merge repositories. The standard rules on a

@@ -3,13 +3,13 @@
 Read this for what a current interface is built from: each platform's design language and its
 toolkit, at which version; stock components against custom ones; keeping many screens
 consistent; layouts for narrow and wide windows; form validation and where errors go; and
-loading, empty and failed states.
+loading, empty and failed states; and a value the program corrects.
 
-Colors, themes, design tokens and charts are the `visual-design` skill's. A heuristic review is
-`usability-review`'s, a window shown before it's ready `windows-and-dialogs`', and a settings
-page `settings-and-options`'. Tests are `gui-testing`'s, learning what's wrong after release
-`feedback-loop`'s, and terminal programs `command-line-interfaces`'. Error wording and form
-markup are the `coding` skill's `error-responses` and `html-coding`.
+Colors and charts are the `visual-design` skill's; a heuristic review `usability-review`'s;
+windows and dialogs `windows-and-dialogs`'; settings `settings-and-options`'; tests
+`gui-testing`'s; reports after release `feedback-loop`'s; terminal programs
+`command-line-interfaces`'. Error wording and form markup are `coding`'s `error-responses` and
+`html-coding`.
 
 ## Rules
 
@@ -34,7 +34,9 @@ markup are the `coding` skill's `error-responses` and `html-coding`.
 6. **Validate forms on the server, on submit, with errors beside their fields.** Turn off the
    browser's validation and always check on the server (facts `ip-govuk-html5`,
    `web-owasp-validation`). On submit, put a summary at the top and each message by its field
-   (fact `ip-govuk-errors`), saying how to fix it (fact `eh-govuk`). Keep what the person typed.
+   (fact `ip-govuk-errors`), saying how to fix it (fact `eh-govuk`). Keep what the person typed,
+   and never change it unseen: a value the program corrects, such as one held to a limit, goes
+   back into the field, with a message saying what changed.
 7. **Fit the loading state to the wait and the area:** nothing under a second (fact
    `ip-nng-1s`), a skeleton for a whole page, a spinner for one module (fact `ip-nng-skeleton`).
    Don't promise that a skeleton feels faster: NN/g says it does and Viget's test found the
@@ -66,9 +68,9 @@ markup are the `coding` skill's `error-responses` and `html-coding`.
   reduced motion and the next restyle.
 - **Leaving the browser's `required` bubbles on, or validating as the person tabs away.** Turn
   them off; validate on submit, and on the server.
+- **Saving 100 when the field still shows 500,** or dropping a value that failed to parse.
 - **A spinner that flashes on a 200 ms load,** or a skeleton for one widget. Show nothing, or
   the spinner.
-- **Citing "skeletons feel faster" as settled.** It's contested.
 - **Adopting a redesign's spacious sizes in a dense work tool,** or dropping options from narrow
   windows with no way to reach them.
 
@@ -87,6 +89,7 @@ Severity uses the standard's status words.
 | Browser validation on | Forms without `novalidate` | `GAP` | Turn it off; use the error components |
 | Client-only validation | A handler trusting the form's checks | `BLOCKER` | Validate on the server |
 | Errors in one place only | Submit a bad form | `GAP` | A summary and each message by its field |
+| Input changed unseen | A handler that clamps, rounds or drops a value and doesn't show it | `GAP` | Write it back and say so |
 | An indicator for every load | Spinners on fast loads; skeletons for one module | `GAP` | By the wait and the area |
 | Blank empty or failed views | No data; the network off | `GAP` | A state saying which, and what to do |
 | Layout and states at each width | Code alone can't show them | `UNVERIFIABLE-HERE` | Run the program at each width |
@@ -134,6 +137,8 @@ Severity uses the standard's status words.
 - **The reason:** browser messages can't match the rest, and client checks can be bypassed (fact
   `web-owasp-validation`). Errors shown as someone tabs away interrupt an answer not yet
   finished (fact `ip-govuk-errors`).
+  A value changed out of sight leaves the screen and the record disagreeing; the first
+  heuristic asks that nothing with consequences go unannounced (fact `uxr-h1-consequences`).
 - **What it costs:** a round trip before a mistake shows.
 - **When to choose differently:** check live where a limit can't be guessed, such as a
   character count, and say so as the person types.

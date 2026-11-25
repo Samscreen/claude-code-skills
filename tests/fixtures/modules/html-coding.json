@@ -16,6 +16,10 @@
     "should_trigger": true
   },
   {
+    "query": "Every time the user types in the search box, my vanilla JS rebuilds the panel with innerHTML and the box loses focus. Also my anchor links scroll the heading under the sticky header. How do I fix both?",
+    "should_trigger": true
+  },
+  {
     "query": "Is it safe to show the user's comment on the page with innerHTML?",
     "should_trigger": false,
     "note": "web-security"

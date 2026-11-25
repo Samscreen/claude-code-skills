@@ -3,12 +3,11 @@
 Read this for building or reviewing a chart, plot or dashboard: making it readable without
 color, choosing a color-blind-safe palette, writing its title and text alternative, picking a
 chart type, choosing a charting library for a report, a dashboard or a React app, and putting
-figures into a generated document.
+figures into a generated document or schedule, stamped with when it was made.
 
-Design tokens, dark mode, how to measure contrast and the WCAG thresholds themselves belong to
-the `visual-theme` module. Diagrams and Mermaid belong to `house-style`'s `documentation`
-module, and markup and alt text in HTML to `coding`'s `html-coding`. Excel and PowerPoint charts
-belong to a planned business-apps skill and to Anthropic's pptx skill.
+Tokens, dark mode, contrast and the WCAG thresholds are `visual-theme`'s; diagrams and Mermaid
+`house-style`'s `documentation`; HTML markup and alt text `coding`'s `html-coding`; Excel and
+PowerPoint charts the business-apps skill's and Anthropic's pptx skill.
 
 ## Rules
 
@@ -30,7 +29,9 @@ belong to a planned business-apps skill and to Anthropic's pptx skill.
 6. **Choose the library by where the chart lands,** take its version from the Facts, and pin it
    as the project-bootstrap-and-audit standard's dimension 8, *Dependencies*, says.
 7. **Compute every figure and every number in a generated document in one run,** from the same
-   data, so the text can't disagree with the chart.
+   data, so the text can't disagree with the chart. **Stamp it,** and any generated plan or
+   schedule, with when it was generated and when its data was loaded, as absolute 24-hour
+   times with their zone: "Generated 2026-11-24 14:05 UTC from data loaded 06:00 UTC".
 
 ### Chart types
 
@@ -93,6 +94,7 @@ Severity uses the standard's status words.
 | Wrong chart for the comparison | Bars on a cut axis, two y-axes, 3D, many-slice pies | `DRIFT` | The chart-type table |
 | Library version stale or unpinned | Lock file and manifest against the Facts | `DRIFT` | Pin a current release |
 | Figures and text from different runs | Numbers typed in prose; images committed beside the source | `DRIFT` | Render both from one run |
+| No provenance | A generated report or schedule without when it was made and its data loaded | `GAP` | Both stamps, absolute, with zone |
 
 ## Why
 
@@ -157,6 +159,12 @@ Jupyter and knitr. **The reason.** A number typed by hand stays put when the dat
 the chart beside it moves. This is this repository's practice; the research found no primary
 source for it. **What it costs.** The render needs the data and the tools at build time. Record
 the version of each tool that drew a figure.
+
+**Provenance.** A saved or printed report outlives the screen it came from. Two copies that
+disagree can only be told apart by when each ran and how old its data was, and a schedule built
+on yesterday's load looks like one built on today's. "3 hours ago" is wrong once saved, and a
+12-hour time with no AM or PM is two times. Our practice, from a production application's audit. **What it costs.** A line on each report. **When to choose differently.** A live
+dashboard may show the data's age, with the absolute stamp beside it.
 
 ## Facts
 

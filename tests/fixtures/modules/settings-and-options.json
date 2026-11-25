@@ -24,6 +24,10 @@
     "should_trigger": true
   },
   {
+    "query": "Saving the holiday calendar in our settings page re-plans every open schedule without warning. How should that save behave?",
+    "should_trigger": true
+  },
+  {
     "query": "My preferences dialog opens behind the main window and the app stops responding to clicks. How do I fix it?",
     "should_trigger": false,
     "note": "windows-and-dialogs"
