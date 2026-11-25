@@ -1,12 +1,14 @@
 ---
 name: coding
-description: "Writes, reviews and fixes code: the contract every change meets; Python, TypeScript, HTML and CSS, C#, PowerShell, Bash and C; and errors, logging, caching, performance and settings in any language. Use when writing, reviewing or debugging code."
+description: "Code in Python, TypeScript, HTML/CSS, C#, PowerShell, Bash and C; errors, logging, caching, performance, settings, naming. Read it before writing, reviewing or debugging code, and before answering any question about code, even a quick one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Coding
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to write, review and fix code so that it does what it says, fails loudly when it can't, and
 can be read and changed by the next person. Every change meets the contract below, whatever the

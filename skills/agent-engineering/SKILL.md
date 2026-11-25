@@ -1,12 +1,14 @@
 ---
 name: agent-engineering
-description: "Builds, secures and runs AI agents: AGENTS.md and CLAUDE.md, settings and hooks, Agent Skills, prompt injection and permissions, and agent sessions reviewing each other's work. Use when setting up, securing or reviewing agents."
+description: "AI agents: AGENTS.md and CLAUDE.md, settings and hooks, Agent Skills, prompt injection and permissions, agents reviewing each other. Read it before setting up, securing or reviewing agents, and before answering any question about them."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-11"
 ---
 
 # Agent engineering
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to build and run AI agents that work with each other and with people: the context files
 that steer a session, the skills it loads, defending it against text that tries to steer it,

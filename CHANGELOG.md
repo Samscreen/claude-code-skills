@@ -6,6 +6,13 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Every skill's description but the standard's now says to read it before answering any
+  question about what it covers, not only before tasks, and each router opens by calling itself
+  an index and naming the Read tool. In 716 trigger requests, module reads rose from 131 to 268
+  of 443. `skill-builder` gives the new forms and the measurements.
+
 ### Added
 
 - Lessons from a production web application's audit, as general rules in nine modules:

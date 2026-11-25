@@ -6,6 +6,34 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-25 — Descriptions name questions, and routers open as an index
+
+- **Asked, by the owner:** "do it", for the routing investigation proposed on 2026-11-24, after
+  a trigger run on nine modules missed 41 of 85 requests.
+- **Measured on main:** all 716 trigger requests, run in parallel with every answer kept. Module
+  requests reached their module 131 of 443 times. Of 312 misses, 257 loaded no skill at all:
+  questions ("is 4.48:1 close enough?", "should we adopt it?") were answered from general
+  knowledge, while tasks ("set up the build") loaded the skill. Every description named tasks
+  only. 44 loaded the skill and answered from the router; 11 chose the wrong skill.
+- **Tried on 97 requests from `coding`, `visual-design` and `operations`,** with the near
+  misses: questions added to the "Use when" clause, 17 of 70 reached (15 before); "Read it
+  before ..., and before answering any question about them, even a quick one", 22, with
+  no-skill misses down from 49 to 6; that plus a first line in the router saying modules hold
+  the facts, 27; that with the line calling the page an index and naming the Read tool, 35.
+  Near misses held at one or two of 27 throughout.
+- **Applied to every skill but the standard,** each description within 250 characters, and
+  the index line under each router's title. The full rerun reached 268 of 443 module requests
+  and 27 of 31 skill requests (17 before); near misses kept clear in 213 of 223 (220 before).
+  By skill, module requests before and after: agent-engineering 9 to 18 of 23, architecture 2
+  to 3 of 6, business-apps 5 to 4 of 5, coding 19 to 71 of 158, git-workflows 26 to 55 of 67,
+  house-style 10 to 12 of 20, human-factors 13 to 14 of 15, operations 8 to 14 of 29,
+  optimization-and-scheduling 4 to 10 of 16, security 1 to 2 of 6, testing 20 to 31 of 41,
+  user-experience 12 to 29 of 43, visual-design 2 to 5 of 14.
+- **Left:** 99 requests still load a skill and answer from its router, and 42 now choose a
+  neighboring skill, against 11 before. `skill-builder` now gives the description and router
+  forms with these numbers, so the next change measures against them.
+- **Cost:** 1,824 model calls, about $330, on Claude Code 2.1.331.
+
 ## 2026-11-24 — Lessons from a production audit, in nine modules
 
 - **Asked, by the owner:** fold in anything useful from one of the owner's repositories, by the

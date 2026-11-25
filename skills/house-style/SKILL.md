@@ -1,12 +1,14 @@
 ---
 name: house-style
-description: "Writes and checks prose and Markdown in one house style: the answer first, plain words, facts with sources, American spelling. Ships a Vale style. Use for a README, docs, records, changelogs, pull requests and reports."
+description: "Prose and Markdown in one house style: the answer first, plain words, facts with sources, American spelling; ships a Vale style. Read it before writing a README, docs, records, changelogs, pull requests or reports, and before any question on style."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # House style
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 One style for everything written in the owner's repositories: documentation, records, pull
 requests, commit bodies and reports. It should be recognizable because it's plain, exact and

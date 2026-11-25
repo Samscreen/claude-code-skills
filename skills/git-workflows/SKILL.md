@@ -1,12 +1,14 @@
 ---
 name: git-workflows
-description: "Sets up and runs Git and GitHub work: commits, branches, pull requests and agents tending them, merges, conflicts, CI and deploys, hooks, leaked secrets, releases, tags, changelogs, versions, backports, support windows. Use when doing or fixing any."
+description: "Git and GitHub: commits, branches, pull requests and agents tending them, merges, conflicts, CI and deploys, hooks, leaked secrets, releases, tags, changelogs, versions. Read it before doing or fixing any, and before answering a question about them."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-24"
 ---
 
 # Git workflows
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to run a repository's history, pull requests, CI and releases so that nothing gets lost:
 no stranded commits, no gate that never ran, no release that never published. It assumes

@@ -1,12 +1,14 @@
 ---
 name: business-apps
-description: "Generates and fills business documents from code, starting with Word: .dotx templates, prompts split across runs, fields, tables of contents, numbered lists, change records. Use when code writes or fills a .docx."
+description: "Business documents from code, starting with Word: .dotx templates, prompts split across runs, fields, tables of contents, numbered lists, change records. Read it before code writes or fills a .docx, and before answering any question about doing so."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-24"
 ---
 
 # Business apps
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 Code that produces or fills the documents a business runs on, starting with Word: templates,
 fields, tables of contents, numbered lists and change records. Excel workbooks, Epicor Kinetic
