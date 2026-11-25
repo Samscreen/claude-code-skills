@@ -1,12 +1,14 @@
 ---
 name: user-experience
-description: "Reviews, designs and tests how a desktop, web or command-line program behaves for its user: platform patterns, status, dialogs, settings, GUI tests, and fixing what users report. Use when building, reviewing or testing an interface."
+description: "How a desktop, web or command-line program behaves for its user: platform patterns, status, dialogs, settings, GUI tests, what users report. Read it before building, reviewing or testing an interface, and before answering any question about one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # User experience
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How a program behaves for the person using it: what a current interface on its platform is
 built from, whether its status is current, whether its windows and dialogs appear when they

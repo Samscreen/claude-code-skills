@@ -1,12 +1,14 @@
 ---
 name: security
-description: "Designs and reviews software for security: threat models, authentication and sessions, authorization, cryptography, secrets and security events, against OWASP and CWE. Use when building or reviewing anything that handles users, data or keys."
+description: "Software security: threat models, authentication and sessions, authorization, cryptography, secrets, security events, OWASP, CWE. Read it before building or reviewing anything handling users, data or keys, and before answering a question about it."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-11"
 ---
 
 # Security
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to design and review software so that it holds up against someone trying to break it:
 modeling threats, authenticating people, checking what each may do, using cryptography

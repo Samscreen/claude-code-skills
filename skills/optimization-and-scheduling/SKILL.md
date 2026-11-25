@@ -1,12 +1,14 @@
 ---
 name: optimization-and-scheduling
-description: "Builds and checks schedulers, rosters and shift plans made by a solver: OR-Tools CP-SAT, HiGHS, Timefold, Gurobi; rules as constraints; fatigue, fairness and re-planning; lead times from backlog. Use when an optimizer makes the plan."
+description: "Schedulers, rosters and shift plans made by a solver: OR-Tools CP-SAT, HiGHS, Timefold, Gurobi; constraints, fatigue, fairness, re-planning, lead times. Read it before an optimizer makes a plan, and before answering any question about one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Optimization and scheduling
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 For plans a solver makes: production schedules, staff rosters, shift plans and lead-time quotes (routing
 only in passing), written with OR-Tools CP-SAT, HiGHS, SCIP, Timefold, Gurobi, CPLEX, Pyomo or PuLP. It

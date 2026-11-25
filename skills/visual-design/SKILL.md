@@ -1,12 +1,14 @@
 ---
 name: visual-design
-description: "Designs how an interface, a chart or a document looks: design tokens, palettes, OKLCH and dark mode, fonts, contrast, chart choice and charting libraries. Use when choosing colors, theming, styling or building a chart."
+description: "How interfaces, charts and documents look: tokens, palettes, OKLCH, dark mode, fonts, contrast, chart choice, charting libraries. Read it before choosing colors, styling or charting, and before answering any question about them, even a quick one."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Visual design
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How a program, a chart or a document looks: its colors, spacing and type kept as design tokens
 and built for every place they land, dark mode, contrast, and choosing and building charts.

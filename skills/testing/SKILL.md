@@ -1,12 +1,14 @@
 ---
 name: testing
-description: "Writes, reviews and fixes tests: strategy, test data, doubles, coverage, frameworks, checks that can fail, oracles, flaky tests, tests AI agents write, and hardware acceptance runs. Use when writing tests, or when tests pass but the output is wrong."
+description: "Tests: strategy, test data, doubles, coverage, frameworks, checks that can fail, oracles, flaky and agent-written tests, hardware acceptance. Read it before writing or fixing tests, when output is wrong yet tests pass, and before a question on tests."
 license: Apache-2.0
 metadata:
   reviewed: "2026-11-16"
 ---
 
 # Testing
+
+**This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
 How to make a test, a CI gate or a grader worth trusting: one that can fail, checks against
 something that didn't produce the output, and is scored by what it misses. It comes from audits
