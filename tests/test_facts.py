@@ -419,6 +419,28 @@ def test_a_pdf_beside_a_page_still_has_its_quote_looked_for_on_the_page():
     assert problem == 'the quote is no longer at its source: "a quote"'
 
 
+def test_a_source_on_a_host_checked_by_hand_is_never_fetched(monkeypatch):
+    def urlopen(request, timeout):
+        raise AssertionError("fetched")
+
+    monkeypatch.setattr(facts.urllib.request, "urlopen", urlopen)
+    with pytest.raises(facts.NotText, match="help.solidworks.com, checked by hand"):
+        facts.fetch_text("https://help.solidworks.com/2027/english/api/page.htm")
+
+
+def test_a_retry_that_reaches_a_pdf_leaves_the_quote_to_be_checked_by_hand():
+    calls: list[str] = []
+
+    def fetch(source: str) -> str:
+        calls.append(source)
+        if len(calls) == 1:
+            raise ConnectionResetError("reset")
+        raise facts.NotText("application/pdf")
+
+    assert list(facts.verify([fact("paper", "https://example.com/paper.pdf")], fetch)) == []
+    assert len(calls) == 2
+
+
 def test_fetch_runs_ls_remote_for_a_tag_source(monkeypatch):
     runs = []
 
