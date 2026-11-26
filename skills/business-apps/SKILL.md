@@ -38,6 +38,7 @@ mistakes, audit checks, reasons, dated facts and sources.
 |---|---|
 | [`word-documents`](references/word-documents.md) | Filling a Word template from code: opening a `.dotx`, replacing prompts split across runs, `DATE` and `FILENAME` fields, a table of contents or fields right in Word but stale in a PDF or preview, restarting numbered and lettered lists, change records, and checking the result |
 | [`excel-master`](references/excel-master.md) | Writing or reading `.xlsx` from code: openpyxl or XlsxWriter, `#NAME?` and `_xlfn.` prefixes, formulas that don't spill, totals that read as 0 or None, formula injection, list validation, tables and names, dates and time zones, large files, and checking the output |
+| [`solidworks-automation`](references/solidworks-automation.md) | The SOLIDWORKS API from a VBA macro, a C# add-in or a stand-alone program: opening documents and checking load errors, custom properties, configurations, drawing views, sheet-metal flat patterns to DXF, STEP and PDF export, batch runs over a folder, and releasing COM objects |
 
 ## When something here is wrong
 
