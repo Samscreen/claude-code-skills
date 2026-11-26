@@ -22,6 +22,16 @@ Notable changes to this repository. The format follows
   tested in the repository's suite, and a draft marked in `metadata`. The steward template
   starts as a draft.
 
+### Fixed
+
+- `skillcheck --verify` no longer stops the whole run when a source's retry reaches a PDF; that
+  quote is left to be checked by hand, as a PDF's always was.
+
+### Changed
+
+- A source on a host whose pages a script can't read, starting with the SOLIDWORKS API help,
+  is checked by hand like a PDF, instead of failing every week.
+
 ## [0.1.37] - 2026-11-25
 
 ### Changed
