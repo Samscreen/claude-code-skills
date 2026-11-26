@@ -200,7 +200,7 @@ Grouped by subject; the Skill column is each module's one home.
 | `power-query-and-dax` | `business-apps` | Power Query M and the data model: sources, query folding, refresh, DAX measures and time intelligence | planned | core | R16 |
 | `office-scripts-and-add-ins` | `business-apps` | Office Scripts with Power Automate, Office JavaScript add-ins, custom functions and the unified manifest | planned | core | R16 |
 | `word-documents` | `business-apps` | Generating and filling Word templates | shipped | core | R16, R16b |
-| `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
+| `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | shipped | core | R16 |
 | `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | shipped | core | R16 |
 | `linux` | `operations` | Administration and troubleshooting across distributions | shipped | standard | R15 |
 | `networking-security` | `operations` | Firewalls, segmentation, IDS, VPN, Wi-Fi, DNS | shipped | standard | R15 |
