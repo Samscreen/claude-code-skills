@@ -15,10 +15,12 @@ from pathlib import Path
 from skillcheck.core import (
     citations,
     content,
+    drafts,
     facts,
     frontmatter,
     modules,
     reporting,
+    scripts,
     standard,
     times,
 )
@@ -168,12 +170,33 @@ class Report:
     standard_version: str | None = None
     # How many commit citations the records hold, or why they went unchecked (core/citations.py).
     commits: str | None = None
+    # A repository's own skills, under .claude/skills/, which ship in no catalog (skillcheck
+    # --project).
+    project: bool = False
+    # The skills marked `metadata: {status: "draft"}`, named in the summary (core/drafts.py).
+    drafts: list[str] = field(default_factory=list)
     findings: list[Finding] = field(default_factory=list)
+    # What's worth a look but fails nothing, such as a script no test names (core/scripts.py).
+    warnings: list[Finding] = field(default_factory=list)
 
     def add(self, path: str, rule: str, message: str) -> None:
         self.findings.append(Finding(path, rule, message))
 
+    def warn(self, path: str, rule: str, message: str) -> None:
+        self.warnings.append(Finding(path, rule, message))
+
     def summary(self) -> str:
+        counts = (
+            f"{self.skills} skill(s), {self.modules} module(s), "
+            f"{self.description_chars} description characters, {self.facts} fact(s)"
+        )
+        if self.drafts:
+            counts += f", {len(self.drafts)} draft(s): {', '.join(self.drafts)}"
+        found = f"{len(self.findings)} finding(s)"
+        if self.warnings:
+            found = f"{len(self.warnings)} warning(s), {found}"
+        if self.project:
+            return f"skillcheck: project skills in .claude, {counts}, {found}"
         if self.catalog_plugins is None:
             catalog = "no catalog"
         else:
@@ -186,31 +209,39 @@ class Report:
             "no standard" if self.standard_version is None else f"standard {self.standard_version}"
         )
         return (
-            f"skillcheck: {self.skills} skill(s), {self.modules} module(s), "
-            f"{self.description_chars} description "
-            f"characters, {self.facts} fact(s), {catalog}, {roadmap}, {stamp}, "
-            f"{'' if self.commits is None else self.commits + ', '}"
-            f"{len(self.findings)} finding(s)"
+            f"skillcheck: {counts}, {catalog}, {roadmap}, {stamp}, "
+            f"{'' if self.commits is None else self.commits + ', '}{found}"
         )
 
 
-def check_repository(root: Path) -> Report:
-    report = Report()
+def check_repository(root: Path, project: bool = False) -> Report:
+    """Every rule on the skills under ``root``.
+
+    With ``project``, ``root`` is a repository's ``.claude`` directory, whose skills ship in no
+    catalog: the catalog and the cited commits go unchecked, the reporting section and the
+    rationale file are optional, and the scripts' tests are looked for beside ``root``, in the
+    repository's own suite.
+    """
+    report = Report(project=project)
     skills = _discover_skills(root, report)
     standards = standard.find(root)
     carriers = {path.parent.parent for path in standards}
     found_facts: list[facts.Fact] = []
     issues = reporting.issues_url(root)
     for skill_dir in skills:
-        # A skill made of modules gives its reasons in each module's Why section.
+        # A skill made of modules gives its reasons in each module's Why section. A repository's
+        # own skill points to that repository's records for its reasons instead, as
+        # `pr-stewardship` asks of a steward, so it needs no rationale file of its own.
         modular = modules.router(skill_dir) is not None
-        _check_skill(skill_dir, report, needs_rationale=not modular and skill_dir not in carriers)
+        needs_rationale = not modular and not project and skill_dir not in carriers
+        _check_skill(skill_dir, report, needs_rationale=needs_rationale)
         found_facts += facts.check(root, skill_dir, report.add)
-        reporting.check(root, skill_dir, issues, report.add)
+        reporting.check(root, skill_dir, issues, report.add, required=not project)
     report.facts = len(found_facts)
     _check_fact_ids(found_facts, report)
     facts.check_references(root, skills, {fact.id for fact in found_facts}, report.add)
-    _check_catalog(root, skills, report)
+    if not project:
+        _check_catalog(root, skills, report)
     names = {skill.name for skill in skills}
     found_modules = modules.check(root, skills, names, report.add)
     report.modules = len(found_modules)
@@ -220,8 +251,10 @@ def check_repository(root: Path) -> Report:
     _check_agent_files(root, report)
     _check_conflict_markers(root, report)
     times.check(root, report.add)
-    report.commits = citations.check(root, report.add)
+    if not project:
+        report.commits = citations.check(root, report.add)
     content.check(root, report.add)
+    scripts.check(root, skills, root.parent if project else root, report.warn)
     for skill_dir in skills:
         if (skill_dir / EXCLUSIONS).is_file():
             _check_exclusions(root, skill_dir, names, report)
@@ -287,6 +320,8 @@ def _check_skill(skill_dir: Path, report: Report, needs_rationale: bool) -> None
             "what others do instead, and the trade-offs",
         )
     _check_optional_fields(data, where, report)
+    if drafts.check(data, body, where, report.add):
+        report.drafts.append(skill_dir.name)
 
     extra = sorted(str(key) for key in data if key not in ALLOWED_KEYS)
     if extra:

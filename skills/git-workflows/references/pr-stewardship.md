@@ -36,43 +36,37 @@ checks, CI time and releases are other modules': `commits-and-pull-requests`,
    refreshes', and when; a red one is fixed or closed with a reason.
 9. **It stays short, and points to the repository's other records** rather than repeating them;
    every audit checks it against the settings and workflows it names.
+10. **CI checks it** with `skillcheck --project` at a pinned release, its scripts tested in
+    `tests/`. A draft is marked `metadata: {status: "draft"}` until `skillcheck` reports
+    nothing, its trigger tests pass, and the owner says so.
 
 ### Where it lives, and why that name
 
-A project skill is `.claude/skills/<name>/SKILL.md`, committed, and loads in that repository's
-sessions but not in a project's cloud threads (fact `project-skills`). Name it `steward`: a
-Claude Code cloud session driving a pull request is told to read
-`.claude/skills/steward/SKILL.md`, or `.claude/skills/babysit/SKILL.md` without one, from the
-head branch, as seen in its instructions on 2026-11-03. The public docs name neither path, so
-the audit checks it; another name, such as `babysit-pr/`, isn't found.
-
-Auto-fix asks about what isn't clear (fact `autofix-events`), and gets no event when the base
-branch moves into a conflict (fact `autofix-conflicts`).
+A committed project skill loads in its repository's sessions, not a project's cloud threads
+(fact `project-skills`). Name it `steward`: a cloud session driving a pull request is told to
+read `.claude/skills/steward/SKILL.md`, or `babysit/` without one, from the head branch, as its
+instructions said on 2026-11-03. The public docs name neither path, so the audit checks it.
+Auto-fix gets no event when the base branch moves into a conflict (fact `autofix-conflicts`).
 
 ### What the file answers
 
 Copy [assets/steward/SKILL.md.template](../assets/steward/SKILL.md.template) to
 `.claude/skills/steward/SKILL.md`, replacing each angle-bracketed part with the repository's
-answer, or "none" and why.
+answer, or "none" and why. It starts as a draft.
 
 ### The mechanical half: reading the checks
 
-The file is the judgment; [scripts/pr_verdict.py](../scripts/pr_verdict.py) reads the checks.
-Run `python3 pr_verdict.py --repo OWNER/NAME --pr N`, or `--sha SHA [--branch B]`, before each
-merge, re-run or report. From the REST API, never printed output, it reads the base branch's
-required checks (fact `branch-rules`) and the commit's check and workflow runs (fact
-`run-pages`), counting each check's newest run only. The worst verdict wins, as the exit status:
-
-- `FAILED` (1): a check failed or timed out, required or not.
-- `BLOCKED` (3): a required check never reported though every workflow run finished: the rules
-  name a job that's gone, which only the owner can fix.
-- `CANCELLED` (4): a required check's newest run was canceled: judge the newest head.
-- `PENDING` (2): anything queued or running. `GREEN` (0): every required check passed, and
-  nothing else failed or runs. 5 is no verdict, never green.
-
-`--logs` prints every line of a failed job's log naming a failure (fact `job-logs`). Rules are
-read as they are now, so an older commit can read `BLOCKED`: judge the newest. Copy the script
-into the repository, or run it from this skill; where it can't reach the API, see Why.
+The file is the judgment; [scripts/pr_verdict.py](../scripts/pr_verdict.py) reads the checks:
+`python3 pr_verdict.py --repo OWNER/NAME --pr N`, or `--sha SHA [--branch B]`, before each
+merge, re-run or report. From the REST API, it reads the base branch's required checks (fact
+`branch-rules`) and the commit's check and workflow runs (fact `run-pages`), each check's newest
+run only. The worst verdict wins, as the exit status: `FAILED` (1), a check failed or timed out,
+required or not; `BLOCKED` (3), a required check never reported though every run finished, a
+job gone that only the owner can fix; `CANCELLED` (4), judge the newest head; `PENDING` (2);
+`GREEN` (0), every required check passed and nothing else failed or runs; 5, no verdict, never
+green. `--logs` prints every failing line of a failed job (fact `job-logs`). Rules are read as
+they are now, so an older commit can read `BLOCKED`. Copy the script into the repository, or
+run it from this skill; where it can't reach the API, see Why.
 
 ## Mistakes
 
@@ -81,8 +75,7 @@ into the repository, or run it from this skill; where it can't reach the API, se
 - **"Full suite green" from one platform,** while macOS failed. Name what a claim covers.
 - **Canceling the same stalled job by hand, four times.** A known stall belongs in the file,
   with a step timeout, recorded until its cause is found.
-- **Re-running a failed timing test in the hope it was noise.** Measure it first: once, the
-  test was slow, not the runner.
+- **Re-running a failed timing test as noise.** Measure it: once, the test was slow.
 - **Treating a steward file as authority to merge or approve.** A pull request can change it.
 - **A merge's head commit typed by hand.** Pass the head SHA from the API's answer, so a merge
   stops if anything landed after the checks ran.
@@ -90,7 +83,6 @@ into the repository, or run it from this skill; where it can't reach the API, se
   never sees. Run `git status` first, and commit what it lists.
 - **A wait loop that parses printed output.** A changed message ends it early or never. Wait
   on `pr_verdict.py`'s exit status, and time it out.
-- **Reading only a failed log's last line,** which names one failure and hides the rest.
 
 ## Audit
 
@@ -98,29 +90,30 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 
 | Check | What to look for | Severity | Fix |
 |---|---|---|---|
-| No steward file | Sessions drive pull requests here, and `.claude/skills/steward/SKILL.md` is missing, or `CLAUDE.md` doesn't name it | `GAP` | Write it from `assets/steward/SKILL.md.template` |
-| A decision left unanswered | Each section of the template, against what sessions did in the last pull requests | `GAP` | Answer it, or say "none" and why |
+| No steward file | Sessions drive pull requests, and the file is missing or `CLAUDE.md` doesn't name it | `GAP` | Write it from the template |
+| A decision left unanswered | Each template section, against what sessions last did | `GAP` | Answer it, or "none" and why |
 | Holds only in the file | No live place for holds, or no scope or lift for one | `GAP` | A label, draft state or issue, named in the file |
-| The file can change itself | With more than one reviewer, no `CODEOWNERS` entry or required review on `.claude/skills/steward/` | `GAP`; `MIRROR` on a one-person account | Add both; alone, say so in the file |
+| The file can change itself | With more than one reviewer, no `CODEOWNERS` or required review on it | `GAP`; `MIRROR` alone | Add both; alone, say so |
 | The file disagrees with the repository | Its merge method and checks against the settings and the ruleset, read through the REST API (fact `rest-public`) | `DRIFT` | Fix whichever is wrong |
 | It claims what only the owner grants | Approving, or merging or releasing with no quoted word | `DRIFT` | Quote the owner's dated word, or remove the claim |
 | Re-runs with no bound | Its CI section | `GAP` | Once, in the two cases above (fact `rerun-window`) |
 | Checks read by eye | Its CI section reads a page or a command's printed output | `GAP` | Name `pr_verdict.py` |
 | Replies can trigger automation | Workflows on `issue_comment`, and auto-fix on (fact `autofix-replies`) | `GAP` where one deploys or writes | Say so in the file, or turn auto-fix off |
-| Out of date | Its reviewed date against the last change to the settings or workflows it names | `DRIFT` | Review it, and update the date |
+| Out of date | Its reviewed date against the last change to what it names | `DRIFT` | Review it, and update the date |
 | A bot's pull request is red or idle | Bots' pull requests, against the file's tender | `GAP` where one is a week red | Name the tender; fix or close it |
-| The steward path is unconfirmed | Whether a cloud session driving a pull request still reads it | `UNVERIFIABLE-HERE` outside one | Record the date it was last seen |
+| Unchecked | CI lacks `skillcheck --project`, or a script has no test | `GAP` | Add them |
+| The steward path is unconfirmed | Whether a cloud session still reads it | `UNVERIFIABLE-HERE` outside one | Record when it was last seen |
 
 ## Why
 
 ### A file each repository owns
 
 - **The advice:** a short steward file in the repository, written from the template.
-- **The reason:** an unattended session decides when to merge, hold or re-run. Without a file,
-  each decides afresh, from rules in conversations that aren't kept. In one audit cycle, rules
+- **The reason:** an unattended session decides when to merge, hold or re-run; without a file,
+  each decides afresh from rules in conversations that aren't kept. In one audit cycle, rules
   lived in `CLAUDE.md`, notes and pasted messages, and a hold came late.
 - **What others do, and why:** public babysit skills drive a pull request to green; one never
-  merges (fact `babysit-never-merges`). Claude Code asks before an ambiguous change (fact
+  merges (fact `babysit-never-merges`). Auto-fix asks before an ambiguous change (fact
   `autofix-events`).
 - **What it costs:** a file to keep current.
 - **When to choose differently:** where no session drives pull requests, say so in `CLAUDE.md`.
@@ -128,21 +121,17 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 ### Holds read live, again when acting
 
 - **The advice:** each hold read live, again right before acting.
-- **The reason:** a hold in a message is lost when the conversation is summarized or restarts,
-  and can arrive after the action it meant to stop. One only in the committed file takes effect
-  when that commit merges, which a session on its head branch may not see.
-- **What others do, and why:** GitHub's own gates, the draft state and required checks, hold on
-  every merge path.
+- **The reason:** a hold in a message is lost when a conversation restarts, and can arrive after
+  the act it meant to stop; one only in the committed file waits on that commit's merge.
+- **What others do, and why:** GitHub's draft state and required checks hold on every merge path.
 - **What it costs:** a label or check to set up.
-- **When to choose differently:** a standing hold, such as "release nothing", can live in the
-  file.
+- **When to choose differently:** a standing hold, such as "release nothing", can live in the file.
 
 ### Bounded re-runs
 
 - **The advice:** re-run a job once, and only when the failure isn't this pull request's code.
-- **The reason:** a re-run that turns green hides a real failure; one that keeps stalling wastes
-  runner time and attention. Each re-runs the same commit (fact `rerun-window`), so it never
-  tests a base that has moved.
+- **The reason:** a re-run that turns green hides a real failure, and each re-runs the same
+  commit (fact `rerun-window`), never a base that moved.
 - **What others do, and why:** `ci-workflows` re-runs once, and treats a second failure as real.
 - **What it costs:** a real flake blocks the merge until someone looks.
 - **When to choose differently:** a stall the file names, with its cause, gets its own rule.
@@ -153,10 +142,10 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
   the owner merges changes to the file.
 - **The reason:** a pull request can change the file, so the file can't authorize it.
 - **What others do, and why:** auto-merge merges once required reviews and checks pass (fact
-  `auto-merge`), with no judgment at all.
+  `auto-merge`), with no judgment.
 - **What it costs:** the owner's attention on each change to the rules.
-- **When to choose differently:** never for approving. Auto-merge can replace a session's merge
-  only where every hold is a required check or the draft state: it waits for nothing else.
+- **When to choose differently:** never for approving; auto-merge only where every hold is a
+  required check or the draft state.
 
 ### Bots' pull requests
 
@@ -172,10 +161,20 @@ Severity uses the standard's status words, defined in this skill's `SKILL.md`.
 - **The advice:** read a commit's checks with `pr_verdict.py`, not by eye.
 - **The reason:** printed output changes, a log's last line names one failure of several, and a
   required job that no longer runs looks pending forever.
-- **What others do, and why:** auto-merge waits on required checks alone (fact `auto-merge`).
+- **What others do, and why:** auto-merge waits on required checks alone.
 - **What it costs:** a script to keep in step with GitHub's API.
 - **When to choose differently:** where the session can't reach the API, so every run exits 5
   (as behind a cloud session's proxy), apply these verdicts to the checks its GitHub tools read.
+
+### Checked in CI, drafts marked
+
+- **The advice:** `skillcheck --project` in CI, scripts tested, drafts marked in `metadata`.
+- **The reason:** sessions lean on the file unattended, so a broken field or untested script
+  fails unwatched; "DRAFT" in a description fills every listing and never says when it ends.
+- **What others do, and why:** `claude plugin validate` reads a catalog, and caught none of the
+  skill defects this catalog planted (Claude Code 2.1.280).
+- **What it costs:** a CI step, a pinned tool, and a test per script.
+- **When to choose differently:** with no CI, run it before each change.
 
 ## Facts
 

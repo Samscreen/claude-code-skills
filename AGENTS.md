@@ -9,8 +9,8 @@ skills run in sessions there, some reaching production, so a change here changes
 
 - Install: `uv sync --locked`, then `npm ci` for Claude Code's own validator
 - Test: `uv run pytest`; lint and format: `uv run ruff check`, `uv run ruff format --check`
-- Skills and catalog: `uv run skillcheck .`; scaffold with `--new <skill>` or `--new-module
-  <module> <skill>`; give a module a new home with `--move <module> <skill>`
+- Skills and catalog: `uv run skillcheck .`, and `--project` for `.claude/skills/`; scaffold:
+  `--new <skill>`, `--new-module <module> <skill>`; a module's new home: `--move <module> <skill>`
 - Dated facts: `--due` lists those due, `--verify` checks each source online. Examples:
   `--examples`. Trigger tests, by hand only: `--triggers [name]`; the claude.ai list: `--tries`
 - A time for the owner: `uv run skillcheck --time 2026-10-17T00:55Z America/New_York`

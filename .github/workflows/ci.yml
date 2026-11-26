@@ -77,6 +77,10 @@ jobs:
       - name: Check skills and catalog
         run: uv run skillcheck .
 
+      # The repository's own steward skill, as other repositories check theirs.
+      - name: Check the repository's own skills
+        run: uv run skillcheck --project
+
       # ShellCheck comes from the locked dev group; pwsh is on GitHub's Ubuntu image. A tool
       # that's missing fails the step rather than passing what it couldn't check.
       - name: Run every example in the skills under its language's tool

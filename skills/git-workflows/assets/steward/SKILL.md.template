@@ -1,6 +1,8 @@
 ---
 name: steward
 description: How sessions drive this repository's pull requests: merging, holds, conflicts, red or stalled CI, review, releases, and when to stop and report. Read before acting on any pull request event.
+metadata:
+  status: "draft"
 ---
 
 # Steward

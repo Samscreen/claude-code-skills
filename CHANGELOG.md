@@ -6,6 +6,22 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `skillcheck --project` checks a repository's own skills, in its `.claude/skills/`, by every
+  rule but the catalog's, so a repository runs one command in CI with no finding expected. The
+  reporting section and the rationale file are optional there; a section still holding the
+  placeholder fails. It works alone or with `--due`, `--verify`, `--examples`, `--triggers` and
+  `--tries`, and this repository's CI runs it on its own steward skill.
+- A draft skill is marked `metadata: {status: "draft"}`. `skillcheck` names each draft in its
+  summary without failing, and fails the word DRAFT in a description or title, and any other
+  status. What ends a draft is in `docs/authoring-a-skill.md` and `pr-stewardship`.
+- `skillcheck` warns of a script in a skill's `scripts/` that no file in the repository's
+  `tests/` or `test/` names or imports. A warning fails nothing.
+- `pr-stewardship`: a steward skill is checked in CI with `skillcheck --project`, its scripts
+  tested in the repository's suite, and a draft marked in `metadata`. The steward template
+  starts as a draft.
+
 ### Fixed
 
 - `skillcheck --verify` no longer stops the whole run when a source's retry reaches a PDF; that
