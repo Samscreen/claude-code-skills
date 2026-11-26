@@ -37,6 +37,7 @@ mistakes, audit checks, reasons, dated facts and sources.
 | Module | Read it for |
 |---|---|
 | [`word-documents`](references/word-documents.md) | Filling a Word template from code: opening a `.dotx`, replacing prompts split across runs, `DATE` and `FILENAME` fields, a table of contents or fields right in Word but stale in a PDF or preview, restarting numbered and lettered lists, change records, and checking the result |
+| [`epicor-kinetic`](references/epicor-kinetic.md) | Epicor Kinetic and ERP 10.2.x on the server: BPM method, data and updatable BAQ directives, what an in-transaction directive may do, C# in directives and Epicor Functions, BAQs, REST API v2 and API keys, and code that breaks when upgrading to Kinetic |
 
 ## When something here is wrong
 
