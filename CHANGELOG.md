@@ -6,6 +6,25 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `business-apps` gains three modules, rebuilt from the owner's old `excel-master` and
+  `epicor-bpm`, every topic of which was read and either rebuilt, dropped with its reason or
+  moved, and from research R16 for SOLIDWORKS:
+  - `excel-master`: workbooks written and read from code, with openpyxl or XlsxWriter, formulas
+    that open correctly (the `_xlfn.` and `_xlpm.` prefixes, spilling, cached values), formula
+    injection, validation, tables and names, dates and time zones, large files, and checking a
+    recalculated copy;
+  - `epicor-kinetic`: method, data and BAQ directives, custom code and Functions, BAQs, REST
+    API v2 and its keys, and moving from ERP 10.2 to Kinetic, from public sources only;
+  - `solidworks-automation`: the SOLIDWORKS API from a macro, an add-in or a program, with
+    load errors, custom properties, configurations, drawings, flat patterns to DXF, STEP and
+    PDF export, batch runs and releasing COM objects.
+
+  The skill's description now names all four applications, and its rules ask each module to
+  say which examples haven't run on a named release. Three Excel modules are planned:
+  `excel-modeling`, `power-query-and-dax` and `office-scripts-and-add-ins`.
+
 ## [0.1.37] - 2026-11-25
 
 ### Changed

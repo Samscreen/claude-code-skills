@@ -19,7 +19,7 @@ freshness run and the release workflow both run it.
 | `standards` | 0.1.37 | CC0-1.0 | `project-bootstrap-and-audit` | standard v0.52.0 |
 | `engineering` | 0.1.37 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
 | `engineering` | 0.1.37 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
-| `engineering` | 0.1.37 | Apache-2.0 | `business-apps` | reviewed 2026-11-24 |
+| `engineering` | 0.1.37 | Apache-2.0 | `business-apps` | reviewed 2026-11-26 |
 | `engineering` | 0.1.37 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
 | `engineering` | 0.1.37 | Apache-2.0 | `git-workflows` | reviewed 2026-11-24 |
 | `engineering` | 0.1.37 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
@@ -35,8 +35,8 @@ freshness run and the release workflow both run it.
 
 | Language | Tracked files |
 |---|---|
-| Markdown | 219 |
-| JSON | 90 |
+| Markdown | 222 |
+| JSON | 93 |
 | Python | 63 |
 | YAML | 25 |
 | Shell | 4 |
@@ -165,12 +165,20 @@ again.
 | `architecture` | peps.python.org | 1 |
 | `architecture` | pkg.go.dev | 1 |
 | `architecture` | pnpm.io | 1 |
-| `business-apps` | learn.microsoft.com | 7 |
-| `business-apps` | support.microsoft.com | 3 |
-| `business-apps` | pypi.org | 2 |
+| `business-apps` | help.solidworks.com | 13 |
+| `business-apps` | learn.microsoft.com | 10 |
+| `business-apps` | support.microsoft.com | 7 |
+| `business-apps` | www.epiusers.help | 7 |
+| `business-apps` | www.epicor.com | 5 |
+| `business-apps` | xlsxwriter.readthedocs.io | 5 |
+| `business-apps` | pypi.org | 4 |
 | `business-apps` | raw.githubusercontent.com | 2 |
 | `business-apps` | api.libreoffice.org | 1 |
 | `business-apps` | committee.iso.org | 1 |
+| `business-apps` | help.libreoffice.org | 1 |
+| `business-apps` | openpyxl.readthedocs.io | 1 |
+| `business-apps` | owasp.org | 1 |
+| `business-apps` | pandas.pydata.org | 1 |
 | `coding` | learn.microsoft.com | 81 |
 | `coding` | docs.python.org | 37 |
 | `coding` | raw.githubusercontent.com | 26 |
