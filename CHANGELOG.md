@@ -25,6 +25,16 @@ Notable changes to this repository. The format follows
   say which examples haven't run on a named release. Three Excel modules are planned:
   `excel-modeling`, `power-query-and-dax` and `office-scripts-and-add-ins`.
 
+### Fixed
+
+- `skillcheck --verify` no longer stops the whole run when a source's retry reaches a PDF; that
+  quote is left to be checked by hand, as a PDF's always was.
+
+### Changed
+
+- A source on a host whose pages a script can't read, starting with the SOLIDWORKS API help,
+  is checked by hand like a PDF, instead of failing every week.
+
 ## [0.1.37] - 2026-11-25
 
 ### Changed
