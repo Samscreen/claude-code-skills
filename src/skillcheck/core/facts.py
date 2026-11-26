@@ -15,6 +15,7 @@ request, where a result should depend only on the commit.
 import http.client
 import re
 import subprocess
+import urllib.parse
 import urllib.request
 from collections.abc import Callable, Iterator
 from dataclasses import dataclass
@@ -52,6 +53,9 @@ END = re.compile(
 WARNING = timedelta(days=183)
 # A source served as one of these has no text to search: its quote is checked by hand.
 NOT_TEXT = ("application/pdf",)
+# Hosts whose pages can't be read by a fetch, so their quotes are checked by hand too: the
+# SOLIDWORKS API help answered 403 to scripts and fills its text in with JavaScript (2026-11-26).
+BY_HAND = ("help.solidworks.com",)
 
 
 class NotText(Exception):
@@ -140,7 +144,8 @@ def verify(facts: list[Fact], fetch: Fetch | None = None) -> Iterator[tuple[Fact
     The quote is the cell's text in double quotes, or, for a command's output, in backticks. A
     cell holding neither has nothing to look for, and is left to be checked by hand, as is a
     quote whose only sources are PDFs: their text can't be searched without a PDF reader, and
-    reading them as text would report every quote gone.
+    reading them as text would report every quote gone. A source on a host in `BY_HAND` is
+    treated as a PDF is.
     """
     fetch = fetch or fetch_text
     pages: dict[str, str | Exception] = {}
@@ -208,7 +213,8 @@ def _fetch_once_more(fetch: Fetch, source: str) -> str | Exception:
     except OSError, http.client.HTTPException:
         try:
             return _plain(fetch(source))
-        except (OSError, http.client.HTTPException) as exc:
+        # The retry can reach a PDF the first try never did, if the first was cut short.
+        except (NotText, OSError, http.client.HTTPException) as exc:
             return exc
 
 
@@ -216,6 +222,9 @@ def fetch_text(source: str) -> str:
     """A page's visible text, a non-HTML response as it came, or a command's output."""
     if source.startswith(LS_REMOTE):
         return _ls_remote(source.removeprefix(LS_REMOTE))
+    host = urllib.parse.urlsplit(source).hostname
+    if host in BY_HAND:
+        raise NotText(f"{host}, checked by hand")
     request = urllib.request.Request(source, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
         charset = response.headers.get_content_charset() or "utf-8"
