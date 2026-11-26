@@ -20,7 +20,7 @@ freshness run and the release workflow both run it.
 | `engineering` | 0.1.37 | Apache-2.0 | `agent-engineering` | reviewed 2026-11-11 |
 | `engineering` | 0.1.37 | Apache-2.0 | `architecture` | reviewed 2026-11-11 |
 | `engineering` | 0.1.37 | Apache-2.0 | `business-apps` | reviewed 2026-11-24 |
-| `engineering` | 0.1.37 | Apache-2.0 | `coding` | reviewed 2026-11-16 |
+| `engineering` | 0.1.37 | Apache-2.0 | `coding` | reviewed 2026-11-26 |
 | `engineering` | 0.1.37 | Apache-2.0 | `git-workflows` | reviewed 2026-11-24 |
 | `engineering` | 0.1.37 | Apache-2.0 | `house-style` | reviewed 2026-11-16 |
 | `engineering` | 0.1.37 | Apache-2.0 | `human-factors` | reviewed 2026-11-16 |
@@ -35,8 +35,8 @@ freshness run and the release workflow both run it.
 
 | Language | Tracked files |
 |---|---|
-| Markdown | 219 |
-| JSON | 90 |
+| Markdown | 221 |
+| JSON | 91 |
 | Python | 63 |
 | YAML | 25 |
 | Shell | 4 |
@@ -171,7 +171,7 @@ again.
 | `business-apps` | raw.githubusercontent.com | 2 |
 | `business-apps` | api.libreoffice.org | 1 |
 | `business-apps` | committee.iso.org | 1 |
-| `coding` | learn.microsoft.com | 81 |
+| `coding` | learn.microsoft.com | 95 |
 | `coding` | docs.python.org | 37 |
 | `coding` | raw.githubusercontent.com | 26 |
 | `coding` | nodejs.org | 19 |
@@ -187,13 +187,13 @@ again.
 | `coding` | gcc.gnu.org | 9 |
 | `coding` | github.com | 8 |
 | `coding` | pkg.go.dev | 8 |
+| `coding` | devblogs.microsoft.com | 7 |
 | `coding` | www.rfc-editor.org | 7 |
 | `coding` | go.dev | 6 |
 | `coding` | aws.amazon.com | 5 |
 | `coding` | clang.llvm.org | 5 |
 | `coding` | crates.io | 5 |
 | `coding` | cwe.mitre.org | 5 |
-| `coding` | devblogs.microsoft.com | 5 |
 | `coding` | docs.rs | 5 |
 | `coding` | html.spec.whatwg.org | 5 |
 | `coding` | opentelemetry.io | 5 |
@@ -277,6 +277,7 @@ again.
 | `coding` | src.fedoraproject.org | 1 |
 | `coding` | starlette.dev | 1 |
 | `coding` | support.apple.com | 1 |
+| `coding` | support.microsoft.com | 1 |
 | `coding` | tc39.es | 1 |
 | `coding` | toml.io | 1 |
 | `coding` | valgrind.org | 1 |

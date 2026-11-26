@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:c919ee16-ba12-5754-a54b-97a66371f669",
+  "serialNumber": "urn:uuid:c008f51d-7618-5370-8e10-cf87165d2a34",
   "version": 1,
   "metadata": {
     "tools": {
@@ -33,11 +33,11 @@
       "properties": [
         {
           "name": "claude-code-skills:language",
-          "value": "Markdown: 219 file(s)"
+          "value": "Markdown: 221 file(s)"
         },
         {
           "name": "claude-code-skills:language",
-          "value": "JSON: 90 file(s)"
+          "value": "JSON: 91 file(s)"
         },
         {
           "name": "claude-code-skills:language",
@@ -683,7 +683,7 @@
           "type": "data",
           "bom-ref": "skill:coding",
           "name": "coding",
-          "description": "reviewed 2026-11-16",
+          "description": "reviewed 2026-11-26",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -692,7 +692,7 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 81 fact(s)"
+              "value": "learn.microsoft.com: 95 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -756,6 +756,10 @@
             },
             {
               "name": "claude-code-skills:fact-source",
+              "value": "devblogs.microsoft.com: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
               "value": "www.rfc-editor.org: 7 fact(s)"
             },
             {
@@ -777,10 +781,6 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "cwe.mitre.org: 5 fact(s)"
-            },
-            {
-              "name": "claude-code-skills:fact-source",
-              "value": "devblogs.microsoft.com: 5 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -1113,6 +1113,10 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "support.apple.com: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "support.microsoft.com: 1 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",

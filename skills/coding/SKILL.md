@@ -1,9 +1,9 @@
 ---
 name: coding
-description: "Code in Python, TypeScript, HTML/CSS, C#, PowerShell, Bash and C; errors, logging, caching, performance, settings, naming. Read it before writing, reviewing or debugging code, and before answering any question about code, even a quick one."
+description: "Code in Python, TypeScript, HTML/CSS, C#, PowerShell, Bash, C and VBA; errors, logging, caching, performance, settings, naming. Read it before writing, reviewing or debugging code, and before answering any question about code, even a quick one."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-16"
+  reviewed: "2026-11-26"
 ---
 
 # Coding
@@ -94,6 +94,7 @@ the fact's row is in whichever module holds it.
 | [`benchmarking`](references/benchmarking.md) | Benchmarking code, any language: harnesses, warm-up and sinks, how many runs, medians and significance tests, baselines, how each harness reports, and catching regressions in CI on noisy runners |
 | [`logging-libraries`](references/logging-libraries.md) | Choosing and configuring a logging library: structlog, pino, Serilog, Logback, Log4j 2, Monolog, semantic_logger and Rust's tracing, their versions, how each attaches trace IDs and redacts values, and OpenTelemetry severity numbers |
 | [`error-responses`](references/error-responses.md) | Errors that reach a client or a person: RFC 9457 problem details, honest status codes, what ASP.NET Core and Spring do by default, contract tests, a client reading error bodies, keeping internals out, and messages that say what happened and what to do |
+| [`vba-coding`](references/vba-coding.md) | VBA macros in Excel, Word, Access and Outlook: `Option Explicit`, `On Error` handlers and cleanup, restoring `Application` settings, arrays over cell loops, late and early binding, 64-bit `PtrSafe` and `LongPtr`, VBScript and `RegExp`, blocked macros and trusted locations, and when to use Office Scripts, Python in Excel or PowerShell instead |
 
 ## Check before you act
 

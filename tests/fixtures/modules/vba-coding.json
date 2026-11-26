@@ -1,0 +1,50 @@
+[
+  {
+    "query": "My Excel macro loops over 50,000 rows with Cells(i, 1).Value and takes ten minutes. How do I make it faster?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our old macro has Declare Function FindWindow Lib \"user32\" and now won't compile on the new laptops with 64-bit Office. What do I change?",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this VBA module: it starts with On Error Resume Next and leaves ScreenUpdating off when something fails.",
+    "should_trigger": true
+  },
+  {
+    "query": "Excel says Microsoft has blocked macros from running because the source of this file is untrusted. How do I let my team run our macro workbook without turning macro security off?",
+    "should_trigger": true
+  },
+  {
+    "query": "We use a reference to Microsoft VBScript Regular Expressions 5.5 in an Access database. Will it break when VBScript is removed from Windows?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a VBA macro that copies each row of a sheet into a Word letter and saves it, without leaving Word running in the background.",
+    "should_trigger": true
+  },
+  {
+    "query": "Should this monthly report macro stay in VBA or move to Office Scripts or Python in Excel?",
+    "should_trigger": true
+  },
+  {
+    "query": "Build an .xlsx report with a pivot table from Python using XlsxWriter.",
+    "should_trigger": false,
+    "note": "excel-master, the planned business-apps module for workbooks built from code"
+  },
+  {
+    "query": "Write a Power Query M step that merges two tables and removes duplicate customer IDs.",
+    "should_trigger": false,
+    "note": "excel-master, the planned business-apps module for Power Query"
+  },
+  {
+    "query": "Write a PowerShell script that moves last month's files to an archive share each night.",
+    "should_trigger": false,
+    "note": "powershell-scripts"
+  },
+  {
+    "query": "Write an Office Script in TypeScript that highlights overdue rows in a table, to run from a Power Automate flow.",
+    "should_trigger": false,
+    "note": "excel-master, the planned business-apps module for Office Scripts"
+  }
+]
