@@ -6,6 +6,44 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-26 — Wave 3 in `business-apps`: `excel-master`, `epicor-kinetic`, `solidworks-automation`
+
+- **Asked, by the owner:** "do what you can on public", and that every old skill a new one
+  overrides is read and either replaced, incorporated or improved (2026-11-26).
+- **Built from:** the owner's old `excel-master` and `epicor-bpm`, read whole as lists of
+  topics, and research R16 (`research/runs/2026-11-24-R16-office-epicor-solidworks.md`) as
+  leads. The old `solidworks-automation` wasn't among the synced copies. What each covers,
+  drops and corrects is in the intake,
+  [research/runs/2026-11-26-intake-wave-3.md](../research/runs/2026-11-26-intake-wave-3.md).
+- **Sources:** each fact checked at its source on 2026-11-26, by `skillcheck`'s own verify where
+  a script can read it. Epicor's help is for customers only, so `epicor-kinetic` rests on
+  Epicor's public pages and on epiusers.help posts, several by Epicor staff, and says so.
+  SOLIDWORKS's API help was read in a browser; its quotes are checked by hand.
+- **Licenses:** Epicor's and SOLIDWORKS's material is restricted, so each module states facts in
+  its own words with links and copies nothing. Nothing from Anthropic's document skills was
+  used; the old `excel-master` carried a copy of their scripts without its notice, which isn't
+  carried over.
+- **Examples:** the Python examples ran, against openpyxl 3.1.5, XlsxWriter 3.3.4, pandas 3.1.1
+  and LibreOffice 24.2. The C#, VBA and Epicor examples can't run here and are marked unchecked;
+  each module says so, and the owner runs each once and records the release and date (answer
+  44, 2026-10-15).
+- **Scope:** `excel-master` holds code that writes or reads workbooks. Workbooks people use,
+  Power Query and DAX, and Office Scripts and add-ins didn't fit with quality, so they are
+  planned as `excel-modeling`, `power-query-and-dax` and `office-scripts-and-add-ins`.
+  Anthropic's `xlsx` stays on (2026-10-15), and the intake says how the two divide.
+- **Routing:** the skill's description named Word alone, so in the builders' trigger runs the
+  new modules' requests went to `coding`, `security` or no skill. It now names all four
+  applications in 239 characters. With it, `--triggers` reached `excel-master` 5 of 9,
+  `epicor-kinetic` 8 of 9, `solidworks-automation` 7 of 8 and `word-documents` 7 of 7. Every
+  miss loaded `business-apps` and was answered without opening the module, the miss the
+  2026-11-25 entry measured across the skills.
+- **Company detail:** the old `epicor-bpm` targets the company's own ERP 10.2 update and may use
+  its part numbering; both go to the private companion's planned `samscreen-epicor`. None is in
+  these modules.
+- **The old copies:** `excel-master` and `epicor-bpm` on the owner's claude.ai account, in their
+  own skills and in the organization library's inventory. Nothing else there depends on them.
+  This merges after the owner deletes them.
+
 ## 2026-11-26 — Sources a script can't read are checked by hand
 
 - **Why:** the `solidworks-automation` module, built for wave 3, rests on the SOLIDWORKS API

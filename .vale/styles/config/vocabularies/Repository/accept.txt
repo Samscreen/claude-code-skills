@@ -1,3 +1,6 @@
 claude-code-skills
 CSS
 HTML
+Epicor
+Kinetic
+XlsxWriter

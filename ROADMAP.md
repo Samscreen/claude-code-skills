@@ -72,7 +72,7 @@ research. These rules are that structure.
 | `security` | `engineering` | Threat models, authentication, authorization and cryptography (planned: dependencies and the supply chain, privacy and licenses) | shipped |
 | `agent-engineering` | `engineering` | Building skills and agent context files, agents reviewing each other, and defending agents against injection | shipped |
 | `operations` | `engineering` | Running, troubleshooting or hardening Windows Server, Linux, containers and networks, and reading their logs and crash dumps (planned: cloud) | shipped |
-| `business-apps` | `engineering` | Automating or extending Excel, Word, Epicor Kinetic and SOLIDWORKS (shipped: Word; planned: Excel, Epicor Kinetic, SOLIDWORKS) | shipped |
+| `business-apps` | `engineering` | Automating or extending Excel, Word, Epicor Kinetic and SOLIDWORKS (shipped: Word, Excel from code, Epicor Kinetic, SOLIDWORKS; planned: workbook modeling, Power Query and DAX, Office Scripts and add-ins) | shipped |
 | `visual-design` | `engineering` | Themes, palettes, contrast and charts (planned: accessibility) | shipped |
 | `user-experience` | `engineering` | Reviewing, designing or testing how a program behaves for the person using it: status and feedback, windows and dialogs, settings and options, and whether it's easy to learn and to use | shipped |
 | `optimization-and-scheduling` | `engineering` | Solvers, schedules and plans, with the people in them | shipped |
@@ -195,10 +195,13 @@ Grouped by subject; the Skill column is each module's one home.
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
 | `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11, R11b |
-| `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
+| `excel-master` | `business-apps` | Workbooks from code: choosing openpyxl or XlsxWriter, formulas from code, cached values, validation, tables, dates, large files, checking the output | shipped | core | R16 |
+| `excel-modeling` | `business-apps` | Workbooks people use: inputs, calculations and outputs apart, named inputs, check cells, accessibility, and formulas written by hand, such as XLOOKUP, LET, LAMBDA and GROUPBY | planned | core | R16 |
+| `power-query-and-dax` | `business-apps` | Power Query M and the data model: sources, query folding, refresh, DAX measures and time intelligence | planned | core | R16 |
+| `office-scripts-and-add-ins` | `business-apps` | Office Scripts with Power Automate, Office JavaScript add-ins, custom functions and the unified manifest | planned | core | R16 |
 | `word-documents` | `business-apps` | Generating and filling Word templates | shipped | core | R16, R16b |
-| `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
-| `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | planned | core | R16 |
+| `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | shipped | core | R16 |
+| `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | shipped | core | R16 |
 | `linux` | `operations` | Administration and troubleshooting across distributions | shipped | standard | R15 |
 | `networking-security` | `operations` | Firewalls, segmentation, IDS, VPN, Wi-Fi, DNS | shipped | standard | R15 |
 | `docker-containers` | `operations` | Dockerfiles, Compose, hardening, registries | shipped | standard | R15 |
@@ -286,7 +289,7 @@ palettes in `visual-design`, not in `excel-master`.
    |---|---|---|---|---|
    | 1 | R15, R09, R11, R10 | `coding` with its contract, `bash-coding`, `python-coding`, `powershell-scripts`, `csharp-coding`, `javascript-coding`, `html-coding` | the six old language skills | Shipped 2026-10-26 in release 0.1.22. The six old copies are deleted |
    | 2 | R06, R06b, R07, R14, R19, R23, R28 | `testing`; `coding`'s `error-handling`; `operations`' `log-analysis`; `data`; `architecture`'s `api-patterns`; `human-factors`; `optimization-and-scheduling` | `testing-patterns`, `error-handling`, `log-parser`, `sql-craftsman`, `api-patterns`, `human-factor-audit` | Shipped 2026-11-11, except `data` and `api-patterns`, still planned. Deleted: `testing-patterns`, `error-handling`, `log-parser` and `human-factor-audit`. `sql-craftsman` and `api-patterns` wait for their successors |
-   | 3 | R16, R11 | `coding`'s `vba-coding`; `business-apps`; `operations`' `windows-admin` | `vba-coding`, `excel-master`, `epicor-bpm`, `solidworks-automation`, `procedure-generator`, `windows-admin` | `windows-admin` shipped early, on 2026-11-11, and its old copy is deleted. The rest is planned |
+   | 3 | R16, R11 | `coding`'s `vba-coding`; `business-apps`; `operations`' `windows-admin` | `vba-coding`, `excel-master`, `epicor-bpm`, `solidworks-automation`, `procedure-generator`, `windows-admin` | `windows-admin` shipped early, on 2026-11-11, and its old copy is deleted. `vba-coding`, `excel-master`, `epicor-kinetic` and `solidworks-automation` built on 2026-11-26, from the intake in [research/runs/2026-11-26-intake-wave-3.md](research/runs/2026-11-26-intake-wave-3.md); they merge once the owner deletes the old copies. `procedure-generator`'s successor is the private companion's `samscreen-documents` |
    | 4 | R25, R13, R15, R20 | `coding`'s `go-coding`, `rust-coding`, `php-coding`, `ruby-coding`; `operations`' `docker-containers`, `linux`, `networking-security`; `visual-design` | those seven, `linux-troubleshooting`, `my-theme` once the company palette is in the private companion, and last `code-standards` | Shipped early: `docker-containers`, `linux` and `networking-security` on 2026-11-11, and `visual-design` on 2026-11-16. Deleted: `docker-containers` and `networking-security`. No deletion of `linux-troubleshooting` is recorded, and `my-theme` stays. The four language modules are planned |
    | When needed | R15 | `linux-gaming` | `linux-gaming` | Planned |
 

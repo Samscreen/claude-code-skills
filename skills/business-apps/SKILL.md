@@ -1,20 +1,21 @@
 ---
 name: business-apps
-description: "Business documents from code, starting with Word: .dotx templates, prompts split across runs, fields, tables of contents, numbered lists, change records. Read it before code writes or fills a .docx, and before answering any question about doing so."
+description: "Word, Excel, Epicor Kinetic and SOLIDWORKS from code: .dotx templates and fields, .xlsx formulas and validation, BPMs, BAQs and REST, macros and DXF, STEP or PDF export. Read it before such code, and before answering any question about it."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-24"
+  reviewed: "2026-11-26"
 ---
 
 # Business apps
 
 **This page is an index. Before you answer, use the Read tool on the module file below that fits the request** (`references/<module>.md`, and each one the request spans): the module holds the facts, versions and checks an answer needs, and this page doesn't.
 
-Code that produces or fills the documents a business runs on, starting with Word: templates,
-fields, tables of contents, numbered lists and change records. Excel workbooks, Epicor Kinetic
-and SOLIDWORKS join as their modules are built. The language the code is written in is `coding`;
-colors and fonts are `visual-design`; a company's own templates and approval rules live in that
-company's own skills, which use these for the mechanics.
+Code that produces, fills or extends what a business runs on: Word documents from templates,
+Excel workbooks written and read from code, Epicor Kinetic directives, Functions, BAQs and its
+REST API, and SOLIDWORKS macros, add-ins and exports. The language the code is written in is
+`coding`, VBA included; colors and fonts are `visual-design`; a company's own templates,
+configuration and approval rules live in that company's own skills, which use these for the
+mechanics.
 
 ## What applies to every module
 
@@ -28,6 +29,9 @@ the one that fits before answering.
 4. **Pin each document library to an exact version,** and run the checks again on each upgrade.
 5. **No company detail in shared code or skills:** names, servers and templates stay in the
    company's own repositories.
+6. **Say when an example hasn't run on a named release.** Office, Epicor and SOLIDWORKS can't
+   run in CI, so each module says which of its examples are unproven, and whoever runs one
+   records the release and the date in the module.
 
 ## Modules
 
@@ -37,6 +41,9 @@ mistakes, audit checks, reasons, dated facts and sources.
 | Module | Read it for |
 |---|---|
 | [`word-documents`](references/word-documents.md) | Filling a Word template from code: opening a `.dotx`, replacing prompts split across runs, `DATE` and `FILENAME` fields, a table of contents or fields right in Word but stale in a PDF or preview, restarting numbered and lettered lists, change records, and checking the result |
+| [`excel-master`](references/excel-master.md) | Writing or reading `.xlsx` from code: openpyxl or XlsxWriter, `#NAME?` and `_xlfn.` prefixes, formulas that don't spill, totals that read as 0 or None, formula injection, list validation, tables and names, dates and time zones, large files, and checking the output |
+| [`solidworks-automation`](references/solidworks-automation.md) | The SOLIDWORKS API from a VBA macro, a C# add-in or a stand-alone program: opening documents and checking load errors, custom properties, configurations, drawing views, sheet-metal flat patterns to DXF, STEP and PDF export, batch runs over a folder, and releasing COM objects |
+| [`epicor-kinetic`](references/epicor-kinetic.md) | Epicor Kinetic and ERP 10.2.x on the server: BPM method, data and updatable BAQ directives, what an in-transaction directive may do, C# in directives and Epicor Functions, BAQs, REST API v2 and API keys, and code that breaks when upgrading to Kinetic |
 
 ## When something here is wrong
 

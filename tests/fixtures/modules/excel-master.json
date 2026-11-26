@@ -1,0 +1,38 @@
+[
+  {
+    "query": "My Python script writes =XLOOKUP(...) into a cell with openpyxl, but when I open the xlsx in Excel it shows #NAME? until I click into the cell and press Enter. Why?",
+    "should_trigger": true
+  },
+  {
+    "query": "I generate a report workbook with XlsxWriter and then read it back with pandas to check the totals, but every formula column comes back as 0",
+    "should_trigger": true
+  },
+  {
+    "query": "Should I use openpyxl or XlsxWriter to build a 500,000-row export with a table, dropdowns and a few formulas, and later update an existing template?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our export writes customer comments into an Excel file with openpyxl. Security says a comment starting with =HYPERLINK is a formula injection risk. How do I write it as plain text?",
+    "should_trigger": true
+  },
+  {
+    "query": "A FILTER formula I write from Python only shows one value with an @ in front instead of spilling down the column",
+    "should_trigger": true
+  },
+  {
+    "query": "pandas to_excel fails with 'Excel does not support datetimes with timezones' on my UTC timestamps. What's the right way to write them?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write an XLOOKUP formula I can type into Excel to pull the price for each part number from my price list sheet",
+    "should_trigger": false
+  },
+  {
+    "query": "Pick a colorblind-safe palette for the bar charts in our monthly matplotlib report",
+    "should_trigger": false
+  },
+  {
+    "query": "My python-docx script can't open our .dotx template; it says it is not a Word file",
+    "should_trigger": false
+  }
+]

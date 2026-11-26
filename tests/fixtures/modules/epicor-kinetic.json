@@ -1,0 +1,38 @@
+[
+  {
+    "query": "Write an Epicor pre-processing method directive on SalesOrder.Update that stops the save when the customer PO number is blank",
+    "should_trigger": true
+  },
+  {
+    "query": "After our Kinetic 2026.1 upgrade a bunch of BPM custom code fails with errors about DbFunctions and FirstOrDefault. What changed and how do I fix it?",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm calling a BAQ from a Python script through the Epicor REST API v2 and keep getting 'Rest calls must pass a valid API Key'. What does the request need?",
+    "should_trigger": true
+  },
+  {
+    "query": "Should sending an email when a job is released be an in-transaction data directive or a post-processing method directive in Epicor?",
+    "should_trigger": true
+  },
+  {
+    "query": "We're moving from Epicor ERP 10.2 to Kinetic. What breaks in our BPMs and Classic customizations, and how should we plan the upgrade?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write an Epicor Function that updates a sales order's PO number, so our web shop can call it over REST",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a C# console app that reads a CSV and posts each row to a REST endpoint with HttpClient, with retries and a timeout",
+    "should_trigger": false
+  },
+  {
+    "query": "Fill our Word work instruction template from a Python script and restart the lettered sub-steps for each step",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a SQL Server query that finds duplicate customer records by name and postal code",
+    "should_trigger": false
+  }
+]

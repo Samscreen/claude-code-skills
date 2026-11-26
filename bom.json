@@ -2,7 +2,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:c919ee16-ba12-5754-a54b-97a66371f669",
+  "serialNumber": "urn:uuid:ed7ac22b-043e-516f-ac2f-382539252d19",
   "version": 1,
   "metadata": {
     "tools": {
@@ -33,11 +33,11 @@
       "properties": [
         {
           "name": "claude-code-skills:language",
-          "value": "Markdown: 219 file(s)"
+          "value": "Markdown: 223 file(s)"
         },
         {
           "name": "claude-code-skills:language",
-          "value": "JSON: 90 file(s)"
+          "value": "JSON: 93 file(s)"
         },
         {
           "name": "claude-code-skills:language",
@@ -646,7 +646,7 @@
           "type": "data",
           "bom-ref": "skill:business-apps",
           "name": "business-apps",
-          "description": "reviewed 2026-11-24",
+          "description": "reviewed 2026-11-26",
           "licenses": [
             {
               "expression": "Apache-2.0"
@@ -655,15 +655,31 @@
           "properties": [
             {
               "name": "claude-code-skills:fact-source",
-              "value": "learn.microsoft.com: 7 fact(s)"
+              "value": "help.solidworks.com: 13 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "support.microsoft.com: 3 fact(s)"
+              "value": "learn.microsoft.com: 10 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
-              "value": "pypi.org: 2 fact(s)"
+              "value": "support.microsoft.com: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.epiusers.help: 7 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "www.epicor.com: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "xlsxwriter.readthedocs.io: 5 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pypi.org: 4 fact(s)"
             },
             {
               "name": "claude-code-skills:fact-source",
@@ -676,6 +692,22 @@
             {
               "name": "claude-code-skills:fact-source",
               "value": "committee.iso.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "help.libreoffice.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "openpyxl.readthedocs.io: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "owasp.org: 1 fact(s)"
+            },
+            {
+              "name": "claude-code-skills:fact-source",
+              "value": "pandas.pydata.org: 1 fact(s)"
             }
           ]
         },
