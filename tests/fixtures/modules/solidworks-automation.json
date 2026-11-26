@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Write a SolidWorks VBA macro that goes through a folder of sheet metal parts and saves each flat pattern as a DXF with the bend lines",
+    "should_trigger": true
+  },
+  {
+    "query": "My C# program opens assemblies with OpenDoc6 and gets a ModelDoc2 back, but some parts are missing in the export. How do I tell the open went wrong?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I read and set the PartNumber custom property on every configuration of a SOLIDWORKS part from a macro?",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm looping through the views of a SolidWorks drawing with GetFirstView and the first one has no referenced model. What am I doing wrong?",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a standalone C# tool that attaches to the running SolidWorks, exports every drawing in a folder to PDF and every part to STEP, without touching the original files",
+    "should_trigger": true
+  },
+  {
+    "query": "Our SolidWorks add-in leaks memory after a few hundred files. When should I call Marshal.ReleaseComObject on the SOLIDWORKS objects?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write an Excel VBA macro that loops over the rows of a sheet and emails each customer their overdue invoice total",
+    "should_trigger": false
+  },
+  {
+    "query": "My .NET 10 console app's HttpClient calls time out under load. How should I set up IHttpClientFactory and cancellation?",
+    "should_trigger": false
+  }
+]

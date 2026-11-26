@@ -198,7 +198,7 @@ Grouped by subject; the Skill column is each module's one home.
 | `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
 | `word-documents` | `business-apps` | Generating and filling Word templates | shipped | core | R16, R16b |
 | `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
-| `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | planned | core | R16 |
+| `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | shipped | core | R16 |
 | `linux` | `operations` | Administration and troubleshooting across distributions | shipped | standard | R15 |
 | `networking-security` | `operations` | Firewalls, segmentation, IDS, VPN, Wi-Fi, DNS | shipped | standard | R15 |
 | `docker-containers` | `operations` | Dockerfiles, Compose, hardening, registries | shipped | standard | R15 |
