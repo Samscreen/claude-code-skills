@@ -1,9 +1,9 @@
 ---
 name: coding
-description: "Code in Python, TypeScript, HTML/CSS, C#, PowerShell, Bash and C; errors, logging, caching, performance, settings, naming. Read it before writing, reviewing or debugging code, and before answering any question about code, even a quick one."
+description: "Code in Python, TypeScript, HTML/CSS, C#, PowerShell, Bash, C and VBA; errors, logging, caching, performance, settings, naming. Read it before writing, reviewing or debugging code, and before answering any question about code, even a quick one."
 license: Apache-2.0
 metadata:
-  reviewed: "2026-11-16"
+  reviewed: "2026-11-26"
 ---
 
 # Coding

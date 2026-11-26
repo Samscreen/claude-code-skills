@@ -6,6 +6,16 @@ Notable changes to this repository. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `coding`'s `vba-coding` module, rebuilt from the owner's old `vba-coding` skill, every topic
+  of which was read and either rebuilt, dropped with its reason or moved: one handler and one
+  cleanup per entry point, saved and restored `Application` settings, arrays over cell loops,
+  late and early binding, 64-bit `PtrSafe` and `LongPtr`, VBScript's removal and the built-in
+  `RegExp`, blocked macros and trusted locations, DAO parameters, and when to choose Office
+  Scripts, Python in Excel or PowerShell instead. Its examples are not yet run on a named
+  Office build. `coding`'s description now names VBA.
+
 ## [0.1.37] - 2026-11-25
 
 ### Changed

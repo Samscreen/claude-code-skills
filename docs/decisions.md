@@ -6,6 +6,29 @@ From 2026-11-16, a release is one line in the entry of the change it ships, not 
 own. Entries before 2026-10-16, and the release-only entries since, are on the `archive` branch;
 the last section lists each that still stands or is cited.
 
+## 2026-11-26 — Wave 3 in `coding`: `vba-coding`
+
+- **Asked, by the owner:** "do what you can on public", and that every old skill a new one
+  overrides is read and either replaced, incorporated or improved (2026-11-26).
+- **Built from:** the owner's old `vba-coding`, read whole as a list of topics, and research R16
+  as leads. What it covers, drops and corrects is in the intake,
+  [research/runs/2026-11-26-intake-wave-3.md](../research/runs/2026-11-26-intake-wave-3.md),
+  shared with `business-apps`' wave 3.
+- **Sources:** 17 facts, from Microsoft Learn, Microsoft Support and the Microsoft 365 Developer
+  Blog, each quote confirmed by `skillcheck`'s own verify on 2026-11-26. R16's secondary
+  sources for ActiveX were replaced with Learn pages. The VBA reference is CC BY 4.0 for text
+  and MIT for code; the module quotes it only briefly.
+- **Examples:** VBA can't run here; each block is marked unchecked, and the module says none has
+  run on a named Office build yet. The owner runs each once and records the build and date
+  (answer 44, 2026-10-15).
+- **Routing:** `coding`'s description now names VBA. `--triggers vba-coding` reached 8 of 11
+  after it. Two requests (64-bit `Declare`, VBScript's `RegExp`) loaded `coding` and were
+  answered without the module, the miss the 2026-11-25 entry measured across the skills; one
+  (blocked macros) went to `operations`, where Mark of the Web is partly an administrator's.
+- **The old copy:** `vba-coding` on the owner's claude.ai account, in their own skills and in
+  the organization library's inventory. The old `excel-master` names it and goes with
+  `business-apps`' wave 3. This merges after the owner deletes it.
+
 ## 2026-11-25 — Descriptions name questions, and routers open as an index
 
 - **Asked, by the owner:** "do it", for the routing investigation proposed on 2026-11-24, after
