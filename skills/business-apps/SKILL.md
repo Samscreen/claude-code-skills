@@ -37,6 +37,7 @@ mistakes, audit checks, reasons, dated facts and sources.
 | Module | Read it for |
 |---|---|
 | [`word-documents`](references/word-documents.md) | Filling a Word template from code: opening a `.dotx`, replacing prompts split across runs, `DATE` and `FILENAME` fields, a table of contents or fields right in Word but stale in a PDF or preview, restarting numbered and lettered lists, change records, and checking the result |
+| [`excel-master`](references/excel-master.md) | Writing or reading `.xlsx` from code: openpyxl or XlsxWriter, `#NAME?` and `_xlfn.` prefixes, formulas that don't spill, totals that read as 0 or None, formula injection, list validation, tables and names, dates and time zones, large files, and checking the output |
 
 ## When something here is wrong
 

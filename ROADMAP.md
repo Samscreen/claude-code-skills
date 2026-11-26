@@ -195,7 +195,10 @@ Grouped by subject; the Skill column is each module's one home.
 | Module | Skill | Covers | Status | Coverage | Research |
 |---|---|---|---|---|---|
 | `windows-admin` | `operations` | AD, Group Policy, DNS/DHCP, certificates, file services, updates, hardening | shipped | core | R11, R11b |
-| `excel-master` | `business-apps` | Workbooks from code, formulas, Power Query, DAX, Office Scripts, add-ins | planned | core | R16 |
+| `excel-master` | `business-apps` | Workbooks from code: choosing openpyxl or XlsxWriter, formulas from code, cached values, validation, tables, dates, large files, checking the output | shipped | core | R16 |
+| `excel-modeling` | `business-apps` | Workbooks people use: inputs, calculations and outputs apart, named inputs, check cells, accessibility, and formulas written by hand, such as XLOOKUP, LET, LAMBDA and GROUPBY | planned | core | R16 |
+| `power-query-and-dax` | `business-apps` | Power Query M and the data model: sources, query folding, refresh, DAX measures and time intelligence | planned | core | R16 |
+| `office-scripts-and-add-ins` | `business-apps` | Office Scripts with Power Automate, Office JavaScript add-ins, custom functions and the unified manifest | planned | core | R16 |
 | `word-documents` | `business-apps` | Generating and filling Word templates | shipped | core | R16, R16b |
 | `epicor-kinetic` | `business-apps` | BPM, BAQ, REST API v2, Functions, from public knowledge only | planned | core | R16 |
 | `solidworks-automation` | `business-apps` | VBA and C# macros, documents, drawings, sheet metal, exports | planned | core | R16 |
