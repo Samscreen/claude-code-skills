@@ -29,6 +29,20 @@ the last section lists each that still stands or is cited.
   the organization library's inventory. The old `excel-master` names it and goes with
   `business-apps`' wave 3. This merges after the owner deletes it.
 
+## 2026-11-26 — Sources a script can't read are checked by hand
+
+- **Why:** the `solidworks-automation` module, built for wave 3, rests on the SOLIDWORKS API
+  help. Its pages answered 403 to `skillcheck --verify` and fill their text in with JavaScript,
+  so every quote there would fail the weekly freshness run and keep its issue open for good.
+  The builder confirmed each quote in a browser instead.
+- **Chosen:** a host list, `BY_HAND` in `src/skillcheck/core/facts.py`, starting with
+  `help.solidworks.com`. A source there is treated as a PDF is: never fetched, its quote kept
+  for the person who checks it when it falls due. Rejected: dropping the quotes, which loses
+  what a person checks against; rendering pages in a browser, which puts a browser in CI for
+  one host; and a per-row mark, which every row on the host would have to repeat.
+- **Fixed with it:** a retry that reached a PDF raised out of `--verify` and ended the run,
+  seen on 2026-11-26 after a connection reset.
+
 ## 2026-11-25 — Descriptions name questions, and routers open as an index
 
 - **Asked, by the owner:** "do it", for the routing investigation proposed on 2026-11-24, after
