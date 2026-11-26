@@ -33,7 +33,10 @@ the last section lists each that still stands or is cited.
   Anthropic's `xlsx` stays on (2026-10-15), and the intake says how the two divide.
 - **Routing:** the skill's description named Word alone, so in the builders' trigger runs the
   new modules' requests went to `coding`, `security` or no skill. It now names all four
-  applications in 239 characters.
+  applications in 239 characters. With it, `--triggers` reached `excel-master` 5 of 9,
+  `epicor-kinetic` 8 of 9, `solidworks-automation` 7 of 8 and `word-documents` 7 of 7. Every
+  miss loaded `business-apps` and was answered without opening the module, the miss the
+  2026-11-25 entry measured across the skills.
 - **Company detail:** the old `epicor-bpm` targets the company's own ERP 10.2 update and may use
   its part numbering; both go to the private companion's planned `samscreen-epicor`. None is in
   these modules.
